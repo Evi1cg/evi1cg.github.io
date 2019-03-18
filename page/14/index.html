@@ -56,16 +56,16 @@
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.0.1">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.7.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.0.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.7.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.0.1">
 
 
 
@@ -87,8 +87,10 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
     lazyload: true,
@@ -144,14 +146,6 @@
 
 
 
-
-  <script async src="//www.googletagmanager.com/gtag/js?id=UA-132188022-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-132188022-1');
-  </script>
 
 
 
@@ -492,8 +486,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/archives/Office_Phishing.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/Office_Phishing.html" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/archives/Office_Phishing.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -675,8 +670,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/archives/windows-domain-credentials-phishing-tool.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/windows-domain-credentials-phishing-tool.html" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/archives/windows-domain-credentials-phishing-tool.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -864,8 +860,9 @@ http://player.vimeo.com/video/89782344?portrait=0&amp;color=c9ff23
                   <i class="fa fa-comment-o"></i>
                 </span>
             
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/archives/bypassAV_hanzoInjection.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/bypassAV_hanzoInjection.html" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/archives/bypassAV_hanzoInjection.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1047,8 +1044,9 @@ http://player.vimeo.com/video/89782344?portrait=0&amp;color=c9ff23
                   <i class="fa fa-comment-o"></i>
                 </span>
             
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/archives/Domain_Administrator_in_17_seconds.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/Domain_Administrator_in_17_seconds.html" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/archives/Domain_Administrator_in_17_seconds.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1234,8 +1232,9 @@ http://player.vimeo.com/video/89782344?portrait=0&amp;color=c9ff23
                   <i class="fa fa-comment-o"></i>
                 </span>
             
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/archives/Kerberos.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/Kerberos.html" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/archives/Kerberos.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1345,7 +1344,6 @@ http://player.vimeo.com/video/89782344?portrait=0&amp;color=c9ff23
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -1361,7 +1359,7 @@ http://player.vimeo.com/video/89782344?portrait=0&amp;color=c9ff23
             
             </a>
               <p class="site-author-name" itemprop="name">Evi1cg</p>
-              <p class="site-description motion-element" itemprop="description">此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。</p>
+              <div class="site-description motion-element" itemprop="description">此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。</div>
           </div>
 
           
@@ -1381,7 +1379,11 @@ http://player.vimeo.com/video/89782344?portrait=0&amp;color=c9ff23
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
+                  
+                    
+                      <a href="/categories">
+                    
+                  
                     
                     
                       
@@ -1408,7 +1410,11 @@ http://player.vimeo.com/video/89782344?portrait=0&amp;color=c9ff23
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags">
+                    
+                  
                     
                     
                       
@@ -1533,54 +1539,6 @@ http://player.vimeo.com/video/89782344?portrait=0&amp;color=c9ff23
           
 
           
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="mailto:zuotonghk@gmail.com" title="Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>Mail</a>
-                </span>
-              
-            </div>
-          
 
           
 
@@ -1627,6 +1585,7 @@ show_date_time();
     </div>
     <div style="display: none;"><a href="https://www.whoxy.com/"><img src="//whoxy.s3.amazonaws.com/x.png" alt="whois api"></a></div>
   </aside>
+  
 
 
         
@@ -1670,8 +1629,6 @@ show_date_time();
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
-        
-          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
@@ -1744,31 +1701,31 @@ show_date_time();
   
 
 
-  <script src="/js/src/utils.js?v=6.7.0"></script>
+  <script src="/js/src/utils.js?v=7.0.1"></script>
 
-  <script src="/js/src/motion.js?v=6.7.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/affix.js?v=6.7.0"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+  <script src="/js/src/motion.js?v=7.0.1"></script>
 
 
 
   
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
 
   
 
 
-  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
 
 
-
+  
   
   
 
@@ -1813,7 +1770,6 @@ show_date_time();
 
 
   
-
   <script>
     // Popup Window;
     var isfetched = false;
@@ -2143,24 +2099,21 @@ show_date_time();
   
 
   
+
+  
+
+  
   <script>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
-      if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-      }
-      else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-      }
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
     })();
   </script>
 
 
-
-  
 
   
 
@@ -2188,10 +2141,12 @@ show_date_time();
       white-space: nowrap;
       vertical-align: middle;
       cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
+      
+        background-color: #eee;
+        background-image: linear-gradient(#fcfcfc, #eee);
+        border: 1px solid #d5d5d5;
+        border-radius: 3px;
+      
       user-select: none;
       outline: 0;
     }
@@ -2201,13 +2156,15 @@ show_date_time();
       opacity: 0;
       padding: 2px 6px;
       position: absolute;
-      right: 4px;
-      top: 8px;
+      
+        right: 4px;
+        top: 8px;
+      
     }
 
     .highlight-wrap:hover .copy-btn,
     .highlight-wrap .copy-btn:focus {
-      opacity: 1
+      opacity: 1;
     }
 
     .highlight-wrap {
@@ -2223,27 +2180,22 @@ show_date_time();
           return $(e).text();
         }).toArray().join('\n');
         var ta = document.createElement('textarea');
-        var range = document.createRange(); //For Chrome
-        var sel = window.getSelection(); //For Chrome
         var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.top = yPosition + 'px'; // Prevent page scroll
         ta.style.position = 'absolute';
         ta.style.opacity = '0';
+        ta.readOnly = true;
         ta.value = code;
-        ta.textContent = code; //For FireFox
-        ta.contentEditable = true;
-        ta.readOnly = false;
         document.body.appendChild(ta);
-        range.selectNode(ta);
-        sel.removeAllRanges();
-        sel.addRange(range);
+        ta.select();
         ta.setSelectionRange(0, code.length);
+        ta.readOnly = false;
         var result = document.execCommand('copy');
         
           if (result) $(this).text('复制成功');
           else $(this).text('复制失败');
         
-        ta.blur(); //For iOS
+        ta.blur(); // For iOS
         $(this).blur();
       })).on('mouseleave', function(e) {
         var $b = $(this).find('.copy-btn');

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evi1cg.github.io/archives/UserClone.html</loc>
+    
+    <lastmod>2019-04-22T02:16:15.666Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Use_Powershell_Stream_A_Target-t_Desktop.html</loc>
+    
+    <lastmod>2019-03-18T07:18:51.950Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/Email_spoofing.html</loc>
     
     <lastmod>2019-03-18T07:18:47.548Z</lastmod>
@@ -75,13 +89,6 @@
     <loc>https://evi1cg.github.io/archives/CVE_2017_11882_exp.html</loc>
     
     <lastmod>2019-01-16T05:42:11.477Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/UserClone.html</loc>
-    
-    <lastmod>2019-01-16T05:18:36.548Z</lastmod>
     
   </url>
   
@@ -248,13 +255,6 @@
   
   <url>
     <loc>https://evi1cg.github.io/archives/MS16-032-Windows-Privilege-Escalation.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.770Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Use_Powershell_Stream_A_Target-t_Desktop.html</loc>
     
     <lastmod>2019-01-15T05:43:36.770Z</lastmod>
     

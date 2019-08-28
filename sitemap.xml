@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evi1cg.github.io/friends/index.html</loc>
+    
+    <lastmod>2019-08-28T07:05:48.497Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io//404.html</loc>
     
     <lastmod>2019-07-01T07:46:43.514Z</lastmod>
@@ -124,13 +131,6 @@
     <loc>https://evi1cg.github.io/archives/CVE_2018_0802.html</loc>
     
     <lastmod>2019-01-16T05:12:48.647Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/friends/index.html</loc>
-    
-    <lastmod>2019-01-16T03:18:41.459Z</lastmod>
     
   </url>
   
@@ -408,14 +408,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Hack_With_XSLT.html</loc>
+    <loc>https://evi1cg.github.io/archives/hack_with_rewrite.html</loc>
     
     <lastmod>2019-01-15T05:43:36.768Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/hack_with_rewrite.html</loc>
+    <loc>https://evi1cg.github.io/archives/Hack_With_XSLT.html</loc>
     
     <lastmod>2019-01-15T05:43:36.768Z</lastmod>
     
@@ -569,13 +569,6 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Tips_of_Mimikatz.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evi1cg.github.io/archives/mousejack_replay.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
@@ -584,6 +577,13 @@
   
   <url>
     <loc>https://evi1cg.github.io/archives/Multi-Threaded_Brute_Forcer.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Tips_of_Mimikatz.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     

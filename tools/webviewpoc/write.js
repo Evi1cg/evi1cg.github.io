@@ -1,4 +1,4 @@
-<script>
+<html><head><script>
 
 function execute(cmdArgs)
 
@@ -21,3 +21,4 @@ try{
 }
 
 </script>
+</head><body></body></html>

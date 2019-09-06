@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -109,7 +92,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mousejack_replay">
 <meta property="og:url" content="https://evi1cg.github.io/archives/mousejack_replay.html">
-<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:site_name" content="Evi1cg's blog">
 <meta property="og:description" content="0x00 简介Bastille的研究团队发现了一种针对蓝牙键盘鼠标的攻击，攻击者可以利用漏洞控制你的电脑操作。研究团队将此攻击命名为MouseJack。 Mousejack 之前在Freebuf上有所介绍：MouseJack：利用15美元的工具和15行代码控制无线鼠标和键盘，当然，制作团队也将部分测试代码公开在github上，该团队网站地址为：https://www.mousejack.com/">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-01-14T14:44:26.000Z">
@@ -495,26 +478,26 @@
       
 
       
-        <h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h2><p>Bastille的研究团队发现了一种针对蓝牙键盘鼠标的攻击，攻击者可以利用漏洞控制你的电脑操作。研究团队将此攻击命名为MouseJack。 Mousejack 之前在Freebuf上有所介绍：<a href="http://www.freebuf.com/articles/wireless/97023.html" target="_blank" rel="noopener">MouseJack：利用15美元的工具和15行代码控制无线鼠标和键盘</a>，当然，制作团队也将部分测试代码公开在<a href="https://github.com/RFStorm/mousejack/" target="_blank" rel="noopener">github</a>上，该团队网站地址为：<a href="https://www.mousejack.com/" target="_blank" rel="noopener">https://www.mousejack.com/</a> 从视频中，可以看到攻击者通过此技术，直接操纵受害者电脑，但由于目前该团队并没有公开完整代码，所以有了下面的测试代码。</p>
+        <meta name="generator" content="Hexo 3.9.0"><h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h2><p>Bastille的研究团队发现了一种针对蓝牙键盘鼠标的攻击，攻击者可以利用漏洞控制你的电脑操作。研究团队将此攻击命名为MouseJack。 Mousejack 之前在Freebuf上有所介绍：<a href="http://www.freebuf.com/articles/wireless/97023.html" target="_blank" rel="noopener">MouseJack：利用15美元的工具和15行代码控制无线鼠标和键盘</a>，当然，制作团队也将部分测试代码公开在<a href="https://github.com/RFStorm/mousejack/" target="_blank" rel="noopener">github</a>上，该团队网站地址为：<a href="https://www.mousejack.com/" target="_blank" rel="noopener">https://www.mousejack.com/</a> 从视频中，可以看到攻击者通过此技术，直接操纵受害者电脑，但由于目前该团队并没有公开完整代码，所以有了下面的测试代码。</p>
 <blockquote>
 <p>怎么烧固件这里就不说了，在原<a href="https://github.com/RFStorm/mousejack/" target="_blank" rel="noopener">github</a>有详细说明，drops也有介绍:<a href="http://drops.wooyun.org/tips/13444" target="_blank" rel="noopener">Mousejack测试指南</a>，如果在windows平台，我也写过一个介绍:<a href="http://zone.wooyun.org/content/25763" target="_blank" rel="noopener">windows下刷MouseJack固件</a>。</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="0x01-原脚本测试"><a href="#0x01-原脚本测试" class="headerlink" title="0x01 原脚本测试"></a>0x01 原脚本测试</h2><p>该团队所公布的代码主要包括了扫描跟嗅探模块，nrf24-network-mapper.py 中并没有能够让鼠标操作发生明显变化的payload，经过多次测试，写出了此测试脚本，能够完成对无线鼠标操作的重放攻击。</p>
 <h2 id="0x02-脚本介绍"><a href="#0x02-脚本介绍" class="headerlink" title="0x02 脚本介绍"></a>0x02 脚本介绍</h2><h3 id="scanner"><a href="#scanner" class="headerlink" title="scanner"></a>scanner</h3><p>使用原作者的扫描脚本，此脚本用来扫描附近的无线鼠键：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">usage</span>: ./nrf24-scanner.py [-h] [-c N [N ...]] [-v] [-l] [-p PREFIX] [-d DWELL]</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help                          show this help message and exit</span><br><span class="line">  -c N [N ...], --channels N [N ...]  RF channels</span><br><span class="line">  -v, --verbose                       Enable verbose output</span><br><span class="line">  -l, --lna                           Enable the LNA (for CrazyRadio PA dongles)</span><br><span class="line">  -p PREFIX, --prefix PREFIX          Promiscuous mode address prefix</span><br><span class="line">  -d DWELL, --dwell DWELL             Dwell time per channel, in milliseconds</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">usage</span>: ./nrf24-scanner.py [-h] [-c N [N ...]] [-v] [-l] [-p PREFIX] [-d DWELL]</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help                          show this help message and exit</span><br><span class="line">  -c N [N ...], --channels N [N ...]  RF channels</span><br><span class="line">  -v, --verbose                       Enable verbose output</span><br><span class="line">  -l, --lna                           Enable the LNA (for CrazyRadio PA dongles)</span><br><span class="line">  -p PREFIX, --prefix PREFIX          Promiscuous mode address prefix</span><br><span class="line">  -d DWELL, --dwell DWELL             Dwell time per channel, in milliseconds</span><br></pre></td></tr></tbody></table></figure>
 <p>扫描信道 1-5 的设备：</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">./nrf24-scanner.py</span> -c &#123;1.<span class="string">.5</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">./nrf24-scanner.py</span> -c {1.<span class="string">.5</span>}</span><br></pre></td></tr></tbody></table></figure>
 <p>扫描起始地址为0xA9的设备的所有信道：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nrf24-scanner<span class="selector-class">.py</span> -<span class="selector-tag">p</span> A9</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nrf24-scanner<span class="selector-class">.py</span> -<span class="selector-tag">p</span> A9</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="sniffer"><a href="#sniffer" class="headerlink" title="sniffer"></a>sniffer</h3><p>修改原作者脚本，将获取的设备数据存储到pack.log 中，之后可以使用mousejack-replay.py脚本对此数据进行重放：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">usage: ./nrf24-sniffer.py [-h] [-c N [N <span class="built_in">..</span>.]] [-v] [-l] -a<span class="built_in"> ADDRESS </span>[-t TIMEOUT] [-k ACK_TIMEOUT] [-r RETRIES]</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help                                 show this help message <span class="keyword">and</span> exit</span><br><span class="line">  -c N [N <span class="built_in">..</span>.], --channels N [N <span class="built_in">..</span>.]         RF channels</span><br><span class="line">  -v, --verbose                              <span class="builtin-name">Enable</span> verbose output</span><br><span class="line">  -l, --lna                                  <span class="builtin-name">Enable</span> the LNA (<span class="keyword">for</span> CrazyRadio PA dongles)</span><br><span class="line">  -a ADDRESS, --address<span class="built_in"> ADDRESS </span>            <span class="built_in"> Address </span><span class="keyword">to</span> sniff, following as it changes channels</span><br><span class="line">  -t TIMEOUT, --timeout TIMEOUT              Channel timeout, <span class="keyword">in</span> milliseconds</span><br><span class="line">  -k ACK_TIMEOUT, --ack_timeout ACK_TIMEOUT  ACK timeout <span class="keyword">in</span> microseconds, accepts [250,4000], <span class="keyword">step</span> 250</span><br><span class="line">  -r RETRIES, --retries RETRIES              Auto retry limit, accepts [0,15]</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">usage: ./nrf24-sniffer.py [-h] [-c N [N <span class="built_in">..</span>.]] [-v] [-l] -a<span class="built_in"> ADDRESS </span>[-t TIMEOUT] [-k ACK_TIMEOUT] [-r RETRIES]</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help                                 show this help message <span class="keyword">and</span> exit</span><br><span class="line">  -c N [N <span class="built_in">..</span>.], --channels N [N <span class="built_in">..</span>.]         RF channels</span><br><span class="line">  -v, --verbose                              <span class="builtin-name">Enable</span> verbose output</span><br><span class="line">  -l, --lna                                  <span class="builtin-name">Enable</span> the LNA (<span class="keyword">for</span> CrazyRadio PA dongles)</span><br><span class="line">  -a ADDRESS, --address<span class="built_in"> ADDRESS </span>            <span class="built_in"> Address </span><span class="keyword">to</span> sniff, following as it changes channels</span><br><span class="line">  -t TIMEOUT, --timeout TIMEOUT              Channel timeout, <span class="keyword">in</span> milliseconds</span><br><span class="line">  -k ACK_TIMEOUT, --ack_timeout ACK_TIMEOUT  ACK timeout <span class="keyword">in</span> microseconds, accepts [250,4000], <span class="keyword">step</span> 250</span><br><span class="line">  -r RETRIES, --retries RETRIES              Auto retry limit, accepts [0,15]</span><br></pre></td></tr></tbody></table></figure>
 <p>嗅探地址为 61:49:66:82:03 设备所有信道的数据包并将数据包保存：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./<span class="selector-tag">nrf24-sniffer</span><span class="selector-class">.py</span> <span class="selector-tag">-a</span> <span class="selector-tag">61</span><span class="selector-pseudo">:49</span><span class="selector-pseudo">:66</span><span class="selector-pseudo">:82</span><span class="selector-pseudo">:03</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./<span class="selector-tag">nrf24-sniffer</span><span class="selector-class">.py</span> <span class="selector-tag">-a</span> <span class="selector-tag">61</span><span class="selector-pseudo">:49</span><span class="selector-pseudo">:66</span><span class="selector-pseudo">:82</span><span class="selector-pseudo">:03</span></span><br></pre></td></tr></tbody></table></figure>
 <h3 id="mousejack-replay-py"><a href="#mousejack-replay-py" class="headerlink" title="mousejack-replay.py"></a>mousejack-replay.py</h3><p>在 network mapper 脚本上修改，首先通过Ping获取可用信道，然后读取pack.log中的数据包内容，将每一条数据发送到各个信道，完成数据包重放,测试过程中，发现可用地址一般为3-4个，所以将原脚本改成rang(4)：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">usage: ./mousejack-replay.py [-h] [-c N [N <span class="built_in">..</span>.]] [-v] [-l] -a<span class="built_in"> ADDRESS </span>[-p PASSES] [-k ACK_TIMEOUT] [-r RETRIES]</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help                                 show this help message <span class="keyword">and</span> exit</span><br><span class="line">  -c N [N <span class="built_in">..</span>.], --channels N [N <span class="built_in">..</span>.]         RF channels</span><br><span class="line">  -v, --verbose                              <span class="builtin-name">Enable</span> verbose output</span><br><span class="line">  -l, --lna                                  <span class="builtin-name">Enable</span> the LNA (<span class="keyword">for</span> CrazyRadio PA dongles)</span><br><span class="line">  -a ADDRESS, --address<span class="built_in"> ADDRESS </span>             Known address</span><br><span class="line">  -p PASSES, --passes PASSES                 Number of passes (default 2)</span><br><span class="line">  -k ACK_TIMEOUT, --ack_timeout ACK_TIMEOUT  ACK timeout <span class="keyword">in</span> microseconds, accepts [250,4000], <span class="keyword">step</span> 250</span><br><span class="line">  -r RETRIES, --retries RETRIES              Auto retry limit, accepts [0,15]</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">usage: ./mousejack-replay.py [-h] [-c N [N <span class="built_in">..</span>.]] [-v] [-l] -a<span class="built_in"> ADDRESS </span>[-p PASSES] [-k ACK_TIMEOUT] [-r RETRIES]</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help                                 show this help message <span class="keyword">and</span> exit</span><br><span class="line">  -c N [N <span class="built_in">..</span>.], --channels N [N <span class="built_in">..</span>.]         RF channels</span><br><span class="line">  -v, --verbose                              <span class="builtin-name">Enable</span> verbose output</span><br><span class="line">  -l, --lna                                  <span class="builtin-name">Enable</span> the LNA (<span class="keyword">for</span> CrazyRadio PA dongles)</span><br><span class="line">  -a ADDRESS, --address<span class="built_in"> ADDRESS </span>             Known address</span><br><span class="line">  -p PASSES, --passes PASSES                 Number of passes (default 2)</span><br><span class="line">  -k ACK_TIMEOUT, --ack_timeout ACK_TIMEOUT  ACK timeout <span class="keyword">in</span> microseconds, accepts [250,4000], <span class="keyword">step</span> 250</span><br><span class="line">  -r RETRIES, --retries RETRIES              Auto retry limit, accepts [0,15]</span><br></pre></td></tr></tbody></table></figure>
 <p>指定地址为 61:49:66:82:03 的设备进行数据包重放：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./<span class="selector-tag">mousejack-replay</span><span class="selector-class">.py</span> <span class="selector-tag">-a</span> <span class="selector-tag">61</span><span class="selector-pseudo">:49</span><span class="selector-pseudo">:66</span><span class="selector-pseudo">:82</span><span class="selector-pseudo">:03</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./<span class="selector-tag">mousejack-replay</span><span class="selector-class">.py</span> <span class="selector-tag">-a</span> <span class="selector-tag">61</span><span class="selector-pseudo">:49</span><span class="selector-pseudo">:66</span><span class="selector-pseudo">:82</span><span class="selector-pseudo">:03</span></span><br></pre></td></tr></tbody></table></figure>
 <h2 id="0x03备注"><a href="#0x03备注" class="headerlink" title="0x03备注"></a>0x03备注</h2><p>以上为个人测试结果，由于目前手上只有一个鼠标可以测试，可能并不适用所有存在漏洞设备，有兴趣的小伙伴可以找我一起研究，可以对脚本进行进一步的完善。</p>
 <p>右键点击演示视频：<a href="http://v.youku.com/v_show/id_XMTUwMTQ3Njk4NA==.html" target="_blank" rel="noopener">http://v.youku.com/v_show/id_XMTUwMTQ3Njk4NA==.html</a></p>
 <p>数据重放演示视频：<a href="http://v.youku.com/v_show/id_XMTUwMzgwMTQ1Ng==.html" target="_blank" rel="noopener">http://v.youku.com/v_show/id_XMTUwMzgwMTQ1Ng==.html</a></p>
@@ -874,7 +857,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -885,7 +868,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -896,7 +879,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -907,7 +890,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -959,7 +942,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1641,5 +1624,6 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
-</html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

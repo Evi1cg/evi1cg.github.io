@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -91,18 +108,18 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="不知道列名的情况下注入">
 <meta property="og:url" content="https://evi1cg.github.io/archives/sqli_without_knowing_columns_names.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15500455788558.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15500437457634.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15500439319694.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15500441801262.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15500450275510.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15500443786658.jpg">
 <meta property="og:updated_time" content="2019-02-13T08:15:32.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不知道列名的情况下注入">
-<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2019/15500455788558.jpg">
 
 
 
@@ -482,21 +499,21 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><p></p><div class="progress-images" style="width:2450px"><div class="progress-images--placeholder" style="padding-bottom: 64.73469387755102%;"></div><img src="/images/loading.svg" alt="-w1225" class="progress-images--original" data-original="/usr/uploads/2019/15500455788558.jpg" data-thumb="/images/thumb/0f97cb1b21dfaff375a8d8779d6ab4e2.jpg"></div><p></p>
+        <p><img src="/usr/uploads/2019/15500455788558.jpg" alt="-w1225"></p>
 <a id="more"></a>
-<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h2><p>在 mysql => 5 的版本中存在库<code>information_schema</code>,记录着mysql中所有表的结构，通常，在mysql sqli中，我们会通过此库中的表去获取其他表的结构，即表名，列名等。但是这个库也会经常被WAF过滤。当我们通过暴力破解获取到表名后，该如何进行下一步利用呢？</p>
+<h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h2><p>在 mysql =&gt; 5 的版本中存在库<code>information_schema</code>,记录着mysql中所有表的结构，通常，在mysql sqli中，我们会通过此库中的表去获取其他表的结构，即表名，列名等。但是这个库也会经常被WAF过滤。当我们通过暴力破解获取到表名后，该如何进行下一步利用呢？</p>
 <blockquote>
 <p>在information_schema中，除了SCHEMATA，TABLES，COLUMNS有表信息外，高版本的mysql中，还有INNODB_TABLES及INNODB_COLUMNS中记录着表结构。</p>
 </blockquote>
-<h2 id="0x01-不使用表名查询"><a href="#0x01-不使用表名查询" class="headerlink" title="0x01 不使用表名查询"></a>0x01 不使用表名查询</h2><p>正常的查询如下：<br></p><div class="progress-images" style="width:978px"><div class="progress-images--placeholder" style="padding-bottom: 39.46830265848671%;"></div><img src="/images/loading.svg" alt="-w489" class="progress-images--original" data-original="/usr/uploads/2019/15500437457634.jpg" data-thumb="/images/thumb/e0096981c0a420552c4296ebde6b6df4.jpg"></div><p></p>
-<p>其中，列名为<code>id</code>,<code>name</code>,<code>pass</code>,<code>mail</code>,<code>phone</code>，使用union查询<br></p><figure class="highlight crystal"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:1004px"><div class="progress-images--placeholder" style="padding-bottom: 41.235059760956176%;"></div><img src="/images/loading.svg" alt="-w502" class="progress-images--original" data-original="/usr/uploads/2019/15500439319694.jpg" data-thumb="/images/thumb/d81ece8dcf17a3e36fb6bf989370337c.jpg"></div><p></p>
-<p>接着，就可以继续使用数字来对应列,如3对应了表里面的pass:<br></p><figure class="highlight crystal"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">`3`</span> from (<span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>)<span class="title">a</span>;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:1280px"><div class="progress-images--placeholder" style="padding-bottom: 32.1875%;"></div><img src="/images/loading.svg" alt="-w640" class="progress-images--original" data-original="/usr/uploads/2019/15500441801262.jpg" data-thumb="/images/thumb/aa0c19821fa6eb2984be3a63862e0991.jpg"></div><p></p>
-<p>当  ` 不能使用的时候，使用别名来代替：<br></p><figure class="highlight crystal"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> b from (<span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span> <span class="keyword">as</span> b,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>)<span class="title">a</span>;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:1426px"><div class="progress-images--placeholder" style="padding-bottom: 30.995792426367462%;"></div><img src="/images/loading.svg" alt="-w713" class="progress-images--original" data-original="/usr/uploads/2019/15500450275510.jpg" data-thumb="/images/thumb/2918ad364692c2c30eb2881d2b1c48b1.jpg"></div><p></p>
-<p>在注入中查询多个列：<br></p><figure class="highlight crystal"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> concat(<span class="string">`2`</span>,<span class="number">0x3a</span>,<span class="string">`3`</span>) from (<span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>)<span class="title">a</span> <span class="title">limit</span> 1,1;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:1616px"><div class="progress-images--placeholder" style="padding-bottom: 18.193069306930692%;"></div><img src="/images/loading.svg" alt="-w808" class="progress-images--original" data-original="/usr/uploads/2019/15500443786658.jpg" data-thumb="/images/thumb/7b83c39d121921175b8915ce058871fe.jpg"></div><p></p>
+<h2 id="0x01-不使用表名查询"><a href="#0x01-不使用表名查询" class="headerlink" title="0x01 不使用表名查询"></a>0x01 不使用表名查询</h2><p>正常的查询如下：<br><img src="/usr/uploads/2019/15500437457634.jpg" alt="-w489"></p>
+<p>其中，列名为<code>id</code>,<code>name</code>,<code>pass</code>,<code>mail</code>,<code>phone</code>，使用union查询<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/usr/uploads/2019/15500439319694.jpg" alt="-w502"></p>
+<p>接着，就可以继续使用数字来对应列,如3对应了表里面的pass:<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">`3`</span> from (<span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>)<span class="title">a</span>;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/usr/uploads/2019/15500441801262.jpg" alt="-w640"></p>
+<p>当  ` 不能使用的时候，使用别名来代替：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> b from (<span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span> <span class="keyword">as</span> b,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>)<span class="title">a</span>;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/usr/uploads/2019/15500450275510.jpg" alt="-w713"></p>
+<p>在注入中查询多个列：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> concat(<span class="string">`2`</span>,<span class="number">0x3a</span>,<span class="string">`3`</span>) from (<span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> <span class="class"><span class="keyword">union</span> <span class="title">select</span> * <span class="title">from</span> <span class="title">users</span>)<span class="title">a</span> <span class="title">limit</span> 1,1;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/usr/uploads/2019/15500443786658.jpg" alt="-w808"></p>
 <p>FROM:<a href="https://blog.redforce.io/sqli-extracting-data-without-knowing-columns-names/" target="_blank" rel="noopener">Extracting data without knowing columns names </a></p>
 
       
@@ -851,7 +868,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -862,7 +879,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -873,7 +890,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -884,7 +901,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -936,7 +953,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -998,8 +1015,6 @@
 
 
 
-  
-
 
 
 
@@ -1028,9 +1043,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1474,11 +1486,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1618,6 +1625,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evi1cg.github.io/archives/Email_spoofing.html</loc>
+    
+    <lastmod>2019-11-05T01:53:33.038Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/popups_advanced_maldoc.html</loc>
     
     <lastmod>2019-09-06T09:17:44.155Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://evi1cg.github.io/archives/UserClone.html</loc>
     
     <lastmod>2019-04-22T02:16:15.666Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Email_spoofing.html</loc>
-    
-    <lastmod>2019-03-18T07:20:12.702Z</lastmod>
     
   </url>
   
@@ -380,14 +380,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/phish_use_pac.html</loc>
+    <loc>https://evi1cg.github.io/archives/Get_NTLM_Hashes.html</loc>
     
     <lastmod>2019-01-15T05:43:36.769Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Get_NTLM_Hashes.html</loc>
+    <loc>https://evi1cg.github.io/archives/phish_use_pac.html</loc>
     
     <lastmod>2019-01-15T05:43:36.769Z</lastmod>
     
@@ -569,14 +569,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Mssql_Agent_Job_Exec.html</loc>
+    <loc>https://evi1cg.github.io/archives/Tips_of_Mimikatz.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Tips_of_Mimikatz.html</loc>
+    <loc>https://evi1cg.github.io/archives/Mssql_Agent_Job_Exec.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -660,14 +660,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/hackredis.html</loc>
+    <loc>https://evi1cg.github.io/archives/Downloader_byIE.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Downloader_byIE.html</loc>
+    <loc>https://evi1cg.github.io/archives/hackredis.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -681,14 +681,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/change_user.html</loc>
+    <loc>https://evi1cg.github.io/archives/tips.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/tips.html</loc>
+    <loc>https://evi1cg.github.io/archives/change_user.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     

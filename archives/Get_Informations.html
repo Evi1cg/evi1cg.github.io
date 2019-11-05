@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -87,18 +104,18 @@
 
 
 
-  <meta name="description" content="使用wmic识别安装到系统中的补丁情况1C:\&gt; wmic qfe get description,installedOn 识别正在运行的服务12C:\&gt;sc query type= serviceC:\&gt;net start 识别开机启动的程序，包括路径1C:\&gt;wmic startup list full">
+  <meta name="description" content="使用wmic识别安装到系统中的补丁情况1C:\&amp;gt; wmic qfe get description,installedOn 识别正在运行的服务12C:\&amp;gt;sc query type= serviceC:\&amp;gt;net start 识别开机启动的程序，包括路径1C:\&amp;gt;wmic startup list full">
 <meta name="keywords" content="information">
 <meta property="og:type" content="article">
 <meta property="og:title" content="命令行下的信息搜集">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Get_Informations.html">
-<meta property="og:site_name" content="Evi1cg's blog">
-<meta property="og:description" content="使用wmic识别安装到系统中的补丁情况1C:\&gt; wmic qfe get description,installedOn 识别正在运行的服务12C:\&gt;sc query type= serviceC:\&gt;net start 识别开机启动的程序，包括路径1C:\&gt;wmic startup list full">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
+<meta property="og:description" content="使用wmic识别安装到系统中的补丁情况1C:\&amp;gt; wmic qfe get description,installedOn 识别正在运行的服务12C:\&amp;gt;sc query type= serviceC:\&amp;gt;net start 识别开机启动的程序，包括路径1C:\&amp;gt;wmic startup list full">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-01-14T14:44:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="命令行下的信息搜集">
-<meta name="twitter:description" content="使用wmic识别安装到系统中的补丁情况1C:\&gt; wmic qfe get description,installedOn 识别正在运行的服务12C:\&gt;sc query type= serviceC:\&gt;net start 识别开机启动的程序，包括路径1C:\&gt;wmic startup list full">
+<meta name="twitter:description" content="使用wmic识别安装到系统中的补丁情况1C:\&amp;gt; wmic qfe get description,installedOn 识别正在运行的服务12C:\&amp;gt;sc query type= serviceC:\&amp;gt;net start 识别开机启动的程序，包括路径1C:\&amp;gt;wmic startup list full">
 
 
 
@@ -478,21 +495,21 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><p>使用wmic识别安装到系统中的补丁情况<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\> wmic qfe <span class="builtin-name">get</span> description,installedOn</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>识别正在运行的服务<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\>sc query type= service</span><br><span class="line">C:\>net start</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>识别开机启动的程序，包括路径<br></p><figure class="highlight lasso"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\>wmic startup <span class="built_in">list</span> <span class="literal">full</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+        <p>使用wmic识别安装到系统中的补丁情况<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; wmic qfe <span class="builtin-name">get</span> description,installedOn</span><br></pre></td></tr></table></figure></p>
+<p>识别正在运行的服务<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;sc query type= service</span><br><span class="line">C:\&gt;net start</span><br></pre></td></tr></table></figure></p>
+<p>识别开机启动的程序，包括路径<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;wmic startup <span class="built_in">list</span> <span class="literal">full</span></span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p>ping探测存活主机<br></p><figure class="highlight less"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">D</span>:\>for /L %I in (<span class="number">100</span>,<span class="number">1</span>,<span class="number">254</span>) DO <span class="variable">@ping</span> -w <span class="number">1</span> -n <span class="number">1</span> <span class="number">10.18</span>.<span class="number">180</span>.%I | findstr <span class="string">"TTL="</span> >> pinglive.txt</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>查看系统中网卡的IP地址和MAC地址<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\>wmic nicconfig <span class="builtin-name">get</span> ipaddress,macaddress</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>查看当前系统是否有屏保保护，延迟是多少<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\>wmic desktop <span class="builtin-name">get</span> screensaversecure,screensavertimeout</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>查看系统中开放的共享<br></p><figure class="highlight applescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\>wmic share <span class="keyword">get</span> <span class="built_in">name</span>,path</span><br><span class="line">D:\>net share</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>查看系统中开启的日志<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\>wmic nteventlog <span class="builtin-name">get</span> path,filename,writeable</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>清除相关的日志（这里是全部清除）<br></p><figure class="highlight stata"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wevtutil <span class="keyword">cl</span> <span class="string">"windows powershell"</span></span><br><span class="line">wevtutil <span class="keyword">cl</span> <span class="string">"security"</span></span><br><span class="line">wevtutil <span class="keyword">cl</span> <span class="string">"system"</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>查看系统中安装的软件以及版本<br></p><figure class="highlight applescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\>wmic product <span class="keyword">get</span> <span class="built_in">name</span>,<span class="built_in">version</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>查看某个进程的详细信息 （路径，命令行参数等）<br></p><figure class="highlight applescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\>wmic process <span class="keyword">where</span> <span class="built_in">name</span>=<span class="string">"chrome.exe"</span> <span class="built_in">list</span> full</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>终止一个进程<br></p><figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\>wmic process where name=<span class="string">"xshell.exe"</span> call terminate</span><br><span class="line">D:\>ntsd -c <span class="selector-tag">q</span> -<span class="selector-tag">p</span> 进程的PID</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>显示系统中的曾经连接过的无线密码<br></p><figure class="highlight gauss"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\>netsh wlan <span class="keyword">show</span> profiles </span><br><span class="line">D:\>netsh wlan <span class="keyword">show</span> profiles name=<span class="string">"profiles的名字"</span> <span class="built_in">key</span>=<span class="keyword">clear</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>查看当前系统是否是VMWARE<br></p><figure class="highlight golo"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\>wmic bios <span class="keyword">list</span> full | <span class="keyword">find</span> /i <span class="string">"vmware"</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>ping探测存活主机<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">D</span>:\&gt;for /L %I in (<span class="number">100</span>,<span class="number">1</span>,<span class="number">254</span>) DO <span class="variable">@ping</span> -w <span class="number">1</span> -n <span class="number">1</span> <span class="number">10.18</span>.<span class="number">180</span>.%I | findstr <span class="string">"TTL="</span> &gt;&gt; pinglive.txt</span><br></pre></td></tr></table></figure></p>
+<p>查看系统中网卡的IP地址和MAC地址<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\&gt;wmic nicconfig <span class="builtin-name">get</span> ipaddress,macaddress</span><br></pre></td></tr></table></figure></p>
+<p>查看当前系统是否有屏保保护，延迟是多少<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\&gt;wmic desktop <span class="builtin-name">get</span> screensaversecure,screensavertimeout</span><br></pre></td></tr></table></figure></p>
+<p>查看系统中开放的共享<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\&gt;wmic share <span class="keyword">get</span> <span class="built_in">name</span>,path</span><br><span class="line">D:\&gt;net share</span><br></pre></td></tr></table></figure></p>
+<p>查看系统中开启的日志<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;wmic nteventlog <span class="builtin-name">get</span> path,filename,writeable</span><br></pre></td></tr></table></figure></p>
+<p>清除相关的日志（这里是全部清除）<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wevtutil <span class="keyword">cl</span> <span class="string">"windows powershell"</span></span><br><span class="line">wevtutil <span class="keyword">cl</span> <span class="string">"security"</span></span><br><span class="line">wevtutil <span class="keyword">cl</span> <span class="string">"system"</span></span><br></pre></td></tr></table></figure></p>
+<p>查看系统中安装的软件以及版本<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;wmic product <span class="keyword">get</span> <span class="built_in">name</span>,<span class="built_in">version</span></span><br></pre></td></tr></table></figure></p>
+<p>查看某个进程的详细信息 （路径，命令行参数等）<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;wmic process <span class="keyword">where</span> <span class="built_in">name</span>=<span class="string">"chrome.exe"</span> <span class="built_in">list</span> full</span><br></pre></td></tr></table></figure></p>
+<p>终止一个进程<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\&gt;wmic process where name=<span class="string">"xshell.exe"</span> call terminate</span><br><span class="line">D:\&gt;ntsd -c <span class="selector-tag">q</span> -<span class="selector-tag">p</span> 进程的PID</span><br></pre></td></tr></table></figure></p>
+<p>显示系统中的曾经连接过的无线密码<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\&gt;netsh wlan <span class="keyword">show</span> profiles </span><br><span class="line">D:\&gt;netsh wlan <span class="keyword">show</span> profiles name=<span class="string">"profiles的名字"</span> <span class="built_in">key</span>=<span class="keyword">clear</span></span><br></pre></td></tr></table></figure></p>
+<p>查看当前系统是否是VMWARE<br><figure class="highlight golo"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;wmic bios <span class="keyword">list</span> full | <span class="keyword">find</span> /i <span class="string">"vmware"</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -837,7 +854,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -848,7 +865,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -859,7 +876,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -870,7 +887,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -905,7 +922,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -967,8 +984,6 @@
 
 
 
-  
-
 
 
 
@@ -997,9 +1012,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1443,11 +1455,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1587,6 +1594,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

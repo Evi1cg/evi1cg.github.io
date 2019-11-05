@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -91,27 +108,27 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cobalt Strike Spear Phish">
 <meta property="og:url" content="https://evi1cg.github.io/archives/spear_phish.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597224054660.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597229460786.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597228740190.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597237296089.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597240250480.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597241905750.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597245409452.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597249761870.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597249044056.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597252411387.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597262318727.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597263501598.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15597264046957.jpg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/mail.gif">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/keylog.gif">
 <meta property="og:updated_time" content="2019-06-05T09:27:07.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cobalt Strike Spear Phish">
-<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2019/15597224054660.jpg">
 
 
 
@@ -491,33 +508,33 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><p></p><div class="progress-images" style="width:1067px"><div class="progress-images--placeholder" style="padding-bottom: 74.97656982193065%;"></div><img src="/images/loading.svg" alt="" class="progress-images--original" data-original="/usr/uploads/2019/15597224054660.jpg" data-thumb="/images/thumb/61eef4fab067d7a4173deb86b58fdc96.jpg"></div><p></p>
+        <p><img src="/usr/uploads/2019/15597224054660.jpg" alt=""></p>
 <a id="more"></a>
 <h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h2><p>关于Spear phish 和发件人伪造的工具有很多个，比如<a href="https://getgophish.com/" target="_blank" rel="noopener">gophish</a>、<a href="https://github.com/lunarca/SimpleEmailSpoofer" target="_blank" rel="noopener">SimpleEmailSpoofer</a>、命令行工具swaks等，每个工具都有其特点，当然Cobalt Strike也有此功能。官方介绍<a href="https://cobaltstrike.com/help-spear-phish" target="_blank" rel="noopener">戳我</a>。今天主要来介绍一下CS里面的此功能怎么使用。</p>
-<h2 id="0x01-CS-Spear-Phish"><a href="#0x01-CS-Spear-Phish" class="headerlink" title="0x01 CS Spear Phish"></a>0x01 CS Spear Phish</h2><p>CS的Spear Phish位置在：<br></p><div class="progress-images" style="width:548px"><div class="progress-images--placeholder" style="padding-bottom: 52.55474452554745%;"></div><img src="/images/loading.svg" alt="-w274" class="progress-images--original" data-original="/usr/uploads/2019/15597229460786.jpg" data-thumb="/images/thumb/f0e982a35b5f5a075041059dac446c10.jpg"></div><p></p>
-<p>一张图说明功能：<br></p><div class="progress-images" style="width:2362px"><div class="progress-images--placeholder" style="padding-bottom: 77.60372565622355%;"></div><img src="/images/loading.svg" alt="" class="progress-images--original" data-original="/usr/uploads/2019/15597228740190.jpg" data-thumb="/images/thumb/dfbe0595b7a16a4e4ee855a6278151fc.jpg"></div><p></p>
-<p>使用此功能的前提是需要有一个smtp服务器来供我们来转发邮件，当然可以使用公共smtp服务，另外也可以参考<a href="https://evi1cg.github.io/archives/Email_spoofing.html">《Something about email spoofing》</a> 中提到的方法来搭建。<br>这里的使用很简单，首先构造目标列表，使用：<br></p><figure class="highlight applescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mail    <span class="built_in">name</span></span><br><span class="line">mail    <span class="built_in">name</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="0x01-CS-Spear-Phish"><a href="#0x01-CS-Spear-Phish" class="headerlink" title="0x01 CS Spear Phish"></a>0x01 CS Spear Phish</h2><p>CS的Spear Phish位置在：<br><img src="/usr/uploads/2019/15597229460786.jpg" alt="-w274"></p>
+<p>一张图说明功能：<br><img src="/usr/uploads/2019/15597228740190.jpg" alt=""></p>
+<p>使用此功能的前提是需要有一个smtp服务器来供我们来转发邮件，当然可以使用公共smtp服务，另外也可以参考<a href="https://evi1cg.github.io/archives/Email_spoofing.html">《Something about email spoofing》</a> 中提到的方法来搭建。<br>这里的使用很简单，首先构造目标列表，使用：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mail    <span class="built_in">name</span></span><br><span class="line">mail    <span class="built_in">name</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>中间的分隔符为[tab],可以不添加name</p>
 </blockquote>
-<p>添加好以后就是这个样子：<br></p><div class="progress-images" style="width:1102px"><div class="progress-images--placeholder" style="padding-bottom: 30.852994555353902%;"></div><img src="/images/loading.svg" alt="-w551" class="progress-images--original" data-original="/usr/uploads/2019/15597237296089.jpg" data-thumb="/images/thumb/636c33cea1fcc7d15effbaaed64f8dce.jpg"></div><p></p>
-<p>下面，要配置发件模板，这里配置很简单，只需要复制一份原始邮件即可，比如一份密码重置邮件：<br></p><div class="progress-images" style="width:2230px"><div class="progress-images--placeholder" style="padding-bottom: 65.82959641255606%;"></div><img src="/images/loading.svg" alt="-w1115" class="progress-images--original" data-original="/usr/uploads/2019/15597240250480.jpg" data-thumb="/images/thumb/02363ac37b0520603a113f0e2bcfe2fe.jpg"></div><p></p>
+<p>添加好以后就是这个样子：<br><img src="/usr/uploads/2019/15597237296089.jpg" alt="-w551"></p>
+<p>下面，要配置发件模板，这里配置很简单，只需要复制一份原始邮件即可，比如一份密码重置邮件：<br><img src="/usr/uploads/2019/15597240250480.jpg" alt="-w1115"></p>
 <p>选择显示原始邮件，并将其内容保存。</p>
-<p>在这里如果要伪造发件人，需要修改<code>From:</code><br></p><div class="progress-images" style="width:666px"><div class="progress-images--placeholder" style="padding-bottom: 9.90990990990991%;"></div><img src="/images/loading.svg" alt="-w333" class="progress-images--original" data-original="/usr/uploads/2019/15597241905750.jpg" data-thumb="/images/thumb/cca911a4f965cd01d554329e70ed8eac.jpg"></div><p></p>
+<p>在这里如果要伪造发件人，需要修改<code>From:</code><br><img src="/usr/uploads/2019/15597241905750.jpg" alt="-w333"></p>
 <p>否则就不需要做什么别的修改。之后，配置对应的<code>Mail server</code>，就可以进行发送邮件了，这里需要注意一点,为了绕过SPF的检查，<code>Bunce to</code>需设置为与<code>Mail server</code>同域，如<code>Mail server</code>为 <code>mail.evi1cg.me</code>,<code>Bunce to</code>可设置为<a href="mailto:`admin@evi1cg.me" target="_blank" rel="noopener">`admin@evi1cg.me</a>`。</p>
-<p>之后点击<code>Send</code>则可发送邮件，收到的邮件与模板一致。<br></p><div class="progress-images" style="width:1982px"><div class="progress-images--placeholder" style="padding-bottom: 58.12310797174571%;"></div><img src="/images/loading.svg" alt="-w991" class="progress-images--original" data-original="/usr/uploads/2019/15597245409452.jpg" data-thumb="/images/thumb/de46c2fa2832e2d28b4e30386b339f7b.jpg"></div><p></p>
+<p>之后点击<code>Send</code>则可发送邮件，收到的邮件与模板一致。<br><img src="/usr/uploads/2019/15597245409452.jpg" alt="-w991"></p>
 <p>另外查看SRF为<code>PASS</code>状态：</p>
-<p></p><div class="progress-images" style="width:2124px"><div class="progress-images--placeholder" style="padding-bottom: 35.31073446327684%;"></div><img src="/images/loading.svg" alt="-w1062" class="progress-images--original" data-original="/usr/uploads/2019/15597249761870.jpg" data-thumb="/images/thumb/4b9fe68f90d4d8ddf5204755b0b91d37.jpg"></div><p></p>
-<p>另外，CS也有发送附件的功能，但是原版本的CS发送附件有一个Bug，即如果附件为中文名称，则会在最后的邮件中显示乱码附件：<br></p><div class="progress-images" style="width:2016px"><div class="progress-images--placeholder" style="padding-bottom: 30.158730158730158%;"></div><img src="/images/loading.svg" alt="-w1008" class="progress-images--original" data-original="/usr/uploads/2019/15597249044056.jpg" data-thumb="/images/thumb/add14bba2d1bf1143a1447491ec0f197.jpg"></div><p></p>
-<p>所以在这里我们需要对CS动刀了，经过调试，成功定位到<code>mail\Eater.java</code>，需要对此类中的<code>createAttachment</code>方法进行修改：<br></p><figure class="highlight haxe"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> BodyPart createAttachment(<span class="keyword">String</span> name) throws IOException {</span><br><span class="line">   File file = <span class="keyword">new</span> <span class="type">File</span>(name);</span><br><span class="line">   <span class="keyword">String</span> namez = file.getName();</span><br><span class="line">   <span class="keyword">String</span> filename = <span class="keyword">new</span> <span class="type">String</span>(namez.getBytes(<span class="string">"utf-8"</span>),<span class="string">"ISO8859-1"</span>);</span><br><span class="line">   Body body = (<span class="keyword">new</span> <span class="type">StorageBodyFactory</span>()).binaryBody((InputStream)(<span class="keyword">new</span> <span class="type">FileInputStream</span>(name)));</span><br><span class="line">   Map temp = <span class="keyword">new</span> <span class="type">HashMap</span>();</span><br><span class="line">   temp.put(<span class="string">"name"</span>, filename);</span><br><span class="line">   BodyPart bodyPart = <span class="keyword">new</span> <span class="type">BodyPart</span>();</span><br><span class="line">   bodyPart.setBody(body, <span class="string">"application/octet-stream"</span>, temp);</span><br><span class="line">   bodyPart.setContentTransferEncoding(<span class="string">"base64"</span>);</span><br><span class="line">   bodyPart.setContentDisposition(<span class="string">"attachment"</span>);</span><br><span class="line">   bodyPart.setFilename(filename);</span><br><span class="line">   <span class="keyword">return</span> bodyPart;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>这样就可以解决附件乱码问题了:<br></p><div class="progress-images" style="width:2010px"><div class="progress-images--placeholder" style="padding-bottom: 30.54726368159204%;"></div><img src="/images/loading.svg" alt="-w1005" class="progress-images--original" data-original="/usr/uploads/2019/15597252411387.jpg" data-thumb="/images/thumb/37b69d4620af7e55e99e0d5b4236c15e.jpg"></div><p></p>
-<h2 id="0x02-Web-clone"><a href="#0x02-Web-clone" class="headerlink" title="0x02 Web clone"></a>0x02 Web clone</h2><p>另外在这里还有一个与Web Clone结合的地方，首先，我们先Clone一个需登录的网站，如网易邮箱：<br></p><div class="progress-images" style="width:818px"><div class="progress-images--placeholder" style="padding-bottom: 78.239608801956%;"></div><img src="/images/loading.svg" alt="-w409" class="progress-images--original" data-original="/usr/uploads/2019/15597262318727.jpg" data-thumb="/images/thumb/90e64885e246ff2622eb5c786364ad4d.jpg"></div><p></p>
+<p><img src="/usr/uploads/2019/15597249761870.jpg" alt="-w1062"></p>
+<p>另外，CS也有发送附件的功能，但是原版本的CS发送附件有一个Bug，即如果附件为中文名称，则会在最后的邮件中显示乱码附件：<br><img src="/usr/uploads/2019/15597249044056.jpg" alt="-w1008"></p>
+<p>所以在这里我们需要对CS动刀了，经过调试，成功定位到<code>mail\Eater.java</code>，需要对此类中的<code>createAttachment</code>方法进行修改：<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> BodyPart createAttachment(<span class="keyword">String</span> name) throws IOException &#123;</span><br><span class="line">   File file = <span class="keyword">new</span> <span class="type">File</span>(name);</span><br><span class="line">   <span class="keyword">String</span> namez = file.getName();</span><br><span class="line">   <span class="keyword">String</span> filename = <span class="keyword">new</span> <span class="type">String</span>(namez.getBytes(<span class="string">"utf-8"</span>),<span class="string">"ISO8859-1"</span>);</span><br><span class="line">   Body body = (<span class="keyword">new</span> <span class="type">StorageBodyFactory</span>()).binaryBody((InputStream)(<span class="keyword">new</span> <span class="type">FileInputStream</span>(name)));</span><br><span class="line">   Map temp = <span class="keyword">new</span> <span class="type">HashMap</span>();</span><br><span class="line">   temp.put(<span class="string">"name"</span>, filename);</span><br><span class="line">   BodyPart bodyPart = <span class="keyword">new</span> <span class="type">BodyPart</span>();</span><br><span class="line">   bodyPart.setBody(body, <span class="string">"application/octet-stream"</span>, temp);</span><br><span class="line">   bodyPart.setContentTransferEncoding(<span class="string">"base64"</span>);</span><br><span class="line">   bodyPart.setContentDisposition(<span class="string">"attachment"</span>);</span><br><span class="line">   bodyPart.setFilename(filename);</span><br><span class="line">   <span class="keyword">return</span> bodyPart;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就可以解决附件乱码问题了:<br><img src="/usr/uploads/2019/15597252411387.jpg" alt="-w1005"></p>
+<h2 id="0x02-Web-clone"><a href="#0x02-Web-clone" class="headerlink" title="0x02 Web clone"></a>0x02 Web clone</h2><p>另外在这里还有一个与Web Clone结合的地方，首先，我们先Clone一个需登录的网站，如网易邮箱：<br><img src="/usr/uploads/2019/15597262318727.jpg" alt="-w409"></p>
 <p>这里可以选择开启键盘记录功能。</p>
-<p>开启Clone：<br></p><div class="progress-images" style="width:552px"><div class="progress-images--placeholder" style="padding-bottom: 49.27536231884058%;"></div><img src="/images/loading.svg" alt="-w276" class="progress-images--original" data-original="/usr/uploads/2019/15597263501598.jpg" data-thumb="/images/thumb/fb5c1d553b44f69882347957258db323.jpg"></div><p></p>
-<p>设置spear phish:<br></p><div class="progress-images" style="width:1962px"><div class="progress-images--placeholder" style="padding-bottom: 39.65341488277268%;"></div><img src="/images/loading.svg" alt="-w981" class="progress-images--original" data-original="/usr/uploads/2019/15597264046957.jpg" data-thumb="/images/thumb/845e80e4850ab6fefb1f4a10213f3161.jpg"></div><p></p>
-<p>Embed URL选择刚刚克隆的url，发送邮件，此时用户点击重置按钮，则会跳转到Clone的站点：<br></p><div class="progress-images" style="width:1285px"><div class="progress-images--placeholder" style="padding-bottom: 63.65758754863813%;"></div><img src="/images/loading.svg" alt="mai" class="progress-images--original" data-original="/usr/uploads/2019/mail.gif" data-thumb="/images/thumb/253801bc452a90e4bc1dbc0c2fe6fc81.gif"></div><p></p>
+<p>开启Clone：<br><img src="/usr/uploads/2019/15597263501598.jpg" alt="-w276"></p>
+<p>设置spear phish:<br><img src="/usr/uploads/2019/15597264046957.jpg" alt="-w981"></p>
+<p>Embed URL选择刚刚克隆的url，发送邮件，此时用户点击重置按钮，则会跳转到Clone的站点：<br><img src="/usr/uploads/2019/mail.gif" alt="mai"></p>
 <p>此时，用户输入会被记录：</p>
-<p></p><div class="progress-images" style="width:1660px"><div class="progress-images--placeholder" style="padding-bottom: 49.27710843373494%;"></div><img src="/images/loading.svg" alt="keylog" class="progress-images--original" data-original="/usr/uploads/2019/keylog.gif" data-thumb="/images/thumb/b825f5ecfb5a86d790f9a39c5b4f67e7.gif"></div><p></p>
+<p><img src="/usr/uploads/2019/keylog.gif" alt="keylog"></p>
 <p>emmm. 大概就介绍这么多吧。</p>
 
       
@@ -874,7 +891,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -885,7 +902,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -896,7 +913,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -907,7 +924,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -959,7 +976,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1021,8 +1038,6 @@
 
 
 
-  
-
 
 
 
@@ -1051,9 +1066,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1497,11 +1509,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1641,6 +1648,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

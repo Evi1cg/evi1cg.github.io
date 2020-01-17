@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evi1cg.github.io/archives/cve_2020_0601.html</loc>
+    
+    <lastmod>2020-01-17T08:05:20.954Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/Email_spoofing.html</loc>
     
-    <lastmod>2019-11-05T01:55:44.909Z</lastmod>
+    <lastmod>2020-01-17T01:58:32.427Z</lastmod>
     
   </url>
   
@@ -212,14 +219,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/ExecPowershell_Use_DNSTXT.html</loc>
+    <loc>https://evi1cg.github.io/archives/Port_Forward_using_VPS_SSH_Tunnel.html</loc>
     
     <lastmod>2019-01-15T05:43:36.772Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Port_Forward_using_VPS_SSH_Tunnel.html</loc>
+    <loc>https://evi1cg.github.io/archives/ExecPowershell_Use_DNSTXT.html</loc>
     
     <lastmod>2019-01-15T05:43:36.772Z</lastmod>
     
@@ -415,14 +422,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Hack_With_XSLT.html</loc>
+    <loc>https://evi1cg.github.io/archives/hack_with_rewrite.html</loc>
     
     <lastmod>2019-01-15T05:43:36.768Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/hack_with_rewrite.html</loc>
+    <loc>https://evi1cg.github.io/archives/Hack_With_XSLT.html</loc>
     
     <lastmod>2019-01-15T05:43:36.768Z</lastmod>
     
@@ -464,14 +471,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Linux_Command.html</loc>
+    <loc>https://evi1cg.github.io/archives/creating-a-malicious-javascript-by-utilizing-alternate-data-streams.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/creating-a-malicious-javascript-by-utilizing-alternate-data-streams.html</loc>
+    <loc>https://evi1cg.github.io/archives/Linux_Command.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -520,14 +527,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Run_JSRAT.html</loc>
+    <loc>https://evi1cg.github.io/archives/121.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/121.html</loc>
+    <loc>https://evi1cg.github.io/archives/Run_JSRAT.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -548,6 +555,13 @@
   </url>
   
   <url>
+    <loc>https://evi1cg.github.io/archives/MAC.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/LFI.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
@@ -556,13 +570,6 @@
   
   <url>
     <loc>https://evi1cg.github.io/archives/Webshell_find.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/MAC.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -597,13 +604,6 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Office_Shellcode_Execution.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evi1cg.github.io/archives/test1.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
@@ -618,7 +618,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Shellter_Custom_payload.html</loc>
+    <loc>https://evi1cg.github.io/archives/Office_Shellcode_Execution.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -626,6 +626,13 @@
   
   <url>
     <loc>https://evi1cg.github.io/archives/SUID_Privilege_Escalation.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Shellter_Custom_payload.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -653,14 +660,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Downloader_byIE.html</loc>
+    <loc>https://evi1cg.github.io/archives/powerpreter.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/powerpreter.html</loc>
+    <loc>https://evi1cg.github.io/archives/Downloader_byIE.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -758,14 +765,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/tools/flashCSRF/ContentHijacking.html</loc>
+    <loc>https://evi1cg.github.io/tools/flashCSRF/index.html</loc>
     
     <lastmod>2016-06-07T03:33:16.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/tools/flashCSRF/index.html</loc>
+    <loc>https://evi1cg.github.io/tools/flashCSRF/ContentHijacking.html</loc>
     
     <lastmod>2016-06-07T03:33:16.000Z</lastmod>
     

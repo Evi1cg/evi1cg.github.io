@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evi1cg.github.io/friends/index.html</loc>
+    
+    <lastmod>2020-04-06T10:51:47.106Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/cve_2020_0601.html</loc>
     
     <lastmod>2020-01-17T08:29:49.849Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>https://evi1cg.github.io/archives/popups_advanced_maldoc.html</loc>
     
     <lastmod>2019-09-06T09:17:44.155Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/friends/index.html</loc>
-    
-    <lastmod>2019-08-28T07:05:48.497Z</lastmod>
     
   </url>
   

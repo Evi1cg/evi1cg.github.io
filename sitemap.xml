@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evi1cg.github.io/archives/SSRF_Bypass.html</loc>
+    
+    <lastmod>2020-10-11T01:27:22.079Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/popups_advanced_maldoc.html</loc>
     
     <lastmod>2020-08-03T09:25:27.564Z</lastmod>
@@ -619,13 +626,6 @@
   
   <url>
     <loc>https://evi1cg.github.io/archives/SUID_Privilege_Escalation.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/SSRF_Bypass.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     

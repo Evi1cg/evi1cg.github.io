@@ -1026,7 +1026,7 @@
   <entry>
     <title><![CDATA[SSRF中的绕过姿势]]></title>
     <url>%2Farchives%2FSSRF_Bypass.html</url>
-    <content type="text"><![CDATA[从以下URL关键字中寻找SSRF漏洞：1234567891011121314sharewapurllinksrcsourcetargetu3gdisplaysourceURlimageURLdomain... http://127.0.0.1/ 被过滤的时候，可以尝试一下几种方式： 1、@1http://abc@127.0.0.1 2、添加端口号1http://127.0.0.1:8080 3、短地址1http://dwz.cn/11SMa 4、可以指向任意ip的域名：xip.io123456710.0.0.1.xip.io 10.0.0.1www.10.0.0.1.xip.io 10.0.0.1mysite.10.0.0.1.xip.io 10.0.0.1foo.bar.10.0.0.1.xip.io 10.0.0.1 5、ip地址转换成进制来访问1115.239.210.26 ＝ 16373751032 首先把这四段数字给 转成 16 进制！结果：73 ef d2 1a 然后把 73efd21a 这十六进制一起转换成8进制！访问使用http://00+转换后十六进制1115.239.210.26 = 0x73.0xef.0xd2.0x1a 八进制1115.239.210.26 = 0163.0357.0322.0032]]></content>
+    <content type="text"><![CDATA[从以下URL关键字中寻找SSRF漏洞：1234567891011121314sharewapurllinksrcsourcetargetu3gdisplaysourceURlimageURLdomain... http://127.0.0.1/ 被过滤的时候，可以尝试一下几种方式： 1、@1http://abc@127.0.0.1 2、添加端口号1http://127.0.0.1:8080 3、短地址1http://dwz.cn/11SMa 4、可以指向任意ip的域名：xip.io123456710.0.0.1.xip.io 10.0.0.1www.10.0.0.1.xip.io 10.0.0.1mysite.10.0.0.1.xip.io 10.0.0.1foo.bar.10.0.0.1.xip.io 10.0.0.1 5、ip地址转换成进制来访问1115.239.210.26 ＝ 16373751032 首先把这四段数字给 转成 16 进制！结果：73 ef d2 1a 然后把 73efd21a 这十六进制一起转换成8进制！访问使用http://0x+转换后十六进制1115.239.210.26 = 0x73.0xef.0xd2.0x1a 八进制1115.239.210.26 = 0163.0357.0322.0032]]></content>
       <categories>
         <category>奇技淫巧</category>
       </categories>

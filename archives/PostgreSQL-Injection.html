@@ -104,18 +104,17 @@
 
 
 
-  <meta name="description" content="0x00 Sqli1、注释12--/**/ 2、查询版本1SELECT version() 3、查询用户12345SELECT user;SELECT current_user;SELECT session_user;SELECT usename FROM pg_user;SELECT getpgusername(); 4、列用户1SELECT usename FROM pg_user 5、列举">
-<meta name="keywords" content="Sqli">
+  <meta name="keywords" content="Sqli">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PostgreSQL Injection">
 <meta property="og:url" content="https://evi1cg.github.io/archives/PostgreSQL-Injection.html">
 <meta property="og:site_name" content="Evi1cg&#39;s blog">
-<meta property="og:description" content="0x00 Sqli1、注释12--/**/ 2、查询版本1SELECT version() 3、查询用户12345SELECT user;SELECT current_user;SELECT session_user;SELECT usename FROM pg_user;SELECT getpgusername(); 4、列用户1SELECT usename FROM pg_user 5、列举">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-10-15T06:41:57.354Z">
+<meta property="og:image" content="https://blogpics-1251691280.file.myqcloud.com/imgs/20201015145839.jpg">
+<meta property="og:updated_time" content="2020-10-15T06:59:07.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PostgreSQL Injection">
-<meta name="twitter:description" content="0x00 Sqli1、注释12--/**/ 2、查询版本1SELECT version() 3、查询用户12345SELECT user;SELECT current_user;SELECT session_user;SELECT usename FROM pg_user;SELECT getpgusername(); 4、列用户1SELECT usename FROM pg_user 5、列举">
+<meta name="twitter:image" content="https://blogpics-1251691280.file.myqcloud.com/imgs/20201015145839.jpg">
 
 
 
@@ -495,7 +494,8 @@
       
 
       
-        <a id="more"></a>
+        <p><img src="https://blogpics-1251691280.file.myqcloud.com/imgs/20201015145839.jpg" alt=""></p>
+<a id="more"></a>
 <h2 id="0x00-Sqli"><a href="#0x00-Sqli" class="headerlink" title="0x00 Sqli"></a>0x00 Sqli</h2><p>1、注释<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--</span></span><br><span class="line"><span class="comment">/**/</span></span><br></pre></td></tr></table></figure></p>
 <p>2、查询版本<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">version</span>()</span><br></pre></td></tr></table></figure></p>
 <p>3、查询用户<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">current_user</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">session_user</span>;</span><br><span class="line"><span class="keyword">SELECT</span> usename <span class="keyword">FROM</span> pg_user;</span><br><span class="line"><span class="keyword">SELECT</span> getpgusername();</span><br></pre></td></tr></table></figure></p>
@@ -547,7 +547,7 @@
 <blockquote>
 <p>美元符可替换引号。</p>
 </blockquote>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<h2 id="0x05-References"><a href="#0x05-References" class="headerlink" title="0x05 References"></a>0x05 References</h2><ul>
 <li><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/PostgreSQL%20Injection.md" target="_blank" rel="noopener">PostgreSQL Injection.md</a></li>
 <li><a href="https://pulsesecurity.co.nz/articles/postgres-sqli" target="_blank" rel="noopener">postgres-sqli</a></li>
 </ul>
@@ -963,7 +963,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-Sqli"><span class="nav-number">1.</span> <span class="nav-text">0x00 Sqli</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-文件读取"><span class="nav-number">2.</span> <span class="nav-text">0x01 文件读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-文件写入"><span class="nav-number">3.</span> <span class="nav-text">0x02 文件写入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-命令执行"><span class="nav-number">4.</span> <span class="nav-text">0x03 命令执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-Bypass"><span class="nav-number">5.</span> <span class="nav-text">0x04 Bypass</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">6.</span> <span class="nav-text">References</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-Sqli"><span class="nav-number">1.</span> <span class="nav-text">0x00 Sqli</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-文件读取"><span class="nav-number">2.</span> <span class="nav-text">0x01 文件读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-文件写入"><span class="nav-number">3.</span> <span class="nav-text">0x02 文件写入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-命令执行"><span class="nav-number">4.</span> <span class="nav-text">0x03 命令执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-Bypass"><span class="nav-number">5.</span> <span class="nav-text">0x04 Bypass</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-References"><span class="nav-number">6.</span> <span class="nav-text">0x05 References</span></a></li></ol></div>
             
 
           </div>

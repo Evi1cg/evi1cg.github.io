@@ -4,7 +4,7 @@
   <url>
     <loc>https://evi1cg.github.io/archives/PostgreSQL-Injection.html</loc>
     
-    <lastmod>2020-10-15T06:41:57.354Z</lastmod>
+    <lastmod>2020-10-15T06:59:07.232Z</lastmod>
     
   </url>
   
@@ -191,14 +191,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/AppLocker_Bypass_MSXSL.html</loc>
+    <loc>https://evi1cg.github.io/archives/Bypassing_Applocker_with_msiexec.html</loc>
     
     <lastmod>2019-01-15T05:43:36.772Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Bypassing_Applocker_with_msiexec.html</loc>
+    <loc>https://evi1cg.github.io/archives/AppLocker_Bypass_MSXSL.html</loc>
     
     <lastmod>2019-01-15T05:43:36.772Z</lastmod>
     
@@ -226,7 +226,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Create_PPSX.html</loc>
+    <loc>https://evi1cg.github.io/archives/Port_Forward_using_VPS_SSH_Tunnel.html</loc>
     
     <lastmod>2019-01-15T05:43:36.772Z</lastmod>
     
@@ -240,14 +240,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Port_Forward_using_VPS_SSH_Tunnel.html</loc>
+    <loc>https://evi1cg.github.io/archives/Domain_Fronting.html</loc>
     
     <lastmod>2019-01-15T05:43:36.772Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Domain_Fronting.html</loc>
+    <loc>https://evi1cg.github.io/archives/Create_PPSX.html</loc>
     
     <lastmod>2019-01-15T05:43:36.772Z</lastmod>
     
@@ -331,14 +331,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/hashcat_crack_office.html</loc>
+    <loc>https://evi1cg.github.io/archives/Don-t_touch_my_shell.html</loc>
     
     <lastmod>2019-01-15T05:43:36.770Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Don-t_touch_my_shell.html</loc>
+    <loc>https://evi1cg.github.io/archives/hashcat_crack_office.html</loc>
     
     <lastmod>2019-01-15T05:43:36.770Z</lastmod>
     
@@ -352,14 +352,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Hack_With_Chrome_Extension.html</loc>
+    <loc>https://evi1cg.github.io/archives/Exec_OS_Command_Via_MSSQL.html</loc>
     
     <lastmod>2019-01-15T05:43:36.769Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Exec_OS_Command_Via_MSSQL.html</loc>
+    <loc>https://evi1cg.github.io/archives/Hack_With_Chrome_Extension.html</loc>
     
     <lastmod>2019-01-15T05:43:36.769Z</lastmod>
     
@@ -436,14 +436,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/hack_with_rewrite.html</loc>
+    <loc>https://evi1cg.github.io/archives/Hack_With_XSLT.html</loc>
     
     <lastmod>2019-01-15T05:43:36.768Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Hack_With_XSLT.html</loc>
+    <loc>https://evi1cg.github.io/archives/hack_with_rewrite.html</loc>
     
     <lastmod>2019-01-15T05:43:36.768Z</lastmod>
     
@@ -485,13 +485,6 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Linux_Command.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evi1cg.github.io/archives/creating-a-malicious-javascript-by-utilizing-alternate-data-streams.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
@@ -506,14 +499,21 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/ypassing_Applocker_with_MSBuild-exe.html</loc>
+    <loc>https://evi1cg.github.io/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html</loc>
+    <loc>https://evi1cg.github.io/archives/Linux_Command.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/ypassing_Applocker_with_MSBuild-exe.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -562,13 +562,6 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Kerberos.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evi1cg.github.io/archives/LFI.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
@@ -583,6 +576,13 @@
   </url>
   
   <url>
+    <loc>https://evi1cg.github.io/archives/Kerberos.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/MAC.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
@@ -590,7 +590,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Tips_of_Mimikatz.html</loc>
+    <loc>https://evi1cg.github.io/archives/Mssql_Agent_Job_Exec.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -598,6 +598,13 @@
   
   <url>
     <loc>https://evi1cg.github.io/archives/mousejack_replay.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Tips_of_Mimikatz.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -618,21 +625,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Mssql_Agent_Job_Exec.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evi1cg.github.io/archives/test1.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/SUID_Privilege_Escalation.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -646,14 +639,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Tricks.html</loc>
+    <loc>https://evi1cg.github.io/archives/SUID_Privilege_Escalation.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/URL.html</loc>
+    <loc>https://evi1cg.github.io/archives/Tricks.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -667,7 +660,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Downloader_byIE.html</loc>
+    <loc>https://evi1cg.github.io/archives/URL.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -681,7 +674,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/windows-domain-credentials-phishing-tool.html</loc>
+    <loc>https://evi1cg.github.io/archives/Downloader_byIE.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -695,14 +688,21 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/change_user.html</loc>
+    <loc>https://evi1cg.github.io/archives/tips.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/tips.html</loc>
+    <loc>https://evi1cg.github.io/archives/windows-domain-credentials-phishing-tool.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/change_user.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -730,14 +730,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/15.html</loc>
+    <loc>https://evi1cg.github.io/archives/phpcodes.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/phpcodes.html</loc>
+    <loc>https://evi1cg.github.io/archives/15.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -751,14 +751,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Compile_Your_Powreshell_Script.html</loc>
+    <loc>https://evi1cg.github.io/archives/GetShellls.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/GetShellls.html</loc>
+    <loc>https://evi1cg.github.io/archives/Compile_Your_Powreshell_Script.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     

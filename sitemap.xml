@@ -2,485 +2,492 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evi1cg.github.io/archives/Get_cmd.html</loc>
+    
+    <lastmod>2021-02-19T13:23:45.169Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/PostgreSQL-Injection.html</loc>
     
-    <lastmod>2020-10-19T11:22:53.851Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/SSRF_Bypass.html</loc>
-    
-    <lastmod>2020-10-11T01:27:22.079Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/popups_advanced_maldoc.html</loc>
-    
-    <lastmod>2020-08-03T09:25:27.564Z</lastmod>
+    <lastmod>2020-11-05T02:09:06.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/friends/index.html</loc>
     
-    <lastmod>2020-04-16T15:45:53.289Z</lastmod>
+    <lastmod>2020-11-02T12:17:19.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/SSRF_Bypass.html</loc>
+    
+    <lastmod>2020-10-11T01:27:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/popups_advanced_maldoc.html</loc>
+    
+    <lastmod>2020-08-03T09:25:27.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/cve_2020_0601.html</loc>
     
-    <lastmod>2020-01-17T08:29:49.849Z</lastmod>
+    <lastmod>2020-01-17T08:29:49.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Email_spoofing.html</loc>
     
-    <lastmod>2020-01-17T01:58:32.427Z</lastmod>
+    <lastmod>2020-01-17T01:58:32.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io//404.html</loc>
     
-    <lastmod>2019-07-01T07:46:43.514Z</lastmod>
+    <lastmod>2019-07-01T07:46:43.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/spear_phish.html</loc>
     
-    <lastmod>2019-06-05T09:27:07.918Z</lastmod>
+    <lastmod>2019-06-05T09:27:07.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/UserClone.html</loc>
     
-    <lastmod>2019-04-22T02:16:15.666Z</lastmod>
+    <lastmod>2019-04-22T02:16:15.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Use_Powershell_Stream_A_Target-t_Desktop.html</loc>
     
-    <lastmod>2019-03-18T07:18:51.950Z</lastmod>
+    <lastmod>2019-03-18T07:18:51.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/sqli_without_knowing_columns_names.html</loc>
     
-    <lastmod>2019-02-13T08:15:32.095Z</lastmod>
+    <lastmod>2019-02-13T08:15:32.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Remote_NTLM_relaying_through_CS.html</loc>
     
-    <lastmod>2019-01-28T05:07:17.762Z</lastmod>
+    <lastmod>2019-01-28T05:07:17.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Exchange_Privilege_Elevation.html</loc>
     
-    <lastmod>2019-01-27T11:08:55.387Z</lastmod>
+    <lastmod>2019-01-27T11:08:55.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/CS3_8_chinese_support.html</loc>
     
-    <lastmod>2019-01-25T00:35:01.302Z</lastmod>
+    <lastmod>2019-01-25T00:35:01.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/AMSI_bypass.html</loc>
     
-    <lastmod>2019-01-25T00:25:31.549Z</lastmod>
+    <lastmod>2019-01-25T00:25:31.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/operating-system-based-redirection-with-apache-mod_rewrite.html</loc>
     
-    <lastmod>2019-01-25T00:25:31.542Z</lastmod>
+    <lastmod>2019-01-25T00:25:31.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/CVE_2018_8581.html</loc>
     
-    <lastmod>2019-01-25T00:23:13.791Z</lastmod>
+    <lastmod>2019-01-25T00:23:13.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Exchange_Hack.html</loc>
     
-    <lastmod>2019-01-23T02:14:20.802Z</lastmod>
+    <lastmod>2019-01-23T02:14:20.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Powershell_Gethash.html</loc>
     
-    <lastmod>2019-01-16T06:57:49.281Z</lastmod>
+    <lastmod>2019-01-16T06:57:49.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/CVE_2017_11882_exp.html</loc>
     
-    <lastmod>2019-01-16T05:42:11.477Z</lastmod>
+    <lastmod>2019-01-16T05:42:11.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Custom_Oneliner.html</loc>
     
-    <lastmod>2019-01-16T05:15:06.566Z</lastmod>
+    <lastmod>2019-01-16T05:15:06.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/BypassAV_With_ReflectivePEInjection.html</loc>
     
-    <lastmod>2019-01-16T05:14:25.237Z</lastmod>
+    <lastmod>2019-01-16T05:14:25.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/CVE_2018_0802.html</loc>
     
-    <lastmod>2019-01-16T05:12:48.647Z</lastmod>
+    <lastmod>2019-01-16T05:12:48.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/tools/index.html</loc>
     
-    <lastmod>2019-01-15T09:03:44.537Z</lastmod>
+    <lastmod>2019-01-15T09:03:44.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Shortcut_Backdoor.html</loc>
     
-    <lastmod>2019-01-15T06:33:01.015Z</lastmod>
+    <lastmod>2019-01-15T06:33:01.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Cortana.html</loc>
     
-    <lastmod>2019-01-15T06:32:00.623Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/AppLocker_Bypass_Techniques.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.773Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/AppLocker_Bypass_MSXSL.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.772Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Bypassing_Applocker_with_msiexec.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.772Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/hijacking-common-windows-shortcuts-with-powershell.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.772Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/bypassAV_hanzoInjection.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.772Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Nishang_shells.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.772Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Create_PPSX.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.772Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/ExecPowershell_Use_DNSTXT.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.772Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Port_Forward_using_VPS_SSH_Tunnel.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.772Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Domain_Fronting.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.772Z</lastmod>
+    <lastmod>2019-01-15T06:32:00.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/13-ways-to-download-a-file.html</loc>
     
-    <lastmod>2019-01-15T05:43:36.771Z</lastmod>
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/CVE_2017_8386.html</loc>
+    <loc>https://evi1cg.github.io/archives/AppLocker_Bypass_Techniques.html</loc>
     
-    <lastmod>2019-01-15T05:43:36.771Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Javascript_And_ComScript.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.771Z</lastmod>
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/MSWord_Code_Exec_Without_Macro.html</loc>
+    <loc>https://evi1cg.github.io/archives/AppLocker_Bypass_MSXSL.html</loc>
     
-    <lastmod>2019-01-15T05:43:36.771Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Powerup.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.771Z</lastmod>
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Powershell_Bypass_UAC.html</loc>
+    <loc>https://evi1cg.github.io/archives/Bypassing_Applocker_with_msiexec.html</loc>
     
-    <lastmod>2019-01-15T05:43:36.771Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/MS16-032-Windows-Privilege-Escalation.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.770Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Office_Phishing.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.770Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Xsl_Exec_Webshell.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.770Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/CobaltStrike_3_8_Cracked-html.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.770Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/remote_exec.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.770Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/hashcat_crack_office.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.770Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Don-t_touch_my_shell.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.770Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Tor_Fronting.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.770Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Exec_OS_Command_Via_MSSQL.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.769Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Hack_With_Chrome_Extension.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.769Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Invoke-MS16-135.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.769Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/CobaltStrike_3_6_Cracked.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.769Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/mousejack.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.769Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Powershell_client.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.769Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/ADS.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.769Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/phish_use_pac.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.769Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Get_NTLM_Hashes.html</loc>
-    
-    <lastmod>2019-01-15T05:43:36.769Z</lastmod>
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/teamserver.html</loc>
     
-    <lastmod>2019-01-15T05:43:36.768Z</lastmod>
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Cobalt_strike.html</loc>
     
-    <lastmod>2019-01-15T05:43:36.768Z</lastmod>
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Exec_Commands_Via_Mshta.html</loc>
     
-    <lastmod>2019-01-15T05:43:36.768Z</lastmod>
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Exec_OS_Command_Via_MSSQL.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/CVE_2017_8386.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Hack_With_Chrome_Extension.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Hack_With_XSLT.html</loc>
     
-    <lastmod>2019-01-15T05:43:36.768Z</lastmod>
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/hack_with_rewrite.html</loc>
     
-    <lastmod>2019-01-15T05:43:36.768Z</lastmod>
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/hijacking-common-windows-shortcuts-with-powershell.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Javascript_And_ComScript.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/MS16-032-Windows-Privilege-Escalation.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Invoke-MS16-135.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/MSWord_Code_Exec_Without_Macro.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Office_Phishing.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/Powershell_MOF_Backdoor.html</loc>
     
-    <lastmod>2019-01-15T05:43:36.768Z</lastmod>
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Powerup.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Xsl_Exec_Webshell.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/bypassAV_hanzoInjection.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/CobaltStrike_3_6_Cracked.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/CobaltStrike_3_8_Cracked-html.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/mousejack.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Nishang_shells.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/remote_exec.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Powershell_Bypass_UAC.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/hashcat_crack_office.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Powershell_client.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Don-t_touch_my_shell.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Create_PPSX.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/ADS.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/phish_use_pac.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/ExecPowershell_Use_DNSTXT.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Get_NTLM_Hashes.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Port_Forward_using_VPS_SSH_Tunnel.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Domain_Fronting.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Tor_Fronting.html</loc>
+    
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archives/chm_backdoor.html</loc>
     
-    <lastmod>2019-01-15T05:43:36.768Z</lastmod>
+    <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/categories/index.html</loc>
     
-    <lastmod>2019-01-15T02:37:02.934Z</lastmod>
+    <lastmod>2019-01-15T02:37:02.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/tags/index.html</loc>
     
-    <lastmod>2019-01-15T02:36:52.419Z</lastmod>
+    <lastmod>2019-01-15T02:36:52.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://evi1cg.github.io/archive/index.html</loc>
     
-    <lastmod>2019-01-15T00:45:42.168Z</lastmod>
+    <lastmod>2019-01-15T00:45:42.000Z</lastmod>
     
   </url>
   
@@ -506,14 +513,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/ypassing_Applocker_with_MSBuild-exe.html</loc>
+    <loc>https://evi1cg.github.io/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html</loc>
+    <loc>https://evi1cg.github.io/archives/ypassing_Applocker_with_MSBuild-exe.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -604,14 +611,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Multi-Threaded_Brute_Forcer.html</loc>
+    <loc>https://evi1cg.github.io/archives/mousejack_replay.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/mousejack_replay.html</loc>
+    <loc>https://evi1cg.github.io/archives/Multi-Threaded_Brute_Forcer.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -716,13 +723,6 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Get_cmd.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evi1cg.github.io/archives/Get_Informations.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
@@ -767,7 +767,7 @@
   <url>
     <loc>https://evi1cg.github.io/search/index.html</loc>
     
-    <lastmod>2019-01-14T08:22:12.477Z</lastmod>
+    <lastmod>2019-01-14T08:22:12.000Z</lastmod>
     
   </url>
   

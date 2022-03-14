@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evi1cg.github.io/friends/index.html</loc>
+    
+    <lastmod>2022-03-14T04:54:02.544Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/archives/Get_cmd.html</loc>
     
     <lastmod>2021-02-19T13:23:45.169Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://evi1cg.github.io/archives/PostgreSQL-Injection.html</loc>
     
     <lastmod>2020-11-05T02:09:06.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evi1cg.github.io/friends/index.html</loc>
-    
-    <lastmod>2020-11-02T12:17:19.000Z</lastmod>
     
   </url>
   
@@ -212,14 +212,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Bypassing_Applocker_with_msiexec.html</loc>
+    <loc>https://evi1cg.github.io/archives/teamserver.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/teamserver.html</loc>
+    <loc>https://evi1cg.github.io/archives/Bypassing_Applocker_with_msiexec.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
@@ -359,14 +359,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/mousejack.html</loc>
+    <loc>https://evi1cg.github.io/archives/Nishang_shells.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Nishang_shells.html</loc>
+    <loc>https://evi1cg.github.io/archives/mousejack.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
@@ -380,14 +380,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Powershell_Bypass_UAC.html</loc>
+    <loc>https://evi1cg.github.io/archives/hashcat_crack_office.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/hashcat_crack_office.html</loc>
+    <loc>https://evi1cg.github.io/archives/Powershell_Bypass_UAC.html</loc>
     
     <lastmod>2019-01-15T05:43:36.000Z</lastmod>
     
@@ -611,13 +611,6 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/mousejack_replay.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evi1cg.github.io/archives/Multi-Threaded_Brute_Forcer.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
@@ -661,6 +654,13 @@
   
   <url>
     <loc>https://evi1cg.github.io/archives/URL.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evi1cg.github.io/archives/mousejack_replay.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
     
@@ -744,13 +744,6 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/archives/Pentest_SSH.html</loc>
-    
-    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evi1cg.github.io/archives/GetShellls.html</loc>
     
     <lastmod>2019-01-14T14:44:26.000Z</lastmod>
@@ -765,6 +758,13 @@
   </url>
   
   <url>
+    <loc>https://evi1cg.github.io/archives/Pentest_SSH.html</loc>
+    
+    <lastmod>2019-01-14T14:44:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evi1cg.github.io/search/index.html</loc>
     
     <lastmod>2019-01-14T08:22:12.000Z</lastmod>
@@ -772,14 +772,14 @@
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/tools/flashCSRF/ContentHijacking.html</loc>
+    <loc>https://evi1cg.github.io/tools/flashCSRF/index.html</loc>
     
     <lastmod>2016-06-07T03:33:16.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evi1cg.github.io/tools/flashCSRF/index.html</loc>
+    <loc>https://evi1cg.github.io/tools/flashCSRF/ContentHijacking.html</loc>
     
     <lastmod>2016-06-07T03:33:16.000Z</lastmod>
     

